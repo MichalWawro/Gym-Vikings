@@ -1,4 +1,4 @@
-package com.example.elgrande.model;
+package com.example.elgrande.model.diet;
 
 public class Ingredient {
     private String name;

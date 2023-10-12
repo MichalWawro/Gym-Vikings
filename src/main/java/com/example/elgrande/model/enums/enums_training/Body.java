@@ -1,4 +1,4 @@
-package com.example.elgrande.exercise_model.enums;
+package com.example.elgrande.model.enums.enums_training;
 
 public enum Body {
     BICEPS,

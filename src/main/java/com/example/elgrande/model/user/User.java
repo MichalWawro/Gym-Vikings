@@ -1,6 +1,6 @@
-package com.example.elgrande.model;
+package com.example.elgrande.model.user;
 
-import com.example.elgrande.model.enums.UserLevel;
+import com.example.elgrande.model.enums.enums_user.UserLevel;
 import lombok.Getter;
 import lombok.Setter;
 

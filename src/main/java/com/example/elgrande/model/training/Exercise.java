@@ -1,12 +1,13 @@
-package com.example.elgrande.exercise_model.model;
+package com.example.elgrande.model.training;
 
-import com.example.elgrande.exercise_model.enums.Level;
-import com.example.elgrande.exercise_model.enums.Type;
+import com.example.elgrande.model.enums.enums_training.Level;
+import com.example.elgrande.model.enums.enums_training.Type;
 
 public class Exercise {
     private String name;
     private Level levelOfIntensity;
     private Type type;
+    private int set;
     private int reps;
     private int weight;
 

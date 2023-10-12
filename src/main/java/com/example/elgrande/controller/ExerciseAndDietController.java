@@ -1,7 +1,7 @@
 package com.example.elgrande.controller;
 
-import com.example.elgrande.model.User;
-import com.example.elgrande.model.enums.UserLevel;
+import com.example.elgrande.model.user.User;
+import com.example.elgrande.model.enums.enums_user.UserLevel;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 

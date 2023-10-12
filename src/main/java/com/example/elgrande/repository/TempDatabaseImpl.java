@@ -1,8 +1,8 @@
 package com.example.elgrande.repository;
 
-import com.example.elgrande.model.Diet;
-import com.example.elgrande.model.Ingredient;
-import com.example.elgrande.model.Meal;
+import com.example.elgrande.model.diet.Diet;
+import com.example.elgrande.model.diet.Ingredient;
+import com.example.elgrande.model.diet.Meal;
 
 import java.util.List;
 

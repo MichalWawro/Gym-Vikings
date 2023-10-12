@@ -1,7 +1,7 @@
-package com.example.elgrande.model;
+package com.example.elgrande.model.diet;
 
-import com.example.elgrande.model.enums.DietType;
-import com.example.elgrande.model.enums.FoodType;
+import com.example.elgrande.model.enums.enums_diet.DietType;
+import com.example.elgrande.model.enums.enums_diet.FoodType;
 
 import java.util.ArrayList;
 

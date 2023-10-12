@@ -1,6 +1,5 @@
 package com.example.elgrande;
 
-import com.example.elgrande.model.User;
 import com.example.elgrande.repository.TempDatabase;
 import com.example.elgrande.repository.TempDatabaseImpl;
 import org.springframework.boot.SpringApplication;

@@ -1,10 +1,10 @@
 package com.example.elgrande.repository;
 
-import com.example.elgrande.model.Diet;
-import com.example.elgrande.model.Ingredient;
-import com.example.elgrande.model.Meal;
-import com.example.elgrande.model.enums.DietType;
-import com.example.elgrande.model.enums.FoodType;
+import com.example.elgrande.model.diet.Diet;
+import com.example.elgrande.model.diet.Ingredient;
+import com.example.elgrande.model.diet.Meal;
+import com.example.elgrande.model.enums.enums_diet.DietType;
+import com.example.elgrande.model.enums.enums_diet.FoodType;
 
 import java.util.*;
 

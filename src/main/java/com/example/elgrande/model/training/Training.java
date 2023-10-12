@@ -1,7 +1,7 @@
-package com.example.elgrande.exercise_model.model;
+package com.example.elgrande.model.training;
 
-import com.example.elgrande.exercise_model.enums.Body;
-import com.example.elgrande.exercise_model.enums.Level;
+import com.example.elgrande.model.enums.enums_training.Body;
+import com.example.elgrande.model.enums.enums_training.Level;
 
 import java.util.List;
 
