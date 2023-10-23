@@ -11,12 +11,12 @@ public class ExerciseAndDietController {
     // ---- to są testowe endpointy.
     @GetMapping("main")
     public User displayUser(){
-        return new User("Bart", "123", 78, 190, UserLevel.INTERMEDIATE);
+        return new User("Bart", "123", "FEMALE",44,78, 190, UserLevel.INTERMEDIATE);
     }
 
     @GetMapping("bmi")
     public double displayBmi(){
-        return new User("Bart", "123", 78, 190, UserLevel.INTERMEDIATE). getBMI();
+        return new User("Bart", "123", "FEMALE",24,78, 190, UserLevel.INTERMEDIATE). getBMI();
     }
 
 }

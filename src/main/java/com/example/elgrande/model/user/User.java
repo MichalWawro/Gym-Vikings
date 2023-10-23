@@ -15,15 +15,19 @@ public class User {
     private Long id;
     private String name;
     private String password;
+    private String gender;
+    private int age;
     private int weight;
     private int height;
     @Enumerated(EnumType.STRING)
     private UserLevel userLevel;
     public User() {
     }
-    public User(String name, String password, int weight, int height, UserLevel userLevel){
+    public User(String name, String password, String gender, int age, int weight, int height, UserLevel userLevel){
         this.weight = weight;
         this.height = height;
+        this.gender=gender;
+        this.age=age;
         this.name = name;
         this.password = password;
         this.userLevel = userLevel;

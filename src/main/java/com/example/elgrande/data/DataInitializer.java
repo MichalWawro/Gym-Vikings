@@ -18,11 +18,11 @@ public class DataInitializer implements CommandLineRunner {
     }
     @Override
     public void run(String... args) throws Exception {
-        User user1 = new User("User1", "password1", 70, 170, UserLevel.BEGINNER);
-        User user2 = new User("User2", "password2", 75, 175, UserLevel.INTERMEDIATE);
-        User user3 = new User("User3", "password3", 80, 180, UserLevel.PROFESSIONAL);
-        User user4 = new User("User4", "password4", 85, 185, UserLevel.BEGINNER);
-        User user5 = new User("User5", "password5", 90, 190, UserLevel.INTERMEDIATE);
+        User user1 = new User("User1", "password1", "MALE",24,70, 170, UserLevel.BEGINNER);
+        User user2 = new User("User2", "password2", "FEMALE",26,75, 175, UserLevel.INTERMEDIATE);
+        User user3 = new User("User3", "password3", "MALE",30,80, 180, UserLevel.PROFESSIONAL);
+        User user4 = new User("User4", "password4", "FEMALE",34,85, 185, UserLevel.ELITE);
+        User user5 = new User("User5", "password5", "MALE",44,90, 190, UserLevel.EXPERT);
 
         userRepository.saveAll(List.of(user1, user2, user3, user4, user5));
     }
