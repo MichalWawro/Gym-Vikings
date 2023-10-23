@@ -4,8 +4,11 @@ public enum Body {
     BICEPS,
     TRICEPS,
     SHOULDER,
+    FOREARM,
     BACK,
     CHEST,
     ABS,
     LEGS,
+    GLUTE,
+    CALVES
 }

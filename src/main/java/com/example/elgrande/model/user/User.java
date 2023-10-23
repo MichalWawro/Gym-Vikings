@@ -10,6 +10,8 @@ public class User {
 
     private String name;
     private String password;
+    private String gender;
+    private int age;
     private int weight;
     private final int height;
     private UserLevel userLevel;
