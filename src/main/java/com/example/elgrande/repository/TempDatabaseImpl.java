@@ -8,18 +8,18 @@ import java.util.List;
 
 public class TempDatabaseImpl implements TempDatabase{
 
-    @Override
-    public List<Ingredient> getIngredients() {
-        return null;
-    }
-
-    @Override
-    public List<Meal> getMeals() {
-        return null;
-    }
-
-    @Override
-    public List<Diet> getDiets() {
-        return null;
-    }
+//    @Override
+//    public List<Ingredient> getIngredients() {
+//        return null;
+//    }
+//
+//    @Override
+//    public List<Meal> getMeals() {
+//        return null;
+//    }
+//
+//    @Override
+//    public List<Diet> getDiets() {
+//        return null;
+//    }
 }

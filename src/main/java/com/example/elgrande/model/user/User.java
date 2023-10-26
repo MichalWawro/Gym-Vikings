@@ -1,9 +1,14 @@
 package com.example.elgrande.model.user;
 
+import com.example.elgrande.model.diet.Diet;
 import com.example.elgrande.model.enums.enums_user.UserLevel;
+import com.example.elgrande.model.training.Training;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
+
+import java.util.ArrayList;
+import java.util.List;
 
 @Getter
 @Setter
@@ -21,8 +26,12 @@ public class User {
     private int height;
     @Enumerated(EnumType.STRING)
     private UserLevel userLevel;
-    public User() {
-    }
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<Training> training;
+
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<Diet> diets = new ArrayList<>();
+
     public User(String name, String password, String gender, int age, int weight, int height, UserLevel userLevel){
         this.weight = weight;
         this.height = height;
@@ -33,6 +42,18 @@ public class User {
         this.userLevel = userLevel;
     }
 
+    public User() {
+    }
+
+    public void addDiet(Diet diet) {
+        diet.setUser(this);
+        diets.add(diet);
+    }
+
+    public void removeDiet(Diet diet) {
+        diet.setUser(null);
+        diets.remove(diet);
+    }
     public double getBMI() {
         return weight / (Math.pow((double)height / 100, 2));
     }

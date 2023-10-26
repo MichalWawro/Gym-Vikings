@@ -2,6 +2,7 @@ package com.example.elgrande.model.training;
 
 import com.example.elgrande.model.enums.enums_training.Body;
 import com.example.elgrande.model.enums.enums_training.Level;
+import com.example.elgrande.model.user.User;
 import jakarta.persistence.*;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -20,6 +21,8 @@ public class Training {
     private Body bodyParts;
     @Enumerated(EnumType.STRING)
     private Level level;
+    @ManyToOne
+    private User user;
     @ManyToMany
     @JoinTable(name = "trainings",
     joinColumns = @JoinColumn(name="training_id"),

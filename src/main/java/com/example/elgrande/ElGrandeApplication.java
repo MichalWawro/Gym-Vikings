@@ -13,7 +13,7 @@ public class ElGrandeApplication {
         TempDatabase tempDatabase = new TempDatabaseImpl();
         SpringApplication.run(ElGrandeApplication.class, args);
 
-        System.out.println(TempDatabase.INGREDIENTS.get(1));
+//        System.out.println(TempDatabase.INGREDIENTS.get(1));
     }
 
 }
