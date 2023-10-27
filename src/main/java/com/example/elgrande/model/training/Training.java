@@ -17,8 +17,6 @@ public class Training {
     private int id;
     private String name;
     @Enumerated(EnumType.STRING)
-    private Body bodyParts;
-    @Enumerated(EnumType.STRING)
     private Level level;
     @ManyToMany
     @JoinTable(name = "trainings",
@@ -26,9 +24,8 @@ public class Training {
     inverseJoinColumns = @JoinColumn(name = "exercise_id"))
     private List<Exercise> exercises;
 
-    public Training(String name, Body bodyParts, Level level) {
+    public Training(String name, Level level) {
         this.name = name;
-        this.bodyParts = bodyParts;
         this.level = level;
     }
 }

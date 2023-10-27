@@ -1,6 +1,7 @@
 package com.example.elgrande.model.user;
 
 import com.example.elgrande.model.enums.enums_user.UserLevel;
+import com.example.elgrande.model.training.Training;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
