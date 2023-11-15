@@ -55,4 +55,12 @@ public class Diet {
                 ", dietCalories=" + dietCalories +
                 '}';
     }
+
+    public String getDietName() {
+        return dietName;
+    }
+
+    public void setDietName(String dietName) {
+        this.dietName = dietName;
+    }
 }
