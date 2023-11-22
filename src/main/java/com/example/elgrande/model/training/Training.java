@@ -19,6 +19,8 @@ public class Training {
     private String name;
     @Enumerated(EnumType.STRING)
     private Level level;
+    @Enumerated(EnumType.STRING)
+    private Body bodyParts;
     @ManyToMany(mappedBy = "trainings")
     private List<User> users;
     @ManyToMany
@@ -27,8 +29,9 @@ public class Training {
     inverseJoinColumns = @JoinColumn(name = "exercise_id"))
     private List<Exercise> exercises;
 
-    public Training(String name, Level level) {
+    public Training(String name, Level level, Body bodyParts) {
         this.name = name;
         this.level = level;
+        this.bodyParts = bodyParts;
     }
 }

@@ -190,7 +190,7 @@ public class MainService {
             Level previousLevel = user.getLevel();
             List<Training> updatedtrainings = trainingService.getTrainingsByLevel(getNextLevel(previousLevel));
 
-            List<Training> trainingsToSet = trainingService.prepareTrainings(updatedtrainings,6);
+            List<Training> trainingsToSet = trainingService.prepareTrainings(updatedtrainings,user.getTrainingsPerWeek());
 
             user.setTrainings(trainingsToSet);
             user.setLevel(getNextLevel(previousLevel));
