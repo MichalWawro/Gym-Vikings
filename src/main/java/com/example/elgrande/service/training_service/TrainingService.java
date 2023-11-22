@@ -50,7 +50,7 @@ public class TrainingService {
     }
 
     public Training createTraining(String name, Level levelOfIntencity, Body bodyPart){
-        Training training = new Training(name,bodyPart,levelOfIntencity);
+        Training training = new Training(name, levelOfIntencity, bodyPart);
         return training;
     }
 
