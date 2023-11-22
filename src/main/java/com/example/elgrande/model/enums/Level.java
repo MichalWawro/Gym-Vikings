@@ -1,9 +1,9 @@
-package com.example.elgrande.model.enums.enums_training;
+package com.example.elgrande.model.enums;
 
 public enum Level {
     BEGINNER,
     INTERMEDIATE,
-    ADVANCED,
+    PROFESSIONAL,
     ELITE,
     EXPERT
 }

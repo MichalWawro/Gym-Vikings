@@ -1,48 +1,61 @@
 package com.example.elgrande.model.user;
 
 import com.example.elgrande.model.diet.Diet;
-import com.example.elgrande.model.enums.enums_user.UserLevel;
+import com.example.elgrande.model.enums.Level;
+import com.example.elgrande.model.enums.enums_diet.Allergy;
+import com.example.elgrande.model.training.Exercise;
 import com.example.elgrande.model.training.Training;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
+import lombok.Data;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.hibernate.annotations.CreationTimestamp;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 @Getter
 @Setter
-@Entity(name = "\'User\'") // Enclosing "User" in double quotes to indicate it's an identifier
+@NoArgsConstructor
+@Data
+@Entity(name = "\'User\'")
 public class User {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private int id;
+    @CreationTimestamp
+    private Date creationDate;
     private String name;
     private String password;
+    private String email;
     private String gender;
     private int age;
     private int weight;
     private int height;
     @Enumerated(EnumType.STRING)
-    private UserLevel userLevel;
-    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
-    private List<Training> training;
+    private Level level;
+    private int amountOfTrainingsDone;
+    private int TrainingsPerWeek;
+    @Enumerated(EnumType.STRING)
+    private List<Allergy> allergies;
+    @ManyToMany
+    @JoinTable(name = "user_training",
+            joinColumns = @JoinColumn(name="user_id"),
+            inverseJoinColumns = @JoinColumn(name = "trening_id"))
+    private List<Training> trainings;
 
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
-    private List<Diet> diets = new ArrayList<>();
+    @JsonIgnore
+    private List<Diet> diets;
 
-    public User(String name, String password, String gender, int age, int weight, int height, UserLevel userLevel){
-        this.weight = weight;
-        this.height = height;
-        this.gender=gender;
-        this.age=age;
+    public User(String name, String password, String email) {
         this.name = name;
         this.password = password;
-        this.userLevel = userLevel;
-    }
-
-    public User() {
+        this.email = email;
     }
 
     public void addDiet(Diet diet) {

@@ -1,11 +1,15 @@
 package com.example.elgrande.controller;
 
+
+import org.springframework.web.bind.annotation.RestController;
+
 import com.example.elgrande.model.diet.Diet;
 import com.example.elgrande.service.diet_service.DietService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+
 
 @RestController
 @RequestMapping("/diets")
@@ -43,3 +47,4 @@ public class DietController {
         return dietService.updateDiet(id, updatedDiet);
     }
 }
+
