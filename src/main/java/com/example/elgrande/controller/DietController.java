@@ -1,22 +1,45 @@
 package com.example.elgrande.controller;
 
-import com.example.elgrande.model.user.User;
-import com.example.elgrande.model.enums.enums_user.UserLevel;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RestController;
+import com.example.elgrande.model.diet.Diet;
+import com.example.elgrande.service.diet_service.DietService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
+@RequestMapping("/diets")
 public class DietController {
 
-    // ---- to są testowe endpointy.
-    @GetMapping("main")
-    public User displayUser(){
-        return new User("Bart", "123", "FEMALE",44,78, 190, UserLevel.INTERMEDIATE);
+    private final DietService dietService;
+
+    @Autowired
+    public DietController(DietService dietService) {
+        this.dietService = dietService;
     }
 
-    @GetMapping("bmi")
-    public double displayBmi(){
-        return new User("Bart", "123", "FEMALE",24,78, 190, UserLevel.INTERMEDIATE). getBMI();
+    @GetMapping("/{id}")
+    public Diet getDietById(@PathVariable int id) {
+        return dietService.getDietById(id);
     }
 
+    @GetMapping
+    public List<Diet> getAllDiets() {
+        return dietService.getAllDiets();
+    }
+
+    @PostMapping
+    public Diet createDiet(@RequestBody Diet diet) {
+        return dietService.createDiet(diet);
+    }
+
+    @DeleteMapping("/{id}")
+    public void deleteDiet(@PathVariable int id) {
+        dietService.deleteDiet(id);
+    }
+
+    @PutMapping("/{id}")
+    public Diet updateDiet(@PathVariable int id, @RequestBody Diet updatedDiet) {
+        return dietService.updateDiet(id, updatedDiet);
+    }
 }
