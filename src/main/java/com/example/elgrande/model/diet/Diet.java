@@ -4,12 +4,15 @@ import com.example.elgrande.model.enums.enums_diet.Allergy;
 import com.example.elgrande.model.enums.enums_diet.DietType;
 import com.example.elgrande.model.enums.enums_diet.FoodType;
 import com.example.elgrande.model.user.User;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
+import lombok.Data;
 
 import java.util.ArrayList;
 import java.util.List;
 
 @Entity
+@Data
 public class Diet {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -18,45 +21,48 @@ public class Diet {
     @ManyToMany
     @JoinTable(name = "diets", joinColumns = @JoinColumn(name="diet_id"),
             inverseJoinColumns = @JoinColumn(name = "meal_id"))
-    private List<Meal> mealsArray;
+    private List<Meal> meals;
     //    private List<User> favouritedBy;
     private List<Allergy> allergies;
     private FoodType foodType;
     private DietType dietType;
-    private int dietCalories;
+    private int dietCaloriesPerDay;
     private int favNumber;
 
-    @ManyToOne
-    @JoinColumn(name = "user_id")
-    private User user;
+    @ManyToMany(mappedBy = "diets")
+    @JsonIgnore
+    private List<User> users;
     public Diet(String dietName, List<Meal> mealsArray, FoodType foodType, DietType dietType) {
         this.dietName = dietName;
-        this.mealsArray = mealsArray;
+        this.meals = mealsArray;
         this.foodType = foodType;
         this.dietType = dietType;
-        this.dietCalories = calculateDietCalories();
+        this.dietCaloriesPerDay = calculateDailyCalories();
     }
+
     public Diet() {
     }
 
-    private int calculateDietCalories() {
-        int sum = 0;
-        for(Meal meal : mealsArray) {
+    private int calculateDailyCalories() {
+        double sum = 0;
+        for(Meal meal : meals) {
             sum += meal.getMealCalories();
         }
-        return sum;
+        return (int) sum/7;
     }
-    public void setUser(User user) {
-        this.user = user;
+
+    public void setUser(List<User> users) {
+        this.users = users;
     }
+
     @Override
     public String toString() {
         return "Diet{" +
                 "dietName='" + dietName + '\'' +
-                ", mealsArray=" + mealsArray +
+                ", mealsArray=" + meals +
                 ", foodType=" + foodType +
                 ", dietType=" + dietType +
-                ", dietCalories=" + dietCalories +
+                ", dietCalories=" + dietCaloriesPerDay +
                 '}';
     }
 
@@ -66,7 +72,7 @@ public class Diet {
     }
 
     public List<Meal> getMealsArray() {
-        return mealsArray;
+        return meals;
     }
 
     public FoodType getFoodType() {
@@ -77,8 +83,8 @@ public class Diet {
         return dietType;
     }
 
-    public int getDietCalories() {
-        return dietCalories;
+    public int getDailyCalories() {
+        return dietCaloriesPerDay;
     }
 
     public List<Allergy> getAllergies() {
@@ -95,7 +101,7 @@ public class Diet {
     }
 
     public void setMealsArray(List<Meal> mealsArray) {
-        this.mealsArray = mealsArray;
+        this.meals = mealsArray;
     }
 
     public void setFoodType(FoodType foodType) {

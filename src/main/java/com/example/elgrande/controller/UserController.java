@@ -4,10 +4,12 @@ package com.example.elgrande.controller;
 import com.example.elgrande.forms.LoginForm;
 import com.example.elgrande.forms.RegisterForm;
 import com.example.elgrande.forms.UserForm;
-import com.example.elgrande.forms.loginForm;
+//import com.example.elgrande.forms.loginForm;
+import com.example.elgrande.model.diet.Diet;
 import com.example.elgrande.model.training.Training;
 import com.example.elgrande.model.user.User;
 import com.example.elgrande.service.MainService;
+import com.example.elgrande.service.diet_service.DietService;
 import com.example.elgrande.service.user_service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -22,7 +24,6 @@ public class UserController {
 
     private final UserService userService;
     private MainService mainService;
-
 
     @Autowired
     public UserController(UserService userService, MainService mainService) {
@@ -51,7 +52,7 @@ public class UserController {
     }
 
     @PatchMapping("/user/formDone")
-    public ResponseEntity<String> getForm(@RequestParam int userId, @RequestBody UserForm userForm){
+    public ResponseEntity<String> getForm(@RequestParam int userId, @RequestBody UserForm userForm) {
         try {
             mainService.setUserInfo(userForm, userId);
             mainService.updateTrainingPlan(userId, 25);
@@ -75,8 +76,18 @@ public class UserController {
         }
     }
 
+    @GetMapping("/user/suggestDiets")
+    public List<Diet> suggestDiet(@RequestParam int userId){
+        return mainService.suggestDiet(userId);
+    }
+
     @GetMapping("/training/provideNextTraining")
     public Training provideTraining(@RequestParam int userId){
         return mainService.getOneTrainingFromUser(userId);
+    }
+
+    @GetMapping("/user/getUserInfo")
+    public User getUserInfo(@RequestParam int userId) {
+        return userService.getUserById(userId);
     }
 }

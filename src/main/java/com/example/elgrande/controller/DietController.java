@@ -45,5 +45,9 @@ public class DietController {
     public Diet updateDiet(@PathVariable int id, @RequestBody Diet updatedDiet) {
         return dietService.updateDiet(id, updatedDiet);
     }
+
+    //---------------------------------------------------------------------------------
+
+
 }
 
