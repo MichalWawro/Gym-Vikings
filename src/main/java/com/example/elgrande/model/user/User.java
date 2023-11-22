@@ -3,6 +3,8 @@ package com.example.elgrande.model.user;
 import com.example.elgrande.model.diet.Diet;
 import com.example.elgrande.model.enums.Level;
 import com.example.elgrande.model.enums.enums_diet.Allergy;
+import com.example.elgrande.model.enums.enums_diet.DietType;
+import com.example.elgrande.model.enums.enums_diet.FoodType;
 import com.example.elgrande.model.training.Exercise;
 import com.example.elgrande.model.training.Training;
 import com.fasterxml.jackson.annotation.JsonIgnore;
@@ -38,6 +40,10 @@ public class User {
     private int height;
     @Enumerated(EnumType.STRING)
     private Level level;
+    @Enumerated(EnumType.STRING)
+    private DietType dietType;
+    @Enumerated(EnumType.STRING)
+    private FoodType foodType;
     private int amountOfTrainingsDone;
     private int TrainingsPerWeek;
     @Enumerated(EnumType.STRING)

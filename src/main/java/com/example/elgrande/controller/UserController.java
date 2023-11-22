@@ -4,7 +4,6 @@ package com.example.elgrande.controller;
 import com.example.elgrande.forms.LoginForm;
 import com.example.elgrande.forms.RegisterForm;
 import com.example.elgrande.forms.UserForm;
-import com.example.elgrande.forms.loginForm;
 import com.example.elgrande.model.training.Training;
 import com.example.elgrande.model.user.User;
 import com.example.elgrande.service.MainService;
@@ -52,7 +51,7 @@ public class UserController {
 
     @PatchMapping("/user/formDone")
     public ResponseEntity<String> getForm(@RequestParam int userId, @RequestBody UserForm userForm){
-        try {
+            try {
             mainService.setUserInfo(userForm, userId);
             mainService.updateTrainingPlan(userId, 25);
             return ResponseEntity.ok("User information set successfully");

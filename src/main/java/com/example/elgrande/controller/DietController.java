@@ -1,6 +1,5 @@
 package com.example.elgrande.controller;
 
-
 import org.springframework.web.bind.annotation.RestController;
 
 import com.example.elgrande.model.diet.Diet;

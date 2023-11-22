@@ -1,5 +1,6 @@
 package com.example.elgrande.model.diet;
 
+import com.example.elgrande.model.enums.enums_diet.Allergy;
 import com.example.elgrande.model.enums.enums_diet.DietType;
 import com.example.elgrande.model.enums.enums_diet.FoodType;
 import com.example.elgrande.model.user.User;
@@ -18,9 +19,12 @@ public class Diet {
     @JoinTable(name = "diets", joinColumns = @JoinColumn(name="diet_id"),
             inverseJoinColumns = @JoinColumn(name = "meal_id"))
     private List<Meal> mealsArray;
+    //    private List<User> favouritedBy;
+    private List<Allergy> allergies;
     private FoodType foodType;
     private DietType dietType;
     private int dietCalories;
+    private int favNumber;
 
     @ManyToOne
     @JoinColumn(name = "user_id")
@@ -56,11 +60,49 @@ public class Diet {
                 '}';
     }
 
+    //Getters
     public String getDietName() {
         return dietName;
     }
 
+    public List<Meal> getMealsArray() {
+        return mealsArray;
+    }
+
+    public FoodType getFoodType() {
+        return foodType;
+    }
+
+    public DietType getDietType() {
+        return dietType;
+    }
+
+    public int getDietCalories() {
+        return dietCalories;
+    }
+
+    public List<Allergy> getAllergies() {
+        return allergies;
+    }
+
+    public int getFavNumber() {
+        return favNumber;
+    }
+
+    //Setters
     public void setDietName(String dietName) {
         this.dietName = dietName;
+    }
+
+    public void setMealsArray(List<Meal> mealsArray) {
+        this.mealsArray = mealsArray;
+    }
+
+    public void setFoodType(FoodType foodType) {
+        this.foodType = foodType;
+    }
+
+    public void setDietType(DietType dietType) {
+        this.dietType = dietType;
     }
 }
