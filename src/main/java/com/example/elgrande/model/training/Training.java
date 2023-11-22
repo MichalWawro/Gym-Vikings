@@ -1,7 +1,7 @@
 package com.example.elgrande.model.training;
 
 import com.example.elgrande.model.enums.enums_training.Body;
-import com.example.elgrande.model.enums.enums_training.Level;
+import com.example.elgrande.model.enums.Level;
 import com.example.elgrande.model.user.User;
 import jakarta.persistence.*;
 import lombok.Data;
@@ -21,10 +21,10 @@ public class Training {
     private Body bodyParts;
     @Enumerated(EnumType.STRING)
     private Level level;
-    @ManyToOne
-    private User user;
+    @ManyToMany(mappedBy = "trainings")
+    private List<User> users;
     @ManyToMany
-    @JoinTable(name = "trainings",
+    @JoinTable(name = "training_exercise",
     joinColumns = @JoinColumn(name="training_id"),
     inverseJoinColumns = @JoinColumn(name = "exercise_id"))
     private List<Exercise> exercises;
