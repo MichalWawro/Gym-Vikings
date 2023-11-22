@@ -1,12 +1,21 @@
 package com.example.elgrande.data;
 
+import com.example.elgrande.model.diet.Diet;
+import com.example.elgrande.model.diet.Ingredient;
+import com.example.elgrande.model.diet.Meal;
 import com.example.elgrande.model.enums.Level;
+import com.example.elgrande.model.enums.enums_diet.DietType;
+import com.example.elgrande.model.enums.enums_diet.FoodType;
 import com.example.elgrande.model.enums.enums_training.Body;
 import com.example.elgrande.model.enums.enums_training.Type;
 import com.example.elgrande.model.training.Exercise;
 import com.example.elgrande.model.training.Training;
 import com.example.elgrande.model.user.User;
 import com.example.elgrande.repository.UserRepository;
+import com.example.elgrande.service.diet_service.DietRepository;
+import com.example.elgrande.service.diet_service.DietService;
+import com.example.elgrande.service.diet_service.IngredientRepository;
+import com.example.elgrande.service.diet_service.MealRepository;
 import com.example.elgrande.service.training_service.ExerciseRepository;
 import com.example.elgrande.service.training_service.TrainingRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,17 +29,55 @@ public class DataInitializer implements CommandLineRunner {
     private final UserRepository userRepository;
     private TrainingRepository trainingRepository;
     private ExerciseRepository exerciseRepository;
+    private DietRepository dietRepository;
+    private MealRepository mealRepository;
+    private IngredientRepository ingredientRepository;
 @Autowired
-    public DataInitializer(UserRepository userRepository, TrainingRepository trainingRepository, ExerciseRepository exerciseRepository) {
+    public DataInitializer(UserRepository userRepository, TrainingRepository trainingRepository, ExerciseRepository exerciseRepository, DietRepository dietRepository, MealRepository mealRepository, IngredientRepository ingredientRepository) {
         this.userRepository = userRepository;
         this.trainingRepository = trainingRepository;
         this.exerciseRepository = exerciseRepository;
+        this.dietRepository = dietRepository;
+        this.mealRepository = mealRepository;
+        this.ingredientRepository = ingredientRepository;
     }
 
     @Override
     public void run(String... args) throws Exception {
 
-      /* User user1 = new User("User1", "password1", "MALE",24,70, 170, Level.BEGINNER,24);
+// public Diet(String dietName, List<Meal> mealsArray, FoodType foodType, DietType dietType)
+// public Meal(String mealName, FoodType foodType, List<Ingredient> ingredients, List<Integer> gramsPerIngredient,  String perpInstructions)
+
+        //Diets -----------------------------------------------------------------------------------------------------------------
+
+        Ingredient egg = new Ingredient("egg", 150);
+        Ingredient ham = new Ingredient("ham", 200);
+
+        Meal meal1 = new Meal("meal1", FoodType.NORMAL, List.of(egg, ham), List.of(210, 110), "no instructions");
+        Meal meal2 = new Meal("meal2", FoodType.NORMAL, List.of(egg, ham), List.of(220, 120), "no instructions");
+        Meal meal3 = new Meal("meal3", FoodType.NORMAL, List.of(egg, ham), List.of(230, 130), "no instructions");
+        Meal meal4 = new Meal("meal4", FoodType.NORMAL, List.of(egg, ham), List.of(240, 140), "no instructions");
+        Meal meal5 = new Meal("meal5", FoodType.NORMAL, List.of(egg, ham), List.of(250, 150), "no instructions");
+        Meal meal6 = new Meal("meal6", FoodType.NORMAL, List.of(egg, ham), List.of(260, 160), "no instructions");
+        Meal meal7 = new Meal("meal7", FoodType.NORMAL, List.of(egg, ham), List.of(270, 170), "no instructions");
+
+        Diet diet1 = new Diet("diet1", List.of(meal1, meal2, meal3, meal4, meal5, meal6, meal7), FoodType.NORMAL, DietType.STAYING);
+        Diet diet2 = new Diet("diet2", List.of(meal1, meal2, meal3, meal4, meal5, meal6, meal7), FoodType.NORMAL, DietType.STAYING);
+        Diet diet3 = new Diet("diet3", List.of(meal1, meal2, meal3, meal4, meal5, meal6, meal7), FoodType.NORMAL, DietType.STAYING);
+
+        ingredientRepository.saveAll(List.of(egg, ham));
+        mealRepository.saveAll(List.of(meal1, meal2, meal3, meal4, meal5, meal6, meal7));
+        dietRepository.saveAll(List.of(diet1, diet2, diet3));
+
+            //Users -----------------------------------------------------------------------------------------------------------------
+        User user1 = new User("User1", "password1", "MALE@gmail.com");
+        User user2 = new User("User2", "password2", "FEMALE@gmail.com");
+        User user3 = new User("User3", "password3", "MALE2@gmail.com");
+
+        userRepository.saveAll(List.of(user1, user2, user3));
+
+
+        /*User user1 = new User("User1", "password1", "MALE",24,70, 170, Level.BEGINNER,24);
        User user2 = new User("User2", "password2", "FEMALE",26,75, 175, Level.INTERMEDIATE, 10);
        User user3 = new User("User3", "password3", "MALE",30,80, 180, Level.PROFESSIONAL,5);
        User user4 = new User("User4", "password4", "FEMALE",34,85, 185, Level.ELITE,4);
@@ -57,7 +104,7 @@ public class DataInitializer implements CommandLineRunner {
         User user5 = new User("User5", "password5", "MALE",44,90, 190, UserLevel.EXPERT);*/
 
 
-
+        //Exercises-----------------------------------------------------------------------------------------------------------------
        /* Exercise barDipBeginner = new Exercise("Bar Dip", Type.CALISTHENICS, Body.CHEST, 5, 0, 3);
         Exercise barDipIntermediate = new Exercise("Bar Dip", Type.CALISTHENICS, Body.TRICEPS, 10, 0, 3);
         Exercise barDipAdvanced = new Exercise("Bar Dip", Type.CALISTHENICS, Body.TRICEPS, 15, 0, 3);
@@ -109,12 +156,21 @@ public class DataInitializer implements CommandLineRunner {
         Exercise barbellFrontRaiseExpert = new Exercise("Barbell Front Raise", Type.WEIGHTS, Body.SHOULDER, 10, 40, 4);
 
 
-        Training training = new Training("Chest Day!",Level.ELITE);
+        Training training = new Training("Chest Day!",Level.ELITE);*/
+
+        Exercise exercise1 = new Exercise("Push-ups",Level.INTERMEDIATE, Type.CALISTHENICS, Body.CHEST, 15, 0, 3);
+        Exercise exercise2 = new Exercise("Squats",Level.BEGINNER, Type.WEIGHTS, Body.LEGS, 12, 50, 4);
+        Exercise exercise3 = new Exercise("Running",Level.BEGINNER, Type.CARDIO, Body.LEGS, 0, 0, 0);
+
+
+        Training training1 = new Training("Beginner Full Body", Level.BEGINNER, Body.CHEST);
+        Training training2 = new Training("Intermediate Upper Body", Level.INTERMEDIATE, Body.BACK);
+        Training training3 = new Training("Advanced Legs", Level.PROFESSIONAL, Body.LEGS);
 
         //userRepository.saveAll(List.of(user1, user2, user3, user4, user5));
-        exerciseRepository.saveAll(List.of(barDipElite,benchPressElite,cableChestPressElite,dumbbellChestFlyElite,pushUpElite));
-        trainingRepository.saveAll(List.of(training));
-*/
+        exerciseRepository.saveAll(List.of(exercise1,exercise2,exercise3));
+        trainingRepository.saveAll(List.of(training1,training2,training3));
+
 
     }
 }

@@ -38,6 +38,7 @@ public class User {
     private int age;
     private int weight;
     private int height;
+    private int timesToMultiply;
     @Enumerated(EnumType.STRING)
     private Level level;
     @Enumerated(EnumType.STRING)
@@ -54,8 +55,10 @@ public class User {
             inverseJoinColumns = @JoinColumn(name = "trening_id"))
     private List<Training> trainings;
 
-    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
-    @JsonIgnore
+    @ManyToMany
+    @JoinTable(name = "user_diet",
+            joinColumns = @JoinColumn(name="user_id"),
+            inverseJoinColumns = @JoinColumn(name = "diet_id"))
     private List<Diet> diets;
 
     public User(String name, String password, String email) {
@@ -65,7 +68,6 @@ public class User {
     }
 
     public void addDiet(Diet diet) {
-        diet.setUser(this);
         diets.add(diet);
     }
 
@@ -75,5 +77,28 @@ public class User {
     }
     public double getBMI() {
         return weight / (Math.pow((double)height / 100, 2));
+    }
+
+    @Override
+    public String toString() {
+        return "User{" +
+                "id=" + id +
+                ", creationDate=" + creationDate +
+                ", name='" + name + '\'' +
+                ", password='" + password + '\'' +
+                ", email='" + email + '\'' +
+                ", gender='" + gender + '\'' +
+                ", age=" + age +
+                ", weight=" + weight +
+                ", height=" + height +
+                ", level=" + level +
+                ", dietType=" + dietType +
+                ", foodType=" + foodType +
+                ", amountOfTrainingsDone=" + amountOfTrainingsDone +
+                ", TrainingsPerWeek=" + TrainingsPerWeek +
+                ", allergies=" + allergies +
+                ", trainings=" + trainings +
+                ", diets=" + diets +
+                '}';
     }
 }

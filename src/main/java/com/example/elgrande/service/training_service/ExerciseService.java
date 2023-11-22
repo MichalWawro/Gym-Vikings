@@ -38,7 +38,7 @@ public class ExerciseService {
     }
 
     public Exercise createExercise(String name, Level level, Type type, Body body, int set, int reps, int weight){
-    Exercise exercise = new Exercise(name,type,body,set,reps,weight);
+    Exercise exercise = new Exercise(name,level,type,body,set,reps,weight);
     return exercise;
     }
 

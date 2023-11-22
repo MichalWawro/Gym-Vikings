@@ -3,6 +3,7 @@ package com.example.elgrande.model.training;
 import com.example.elgrande.model.enums.enums_training.Body;
 import com.example.elgrande.model.enums.Level;
 import com.example.elgrande.model.user.User;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -22,6 +23,7 @@ public class Training {
     @Enumerated(EnumType.STRING)
     private Body bodyParts;
     @ManyToMany(mappedBy = "trainings")
+    @JsonIgnore
     private List<User> users;
     @ManyToMany
     @JoinTable(name = "training_exercise",

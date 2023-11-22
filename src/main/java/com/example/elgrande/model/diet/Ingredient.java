@@ -1,5 +1,6 @@
 package com.example.elgrande.model.diet;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -15,15 +16,15 @@ public class Ingredient {
     private Long id;
     private String name;
     private int kcalIn100g;
-    private int grams;
+    @ManyToMany(mappedBy = "ingredients")//, cascade = CascadeType.ALL)
+    @JsonIgnore
+    private List<Meal> meals;
     public Ingredient(String name, int kcalIn100g) {
         this.name = name;
         this.kcalIn100g = kcalIn100g;
     }
 
-    public int getKcal(){
-        return (int)((kcalIn100g/100)*grams);
-    }
+//    public int getKcal(int grams){ return (int)((kcalIn100g/100)*grams);}
     @Override
     public String toString() {
         return "Ingredient{" +

@@ -4,9 +4,12 @@ package com.example.elgrande.controller;
 import com.example.elgrande.forms.LoginForm;
 import com.example.elgrande.forms.RegisterForm;
 import com.example.elgrande.forms.UserForm;
+//import com.example.elgrande.forms.loginForm;
+import com.example.elgrande.model.diet.Diet;
 import com.example.elgrande.model.training.Training;
 import com.example.elgrande.model.user.User;
 import com.example.elgrande.service.MainService;
+import com.example.elgrande.service.diet_service.DietService;
 import com.example.elgrande.service.user_service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -21,7 +24,6 @@ public class UserController {
 
     private final UserService userService;
     private MainService mainService;
-
 
     @Autowired
     public UserController(UserService userService, MainService mainService) {
@@ -62,20 +64,34 @@ public class UserController {
         }
     }
     @PutMapping("/user/trainingDone")
-    public ResponseEntity<String> trainingDone(@RequestParam int userId) {
+    public User trainingDone(@RequestParam int userId) {
         try {
             userService.trainingDone(userId);
-            mainService.increaseAmountOfWeight(userId, 10, 2.5);
+
             mainService.updateTrainingPlan(userId, 25);
-            return ResponseEntity.ok("Training done successfully");
+            return mainService.getPropperUser(userId, 10, 2.5);
+            //return ResponseEntity.ok("Training done successfully");
         } catch (Exception e) {
-            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
-                    .body("Error processing training done request: " + e.getMessage());
+            //return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
+                   // .body("Error processing training done request: " + e.getMessage());
         }
+        return null;
+    }
+
+    @GetMapping("/user/suggestDiets")
+    public List<Diet> suggestDiet(@RequestParam int userId){
+        return mainService.suggestDiet(userId);
     }
 
     @GetMapping("/training/provideNextTraining")
     public Training provideTraining(@RequestParam int userId){
-        return mainService.getOneTrainingFromUser(userId);
+        User user = mainService.getPropperUser(userId,10,2.5);
+        return mainService.getOneTrainingFromUser(user);
+    }
+
+    @GetMapping("/user/getUserInfo")
+    public User getUserInfo(@RequestParam int userId) {
+        User user = mainService.getPropperUser(userId,10,2.5);
+        return user;
     }
 }

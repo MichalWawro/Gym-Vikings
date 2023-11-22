@@ -6,6 +6,7 @@ import com.example.elgrande.model.enums.Level;
 import com.example.elgrande.model.enums.enums_training.Body;
 
 import com.example.elgrande.model.enums.enums_training.Type;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -32,12 +33,13 @@ public class Exercise {
     private int reps;
     private double weight;
     @ManyToMany(mappedBy = "exercises")
+    @JsonIgnore
     private List<Training> trainings;
 
 
-    public Exercise(String name, Type type, Body body, int reps, int weight, int set) {
+    public Exercise(String name, Level level,Type type, Body body, int reps, int weight, int set) {
         this.name = name;
-
+        this.level = level;
         this.type = type;
         this.body = body;
         this.set = set;
