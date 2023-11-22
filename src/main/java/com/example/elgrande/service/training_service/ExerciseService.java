@@ -1,6 +1,7 @@
 package com.example.elgrande.service.training_service;
 
 import com.example.elgrande.model.enums.Level;
+import com.example.elgrande.model.enums.enums_training.Body;
 import com.example.elgrande.model.enums.enums_training.Type;
 import com.example.elgrande.model.training.Exercise;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -36,8 +37,8 @@ public class ExerciseService {
         exerciseRepository.delete(exercise);
     }
 
-    public Exercise createExercise(String name, Level level, Type type, int set,int reps,int weight){
-    Exercise exercise = new Exercise(name,level,type,set,reps,weight);
+    public Exercise createExercise(String name, Level level, Type type, Body body, int set, int reps, int weight){
+    Exercise exercise = new Exercise(name,type,body,set,reps,weight);
     return exercise;
     }
 
