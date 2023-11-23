@@ -1,23 +1,46 @@
-import logo from './logo.svg';
+import { useState } from 'react';
 import './App.css';
+import InputField from './components/InputField';
+
+
 
 function App() {
+  const[isLoggedIn, changeLoginState] = useState(false);
+
+  const handleLoginChange = (bool) => {
+    changeLoginState(bool);
+  };
+
+
   return (
     <div className="App">
       <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
+        <button id='AboutButton' className='NavButton' type='button' onClick={() => null}>About</button>
+        <button id='ContactButton' className='NavButton' type='button' onClick={() => null}>Contact</button>
+        {isLoggedIn ? (
+          <div>
+            <button id='ProfileButton' className='NavButton' type='button' onClick={() => null}>Profile</button>
+            <button id='LogOutButton' className='NavButton' type='button' onClick={() => handleLoginChange(false)}>Log Out</button>
+          </div>
+        ) : (
+          <div>
+            <button id='SignInButton' className='NavButton' type='button' onClick={() => handleLoginChange(true)}>Sign In</button>
+            <button id='RegisterButton' className='NavButton' type='button' onClick={() => null}>Register</button>
+          </div>
+        )}
       </header>
+      <main>
+        <div className="content">
+          <h1 className='BorderedRubik'>Welcome to our training and fitness app!</h1>
+          <p>Click the button below to get started</p>
+          <button id='GetStartedButton' className='NavButton' type='button' onClick={() => handleLoginChange(true)}>LET'S GET STARTED</button>
+        </div>
+      </main>
+      <footer className='App-footer'>
+        <div>
+          <h5>All right company trademark yada yada</h5>
+        </div>
+      </footer>
     </div>
   );
 }
