@@ -1,40 +1,120 @@
-.App {
+@import url('https://fonts.googleapis.com/css2?family=Rubik:wght@400;700&display=swap');
+
+header {
+  padding: 10px;
+}
+
+main {
+  flex: 1; /* Allow the main content to take up the remaining space */
+  margin-top: 120px;
+  padding: 20px;
+}
+
+.content {
   text-align: center;
+  font-family: 'Rubik', sans-serif;
+  color: rgb(212, 212, 103);
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+.App {
+  background-color: #272933;
   display: flex;
   flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+  min-height: 100vh;
+}
+
+.App-header,
+.App-footer {
+  position: fixed;
+  background-color: #19191b;
+  width: 100%;
+  padding: 5px;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.NavButton {
+  background-color: #555555;
+  border: 2px solid black;
+  border-radius: 10px;
+  height: 60px;
+  width: 144px;
+  display: inline-block;
+  margin: 10px;
+  font: bold 14px/1 'Rubik', sans-serif;
+  transition: transform 0.75s;
+}
+
+.NavButton:hover {
+  background-color: rgb(212, 212, 103);
+  transform: scale(1.1);
+}
+
+/*Affects only the last button (that was insanely hard to find how to do xd)*/
+.NavButton:last-child {
+  margin-right: 60px;
+}
+
+#GetStartedButton {
+  border: 0px;
+  background: none;
+  position: absolute;
+  height: 100px;
+  width: 200px;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+
+  text-align: center;
+  font-family: 'Rubik', sans-serif;
+  color: rgb(212, 212, 103);
+}
+
+#GetStartedButton:hover {
+  scale:calc(1.1);
+}
+
+.App-footer {
+  bottom: 0;
+}
+
+.FooterContent {
+  /*For future content etc.*/
+}
+
+.FooterNavButton {
+  /*For future buttons*/
+}
+
+.BorderedRubik {
+  font-size: 64px;
+  font-family: 'Rubik', sans-serif;
+  color: rgb(212, 212, 103);
+  margin-bottom: 5vw;
 }
 
 
-.App-link {
-  color: #61dafb;
-}
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
-  
-}
+/* 
+Notes to myself:
+`The dark days have come
+ But we must not stop programming
+ For it is our only hope
+ Thus below this short yet motivating patch of text
+ I will scribble what are the properties of css'ing
+ Why?
+ Cause I will need it in the future.
+ My memory is sadly not as it was years before`
+
+Padding: Taki kurwa margines trochę (height, wight)
+
+Border:
+  Radius //dziwna nazwa na zakola
+  display: flex; //Wszystko w środku staje się flexem
+  min-height: 100vh; //Całość ekranu
+  position: fixed; //Zawsze pozostaje na górze
+  padding: 5px; //Taki margines
+  justify-content: flex-end; //Jak się flexuje to na koniec (prawo)
+  font: bold 10px/1 sans-serif; //font-weight dla samej grubości
+  .NavButton:last-child { //Affects only the last button (that was insanely hard to find how to do xd)
+*/
