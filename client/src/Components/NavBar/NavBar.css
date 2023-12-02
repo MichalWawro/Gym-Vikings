@@ -1,0 +1,31 @@
+/* Header and Footer styles */
+.App-header {
+    position: fixed;
+    background-color: #19191b;
+    width: 100%;
+    padding: 5px;
+    display: flex;
+    justify-content: flex-end;
+  }
+  
+  /* Styles for navigation buttons */
+  .NavButton {
+    background-color: #555555;
+    border: 2px solid black;
+    border-radius: 10px;
+    height: 60px;
+    width: 144px;
+    display: inline-block;
+    margin: 10px;
+    font: bold 14px/1 'Rubik', sans-serif;
+    transition: transform 0.75s;
+  }
+  
+  .NavButton:hover {
+    background-color: rgb(212, 212, 103);
+    transform: scale(1.1);
+  }
+  
+  .NavButton:last-child {
+    margin-right: 60px;
+  }

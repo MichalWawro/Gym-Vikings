@@ -1,24 +1,29 @@
+/* Importing Rubik font */
 @import url('https://fonts.googleapis.com/css2?family=Rubik:wght@400;700&display=swap');
 
+/* Common styles for header */
 header {
   padding: 10px;
 }
 
+/* Main content styles */
 main {
   background-image: url(./assets/background.png);
   background-size: cover;
   flex-grow: 1;
-  flex: 1; /* Allow the main content to take up the remaining space */
+  flex: 1;
   margin-top: 90px;
   padding: 20px;
 }
 
+/* Styles for content text */
 .content {
   text-align: center;
   font-family: 'Rubik', sans-serif;
   color: rgb(212, 212, 103);
 }
 
+/* App container styles */
 .App {
   background-color: #272933;
   display: flex;
@@ -26,69 +31,48 @@ main {
   min-height: 100vh;
 }
 
-.App-header,
-.App-footer {
+
+
+/* Style for main buttons */
+.MainButtonContainer {
   position: fixed;
-  background-color: #19191b;
-  width: 100%;
-  padding: 5px;
-  display: flex;
-  justify-content: flex-end;
-}
-
-.NavButton {
-  background-color: #555555;
-  border: 2px solid black;
-  border-radius: 10px;
-  height: 60px;
-  width: 144px;
-  display: inline-block;
-  margin: 10px;
-  font: bold 14px/1 'Rubik', sans-serif;
-  transition: transform 0.75s;
-}
-
-.NavButton:hover {
-  background-color: rgb(212, 212, 103);
-  transform: scale(1.1);
-}
-
-/*Affects only the last button (that was insanely hard to find how to do xd)*/
-.NavButton:last-child {
-  margin-right: 60px;
-}
-
-#GetStartedButton {
-  border: 0px;
-  background: none;
-  position: absolute;
-  height: 100px;
-  width: 200px;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 50vh;
+}
 
+/* Styles for individual main buttons */
+.MainButton {
+  border: 0px;
+  background: none;
+  height: 100px;
+  width: 250px;
   text-align: center;
-  font-family: 'Rubik', sans-serif;
+  font: bold 48px/1 'Rubik', sans-serif;
   color: rgb(212, 212, 103);
+  margin: 0 50px;
+  position: relative;
 }
 
-#GetStartedButton:hover {
-  scale:calc(1.1);
+/* Hover effect for main buttons */
+.MainButton:hover {
+  transform: scale(1.1);
 }
 
-.App-footer {
-  bottom: 0;
+#ChoiceButton {
+  top: 15%;
+  border: 2px solid black;
+  border-radius: 15px;
+  background-color: rgb(128, 128, 128, 0.7);
+  height: 500px;
+  width: 300px;
 }
 
-.FooterContent {
-  /*For future content etc.*/
-}
-
-.FooterNavButton {
-  /*For future buttons*/
-}
-
+/* Styles for large Rubik font with border */
 .BorderedRubik {
   font-size: 64px;
   font-family: 'Rubik', sans-serif;
