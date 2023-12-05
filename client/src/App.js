@@ -3,9 +3,9 @@ import { useState } from 'react';
 import './App.css';
 // import Form from './Components/Register/Form';
 // import InputField from './Components/InputField';
-import NavBar from './components/NavBar/NavBar';
-import WelcomePage from './components/WelcomePage/WelcomePage';
-import Footer from './components/Footer/Footer';
+import NavBar from './Components/NavBar/NavBar';
+import WelcomePage from './Components/WelcomePage/WelcomePage';
+import Footer from './Components/Footer/Footer';
 
 
 function App() {
