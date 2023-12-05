@@ -1,14 +1,15 @@
-//import?
+import { useNavigate } from 'react-router-dom';
 
 const NavBarLoggedIn = ({ handleLoginChange }) => {
+    const navigate = useNavigate();
     return (
         <div>
             <button id="AboutButton" className="NavButton" type="button" onClick={() => null}>
                 About
-            </button>
-            <button id="ContactButton" className="NavButton" type="button" onClick={() => null}>
+            </button>            
+           <button id="ContactButton" className="NavButton" type="button" onClick={() => navigate("/contact")}>
                 Contact
-            </button>
+            </button>          
             <button id="ProfileButton" className="NavButton" type="button" onClick={() => null}>
                 Profile
             </button>
