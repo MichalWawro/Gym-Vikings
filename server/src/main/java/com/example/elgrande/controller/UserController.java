@@ -17,7 +17,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-
+@CrossOrigin(origins = "http://localhost:3000")
 @RestController
 //@RequestMapping("/api/users")
 public class UserController {
@@ -93,5 +93,10 @@ public class UserController {
     public User getUserInfo(@RequestParam int userId) {
         User user = mainService.getPropperUser(userId,10,2.5);
         return user;
+    }
+    @PostMapping("/user/userData")
+    public String submitFormData(@RequestBody User userData) {
+        System.out.println("Received form data: " + userData);
+        return "Form data received successfully!";
     }
 }
