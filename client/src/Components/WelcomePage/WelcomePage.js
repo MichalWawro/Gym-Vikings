@@ -4,11 +4,11 @@
 import WelcomePageLoggedIn from './WelcomePageLoggedIn.js';
 import WelcomePageLoggedOut from './WelcomePageLoggedOut.js';
 
-const WelcomePage = ({isLoggedIn, handleLoginChange}) => {
+const WelcomePage = ({isLoggedIn, handleLoginChange, testUserNumber}) => {
     return(
         <div>
             {isLoggedIn ?
-                <WelcomePageLoggedIn/>
+                <WelcomePageLoggedIn testUserNumber={testUserNumber}/>
                 :
                 <WelcomePageLoggedOut handleLoginChange={handleLoginChange}/>
             }

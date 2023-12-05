@@ -1,0 +1,19 @@
+.App-footer {
+    position: fixed;
+    background-color: #19191b;
+    width: 100%;
+    padding: 5px;
+    display: flex;
+    /* justify-content: flex-end; */
+    bottom: 0;
+}
+
+.FooterContent {
+    text-align: center;
+    font-family: 'Rubik', sans-serif;
+    color: rgb(212, 212, 103);
+}
+
+/* .FooterNavButton { */
+    /* For future buttons */
+/* } */
