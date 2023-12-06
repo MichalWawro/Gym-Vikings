@@ -2,11 +2,9 @@ package com.example.elgrande.service.user_service;
 
 import com.example.elgrande.forms.LoginForm;
 import com.example.elgrande.forms.RegisterForm;
-import com.example.elgrande.model.training.Training;
-import com.example.elgrande.model.user.User;
+import com.example.elgrande.model.user.UserEntity;
 import com.example.elgrande.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Example;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -20,20 +18,20 @@ public class UserService {
     public UserService(UserRepository userRepository) {
         this.userRepository = userRepository;
     }
-    public List<User> getAllUsers() {
+    public List<UserEntity> getAllUsers() {
         return userRepository.findAll();
     }
-    public User saveUser(User user) {
+    public UserEntity saveUser(UserEntity user) {
         return userRepository.save(user);
     }
 
 
-    public User login(LoginForm loginForm){
-        List<User> users = getAllUsers();
-        User userToReturn = new User();
-        for (User user:
+    public UserEntity login(LoginForm loginForm){
+        List<UserEntity> users = getAllUsers();
+        UserEntity userToReturn = new UserEntity();
+        for (UserEntity user:
              users) {
-            if(user.getName() == loginForm.name() && user.getPassword() == loginForm.password()){
+            if(user.getUsername() == loginForm.name() && user.getPassword() == loginForm.password()){
                 userToReturn = user;
             }
         }
@@ -41,8 +39,8 @@ public class UserService {
     }
 
 
-    public User getUserById(int id){
-        Optional<User> user = userRepository.findById(id);
+    public UserEntity getUserById(int id){
+        Optional<UserEntity> user = userRepository.findById(id);
         if(user.isPresent()){
             return user.get();
         }
@@ -51,7 +49,7 @@ public class UserService {
     }
 
     public void trainingDone(int id){
-        User user = getUserById(id);
+        UserEntity user = getUserById(id);
 
         int amountOfTrainings = user.getAmountOfTrainingsDone();
         user.setAmountOfTrainingsDone(amountOfTrainings + 1);
@@ -59,8 +57,8 @@ public class UserService {
     }
 
     public void registerUser(RegisterForm registerForm){
-        User user = new User();
-        user.setName(registerForm.name());
+        UserEntity user = new UserEntity();
+        user.setUsername(registerForm.name());
         user.setPassword(registerForm.password());
         user.setEmail(registerForm.email());
     }
