@@ -1,8 +1,6 @@
 import React from "react";
 import useForm from "./useForm";
 import "./RegisterForm.css";
-//import jakisDzik from "../../assets/jakisDzik.png"
-//<img src={jakisDzik} alt="dekoracyjne zdjecie" className="form-image" /> w linijke 15
 const SignUpForm = ({ submitForm }) => {
     const { handleChange, handleFormSubmit, values, errors } = useForm(submitForm);
 
