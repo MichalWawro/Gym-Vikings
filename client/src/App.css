@@ -1,38 +1,107 @@
-.App {
+/* Importing Rubik font */
+@import url('https://fonts.googleapis.com/css2?family=Rubik:wght@400;700&display=swap');
+
+/* Common styles for header */
+header {
+  padding: 10px;
+}
+
+/* Main content styles */
+main {
+  background-image: url(./assets/background.png);
+  background-size: cover;
+  flex-grow: 1;
+  flex: 1;
+  margin-top: 90px;
+  padding: 20px;
+}
+
+/* Styles for content text */
+.content {
   text-align: center;
+  font-family: 'Rubik', sans-serif;
+  color: rgb(212, 212, 103);
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+/* App container styles */
+.App {
+  background-color: #272933;
   display: flex;
   flex-direction: column;
-  align-items: center;
+  min-height: 100vh;
+}
+
+
+
+/* Style for main buttons */
+.MainButtonContainer {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  display: flex;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+  align-items: center;
+  height: 50vh;
 }
 
-.App-link {
-  color: #61dafb;
+/* Styles for individual main buttons */
+.MainButton {
+  border: 0px;
+  background: none;
+  height: 100px;
+  width: 250px;
+  text-align: center;
+  font: bold 48px/1 'Rubik', sans-serif;
+  color: rgb(212, 212, 103);
+  margin: 0 50px;
+  position: relative;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+/* Hover effect for main buttons */
+.MainButton:hover {
+  transform: scale(1.1);
 }
+
+#ChoiceButton {
+  top: 15%;
+  border: 2px solid black;
+  border-radius: 15px;
+  background-color: rgb(128, 128, 128, 0.7);
+  height: 500px;
+  width: 300px;
+}
+
+/* Styles for large Rubik font with border */
+.BorderedRubik {
+  font-size: 64px;
+  font-family: 'Rubik', sans-serif;
+  color: rgb(212, 212, 103);
+  margin-bottom: 5vw;
+}
+
+
+
+/* 
+Notes to myself:
+`The dark days have come
+ But we must not stop programming
+ For it is our only hope
+ Thus below this short yet motivating patch of text
+ I will scribble what are the properties of css'ing
+ Why?
+ Cause I will need it in the future.
+ My memory is sadly not as it was years before`
+
+Padding: Taki kurwa margines trochę (height, wight)
+
+Border:
+  Radius //dziwna nazwa na zakola
+  display: flex; //Wszystko w środku staje się flexem
+  min-height: 100vh; //Całość ekranu
+  position: fixed; //Zawsze pozostaje na górze
+  padding: 5px; //Taki margines
+  justify-content: flex-end; //Jak się flexuje to na koniec (prawo)
+  font: bold 10px/1 sans-serif; //font-weight dla samej grubości
+  .NavButton:last-child { //Affects only the last button (that was insanely hard to find how to do xd)
+*/
