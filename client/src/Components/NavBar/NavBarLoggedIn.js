@@ -4,7 +4,7 @@ const NavBarLoggedIn = ({ handleLoginChange }) => {
     const navigate = useNavigate();
     return (
         <div>
-            <button id="AboutButton" className="NavButton" type="button" onClick={() => null}>
+            <button id="AboutButton" className="NavButton" type="button" onClick={() => navigate("/about")}>
                 About
             </button>            
            <button id="ContactButton" className="NavButton" type="button" onClick={() => navigate("/contact")}>
