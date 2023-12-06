@@ -5,6 +5,8 @@ import com.example.elgrande.model.enums.Level;
 import com.example.elgrande.model.enums.enums_diet.Allergy;
 import com.example.elgrande.model.enums.enums_diet.DietType;
 import com.example.elgrande.model.enums.enums_diet.FoodType;
+import com.example.elgrande.model.enums.enums_training.Body;
+import com.example.elgrande.model.enums.enums_training.Type;
 import com.example.elgrande.model.training.Exercise;
 import com.example.elgrande.model.training.Training;
 import com.fasterxml.jackson.annotation.JsonIgnore;
@@ -45,10 +47,14 @@ public class User {
     private DietType dietType;
     @Enumerated(EnumType.STRING)
     private FoodType foodType;
+    @Enumerated(EnumType.STRING)
+    private Type trainingType;
     private int amountOfTrainingsDone;
     private int TrainingsPerWeek;
     @Enumerated(EnumType.STRING)
     private List<Allergy> allergies;
+    @Enumerated(EnumType.STRING)
+    private List<Body> bodyPart;
     @ManyToMany
     @JoinTable(name = "user_training",
             joinColumns = @JoinColumn(name="user_id"),
@@ -66,7 +72,18 @@ public class User {
         this.password = password;
         this.email = email;
     }
-
+    public User(String gender, int age, int weight, int height, Level level, DietType dietType, FoodType foodType,Type trainingType, List<Allergy> allergies,List<Body> bodyPart) {
+        this.gender = gender;
+        this.age = age;
+        this.weight = weight;
+        this.height = height;
+        this.level = level;
+        this.dietType = dietType;
+        this.foodType = foodType;
+        this.trainingType=trainingType;
+        this.allergies = allergies;
+        this.bodyPart=bodyPart;
+    }
     public void addDiet(Diet diet) {
         diets.add(diet);
     }
