@@ -1,17 +1,18 @@
 import React from "react";
 import useForm from "./useForm";
-
-
+import "./RegisterForm.css";
 const SignUpForm = ({ submitForm }) => {
     const { handleChange, handleFormSubmit, values, errors } = useForm(submitForm);
+
     return (
         <div className="container">
             <div className="app-wrapper">
                 <div>
                     <h2 className="title">Create Account</h2>
                 </div>
+
                 <form className="form-wrapper" onSubmit={handleFormSubmit}>
-                    <div className="name">
+                    <div className="form-group">
                         <label className="label">Name</label>
                         <input
                             className="input"
@@ -22,7 +23,7 @@ const SignUpForm = ({ submitForm }) => {
                         />
                         {errors.fullname && <p className="error">{errors.fullname}</p>}
                     </div>
-                    <div className="email">
+                    <div className="form-group">
                         <label className="label">Email</label>
                         <input
                             className="input"
@@ -33,7 +34,7 @@ const SignUpForm = ({ submitForm }) => {
                         />
                         {errors.email && <p className="error">{errors.email}</p>}
                     </div>
-                    <div className="password">
+                    <div className="form-group">
                         <label className="label">Password</label>
                         <input
                             className="input"
@@ -44,7 +45,7 @@ const SignUpForm = ({ submitForm }) => {
                         />
                         {errors.password && <p className="error">{errors.password}</p>}
                     </div>
-                    <div>
+                    <div className="form-group">
                         <button className="submit" type="submit">Sign Up</button>
                     </div>
                 </form>
