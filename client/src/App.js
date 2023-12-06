@@ -20,10 +20,10 @@ function App() {
       <div className="App">
         <header className="App-header">
           <NavBar isLoggedIn={isLoggedIn} handleLoginChange={handleLoginChange} />
-          {/* W przyszłości z routerem */}
-        </header>
-        <main>
-          <WelcomePage isLoggedIn={isLoggedIn} handleLoginChange={handleLoginChange} testUserNumber={1} />
+           {/* W przyszłości z routerem */}       
+           </header>
+         <main>
+-          <WelcomePage isLoggedIn={isLoggedIn} handleLoginChange={handleLoginChange} testUserNumber={1} />
         </main>
         <footer className="App-footer">
           <Footer />
