@@ -8,5 +8,12 @@
       <jdbc-url>jdbc:postgresql://ep-falling-poetry-47011754.eu-central-1.aws.neon.tech/neondb</jdbc-url>
       <working-dir>$ProjectFileDir$</working-dir>
     </data-source>
+    <data-source source="LOCAL" name="neondb@ep-falling-poetry-47011754.eu-central-1.aws.neon.tech [2]" uuid="9eb9da3c-02da-4fc7-8cad-47689bb9b21b">
+      <driver-ref>postgresql</driver-ref>
+      <synchronize>true</synchronize>
+      <jdbc-driver>org.postgresql.Driver</jdbc-driver>
+      <jdbc-url>jdbc:postgresql://ep-falling-poetry-47011754.eu-central-1.aws.neon.tech/neondb</jdbc-url>
+      <working-dir>$ProjectFileDir$</working-dir>
+    </data-source>
   </component>
 </project>
