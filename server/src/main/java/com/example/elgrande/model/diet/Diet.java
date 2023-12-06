@@ -25,18 +25,19 @@ public class Diet {
     //    private List<User> favouritedBy;
     private List<Allergy> allergies;
     private FoodType foodType;
-    private DietType dietType;
+    private String dietDescription;
     private int dietCaloriesPerDay;
     private int favNumber;
 
     @ManyToMany(mappedBy = "diets")
     @JsonIgnore
     private List<User> users;
-    public Diet(String dietName, List<Meal> mealsArray, FoodType foodType, DietType dietType) {
+    public Diet(String dietName, List<Meal> mealsArray, FoodType foodType, String dietDescription, List<Allergy> allergies) {
         this.dietName = dietName;
         this.meals = mealsArray;
         this.foodType = foodType;
-        this.dietType = dietType;
+        this.dietDescription = dietDescription;
+        this.allergies = allergies;
         this.dietCaloriesPerDay = calculateDailyCalories();
     }
 
@@ -61,7 +62,6 @@ public class Diet {
                 "dietName='" + dietName + '\'' +
                 ", mealsArray=" + meals +
                 ", foodType=" + foodType +
-                ", dietType=" + dietType +
                 ", dietCalories=" + dietCaloriesPerDay +
                 '}';
     }
@@ -77,10 +77,6 @@ public class Diet {
 
     public FoodType getFoodType() {
         return foodType;
-    }
-
-    public DietType getDietType() {
-        return dietType;
     }
 
     public int getDailyCalories() {
@@ -106,9 +102,5 @@ public class Diet {
 
     public void setFoodType(FoodType foodType) {
         this.foodType = foodType;
-    }
-
-    public void setDietType(DietType dietType) {
-        this.dietType = dietType;
     }
 }
