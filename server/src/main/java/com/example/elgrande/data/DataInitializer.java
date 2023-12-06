@@ -1,19 +1,7 @@
 package com.example.elgrande.data;
 
-import com.example.elgrande.model.diet.Diet;
-import com.example.elgrande.model.diet.Ingredient;
-import com.example.elgrande.model.diet.Meal;
-import com.example.elgrande.model.enums.Level;
-import com.example.elgrande.model.enums.enums_diet.DietType;
-import com.example.elgrande.model.enums.enums_diet.FoodType;
-import com.example.elgrande.model.enums.enums_training.Body;
-import com.example.elgrande.model.enums.enums_training.Type;
-import com.example.elgrande.model.training.Exercise;
-import com.example.elgrande.model.training.Training;
-import com.example.elgrande.model.user.User;
 import com.example.elgrande.repository.UserRepository;
 import com.example.elgrande.service.diet_service.DietRepository;
-import com.example.elgrande.service.diet_service.DietService;
 import com.example.elgrande.service.diet_service.IngredientRepository;
 import com.example.elgrande.service.diet_service.MealRepository;
 import com.example.elgrande.service.training_service.ExerciseRepository;
@@ -21,8 +9,6 @@ import com.example.elgrande.service.training_service.TrainingRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
-
-import java.util.List;
 
 @Component
 public class DataInitializer implements CommandLineRunner {

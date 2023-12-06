@@ -7,9 +7,8 @@ import com.example.elgrande.forms.UserForm;
 //import com.example.elgrande.forms.loginForm;
 import com.example.elgrande.model.diet.Diet;
 import com.example.elgrande.model.training.Training;
-import com.example.elgrande.model.user.User;
+import com.example.elgrande.model.user.UserEntity;
 import com.example.elgrande.service.MainService;
-import com.example.elgrande.service.diet_service.DietService;
 import com.example.elgrande.service.user_service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -32,7 +31,7 @@ public class UserController {
     }
 
     @GetMapping("/user/getAllUsers")
-    public List<User> getAllUsers() {
+    public List<UserEntity> getAllUsers() {
         return userService.getAllUsers();
     }
 
@@ -47,7 +46,7 @@ public class UserController {
     }
 
     @GetMapping("/user/login")
-    public User login(@RequestBody LoginForm loginForm){
+    public UserEntity login(@RequestBody LoginForm loginForm){
         return userService.login(loginForm);
     }
 
@@ -64,7 +63,7 @@ public class UserController {
         }
     }
     @PutMapping("/user/trainingDone")
-    public User trainingDone(@RequestParam int userId) {
+    public UserEntity trainingDone(@RequestParam int userId) {
         try {
             userService.trainingDone(userId);
 
@@ -85,17 +84,17 @@ public class UserController {
 
     @GetMapping("/training/provideNextTraining")
     public Training provideTraining(@RequestParam int userId){
-        User user = mainService.getPropperUser(userId,10,2.5);
+        UserEntity user = mainService.getPropperUser(userId,10,2.5);
         return mainService.getOneTrainingFromUser(user);
     }
 
     @GetMapping("/user/getUserInfo")
-    public User getUserInfo(@RequestParam int userId) {
-        User user = mainService.getPropperUser(userId,10,2.5);
+    public UserEntity getUserInfo(@RequestParam int userId) {
+        UserEntity user = mainService.getPropperUser(userId,10,2.5);
         return user;
     }
     @PostMapping("/user/userData")
-    public String submitFormData(@RequestBody User userData) {
+    public String submitFormData(@RequestBody UserEntity userData) {
         System.out.println("Received form data: " + userData);
         return "Form data received successfully!";
     }

@@ -2,7 +2,7 @@ package com.example.elgrande.model.training;
 
 import com.example.elgrande.model.enums.enums_training.Body;
 import com.example.elgrande.model.enums.Level;
-import com.example.elgrande.model.user.User;
+import com.example.elgrande.model.user.UserEntity;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.Data;
@@ -24,7 +24,7 @@ public class Training {
     private Body bodyParts;
     @ManyToMany(mappedBy = "trainings")
     @JsonIgnore
-    private List<User> users;
+    private List<UserEntity> users;
     @ManyToMany
     @JoinTable(name = "training_exercise",
     joinColumns = @JoinColumn(name="training_id"),
