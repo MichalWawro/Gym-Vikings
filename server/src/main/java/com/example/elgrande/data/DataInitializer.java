@@ -3,7 +3,11 @@ package com.example.elgrande.data;
 import com.example.elgrande.model.diet.Diet;
 import com.example.elgrande.model.diet.Ingredient;
 import com.example.elgrande.model.diet.Meal;
+import com.example.elgrande.model.enums.Level;
+import com.example.elgrande.model.enums.enums_diet.Allergy;
+import com.example.elgrande.model.enums.enums_diet.DietType;
 import com.example.elgrande.model.enums.enums_diet.FoodType;
+import com.example.elgrande.model.user.UserEntity;
 import com.example.elgrande.repository.UserRepository;
 import com.example.elgrande.service.diet_service.DietRepository;
 import com.example.elgrande.service.diet_service.IngredientRepository;
@@ -38,7 +42,7 @@ public class DataInitializer implements CommandLineRunner {
     @Override
     public void run(String... args) throws Exception {
 
- /*
+    /*
 //Proper Diet Database
         //Meso
         Ingredient beefStrips = new Ingredient("Beef Strips", 250);

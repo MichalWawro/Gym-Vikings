@@ -14,6 +14,7 @@ import ContactPage from "./Components/Contact/ContactPage";
 import ListOfTrainings from "./Components/TrainingComponents/ListOfTrainings";
 import Training from "./Components/TrainingComponents/Training";
 import Diets from "./Components/DietComponents/Diets";
+import DietInfo from "./Components/DietComponents/DietInfo";
 
 function App() {
   const [isLoggedIn, setLoginState] = useState(false);
@@ -54,6 +55,7 @@ function App() {
           <Route path='about' element={<AboutPage />}></Route>
           <Route path='trainings' element={<ListOfTrainings user={user} />}></Route>
           <Route path='diets' element={<Diets user={user} />}></Route>
+          <Route path='diets/:index' element={<DietInfo/>}></Route>
         </Routes>
 
       </div>

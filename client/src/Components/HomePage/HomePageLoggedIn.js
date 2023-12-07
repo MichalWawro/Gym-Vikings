@@ -1,9 +1,11 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Training from "../TrainingComponents/Training";
+import { useNavigate } from 'react-router-dom';
 
 const HomePageLoggedIn = ({ user }) => {
     const [training, setTraining] = useState(null);
     const [meal, setMeal] = useState(null);
+    const navigate = useNavigate();
 
     useEffect(() => {
         fetchNextMeal();

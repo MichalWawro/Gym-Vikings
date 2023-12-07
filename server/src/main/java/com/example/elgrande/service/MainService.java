@@ -238,6 +238,15 @@ public class MainService {
 
 
 //Diets diets diets diets diets
+    public List<Diet> getDietsFormUser(int userId) {
+        UserEntity user = userService.getUserById(userId);
+        List<Diet> diets = user.getDiets();
+        if(diets.isEmpty()) {
+            List<Diet> empty = new ArrayList<>();
+            return empty;
+        }
+        return diets;
+    }
     public void randomizeMeals(int userId) {
         UserEntity user = userService.getUserById(userId);
         Diet diet = user.getDiet();
@@ -309,4 +318,13 @@ public class MainService {
 
         return diets;
     }
+
+    public void setDiet(int userId, int dietId) {
+        UserEntity user = userService.getUserById(userId);
+        Diet diet = dietService.getDietById(dietId);
+
+        user.setDiet(diet);
+    }
+
+
 }

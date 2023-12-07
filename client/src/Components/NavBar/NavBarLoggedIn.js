@@ -14,6 +14,9 @@ const NavBarLoggedIn = ({ handleLoginChange }) => {
             <button id="TrainingButton" className="NavButton" type="button" onClick={() => navigate("/trainings")}>
                 Trainings
             </button>
+            <button id="DietButton" className="NavButton" type="button" onClick={() => navigate("/diets")}>
+                Diets
+            </button>
             <button id="ProfileButton" className="NavButton" type="button" onClick={() => null}>
                 Profile
             </button>

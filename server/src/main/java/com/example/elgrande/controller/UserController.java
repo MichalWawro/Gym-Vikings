@@ -141,11 +141,19 @@ public class UserController {
         return mainService.getTrainingFormUser(trainingId,userId);
     }
 
+    @GetMapping("/diet/getDietsFromUser")
+    public List<Diet> provideDiets(@RequestParam int userId){
+        return mainService.getDietsFormUser(userId);
+    }
+
     @GetMapping("/diet/provideNextMeal")
     public Meal provideNextMeal(@RequestParam int userId){ return mainService.getNextMealFromUserDiet(userId); }
 
     @GetMapping("/diet/suggestDiet")
     public List<Diet> suggestDiet(@RequestParam int userId) { return mainService.suggestDiet(userId);}
+
+    @PatchMapping ("/user/setDiet")
+    public void setDiet(@RequestParam int userId, int dietId) {mainService.setDiet(userId, dietId);}
 
     @GetMapping("/user/getUserInfo")
     public UserEntity getUserInfo(@RequestParam int userId) {

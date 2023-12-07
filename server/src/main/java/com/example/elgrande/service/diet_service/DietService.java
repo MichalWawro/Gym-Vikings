@@ -46,9 +46,7 @@ public class DietService {
 
         if (dietToUpdate.isPresent()) {
             Diet diet = dietToUpdate.get();
-
             diet.setDietName(updatedDiet.getDietName());
-            //Tutaj wypisać więcej updatów
 
             return dbRepository.save(diet);
         } else {
