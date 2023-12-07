@@ -51,9 +51,9 @@ public class TrainingService {
         trainingRepository.delete(training);
     }
 
-    public Training createTraining(String name, Level levelOfIntencity, List<Body> bodyParts){
+    public Training createTraining(String name, List<Exercise> exercises, List<Body> bodyParts){
 
-        Training training = new Training(name,levelOfIntencity,bodyParts);
+        Training training = new Training(name,bodyParts,exercises );
 
         return training;
     }
@@ -66,12 +66,11 @@ public class TrainingService {
     //------------------------------------------UPDATES-------------------------------------------------------
 
 
-    public Training updateTraining(int id, List<Exercise> exercises, String name, Level levelOfIntencity, List<Body> bodyParts){
+    public Training updateTraining(int id, List<Exercise> exercises, String name, List<Body> bodyParts){
         Training training = getTrainingById(id);
 
         try {
             training.setBodyParts(bodyParts);
-            training.setLevel(levelOfIntencity);
             training.setName(name);
             training.setExercises(exercises);
         } catch (Exception e){
@@ -80,23 +79,12 @@ public class TrainingService {
         return training;
     }
 
-    public Training updateTraining(int id, List<Exercise> exercises, Level levelOfIntencity, List<Body> bodyParts){
+    public Training updateTraining(int id, List<Exercise> exercises, List<Body> bodyParts){
         Training training = getTrainingById(id);
 
         try {
-            training.setLevel(levelOfIntencity);
+
             training.setBodyParts(bodyParts);
-            training.setExercises(exercises);
-        } catch (Exception e){
-            System.err.println("couldnt update training: " + e.getMessage());
-        }
-        return training;
-    }
-    public Training updateTraining(int id, List<Exercise> exercises,Level levelOfInrencity){
-        Training training = getTrainingById(id);
-
-        try {
-            training.setLevel(levelOfInrencity);
             training.setExercises(exercises);
         } catch (Exception e){
             System.err.println("couldnt update training: " + e.getMessage());
@@ -115,46 +103,44 @@ public class TrainingService {
     }
     // ----------------------------------------------------------------------------
 
-    public List<Training> getTrainingsByLevel(Level level){
+    public List<Training> getTrainings(){
         List<Training> trainings = getAllTrainings();
         List<Training> trainingsToExport = new ArrayList<>();
         for (Training training:
              trainings) {
-            if(training.getLevel() == level){
                 trainingsToExport.add(training);
-            }
+
         }
         return trainingsToExport;
     }
 
-    public List<Training> increaseExercises(double addedWeight, List<Training> trainings) {
-        Random random = new Random();
+    public List<Training> increaseExercises(double addedWeight ,List<Training> trainings) {
         List<Training> userTrainings = trainings;
         for (Training training :
                 userTrainings) {
             List<Exercise> exercises = training.getExercises();
 
             if (!exercises.isEmpty()) {
-                Exercise exercise = exercises.get(random.nextInt(exercises.size()));
-                if (exercise.getWeight() != 0 || exercise.getType() != Type.CARDIO) {
-                    double weight = exercise.getWeight();
-                    exercise.setWeight(weight + addedWeight);
-                } else {
-                    exercise.setReps(exercise.getReps() + 1);
-                }
-            }else{
-                return null;
+                for (Exercise exercise:
+                    exercises) {
+                    if (exercise.getWeight() != 0 || exercise.getType() != Type.CARDIO || exercise.getType() != Type.CALISTHENICS) {
+                        double weight = exercise.getWeight();
+                        exercise.setWeight(weight + addedWeight);
+                    } else {
+                        exercise.setReps(exercise.getReps() + 1);
+                    }
+            }
             }
         }
         return userTrainings;
     }
 
-    public List<Training> prepareTrainings(List<Training> Trainings, int capacity) {
+    public List<Training> prepareTrainings(List<Training> Trainings) {
         Random random = new Random();
 
         List bodyParts = new ArrayList<>();
 
-        List<Training> trainingsToSet = new ArrayList<>(capacity);
+        List<Training> trainingsToSet = new ArrayList<>(7);
 
         if (Trainings.size() > 0) {
 

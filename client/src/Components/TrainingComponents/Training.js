@@ -2,8 +2,9 @@ import React,{useEffect, useState} from "react"
 import Exercise from "./Exercise/Exercise";
 import './Training.css'
 
-function Training ({training, userId}){
 
+function Training ({training, userId}){
+    const[congratulations, setCongratulations] = useState();
 
     function trainingDone() {
         fetch(`http://localhost:8080/user/trainingDone?userId=${userId}&trainingId=${training.id}`, {
@@ -26,9 +27,11 @@ function Training ({training, userId}){
         <h1 className="training-name">{training.name}</h1>
         <h2 className="training-difficulty">Level: {training.level}</h2>
         <h2>BodyParts: </h2>
-        {training.bodyParts.map((bodyPart,index)=><h3>bodyPart</h3>)}
+        {training.bodyParts.map((bodyPart,index)=><h3>{bodyPart}</h3>)}
         {training.exercises.map((exercise,index)=><Exercise exercise={exercise} index={index}/>)}
-        <buttton className="end-button" onClick={()=>trainingDone()}>Training Done</buttton>
+        <buttton className="end-button" onClick={()=>{trainingDone()
+        setCongratulations("git")
+        }}>Training Done</buttton>
         </>
 
     )

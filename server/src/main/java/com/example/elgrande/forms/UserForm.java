@@ -8,5 +8,5 @@ public record UserForm(
                        String gender,
                        int age,
                        int weight,
-                       int height, int amountOfTrainingsPerWeek, List<Allergy> allergies) {
+                       int height, int amountOfTrainingsPerWeek, int amountoftrainigsperweekwanted, List<Allergy> allergies) {
 }

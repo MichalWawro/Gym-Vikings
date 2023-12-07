@@ -51,7 +51,6 @@ public class UserEntity {
     private FoodType foodType;
     private LocalDate dateOfTrainingAssosiation;
     private int amountOfTrainingsDone;
-    private int TrainingsPerWeek;
     @Enumerated(EnumType.STRING)
     private List<Allergy> allergies;
 
@@ -114,7 +113,6 @@ public class UserEntity {
                 ", dietType=" + dietType +
                 ", foodType=" + foodType +
                 ", amountOfTrainingsDone=" + amountOfTrainingsDone +
-                ", TrainingsPerWeek=" + TrainingsPerWeek +
                 ", allergies=" + allergies +
                 ", trainings=" + trainings +
                 ", diets=" + diets +

@@ -37,8 +37,8 @@ public class ExerciseService {
         exerciseRepository.delete(exercise);
     }
 
-    public Exercise createExercise(String name, Level level, Type type, Body body, int set, int reps, int weight){
-    Exercise exercise = new Exercise(name,level,type,body,set,reps,weight);
+    public Exercise createExercise(String name, Type type, Body body, int set, int reps, int weight, String img, String video){
+    Exercise exercise = new Exercise(name,type,body,set,reps,weight,img,video);
     return exercise;
     }
 

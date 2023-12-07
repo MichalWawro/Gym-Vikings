@@ -5,5 +5,6 @@ public enum Level {
     INTERMEDIATE,
     PROFESSIONAL,
     ELITE,
-    EXPERT
+    EXPERT,
+    MASTER
 }
