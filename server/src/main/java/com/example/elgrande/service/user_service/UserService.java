@@ -87,4 +87,11 @@ public class UserService {
         }
     }
 
+    public UserEntity getUserByUsername(String username){
+        if(userRepository.findByUsername(username).isPresent()){
+            return userRepository.findByUsername(username).get();
+        }
+        return null;
+    }
+
 }

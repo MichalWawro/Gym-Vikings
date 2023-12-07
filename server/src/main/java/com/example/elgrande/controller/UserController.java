@@ -93,16 +93,22 @@ public class UserController {
                 .toList();
 
         return ResponseEntity
-                .ok(new JwtResponse(jwt, userDetails.getUsername(), roles));
+                .ok(new JwtResponse(jwt, userDetails.getUsername(), userService.getUserByUsername(userDetails.getUsername()), roles));
     }
 
 
 
-    @PatchMapping("/user/formDone")
-    public ResponseEntity<String> getForm(@RequestParam int userId, @RequestBody UserForm userForm){
-            try {
-            mainService.setUserTrainingInfo(userForm, userId);
-            mainService.updateFirstPlan(userId);
+    @PostMapping("/user/formDone")
+//    public ResponseEntity<String> getForm(@RequestParam int userId, @RequestBody UserForm userForm){
+    public ResponseEntity<String> getForm( @RequestBody UserEntity userData){
+        try {
+            UserForm userForm =new UserForm(userData.getGender(),userData.getAge(),userData.getWeight(),userData.getHeight(),userData.getAllergies());
+            System.out.println("");
+    //      mainService.setUserTrainingInfo(userForm, userId);
+    //      mainService.updateFirstPlan(userId);
+            mainService.setUserTrainingInfo(userForm, userData.getId());
+            mainService.updateFirstPlan(userData.getId());
+
             return ResponseEntity.ok("User information set successfully");
         } catch (Exception e) {
             // Handle exceptions appropriately (e.g., log and return an error response)

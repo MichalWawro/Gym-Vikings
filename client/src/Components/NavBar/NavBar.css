@@ -1,31 +1,113 @@
 /* Header and Footer styles */
 .App-header {
-    position: fixed;
-    background-color: #19191b;
-    width: 100%;
-    padding: 5px;
-    display: flex;
-    justify-content: flex-end;
-  }
-  
-  /* Styles for navigation buttons */
-  .NavButton {
-    background-color: #555555;
-    border: 2px solid black;
-    border-radius: 10px;
-    height: 60px;
-    width: 144px;
-    display: inline-block;
-    margin: 10px;
-    font: bold 14px/1 'Rubik', sans-serif;
-    transition: transform 0.75s;
-  }
-  
-  .NavButton:hover {
-    background-color: rgb(212, 212, 103);
-    transform: scale(1.1);
-  }
-  
-  .NavButton:last-child {
-    margin-right: 60px;
-  }
+  position: fixed;
+  background-color: #19191b;
+  width: 100%;
+  padding: 5px;
+  display: flex;
+  justify-content: flex-end;
+}
+
+/* Styles for navigation buttons */
+.HomeButton {
+  background-image: url(../../assets/homelogo.png);
+  background-size: contain;
+  background-repeat: no-repeat;
+  border: 0;
+  height: 70px;
+  width: 282px;
+
+  margin: 10px;
+
+  transition: transform 0.75s;
+  position: absolute;
+  left: 0px;
+  top: 0px;
+}
+
+.NavButton {
+  background-color: #555555;
+  border: 2px solid black;
+  border-radius: 10px;
+  height: 60px;
+  width: 144px;
+  display: inline-block;
+  margin: 10px;
+  font: bold 14px/1 'Rubik', sans-serif;
+  transition: transform 0.75s;
+
+}
+
+.Spacer {
+  height: 5px;
+  width: 260px;
+  display: inline-block;
+  margin: 10px;
+  border: 0px solid black;
+  border-radius: 10px;
+}
+
+.NavButton:hover {
+  background-color: rgb(212, 212, 103);
+  transform: scale(1.1);
+}
+
+.NavButton:last-child {
+  margin-right: 60px;
+}
+
+#SignInExitButton {
+  height: 40px;
+  width: 40px;
+  margin: 10px;
+  transform: translateY(-2px);
+}
+
+#SignInExitButton:hover {
+  background-color: rgb(212, 103, 103);
+}
+
+#LoginDiv {
+  display: inline-block;
+}
+
+#SignInLoginButton {
+  height: 40px;
+  width: 60px;
+  margin: 0;
+  transform: translateY(-2px);
+}
+
+#SignInLoginButton:hover {
+  background-color: rgb(103, 212, 130);
+}
+
+.LoginInputBox {
+  height: 18px;
+  width: 150px;
+  margin: 0;
+  margin-right: 10px;
+  transform: translateY(5.5px);
+  background-color: #555555;
+  border: 2px solid black;
+  border-radius: 10px;
+}
+
+.LoginDivBox {
+  margin-bottom: 5px;
+  font: bold 14px/1 'Rubik', sans-serif;
+  transform: translateY(8px);
+}
+
+#MainLoginDiv {
+  background-color: #555555;
+  border: 2px solid black;
+  border-radius: 10px;
+  height: 56px;
+  width: 465px;
+  display: inline-block;
+  margin-left: 10px;
+  margin-right: 10px;
+  transform: translateY(2.5px);
+
+}

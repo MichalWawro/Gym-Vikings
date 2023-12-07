@@ -23,13 +23,16 @@ const useForm = (submitForm) => {
         event.preventDefault();
         setErrors(validation(values));
         setDataIsCorrect(true);
+        // Change the property from 'name' to 'username'
+        const modifiedValues = { ...values, username: values.name };
+
         try {
             const response = await fetch('http://localhost:8080/user/register', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
                 },
-                body: JSON.stringify(values),
+                body: JSON.stringify(modifiedValues),
             });
 
             if (response.ok) {
