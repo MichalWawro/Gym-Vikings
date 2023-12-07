@@ -78,9 +78,7 @@ public class Diet {
         return foodType;
     }
 
-    public DietType getDietType() {
-        return dietType;
-    }
+
 
     public int getDailyCalories() {
         return dietCaloriesPerDay;

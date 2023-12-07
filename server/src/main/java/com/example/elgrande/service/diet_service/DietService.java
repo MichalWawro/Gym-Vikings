@@ -1,6 +1,7 @@
 package com.example.elgrande.service.diet_service;
 
 import com.example.elgrande.model.diet.Diet;
+import com.example.elgrande.model.diet.Meal;
 import com.example.elgrande.model.enums.enums_diet.Allergy;
 import com.example.elgrande.model.enums.enums_diet.DietType;
 import com.example.elgrande.model.enums.enums_diet.FoodType;
