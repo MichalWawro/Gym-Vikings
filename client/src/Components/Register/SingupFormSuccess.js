@@ -9,9 +9,7 @@ const singupFormSuccess = ({ registeredUser }) => {
                 {/*<h1 className="form-success">Account Created!</h1>*/}
                 <UserData registeredUser={registeredUser} />
             </div>
-
         </div>
-        <UserData  />
     </div>
     )
 }

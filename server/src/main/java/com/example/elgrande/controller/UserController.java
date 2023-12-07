@@ -97,8 +97,8 @@ public class UserController {
 
 
 
-    @PatchMapping("/user/formDone")
-    public ResponseEntity<String> getForm(@RequestParam int userId, @RequestBody UserForm userForm){
+    @PostMapping("/user/formDone")
+    public ResponseEntity<String> getForm(@RequestParam int userId, @RequestBody UserEntity userData){
             try {
             mainService.setUserTrainingInfo(userForm, userId);
             mainService.updateFirstPlan(userId);

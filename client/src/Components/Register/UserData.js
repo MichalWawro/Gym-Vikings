@@ -13,6 +13,7 @@ const UserData = ({ registeredUser }) => {
         trainingType: 'cardio',
         id: registeredUser?.id || '', // Use optional chaining
         username: registeredUser?.name || '',
+        gender:'Female'
     });
 
     useEffect(() => {
@@ -21,7 +22,8 @@ const UserData = ({ registeredUser }) => {
 
             setFormData((prevFormData) => ({
                 ...prevFormData,
-                id: registeredUser.id || '',
+                // id: registeredUser.id || '',
+                id: 1,
                 name: registeredUser.name || '',
             }));
         }
@@ -74,7 +76,7 @@ const UserData = ({ registeredUser }) => {
         };
         console.log("DATA SENT: ",formDataToSend);
         try {
-            const response = await fetch('http://localhost:8080/user/userData', {
+            const response = await fetch('http://localhost:8080/user/formDone', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
@@ -227,6 +229,21 @@ const UserData = ({ registeredUser }) => {
                             {Object.values(DietType).map((dietType) => (
                                 <option key={dietType} value={dietType}>
                                     {dietType}
+                                </option>
+                            ))}
+                        </select>
+                    </div>
+                    <div className="data-form-group">
+                        <label className="data-label">Gender</label>
+                        <select
+                            name="gender"
+                            className="data-select"
+                            value={formData.gender}
+                            onChange={handleInputChange}
+                        >
+                            {Object.values(Gender).map((gender) => (
+                                <option key={gender} value={gender}>
+                                    {gender}
                                 </option>
                             ))}
                         </select>
@@ -434,5 +451,11 @@ const TrainingType = {
     CALISTHENICS: 'calisthenics',
     WEIGHTS: 'weights',
 };
+
+const Gender = {
+    FEMALE: 'Female',
+    MALE: 'Male'
+};
+
 
 export default UserData;
