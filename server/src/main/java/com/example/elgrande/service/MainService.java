@@ -238,13 +238,11 @@ public class MainService {
         //Adding 3* of the foundDiets to diets list;
         if(foundDiets.isEmpty()) {
             throw new NoSuchElementException("FoundDiets list should not be empty");
-        }
-        else if(foundDiets.size() <= 3){
+        } else if(foundDiets.size() <= 3){
             for(Diet diet : foundDiets) {
                 diets.add(diet);
             }
-        }
-        else {
+        } else {
             for(int i = 0; i < 3; i++) {
                 diets.add(foundDiets.get(i));
             }
