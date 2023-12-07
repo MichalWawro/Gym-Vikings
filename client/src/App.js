@@ -16,11 +16,17 @@ import Training from "./Components/TrainingComponents/Training";
 
 function App() {
   const [isLoggedIn, setLoginState] = useState(false);
+  const [tryingToSign, setTryingToSign] = useState(false);
   const handleLoginChange = (bool) => {
     setLoginState(bool);
   };
 
   const [user, setUser] = useState(null);
+
+  
+  const [username, setUsername] = useState('');
+  const [password, setPassword] = useState('');
+
 
   function fetchUser() {
     fetch(`http://localhost:8080/user/getUserInfo?userId=1`)
@@ -33,15 +39,43 @@ function App() {
       .catch(e => console.error(e))
   }
 
+  function login(username, password){
+    // e.preventDefault()
+    fetch(`http://localhost:8080/user/login`, {
+      method: 'POST',
+      headers: {'Content-Type': 'application/json'},
+      body: JSON.stringify({username:username, password:password})
+    })
+    .then(response => response.json())
+    .then(response =>{  
+    console.log("tu response:", response)
+    console.log("error status:", response.status)
+    if(response.status !== 401){
+      setTryingToSign(false);
+      handleLoginChange(true)
+    }
+    else{
+      alert("incorrect login or password")
+    }
+    }
+    )
+    .catch(error =>{
+    console.error(error)
+    alert("connection error")
+  })
+  }
+
+
   useEffect(() => {
-    fetchUser();
+    // fetchUser();
+    login();
   }, [])
 
   return (
     <div>
       <div className="App">
         <header className="App-header">
-          <NavBar isLoggedIn={isLoggedIn} handleLoginChange={handleLoginChange} />
+          <NavBar isLoggedIn={isLoggedIn} tryingToSign={tryingToSign} handleLoginChange={handleLoginChange} login={login} setTryingToSign={setTryingToSign}/>
           {
 
           }
