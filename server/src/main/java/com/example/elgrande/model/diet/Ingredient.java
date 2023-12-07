@@ -1,5 +1,6 @@
 package com.example.elgrande.model.diet;
 
+import com.example.elgrande.model.enums.enums_diet.MeasurementUnit;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.Data;
@@ -16,12 +17,14 @@ public class Ingredient {
     private Long id;
     private String name;
     private int kcalIn100g;
+//    private MeasurementUnit measurementUnit;
     @ManyToMany(mappedBy = "ingredients")//, cascade = CascadeType.ALL)
     @JsonIgnore
     private List<Meal> meals;
-    public Ingredient(String name, int kcalIn100g) {
+    public Ingredient(String name, int kcalIn100g) { //, MeasurementUnit measurementUnit
         this.name = name;
         this.kcalIn100g = kcalIn100g;
+//        this.measurementUnit = measurementUnit;
     }
 
 //    public int getKcal(int grams){ return (int)((kcalIn100g/100)*grams);}

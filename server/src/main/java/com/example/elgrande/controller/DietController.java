@@ -1,5 +1,6 @@
 package com.example.elgrande.controller;
 
+import com.example.elgrande.model.enums.enums_diet.Allergy;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.example.elgrande.model.diet.Diet;
@@ -48,6 +49,7 @@ public class DietController {
 
     //---------------------------------------------------------------------------------
 
-
+    @GetMapping("/user/checkForAllergies")
+    public List<Integer> checkForAllergies(@RequestParam List<Diet> diets, List<Allergy> allergies) {return dietService.checkForAllergies(diets, allergies);}
 }
 

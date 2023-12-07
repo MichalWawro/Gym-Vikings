@@ -24,7 +24,7 @@ public class Diet {
     //    private List<User> favouritedBy;
     private List<Allergy> allergies;
     private FoodType foodType;
-    private DietType dietType;
+    private String dietDescription;
     private int dietCaloriesPerDay;
     private int favNumber;
 
@@ -35,7 +35,8 @@ public class Diet {
         this.dietName = dietName;
         this.meals = mealsArray;
         this.foodType = foodType;
-        this.dietType = dietType;
+        this.dietDescription = dietDescription;
+        this.allergies = allergies;
         this.dietCaloriesPerDay = calculateDailyCalories();
     }
 
@@ -60,7 +61,6 @@ public class Diet {
                 "dietName='" + dietName + '\'' +
                 ", mealsArray=" + meals +
                 ", foodType=" + foodType +
-                ", dietType=" + dietType +
                 ", dietCalories=" + dietCaloriesPerDay +
                 '}';
     }
@@ -105,9 +105,5 @@ public class Diet {
 
     public void setFoodType(FoodType foodType) {
         this.foodType = foodType;
-    }
-
-    public void setDietType(DietType dietType) {
-        this.dietType = dietType;
     }
 }
