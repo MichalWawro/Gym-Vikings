@@ -60,18 +60,16 @@ public class WebSecurityConfig {
         return authConfig.getAuthenticationManager();
     }
 
-
-
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         http.csrf(csrf -> csrf.disable()).cors(cors -> cors.disable())
                 .exceptionHandling(exception -> exception.authenticationEntryPoint(unauthorizedHandler))
                 .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
                 .authorizeHttpRequests(auth ->
-                        auth.requestMatchers("/").permitAll()
+                        auth.requestMatchers("/**").permitAll()
 //                                .requestMatchers("team/**").hasRole("USER")
 //                                .requestMatchers("/error").permitAll()
-                                .anyRequest().permitAll()
+                                .anyRequest().authenticated()
 
                 );
 
