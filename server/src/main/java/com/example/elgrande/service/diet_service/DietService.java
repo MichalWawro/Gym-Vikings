@@ -1,6 +1,7 @@
 package com.example.elgrande.service.diet_service;
 
 import com.example.elgrande.model.diet.Diet;
+import com.example.elgrande.model.diet.Meal;
 import com.example.elgrande.model.enums.enums_diet.Allergy;
 import com.example.elgrande.model.enums.enums_diet.DietType;
 import com.example.elgrande.model.enums.enums_diet.FoodType;
@@ -56,41 +57,72 @@ public class DietService {
     }
 
     //Business Logic
+    public List<Integer> checkForAllergies (List<Diet> diets, List<Allergy> allergies) {
+        List<Integer> dietsWithAllergies = new ArrayList<>();
 
-
-    public List<Diet> filterDiets(String dietName, int minKcal, int maxKcal, FoodType foodType, DietType dietType, List<Allergy> allergies) {
-        //FoodType and DietType filtering needs rework to support multiple choices
-        List<Diet> allDiets = getAllDiets();
-        List<Diet> filteredDiets = new ArrayList<>();
-        List<Allergy> allergiesInDiet;
-        boolean isAllergic = false;
-
-        for(Diet diet : allDiets) {
-            if(dietName.contains(diet.getDietName()) && diet.getDailyCalories() > minKcal &&
-                    diet.getDailyCalories() < maxKcal && diet.getFoodType() == foodType &&
-                    diet.getDietType() == dietType) {
-                isAllergic = false;
-                allergiesInDiet = diet.getAllergies();
-                for(Allergy allergy : allergies) {
-                    if(allergiesInDiet.contains(allergy)) {
-                        isAllergic = true;
-                    }
-                }
-                if(!isAllergic) {
-                    filteredDiets.add(diet);
+        if(allergies.isEmpty()) {
+            return null;
+        }
+        for(Diet diet : diets) {
+            for(Allergy allergy : allergies) {
+                if(diet.getAllergies().contains(allergy)) {
+                    dietsWithAllergies.add(diets.indexOf(diet));
+                    break;
                 }
             }
         }
 
-        List<Diet> testDietList = new ArrayList<>();
-        testDietList.add(allDiets.get(0));
-        return testDietList;
-        //Add diet sorting by favourites;
-//        return filteredDiets;
+        return dietsWithAllergies;
     }
 
-    public double calculateCalorieIntake(String gender, int weight, int height, int age, int numberOfTrainings) {
+    public List<Diet> filterDiets(String dietName, int dailyKcal, FoodType foodType) {
+        //Add diet sorting by favourites;
+
+        List<Diet> allDiets = getAllDiets();
+        List<Diet> filteredDiets = new ArrayList<>();
+        List<Allergy> allergiesInDiet = new ArrayList<>();
+
+        for(Diet diet : allDiets) {
+            if(diet.getDietName().contains(dietName) && (foodType == null || diet.getFoodType() == foodType)) {
+                filteredDiets.add(diet);
+            }
+        }
+
+        filteredDiets = changeIngredientQuantities(filteredDiets, dailyKcal);
+
+        return filteredDiets;
+    }
+
+    public List<Diet> changeIngredientQuantities(List<Diet> diets, Integer desiredCalories) {
+        List<Diet> changedDiets = diets;
+        List<Integer> gramsInMeal;
+        int mealCalories;
+        double multiplier;
+
+        for (Diet diet : changedDiets) {
+            List<Meal> mealsInDiet = diet.getMeals();
+            for (Meal meal : mealsInDiet) {
+                mealCalories = meal.getMealCalories();
+                multiplier = calculateMultiplier(mealCalories, desiredCalories);
+                gramsInMeal = meal.getGrams();
+                for (Integer grams : gramsInMeal) {
+                    grams = (int) (grams * multiplier);
+                }
+            }
+        }
+
+        return changedDiets;
+    }
+
+    public double calculateMultiplier(int mealCalories, int desiredCalories) {
+        //Desired = Meal * Multiplier (1000kcal = 4000kcal * 0.25) Multiplier = Desired/Meal (1000/4000 = 0.25)
+        return desiredCalories / mealCalories;
+    }
+
+    public double calculateCalorieIntake(String gender, int weight, int height, int age, int numberOfTrainings, DietType dietType) {
+        int desiredCalorieIntake = 0;
         double activityMultiplier = 0;
+        //Number of trainings
         switch (numberOfTrainings) {
             case 1:
             case 2:
@@ -109,12 +141,26 @@ public class DietService {
                 activityMultiplier = 1.2;
                 break;
         }
+
+        //Formula
         if(gender.equals("Male")) {
-            return Math.round((10 * weight + 6.25 * height - 5 * age + 5) * activityMultiplier);
+            desiredCalorieIntake = (int) Math.round((10 * weight + 6.25 * height - 5 * age + 5) * activityMultiplier);
         } else if (gender.equals("Female")) {
-            return Math.round((10 * weight + 6.25 * height - 5 * age - 161) * activityMultiplier);
+            desiredCalorieIntake = (int) Math.round((10 * weight + 6.25 * height - 5 * age - 161) * activityMultiplier);
         } else {
             throw new IllegalArgumentException("Invalid gender. Provided gender should be either 'Male' or 'Female'");
+        }
+
+        //Diet Type
+        switch(dietType) {
+            case CUTTING:
+                return ((int) (desiredCalorieIntake * 0.85));
+            case STAYING:
+                return (desiredCalorieIntake);
+            case BULKING:
+                return((int) (desiredCalorieIntake * 1.15));
+            default:
+                throw new IllegalArgumentException("Invalid Diet Type in: DietService.java, calculateCalorieIntake()");
         }
     }
 

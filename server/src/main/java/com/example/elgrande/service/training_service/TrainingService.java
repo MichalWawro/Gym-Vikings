@@ -127,18 +127,26 @@ public class TrainingService {
         return trainingsToExport;
     }
 
-    public void increaseExercises(double addedWeight, List<Training> trainings) {
+    public List<Training> increaseExercises(double addedWeight, List<Training> trainings) {
         Random random = new Random();
+        List<Training> userTrainings = trainings;
         for (Training training :
-                trainings) {
+                userTrainings) {
             List<Exercise> exercises = training.getExercises();
-            Exercise exercise = exercises.get(random.nextInt(exercises.size()));
-            if (exercise.getWeight() != 0 || exercise.getType() != Type.CARDIO) {
-                exercise.setWeight(exercise.getWeight() + addedWeight);
-            } else {
-                exercise.setReps(exercise.getReps() + 1);
+
+            if (!exercises.isEmpty()) {
+                Exercise exercise = exercises.get(random.nextInt(exercises.size()));
+                if (exercise.getWeight() != 0 || exercise.getType() != Type.CARDIO) {
+                    double weight = exercise.getWeight();
+                    exercise.setWeight(weight + addedWeight);
+                } else {
+                    exercise.setReps(exercise.getReps() + 1);
+                }
+            }else{
+                return null;
             }
         }
+        return userTrainings;
     }
 
     public List<Training> prepareTrainings(List<Training> Trainings, int capacity) {

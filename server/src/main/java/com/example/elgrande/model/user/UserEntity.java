@@ -48,14 +48,10 @@ public class UserEntity {
     private DietType dietType;
     @Enumerated(EnumType.STRING)
     private FoodType foodType;
-    @Enumerated(EnumType.STRING)
-    private Type trainingType;
     private int amountOfTrainingsDone;
     private int TrainingsPerWeek;
     @Enumerated(EnumType.STRING)
     private List<Allergy> allergies;
-    @Enumerated(EnumType.STRING)
-    private List<Body> bodyPart;
 
     @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(name= "users_roles", joinColumns = @JoinColumn(name = "users_user_id"), inverseJoinColumns = @JoinColumn(name = "roles_role_id"))
@@ -78,7 +74,7 @@ public class UserEntity {
         this.password = password;
         this.email = email;
     }
-    public UserEntity(String gender, int age, int weight, int height, Level level, DietType dietType, FoodType foodType, Type trainingType, List<Allergy> allergies, List<Body> bodyPart) {
+    public UserEntity(String gender, int age, int weight, int height, Level level, DietType dietType, FoodType foodType, List<Allergy> allergies) {
         this.gender = gender;
         this.age = age;
         this.weight = weight;
@@ -86,9 +82,7 @@ public class UserEntity {
         this.level = level;
         this.dietType = dietType;
         this.foodType = foodType;
-        this.trainingType=trainingType;
         this.allergies = allergies;
-        this.bodyPart=bodyPart;
     }
     public void addDiet(Diet diet) {
         diets.add(diet);
