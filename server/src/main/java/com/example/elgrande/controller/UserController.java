@@ -92,7 +92,7 @@ public class UserController {
                 .toList();
 
         return ResponseEntity
-                .ok(new JwtResponse(jwt, userDetails.getUsername(), roles));
+                .ok(new JwtResponse(jwt, userDetails.getUsername(), userService.getUserByUsername(userDetails.getUsername()), roles));
     }
 
 
