@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import SignUpForm from "./SingupForm";
 import SignUpFormSuccess from "./SingupFormSuccess";
+import UserData from "./UserData";
 
 const Form = () => {
     const [formIsSubmitted, setFormIsSubmitted] = React.useState(false);
