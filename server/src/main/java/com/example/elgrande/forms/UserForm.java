@@ -9,4 +9,9 @@ public record UserForm(
                        int age,
                        int weight,
                        int height, int amountOfTrainingsPerWeek, List<Allergy> allergies) {
+
+    public UserForm(String gender, int age, int weight, int height, List<Allergy> allergies) {
+        this(gender, age, weight, height, 0, allergies);
+    }
+
 }
