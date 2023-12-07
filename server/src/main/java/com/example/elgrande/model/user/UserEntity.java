@@ -7,9 +7,8 @@ import com.example.elgrande.model.enums.enums_diet.DietType;
 import com.example.elgrande.model.enums.enums_diet.FoodType;
 import com.example.elgrande.model.enums.enums_training.Body;
 import com.example.elgrande.model.enums.enums_training.Type;
-import com.example.elgrande.model.training.Exercise;
+import com.example.elgrande.model.role.Role;
 import com.example.elgrande.model.training.Training;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.Data;
 import lombok.Getter;
@@ -17,23 +16,25 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 import org.hibernate.annotations.CreationTimestamp;
 
-import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 @Getter
 @Setter
 @NoArgsConstructor
 @Data
 @Entity(name = "\'User\'")
-public class User {
+public class UserEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
     @CreationTimestamp
     private Date creationDate;
-    private String name;
+    @Column(name = "name")
+    private String username;
     private String password;
     private String email;
     private String gender;
@@ -55,6 +56,11 @@ public class User {
     private List<Allergy> allergies;
     @Enumerated(EnumType.STRING)
     private List<Body> bodyPart;
+
+    @ManyToMany(fetch = FetchType.EAGER)
+    @JoinTable(name= "users_roles", joinColumns = @JoinColumn(name = "users_user_id"), inverseJoinColumns = @JoinColumn(name = "roles_role_id"))
+    private Set<Role> roles = new HashSet<>();
+
     @ManyToMany
     @JoinTable(name = "user_training",
             joinColumns = @JoinColumn(name="user_id"),
@@ -67,12 +73,12 @@ public class User {
             inverseJoinColumns = @JoinColumn(name = "diet_id"))
     private List<Diet> diets;
 
-    public User(String name, String password, String email) {
-        this.name = name;
+    public UserEntity(String username, String password, String email) {
+        this.username = username;
         this.password = password;
         this.email = email;
     }
-    public User(String gender, int age, int weight, int height, Level level, DietType dietType, FoodType foodType,Type trainingType, List<Allergy> allergies,List<Body> bodyPart) {
+    public UserEntity(String gender, int age, int weight, int height, Level level, DietType dietType, FoodType foodType, Type trainingType, List<Allergy> allergies, List<Body> bodyPart) {
         this.gender = gender;
         this.age = age;
         this.weight = weight;
@@ -101,7 +107,7 @@ public class User {
         return "User{" +
                 "id=" + id +
                 ", creationDate=" + creationDate +
-                ", name='" + name + '\'' +
+                ", name='" + username + '\'' +
                 ", password='" + password + '\'' +
                 ", email='" + email + '\'' +
                 ", gender='" + gender + '\'' +

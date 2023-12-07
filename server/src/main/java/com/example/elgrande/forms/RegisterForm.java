@@ -1,4 +1,4 @@
 package com.example.elgrande.forms;
 
-public record RegisterForm(String name, String password,String email) {
+public record RegisterForm(String username, String password,String email) {
 }

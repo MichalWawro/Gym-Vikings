@@ -1,4 +1,4 @@
 package com.example.elgrande.forms;
 
-public record LoginForm(String name, String password) {
+public record LoginForm(String username, String password) {
 }
