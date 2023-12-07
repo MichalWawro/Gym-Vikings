@@ -58,7 +58,7 @@ public class UserController {
     @PostMapping("/user/register")
     public ResponseEntity<String> createUser(@RequestBody RegisterForm registerForm) {
         //sprawdzam, czy jest użytkownik: admin i role: ADMIN i USER, jeśli nie to dodaje je do DB.
-        if(roleService.findRoleByName("ADMIN") == null){
+        if(roleService.findRoleByName("ROLE_ADMIN") == null){
             roleService.insertRole(new Role("ROLE_ADMIN"));
             roleService.insertRole(new Role("ROLE_USER"));
             userService.insertUser(new UserEntity("admin", passwordEncoder.encode("pass"), "admin@gmail.com"));
@@ -94,8 +94,6 @@ public class UserController {
         return ResponseEntity
                 .ok(new JwtResponse(jwt, userDetails.getUsername(), userService.getUserByUsername(userDetails.getUsername()), roles));
     }
-
-
 
     @PostMapping("/user/formDone")
 //    public ResponseEntity<String> getForm(@RequestParam int userId, @RequestBody UserForm userForm){
