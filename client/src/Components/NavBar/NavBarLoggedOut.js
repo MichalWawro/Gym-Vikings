@@ -1,9 +1,9 @@
 import { useNavigate } from 'react-router-dom';
 import React, { useState, useEffect } from "react";
 
-const NavBarLoggedOut = ({ handleLoginChange }) => {
+const NavBarLoggedOut = ({ handleLoginChange, login, tryingToSign, setTryingToSign}) => {
     const navigate = useNavigate();
-    const [tryingToSign, setTryingToSign] = useState(false);
+    
     return (
         <div>
             <div className="Spacer" />
@@ -37,6 +37,7 @@ const NavBarLoggedOut = ({ handleLoginChange }) => {
                         () => {
                             setTryingToSign(false);
                             handleLoginChange(true);
+                            login(document.getElementById("LoginInput").value, document.getElementById("PasswordInput").value)
                         }}>
                         Login
                     </button>

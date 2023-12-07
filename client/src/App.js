@@ -15,14 +15,21 @@ import ListOfTrainings from "./Components/TrainingComponents/ListOfTrainings";
 import Training from "./Components/TrainingComponents/Training";
 import Diets from "./Components/DietComponents/Diets";
 import DietInfo from "./Components/DietComponents/DietInfo";
+import Profile from "./Components/Profile/Profile";
 
 function App() {
   const [isLoggedIn, setLoginState] = useState(false);
+  const [tryingToSign, setTryingToSign] = useState(false);
   const handleLoginChange = (bool) => {
     setLoginState(bool);
   };
 
   const [user, setUser] = useState(null);
+
+  
+  const [username, setUsername] = useState('');
+  const [password, setPassword] = useState('');
+
 
   function fetchUser() {
     fetch(`http://localhost:8080/user/getUserInfo?userId=1`)
@@ -35,15 +42,44 @@ function App() {
       .catch(e => console.error(e))
   }
 
+  function login(username, password){
+    // e.preventDefault()
+    fetch(`http://localhost:8080/user/login`, {
+      method: 'POST',
+      headers: {'Content-Type': 'application/json'},
+      body: JSON.stringify({username:username, password:password})
+    })
+    .then(response => response.json())
+    .then(response =>{  
+    console.log("tu response:", response)
+    console.log("error status:", response.status)
+    if(response.status !== 401){
+      setTryingToSign(false);
+      handleLoginChange(true);
+      setUser(response);
+    }
+    else{
+      alert("incorrect login or password")
+    }
+    }
+    )
+    .catch(error =>{
+    console.error(error)
+    alert("connection error")
+  })
+  }
+
+
   useEffect(() => {
-    fetchUser();
+    // fetchUser();
+    //login();
   }, [])
 
   return (
     <div>
       <div className="App">
         <header className="App-header">
-          <NavBar isLoggedIn={isLoggedIn} handleLoginChange={handleLoginChange} />
+          <NavBar isLoggedIn={isLoggedIn} tryingToSign={tryingToSign} handleLoginChange={handleLoginChange} login={login} setTryingToSign={setTryingToSign}/>
           {
 
           }
@@ -56,6 +92,7 @@ function App() {
           <Route path='trainings' element={<ListOfTrainings user={user} />}></Route>
           <Route path='diets' element={<Diets user={user} />}></Route>
           <Route path='diets/:index' element={<DietInfo/>}></Route>
+          <Route path='profile' element={<Profile user={user} />}></Route>
         </Routes>
 
       </div>
