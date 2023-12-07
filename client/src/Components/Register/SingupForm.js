@@ -2,7 +2,7 @@ import React from "react";
 import useForm from "./useForm";
 import "./RegisterForm.css";
 const SignUpForm = ({ submitForm }) => {
-    const { handleChange, handleFormSubmit, values, errors } = useForm(submitForm);
+    const { handleChange, handleFormSubmit, values, errors} = useForm(submitForm);
 
     return (
         <div className="container">
@@ -17,11 +17,11 @@ const SignUpForm = ({ submitForm }) => {
                         <input
                             className="input"
                             type="text"
-                            name="fullname"
-                            value={values.fullname}
+                            name="name"
+                            value={values.name}
                             onChange={handleChange}
                         />
-                        {errors.fullname && <p className="error">{errors.fullname}</p>}
+                        {errors.name && <p className="error">{errors.name}</p>}
                     </div>
                     <div className="form-group">
                         <label className="label">Email</label>

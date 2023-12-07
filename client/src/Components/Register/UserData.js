@@ -1,6 +1,6 @@
-import React, { useState } from 'react';
+import React, { useState,useEffect } from 'react';
 
-const UserData = () => {
+const UserData = ({ registeredUser }) => {
     const [formData, setFormData] = useState({
         allergies: [],
         foodType: 'vegan',
@@ -11,8 +11,30 @@ const UserData = () => {
         bodyPart: [],
         trainingLevel: 'beginner',
         trainingType: 'cardio',
+        id: registeredUser?.id || '', // Use optional chaining
+        username: registeredUser?.name || '',
     });
 
+    useEffect(() => {
+        if (registeredUser) {
+            // Update formData only if registeredUser is available
+
+            setFormData((prevFormData) => ({
+                ...prevFormData,
+                id: registeredUser.id || '',
+                name: registeredUser.name || '',
+            }));
+        }
+    }, [registeredUser]);
+
+    // const handleInputChange = (e) => {
+    //     const { name, value } = e.target;
+    //
+    //     setFormData((prevFormData) => ({
+    //         ...prevFormData,
+    //         [name]: value,
+    //     }));
+    // };
     const handleInputChange = (e) => {
         const { name, value } = e.target;
 
@@ -71,10 +93,10 @@ const UserData = () => {
     };
 
     return (
-        <form onSubmit={handleSubmit}>
-            <div style={{ marginBottom: '100px' }}></div>
+        <form onSubmit={handleSubmit} style={{ color: 'white' }}>
+            {/*<div style={{ marginBottom: '100px' }}></div>*/}
             <div>
-                <label><h2>Please fulfill your data:</h2></label>
+                <label><h2>Please fill your data:</h2></label>
             </div>
             <div>
                 <label>Age:  </label>
