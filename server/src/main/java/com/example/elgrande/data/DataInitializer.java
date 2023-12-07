@@ -1,11 +1,5 @@
 package com.example.elgrande.data;
 
-import com.example.elgrande.model.enums.Level;
-import com.example.elgrande.model.enums.enums_training.Body;
-import com.example.elgrande.model.enums.enums_training.Type;
-import com.example.elgrande.model.training.Exercise;
-import com.example.elgrande.model.training.Training;
-import com.example.elgrande.model.user.UserEntity;
 import com.example.elgrande.repository.UserRepository;
 import com.example.elgrande.service.diet_service.DietRepository;
 import com.example.elgrande.service.diet_service.IngredientRepository;
@@ -41,7 +35,7 @@ public class DataInitializer implements CommandLineRunner {
     @Override
     public void run(String... args) throws Exception {
 
-
+/*
 //Proper Diet Database
         //Meso
         /*

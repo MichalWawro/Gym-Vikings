@@ -2,6 +2,7 @@ package com.example.elgrande.service;
 
 import com.example.elgrande.forms.UserForm;
 import com.example.elgrande.model.diet.Diet;
+import com.example.elgrande.model.diet.Meal;
 import com.example.elgrande.model.enums.Level;
 import com.example.elgrande.model.enums.enums_diet.Allergy;
 import com.example.elgrande.model.enums.enums_diet.DietType;
@@ -13,6 +14,7 @@ import com.example.elgrande.service.diet_service.DietService;
 import com.example.elgrande.service.training_service.ExerciseService;
 import com.example.elgrande.service.training_service.TrainingService;
 import com.example.elgrande.service.user_service.UserService;
+import org.apache.catalina.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -20,6 +22,8 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.NoSuchElementException;
+import java.time.LocalDate;
+import java.util.*;
 
 
 
@@ -30,6 +34,8 @@ public class MainService {
     private TrainingService trainingService;
     private UserService userService;
     private DietService dietService;
+    Random rand = new Random();
+
 
     @Autowired
     public MainService(ExerciseService exerciseService, TrainingService trainingService, UserService userService, DietService dietService) {
@@ -263,6 +269,50 @@ public class MainService {
         userService.saveUser(user);
     }
 
+//Diets diets diets diets diets
+    public List<Diet> getDietsFormUser(int userId) {
+        UserEntity user = userService.getUserById(userId);
+        List<Diet> diets = user.getDiets();
+        if(diets.isEmpty()) {
+            List<Diet> empty = new ArrayList<>();
+            return empty;
+        }
+        return diets;
+    }
+    public void randomizeMeals(int userId) {
+        UserEntity user = userService.getUserById(userId);
+        Diet diet = user.getDiet();
+        List<Meal> currentMealsArray = diet.getMealsArray();
+        List<Meal> randomizedMealsArray = new ArrayList<>();
+        int indexToMove = 0;
+
+        while(!currentMealsArray.isEmpty()) {
+            indexToMove = rand.nextInt(currentMealsArray.size());
+            randomizedMealsArray.add(currentMealsArray.get(indexToMove));
+            currentMealsArray.remove(indexToMove);
+        }
+
+        diet.setMeals(randomizedMealsArray);
+    }
+    public Meal getNextMealFromUserDiet(int userId) {
+        UserEntity user = userService.getUserById(userId);
+//        if(user.getLastUpdatedDate() + 7days > new Date()) {
+//            randomizeMeals(userId);
+//            user = userService.getUserById(userId);
+//        }
+        Diet diet = user.getDiet();
+
+        List<Meal> mealsArray = diet.getMealsArray();
+
+        Calendar c = Calendar.getInstance();
+        c.setFirstDayOfWeek(Calendar.MONDAY);
+        c.setTime(new Date());
+        int dayOfWeek = c.get(Calendar.DAY_OF_WEEK);
+        int mealIndex = dayOfWeek % mealsArray.size();
+
+//        user.setDietUpdateDate(new Date());
+        return mealsArray.get(mealIndex);
+    }
 
     public List<Diet> suggestDiet(int userId) {
         List<Diet> diets = new ArrayList<>();
@@ -300,4 +350,13 @@ public class MainService {
 
         return diets;
     }
+
+    public void setDiet(int userId, int dietId) {
+        UserEntity user = userService.getUserById(userId);
+        Diet diet = dietService.getDietById(dietId);
+
+        user.setDiet(diet);
+    }
+
+
 }

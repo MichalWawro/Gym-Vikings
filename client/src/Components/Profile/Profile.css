@@ -1,0 +1,59 @@
+.Card{
+width: 800px;
+height: 500px;
+background-color: aliceblue;
+margin: 0;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  border-radius: 25px;
+  padding: 40px;
+  box-shadow: rgba(0, 0, 0, 0.56) 0px 22px 70px 4px;
+}
+
+.Avatar{
+position: relative;
+top: 10px;
+ left: 590px;
+ width: 200px;
+height: 200px;
+border-radius: 10px;
+}
+
+.GymMembershipText{
+    margin: 0;
+    position: absolute;
+    top: 5%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-weight: bold;
+    font-size: 32px;
+        
+}
+
+.InfoText{
+    font-size: 24px;
+    position: absolute;
+}
+
+.Text{
+    background-color: slategray;
+    font-size: 24px;
+    padding: 5px;
+    position: absolute;
+    height: 34;
+
+}
+
+.LevelText
+{
+    position: absolute;
+    font-size: 32px;
+    background-color: rgb(228, 214, 16);
+    height: 64px;
+    width: 64px;
+    border-radius: 32px;
+    margin: 0;
+    padding: 0;
+}

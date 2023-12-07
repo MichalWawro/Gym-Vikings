@@ -1,0 +1,124 @@
+.DietPage {
+    max-height: 100vh;
+    display: flex;
+    height: calc(100vh - 90px);
+    padding-top: 90px;
+    overflow: hidden;
+}
+
+.LeftHalf {
+    width: 25vw;
+    background-color: rgb(100, 147, 189);
+    border-right-color: black;
+}
+
+.RightHalf {
+    justify-content: space-between;
+    display: inline-block;
+
+    width: 75vw;
+    background-color: grey;
+}
+
+.TopHalf {
+    height: 60vh;
+    background-color: rgb(59, 136, 85)
+}
+
+.BottomHalf {
+    height: calc(100vh - 60vh - 90px);
+    background-color: pink
+}
+
+#SuggestButtonsContainer {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.MainButtonsContainer {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.SetButtonsContainer {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.MainDietButton {
+    background-color: #19191b;
+    width: 100px;
+    padding: 5px;
+    display: flex;
+    justify-content: flex-end;
+    background-color: #555555;
+    border: 2px solid black;
+    border-radius: 10px;
+    height: 60px;
+    width: 144px;
+    display: inline-block;
+    margin: 10px;
+    font: bold 14px/1 'Rubik', sans-serif;
+    transition: transform 0.75s;
+}
+
+.SetButton {
+    background-color: #19191b;
+    width: 100px;
+    padding: 5px;
+    display: flex;
+    justify-content: flex-end;
+    background-color: #555555;
+    border: 2px solid black;
+    border-radius: 10px;
+    height: 60px;
+    width: 144px;
+    display: inline-block;
+    margin: 10px;
+    font: bold 14px/1 'Rubik', sans-serif;
+    transition: transform 0.75s;
+}
+
+.SuggestButton {
+    background-color: #19191b;
+    width: 100px;
+    padding: 5px;
+    display: flex;
+    justify-content: flex-end;
+    background-color: #555555;
+    border: 2px solid black;
+    border-radius: 10px;
+    height: 50vh;
+    width: 20vw;
+    display: inline-block;
+    margin: 10px;
+    font: bold 14px/1 'Rubik', sans-serif;
+    transition: transform 0.75s;
+}
+
+.SetButton:hover,
+.MainDietButton:hover,
+.SuggestButton:hover {
+    background-color: rgb(212, 212, 103);
+    transform: scale(1.1);
+}
+
+.MainDietButton:hover {
+    background-color: rgb(212, 212, 103);
+    transform: scale(1.1);
+}

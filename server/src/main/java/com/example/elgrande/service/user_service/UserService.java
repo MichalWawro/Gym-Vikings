@@ -2,6 +2,7 @@ package com.example.elgrande.service.user_service;
 
 import com.example.elgrande.forms.LoginForm;
 import com.example.elgrande.forms.RegisterForm;
+import com.example.elgrande.model.diet.Diet;
 import com.example.elgrande.model.role.Role;
 import com.example.elgrande.model.user.UserEntity;
 import com.example.elgrande.repository.RoleRepository;
@@ -93,5 +94,4 @@ public class UserService {
         }
         return null;
     }
-
 }

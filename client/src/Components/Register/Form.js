@@ -20,7 +20,6 @@ const Form = () => {
                     <React.Fragment>
                         <SignUpFormSuccess registeredUser={registeredUser} />
                     </React.Fragment>
-
                 </div>
             )}
         </div>

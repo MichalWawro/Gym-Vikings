@@ -6,6 +6,7 @@ import com.example.elgrande.forms.RegisterForm;
 import com.example.elgrande.forms.UserForm;
 //import com.example.elgrande.forms.loginForm;
 import com.example.elgrande.model.diet.Diet;
+import com.example.elgrande.model.diet.Meal;
 import com.example.elgrande.model.payload.JwtResponse;
 import com.example.elgrande.model.role.Role;
 import com.example.elgrande.model.training.Training;
@@ -58,7 +59,7 @@ public class UserController {
     @PostMapping("/user/register")
     public ResponseEntity<String> createUser(@RequestBody RegisterForm registerForm) {
         //sprawdzam, czy jest użytkownik: admin i role: ADMIN i USER, jeśli nie to dodaje je do DB.
-        if(roleService.findRoleByName("ADMIN") == null){
+        if(roleService.findRoleByName("ROLE_ADMIN") == null){
             roleService.insertRole(new Role("ROLE_ADMIN"));
             roleService.insertRole(new Role("ROLE_USER"));
             userService.insertUser(new UserEntity("admin", passwordEncoder.encode("pass"), "admin@gmail.com"));
@@ -97,12 +98,17 @@ public class UserController {
                 .ok(new JwtResponse(jwt, userDetails.getUsername(), userService.getUserByUsername(userDetails.getUsername()), roles));
     }
 
+    @PostMapping("/user/formDone")
+//    public ResponseEntity<String> getForm(@RequestParam int userId, @RequestBody UserForm userForm){
+    public ResponseEntity<String> getForm( @RequestBody UserEntity userData){
+        try {
+            UserForm userForm =new UserForm(userData.getGender(),userData.getAge(),userData.getWeight(),userData.getHeight(),userData.getAllergies());
+            System.out.println("");
+    //      mainService.setUserTrainingInfo(userForm, userId);
+    //      mainService.updateFirstPlan(userId);
+            mainService.setUserTrainingInfo(userForm, userData.getId());
+            mainService.updateFirstPlan(userData.getId());
 
-
-    @PatchMapping("/user/formDone")
-    public ResponseEntity<String> getForm(@RequestParam int userId, @RequestBody UserForm userForm){
-            try {
-            mainService.setUserTrainingInfo(userForm, userId);
             return ResponseEntity.ok("User information set successfully");
         } catch (Exception e) {
             // Handle exceptions appropriately (e.g., log and return an error response)
@@ -139,6 +145,20 @@ public class UserController {
     public Training provideTraining(@RequestParam int userId, @RequestParam int trainingId){
         return mainService.getTrainingFormUser(trainingId,userId);
     }
+
+    @GetMapping("/diet/getDietsFromUser")
+    public List<Diet> provideDiets(@RequestParam int userId){
+        return mainService.getDietsFormUser(userId);
+    }
+
+    @GetMapping("/diet/provideNextMeal")
+    public Meal provideNextMeal(@RequestParam int userId){ return mainService.getNextMealFromUserDiet(userId); }
+
+    @GetMapping("/diet/suggestDiet")
+    public List<Diet> suggestDiet(@RequestParam int userId) { return mainService.suggestDiet(userId);}
+
+    @PatchMapping ("/user/setDiet")
+    public void setDiet(@RequestParam int userId, int dietId) {mainService.setDiet(userId, dietId);}
 
     @GetMapping("/user/getUserInfo")
     public UserEntity getUserInfo(@RequestParam int userId) {
