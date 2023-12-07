@@ -1,5 +1,5 @@
 import React from 'react';
-import './ContactPage.css'; // Import the CSS file
+import './ContactPage.css';
 
 const ContactPage = () => {
   const phoneNumber = '+48 123-456-789';

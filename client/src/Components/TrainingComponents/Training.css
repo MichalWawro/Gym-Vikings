@@ -1,0 +1,28 @@
+  /* Training.css */
+  
+  .training-name {
+    font-size: 28px;
+    margin-bottom: 15px;
+  }
+  
+  .training-difficulty {
+    font-size: 20px;
+    margin-bottom: 15px;
+  }
+
+  .end-button {
+    background-color: #555555;
+    border: 2px solid black;
+    border-radius: 10px;
+    height: 60px;
+    width: 144px;
+    display: inline-block;
+    margin: 10px;
+    font: bold 14px/1 'Rubik', sans-serif;
+    transition: transform 0.75s;
+  }
+  
+  .end-button:hover {
+    background-color: rgb(212, 212, 103);
+    transform: scale(1.1);
+  }

@@ -3,12 +3,11 @@ package com.example.elgrande.model.diet;
 import com.example.elgrande.model.enums.enums_diet.Allergy;
 import com.example.elgrande.model.enums.enums_diet.DietType;
 import com.example.elgrande.model.enums.enums_diet.FoodType;
-import com.example.elgrande.model.user.User;
+import com.example.elgrande.model.user.UserEntity;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.Data;
 
-import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -31,8 +30,8 @@ public class Diet {
 
     @ManyToMany(mappedBy = "diets")
     @JsonIgnore
-    private List<User> users;
-    public Diet(String dietName, List<Meal> mealsArray, FoodType foodType, String dietDescription, List<Allergy> allergies) {
+    private List<UserEntity> users;
+    public Diet(String dietName, List<Meal> mealsArray, FoodType foodType, DietType dietType) {
         this.dietName = dietName;
         this.meals = mealsArray;
         this.foodType = foodType;
@@ -52,7 +51,7 @@ public class Diet {
         return (int) sum/7;
     }
 
-    public void setUser(List<User> users) {
+    public void setUser(List<UserEntity> users) {
         this.users = users;
     }
 
@@ -77,6 +76,10 @@ public class Diet {
 
     public FoodType getFoodType() {
         return foodType;
+    }
+
+    public DietType getDietType() {
+        return dietType;
     }
 
     public int getDailyCalories() {

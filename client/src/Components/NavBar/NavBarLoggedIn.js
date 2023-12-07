@@ -9,11 +9,17 @@ const NavBarLoggedIn = ({ handleLoginChange }) => {
             </button>            
            <button id="ContactButton" className="NavButton" type="button" onClick={() => navigate("/contact")}>
                 Contact
-            </button>          
+            </button>
+            <button id="TrainingButton" className="NavButton" type="button" onClick={() => navigate("/trainings")}>
+                Trainings
+            </button>              
             <button id="ProfileButton" className="NavButton" type="button" onClick={() => null}>
                 Profile
             </button>
-            <button id="LogOutButton" className="NavButton" type="button" onClick={() => handleLoginChange(false)}>
+            <button id="LogOutButton" className="NavButton" type="button" onClick={() => {
+                handleLoginChange(false)
+                navigate('')
+                }}>
                 Log Out
             </button>
         </div>

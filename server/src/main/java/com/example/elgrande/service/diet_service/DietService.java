@@ -1,15 +1,12 @@
 package com.example.elgrande.service.diet_service;
 
 import com.example.elgrande.model.diet.Diet;
-import com.example.elgrande.model.diet.Meal;
 import com.example.elgrande.model.enums.enums_diet.Allergy;
 import com.example.elgrande.model.enums.enums_diet.DietType;
 import com.example.elgrande.model.enums.enums_diet.FoodType;
-import com.example.elgrande.model.user.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.time.LocalDate;
 import java.util.*;
 
 @Service
