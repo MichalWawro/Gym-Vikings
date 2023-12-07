@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import Training from "../TrainingComponents/Training";
 
-const WelcomePageLoggedIn = ({user}) => {
+const HomePageLoggedIn = ({user}) => {
 
 
 
@@ -49,4 +49,4 @@ const WelcomePageLoggedIn = ({user}) => {
     );
 };
 
-export default WelcomePageLoggedIn;
+export default HomePageLoggedIn;

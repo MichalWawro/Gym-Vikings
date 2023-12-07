@@ -1,6 +1,6 @@
 //importy??
 
-const WelcomePageLoggedOut = ({ handleLoginChange }) => {
+const HomePageLoggedOut = ({ handleLoginChange }) => {
     return (
         <div className="content">
             <h1 className="BorderedRubik">Welcome to our training and fitness app!</h1>
@@ -14,4 +14,4 @@ const WelcomePageLoggedOut = ({ handleLoginChange }) => {
     );
 };
 
-export default WelcomePageLoggedOut;
+export default HomePageLoggedOut;
