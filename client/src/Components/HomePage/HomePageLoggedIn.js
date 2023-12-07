@@ -46,10 +46,8 @@ const HomePageLoggedIn = ({ user }) => {
 
                             {user.diets.length > 0 ?
                                 <button id='ChoiceButton' className="MainButton" type="button" onClick={() => navigate("/diets")}>Your next meal is: {meal.mealName}</button>
-                                // Tutaj router do strony z detalami kolejnego posiłku
                                 :
                                 <button id='ChoiceButton' className="MainButton" type="button" onClick={() => navigate("/diets")}>Let's choose a diet!</button>
-                                //Tutaj router do strony, która pomaga wybrać dietę
                             }
                         </div>
                     </div>
