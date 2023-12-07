@@ -1,34 +1,41 @@
-//import??
+import React, { useState } from "react";
+import Training from "../TrainingComponents/Training";
 
-const usersArray = [{
-    name: 'User1',
-    trainings: ['Training1', 'Training2', 'Training3'],
-    diets: ['Diet1', 'Diet2', 'Diet3']
-}, {
-    name: 'User2',
-    trainings: ['Training1', 'Training2', 'Training3'],
-    diets: []
-}, {
-    name: 'User3',
-    trainings: [],
-    diets: []
-}];
+const WelcomePageLoggedIn = ({user}) => {
 
-const WelcomePageLoggedIn = ({ testUserNumber }) => {
-    const user = usersArray[testUserNumber];
+
+
+    const[training, setTraining] = useState(null);
+
+
+    function fetchTraining(){
+        fetch(`http://localhost:8080/training/provideNextTraining?userId=${user.id}`)
+        .then(res=> res.json())
+        .then(data => {
+            console.log(data)
+            setTraining(data)
+        })
+        .catch(e=>console.error(e))
+    }
+
+
     return (
+        <>
+        {training ? 
+        (
+        <Training training={training} userId={user.id}/>
+        )
+        :
+        (
         <div className="content">
             <h1 className="BorderedRubik">Hello {user.name}</h1>
             <div className="MainButtonContainer">
-                {user.trainings.length > 0 ?
-                    <button id='ChoiceButton' className="MainButton" type="button">Your next training is: {user.trainings[1]}</button>
-                    // Tutaj router do strony z detalami kolejnego treningu
-                    :
-                    <button id='ChoiceButton' className="MainButton" type="button">Let's choose a training!</button>
-                    //Tutaj router do strony, która pomaga wybrać training
-                }
+
+                    <button id='ChoiceButton' className="MainButton" type="button" onClick={()=>fetchTraining()}>Start your training</button>
+                    
+
                 {user.diets.length > 0 ?
-                    <button id='ChoiceButton' className="MainButton" type="button">Your next meal is: {user.diets[1]}</button>
+                    <button id='ChoiceButton' className="MainButton" type="button">Your next meal is</button>
                     // Tutaj router do strony z detalami kolejnego posiłku
                     :
                     <button id='ChoiceButton' className="MainButton" type="button">Let's choose a diet!</button>
@@ -36,7 +43,9 @@ const WelcomePageLoggedIn = ({ testUserNumber }) => {
                 }
             </div>
         </div>
-
+        )
+    }
+</>
     );
 };
 
