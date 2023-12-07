@@ -13,6 +13,7 @@ import AboutPage from "./Components/About/AboutPage";
 import ContactPage from "./Components/Contact/ContactPage";
 import ListOfTrainings from "./Components/TrainingComponents/ListOfTrainings";
 import Training from "./Components/TrainingComponents/Training";
+import Diets from "./Components/DietComponents/Diets";
 
 function App() {
   const [isLoggedIn, setLoginState] = useState(false);
@@ -52,6 +53,7 @@ function App() {
           <Route path='register' element={<Form />}></Route>
           <Route path='about' element={<AboutPage />}></Route>
           <Route path='trainings' element={<ListOfTrainings user={user} />}></Route>
+          <Route path='diets' element={<Diets user={user} />}></Route>
         </Routes>
 
       </div>
