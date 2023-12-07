@@ -33,6 +33,7 @@ public class UserEntity {
     private int id;
     @CreationTimestamp
     private Date creationDate;
+    @Column(name = "name")
     private String username;
     private String password;
     private String email;

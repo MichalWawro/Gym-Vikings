@@ -56,11 +56,13 @@ public class UserService {
         userRepository.save(user);
     }
 
-    public void registerUser(RegisterForm registerForm){
+    public UserEntity registerUser(RegisterForm registerForm){
         UserEntity user = new UserEntity();
         user.setUsername(registerForm.name());
         user.setPassword(registerForm.password());
         user.setEmail(registerForm.email());
+        saveUser(user);
+        return user;
     }
 
 }

@@ -36,12 +36,12 @@ public class UserController {
     }
 
     @PostMapping("/user/register")
-    public ResponseEntity<String> createUser(@RequestBody RegisterForm registerForm) {
+    public ResponseEntity<UserEntity> createUser(@RequestBody RegisterForm registerForm) {
         try {
-            userService.registerUser(registerForm);
-            return new ResponseEntity<>("User successfully registered", HttpStatus.CREATED);
+            UserEntity user = userService.registerUser(registerForm);
+            return new ResponseEntity<>(user, HttpStatus.CREATED);
         } catch (Exception e) {
-            return new ResponseEntity<>("Error registering user: " + e.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR);
+            return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
 
@@ -95,7 +95,7 @@ public class UserController {
     }
     @PostMapping("/user/userData")
     public String submitFormData(@RequestBody UserEntity userData) {
-        System.out.println("Received form data: " + userData);
+        System.out.println("Received form data: " + userData.getUsername());
         return "Form data received successfully!";
     }
 }
