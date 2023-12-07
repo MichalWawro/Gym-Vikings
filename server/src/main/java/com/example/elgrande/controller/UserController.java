@@ -100,8 +100,8 @@ public class UserController {
     @PatchMapping("/user/formDone")
     public ResponseEntity<String> getForm(@RequestParam int userId, @RequestBody UserForm userForm){
             try {
-            mainService.setUserInfo(userForm, userId);
-            mainService.updateTrainingPlan(userId, 25);
+            mainService.setUserTrainingInfo(userForm, userId);
+            mainService.updateFirstPlan(userId);
             return ResponseEntity.ok("User information set successfully");
         } catch (Exception e) {
             // Handle exceptions appropriately (e.g., log and return an error response)
@@ -110,13 +110,12 @@ public class UserController {
         }
     }
     @PutMapping("/user/trainingDone")
-    public UserEntity trainingDone(@RequestParam int userId) {
+    public UserEntity trainingDone(@RequestParam int userId, @RequestParam int trainingId) {
         try {
             userService.trainingDone(userId);
-
+            mainService.deleteTrainingFromUser(trainingId,userId);
             mainService.updateTrainingPlan(userId, 25);
             return mainService.getPropperUser(userId, 10, 2.5);
-            //return ResponseEntity.ok("Training done successfully");
         } catch (Exception e) {
             //return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
                    // .body("Error processing training done request: " + e.getMessage());
@@ -132,7 +131,12 @@ public class UserController {
     @GetMapping("/training/provideNextTraining")
     public Training provideTraining(@RequestParam int userId){
         UserEntity user = mainService.getPropperUser(userId,10,2.5);
-        return mainService.getOneTrainingFromUser(user);
+        return mainService.getNextTrainingFromUser(user);
+    }
+
+    @GetMapping("/training/getTrainingFromUser")
+    public Training provideTraining(@RequestParam int userId, @RequestParam int trainingId){
+        return mainService.getTrainingFormUser(trainingId,userId);
     }
 
     @GetMapping("/user/getUserInfo")

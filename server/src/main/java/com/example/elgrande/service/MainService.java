@@ -33,7 +33,7 @@ public class MainService {
     }
 
 
-    public void setUserInfo(UserForm userForm,int id) {
+    public void setUserTrainingInfo(UserForm userForm, int id) {
         UserEntity user = userService.getUserById(id);
         user.setWeight(userForm.weight());
         user.setAge(userForm.age());
@@ -159,10 +159,17 @@ public class MainService {
     }
 
 
-    public Training getOneTrainingFromUser(UserEntity user){
+    public Training getTrainingFormUser(int trainingIndex, int userId){
+        UserEntity user = userService.getUserById(userId);
+        Training training = user.getTrainings().get(trainingIndex - 1);
+        return training;
+    }
+
+
+    public Training getNextTrainingFromUser(UserEntity user){
         List<Training> userTrainings = user.getTrainings();
         for(int i =0;i<userTrainings.size();i++){
-            int index = user.getAmountOfTrainingsDone() % 6;
+            int index = user.getAmountOfTrainingsDone() % user.getTrainingsPerWeek();
             if(index == i){
                 return userTrainings.get(index);
             }else {
@@ -178,18 +185,19 @@ public class MainService {
 
         List<Training> UserTrainings = user.getTrainings();
 
-        if(user.getAmountOfTrainingsDone() % (amountOfTrainingsToChange * getIncreaseRate(user.getLevel())) == 0 && user.getAmountOfTrainingsDone() != 0){
-            user.setTimesToMultiply(+1);
-
-            trainingService.increaseExercises(addedWeight * user.getTimesToMultiply(),UserTrainings);
+        if((user.getAmountOfTrainingsDone() % (amountOfTrainingsToChange * getIncreaseRate(user.getLevel()))) == 0 && user.getAmountOfTrainingsDone() != 0){
+            int amountOfTimesToMultiply = user.getTimesToMultiply();
+            user.setTimesToMultiply(amountOfTimesToMultiply + 1);
+            userService.saveUser(user);
         }
+        user.setTrainings(trainingService.increaseExercises(addedWeight * user.getTimesToMultiply(),UserTrainings));
         return user;
     }
 
     public void updateTrainingPlan(int id , int amountOfTrainingsToChangeLevel){
         UserEntity user = userService.getUserById(id);
 
-        if(user.getAmountOfTrainingsDone() % (amountOfTrainingsToChangeLevel * getIncreaseRate(user.getLevel())) == 1){
+        if(user.getAmountOfTrainingsDone() % (amountOfTrainingsToChangeLevel * getIncreaseRate(user.getLevel())) == 0){
 
             Level previousLevel = user.getLevel();
             List<Training> updatedtrainings = trainingService.getTrainingsByLevel(getNextLevel(previousLevel));
@@ -198,16 +206,31 @@ public class MainService {
 
             user.setTrainings(trainingsToSet);
             user.setLevel(getNextLevel(previousLevel));
-        }else if (user.getAmountOfTrainingsDone() == 0){
-
-            List<Training> updatedtrainings = trainingService.getTrainingsByLevel(user.getLevel());
-
-            List<Training> trainingsToSet = trainingService.prepareTrainings(updatedtrainings,user.getTrainingsPerWeek());
-
-            user.setTrainings(trainingsToSet);
         }
         userService.saveUser(user);
     }
+
+
+    public void updateFirstPlan(int userId){
+        UserEntity user = userService.getUserById(userId);
+
+        List<Training> updatedtrainings = trainingService.getTrainingsByLevel(user.getLevel());
+
+        List<Training> trainingsToSet = trainingService.prepareTrainings(updatedtrainings,user.getTrainingsPerWeek());
+
+        user.setTrainings(trainingsToSet);
+        userService.saveUser(user);
+    }
+
+
+    public void deleteTrainingFromUser(int trainingid, int userid){
+        UserEntity user = userService.getUserById(userid);
+        user.getTrainings().remove(trainingid -1);
+        userService.saveUser(user);
+    }
+
+
+
 
     public List<Diet> suggestDiet(int userId) {
         List<Diet> diets = new ArrayList<>();
