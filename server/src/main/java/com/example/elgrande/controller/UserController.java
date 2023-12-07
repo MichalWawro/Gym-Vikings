@@ -95,8 +95,6 @@ public class UserController {
                 .ok(new JwtResponse(jwt, userDetails.getUsername(), userService.getUserByUsername(userDetails.getUsername()), roles));
     }
 
-
-
     @PostMapping("/user/formDone")
 //    public ResponseEntity<String> getForm(@RequestParam int userId, @RequestBody UserForm userForm){
     public ResponseEntity<String> getForm( @RequestBody UserEntity userData){
