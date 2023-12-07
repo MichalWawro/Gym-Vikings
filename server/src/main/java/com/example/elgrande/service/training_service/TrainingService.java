@@ -51,9 +51,9 @@ public class TrainingService {
         trainingRepository.delete(training);
     }
 
-    public Training createTraining(String name, Level levelOfIntencity, Body bodyPart){
+    public Training createTraining(String name, Level levelOfIntencity, List<Body> bodyParts){
 
-        Training training = new Training(name,levelOfIntencity,bodyPart);
+        Training training = new Training(name,levelOfIntencity,bodyParts);
 
         return training;
     }
@@ -66,11 +66,11 @@ public class TrainingService {
     //------------------------------------------UPDATES-------------------------------------------------------
 
 
-    public Training updateTraining(int id, List<Exercise> exercises, String name, Level levelOfIntencity, Body bodyPart){
+    public Training updateTraining(int id, List<Exercise> exercises, String name, Level levelOfIntencity, List<Body> bodyParts){
         Training training = getTrainingById(id);
 
         try {
-            training.setBodyParts(bodyPart);
+            training.setBodyParts(bodyParts);
             training.setLevel(levelOfIntencity);
             training.setName(name);
             training.setExercises(exercises);
@@ -80,12 +80,12 @@ public class TrainingService {
         return training;
     }
 
-    public Training updateTraining(int id, List<Exercise> exercises, Level levelOfIntencity, Body bodyPart){
+    public Training updateTraining(int id, List<Exercise> exercises, Level levelOfIntencity, List<Body> bodyParts){
         Training training = getTrainingById(id);
 
         try {
             training.setLevel(levelOfIntencity);
-            training.setBodyParts(bodyPart);
+            training.setBodyParts(bodyParts);
             training.setExercises(exercises);
         } catch (Exception e){
             System.err.println("couldnt update training: " + e.getMessage());
@@ -161,7 +161,7 @@ public class TrainingService {
             for (int i = 0; i < Trainings.size(); i++) {
 
                 Training training = Trainings.get(random.nextInt(Trainings.size()));
-                Body bodyPart = training.getBodyParts();
+                Body bodyPart = training.getBodyParts().get(0);
                 if (!bodyParts.contains(bodyPart)) {
                     bodyParts.add(bodyPart);
                     trainingsToSet.add(training);

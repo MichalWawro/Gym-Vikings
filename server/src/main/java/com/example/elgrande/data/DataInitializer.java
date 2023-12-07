@@ -1,5 +1,10 @@
 package com.example.elgrande.data;
 
+import com.example.elgrande.model.enums.Level;
+import com.example.elgrande.model.enums.enums_training.Body;
+import com.example.elgrande.model.enums.enums_training.Type;
+import com.example.elgrande.model.training.Exercise;
+import com.example.elgrande.model.training.Training;
 import com.example.elgrande.repository.UserRepository;
 import com.example.elgrande.service.diet_service.DietRepository;
 import com.example.elgrande.service.diet_service.IngredientRepository;
@@ -8,7 +13,10 @@ import com.example.elgrande.service.training_service.ExerciseRepository;
 import com.example.elgrande.service.training_service.TrainingRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
+import org.springframework.http.StreamingHttpOutputMessage;
 import org.springframework.stereotype.Component;
+
+import java.util.List;
 
 @Component
 public class DataInitializer implements CommandLineRunner {
@@ -139,17 +147,17 @@ public class DataInitializer implements CommandLineRunner {
 //
 //        Training training = new Training("Chest Day!",Level.ELITE);
 //
-//        Exercise exercise1 = new Exercise("Push-ups",Level.INTERMEDIATE, Type.CALISTHENICS, Body.CHEST, 15, 0, 3);
-//        Exercise exercise2 = new Exercise("Squats",Level.BEGINNER, Type.WEIGHTS, Body.LEGS, 12, 50, 4);
-//        Exercise exercise3 = new Exercise("Running",Level.BEGINNER, Type.CARDIO, Body.LEGS, 0, 0, 0);
-//
-//
-//        Training training1 = new Training("Beginner Full Body", Level.BEGINNER, Body.CHEST);
-//        Training training2 = new Training("Intermediate Upper Body", Level.INTERMEDIATE, Body.BACK);
-//        Training training3 = new Training("Advanced Legs", Level.PROFESSIONAL, Body.LEGS);
-//
-//        //userRepository.saveAll(List.of(user1, user2, user3, user4, user5));
-//        exerciseRepository.saveAll(List.of(exercise1,exercise2,exercise3));
-//        trainingRepository.saveAll(List.of(training1,training2,training3));
+        Exercise exercise1 = new Exercise("Push-ups",Level.INTERMEDIATE, Type.CALISTHENICS, Body.CHEST, 15, 0, 3);
+        Exercise exercise2 = new Exercise("Squats", Level.BEGINNER, Type.WEIGHTS, Body.LEGS, 12, 50, 4);
+        Exercise exercise3 = new Exercise("Running",Level.BEGINNER, Type.CARDIO, Body.LEGS, 0, 0, 0);
+
+
+        Training training1 = new Training("Beginner Full Body", Level.BEGINNER, List.of(Body.CHEST, Body.BICEPS));
+        Training training2 = new Training("Intermediate Upper Body", Level.INTERMEDIATE, List.of(Body.BACK, Body.BICEPS));
+        Training training3 = new Training("Advanced Legs", Level.PROFESSIONAL, List.of(Body.LEGS, Body.GLUTE));
+
+        //userRepository.saveAll(List.of(user1, user2, user3, user4, user5));
+        exerciseRepository.saveAll(List.of(exercise1,exercise2,exercise3));
+        trainingRepository.saveAll(List.of(training1,training2,training3));
     }
 }

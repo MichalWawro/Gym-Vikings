@@ -13,9 +13,8 @@ import com.example.elgrande.service.user_service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.NoSuchElementException;
+import java.time.LocalDate;
+import java.util.*;
 
 @Service
 public class MainService {
@@ -194,6 +193,7 @@ public class MainService {
         return user;
     }
 
+
     public void updateTrainingPlan(int id , int amountOfTrainingsToChangeLevel){
         UserEntity user = userService.getUserById(id);
 
@@ -206,14 +206,16 @@ public class MainService {
 
             user.setTrainings(trainingsToSet);
             user.setLevel(getNextLevel(previousLevel));
+            user.setTimesToMultiply(0);
         }
         userService.saveUser(user);
     }
 
 
     public void updateFirstPlan(int userId){
+        LocalDate date = LocalDate.now();
         UserEntity user = userService.getUserById(userId);
-
+        user.setDateOfTrainingAssosiation(date);
         List<Training> updatedtrainings = trainingService.getTrainingsByLevel(user.getLevel());
 
         List<Training> trainingsToSet = trainingService.prepareTrainings(updatedtrainings,user.getTrainingsPerWeek());
@@ -229,7 +231,23 @@ public class MainService {
         userService.saveUser(user);
     }
 
+    public  LocalDate addOneWeek(LocalDate date) {
+        return date.plusWeeks(1);
+    }
 
+    public void giveUserAnotherTrainingPlan(int userId){
+        LocalDate date = LocalDate.now();
+        UserEntity user = userService.getUserById(userId);
+
+        if(user.getDateOfTrainingAssosiation().isAfter(addOneWeek(user.getDateOfTrainingAssosiation()))){
+            List<Training> updatedtrainings = trainingService.getTrainingsByLevel(user.getLevel());
+
+            List<Training> trainingsToSet = trainingService.prepareTrainings(updatedtrainings,user.getTrainingsPerWeek());
+            user.setTrainings(trainingsToSet);
+            user.setDateOfTrainingAssosiation(date);
+        }
+        userService.saveUser(user);
+    }
 
 
     public List<Diet> suggestDiet(int userId) {

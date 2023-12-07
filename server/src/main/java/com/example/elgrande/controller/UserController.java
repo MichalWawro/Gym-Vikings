@@ -91,6 +91,8 @@ public class UserController {
         List<String> roles = userDetails.getAuthorities().stream().map(GrantedAuthority::getAuthority)
                 .toList();
 
+
+
         return ResponseEntity
                 .ok(new JwtResponse(jwt, userDetails.getUsername(), roles));
     }
