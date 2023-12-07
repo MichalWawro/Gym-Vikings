@@ -1,6 +1,7 @@
 package com.example.elgrande.service.diet_service;
 
 import com.example.elgrande.model.diet.Diet;
+import com.example.elgrande.model.diet.Meal;
 import com.example.elgrande.model.enums.enums_diet.Allergy;
 import com.example.elgrande.model.enums.enums_diet.DietType;
 import com.example.elgrande.model.enums.enums_diet.FoodType;
@@ -162,16 +163,4 @@ public class DietService {
                 throw new IllegalArgumentException("Invalid Diet Type in: DietService.java, calculateCalorieIntake()");
         }
     }
-
-    //What meal should user eat each day
-//    public Meal whatMealToday (Diet diet) {
-//        List<Meal> mealsArray = diet.getMealsArray();
-//
-//        Calendar c = Calendar.getInstance();
-//        c.setFirstDayOfWeek(Calendar.MONDAY);
-//        c.setTime(LocalDate.now());
-//        int dayOfWeek = c.get(Calendar.DAY_OF_WEEK);
-//
-//        return mealsArray.get(dayOfWeek - 1);
-//    }
 }

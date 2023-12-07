@@ -6,6 +6,7 @@ import com.example.elgrande.forms.RegisterForm;
 import com.example.elgrande.forms.UserForm;
 //import com.example.elgrande.forms.loginForm;
 import com.example.elgrande.model.diet.Diet;
+import com.example.elgrande.model.diet.Meal;
 import com.example.elgrande.model.payload.JwtResponse;
 import com.example.elgrande.model.role.Role;
 import com.example.elgrande.model.training.Training;
@@ -123,11 +124,6 @@ public class UserController {
         return null;
     }
 
-    @GetMapping("/user/suggestDiets")
-    public List<Diet> suggestDiet(@RequestParam int userId){
-        return mainService.suggestDiet(userId);
-    }
-
     @GetMapping("/training/provideNextTraining")
     public Training provideTraining(@RequestParam int userId){
         UserEntity user = mainService.getPropperUser(userId,10,2.5);
@@ -138,6 +134,12 @@ public class UserController {
     public Training provideTraining(@RequestParam int userId, @RequestParam int trainingId){
         return mainService.getTrainingFormUser(trainingId,userId);
     }
+
+    @GetMapping("/diet/provideNextMeal")
+    public Meal provideNextMeal(@RequestParam int userId){ return mainService.getNextMealFromUserDiet(userId); }
+
+    @GetMapping("/diet/suggestDiet")
+    public List<Diet> suggestDiet(@RequestParam int userId) { return mainService.suggestDiet(userId);}
 
     @GetMapping("/user/getUserInfo")
     public UserEntity getUserInfo(@RequestParam int userId) {

@@ -64,7 +64,7 @@ public class UserEntity {
     private List<Training> trainings;
 
     @ManyToMany
-    @JoinTable(name = "user_diet",
+    @JoinTable(name = "user_diets",
             joinColumns = @JoinColumn(name="user_id"),
             inverseJoinColumns = @JoinColumn(name = "diet_id"))
     private List<Diet> diets;
@@ -83,6 +83,16 @@ public class UserEntity {
         this.dietType = dietType;
         this.foodType = foodType;
         this.allergies = allergies;
+    }
+
+    public void setDiet(Diet diet) {
+        if(diets.contains(diet)) {
+            diets.remove(diets.indexOf(diet));
+        }
+        diets.add(0, diet);
+    }
+    public Diet getDiet() {
+        return diets.get(0);
     }
     public void addDiet(Diet diet) {
         diets.add(diet);
