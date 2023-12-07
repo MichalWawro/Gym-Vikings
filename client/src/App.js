@@ -13,6 +13,7 @@ import AboutPage from "./Components/About/AboutPage";
 import ContactPage from "./Components/Contact/ContactPage";
 import ListOfTrainings from "./Components/TrainingComponents/ListOfTrainings";
 import Training from "./Components/TrainingComponents/Training";
+import Profile from "./Components/Profile/Profile";
 
 function App() {
   const [isLoggedIn, setLoginState] = useState(false);
@@ -52,7 +53,8 @@ function App() {
     console.log("error status:", response.status)
     if(response.status !== 401){
       setTryingToSign(false);
-      handleLoginChange(true)
+      handleLoginChange(true);
+      setUser(response);
     }
     else{
       alert("incorrect login or password")
@@ -68,7 +70,7 @@ function App() {
 
   useEffect(() => {
     // fetchUser();
-    login();
+    //login();
   }, [])
 
   return (
@@ -86,6 +88,7 @@ function App() {
           <Route path='register' element={<Form />}></Route>
           <Route path='about' element={<AboutPage />}></Route>
           <Route path='trainings' element={<ListOfTrainings user={user} />}></Route>
+          <Route path='profile' element={<Profile user={user} />}></Route>
         </Routes>
 
       </div>
