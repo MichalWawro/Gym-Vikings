@@ -68,7 +68,7 @@ function App() {
 
   useEffect(() => {
     // fetchUser();
-    login();
+    // login();
   }, [])
 
   return (
