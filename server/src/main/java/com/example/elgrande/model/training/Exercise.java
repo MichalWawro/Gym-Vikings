@@ -23,28 +23,28 @@ public class Exercise {
     private String name;
     @Enumerated(EnumType.STRING)
 
-    private Level level;
-    @Enumerated(EnumType.STRING)
-
     private Type type;
     @Enumerated(EnumType.STRING)
     private Body body;
     private int set;
     private int reps;
     private double weight;
+    private String img;
+    private String video;
     @ManyToMany(mappedBy = "exercises")
     @JsonIgnore
     private List<Training> trainings;
 
 
-    public Exercise(String name, Level level,Type type, Body body, int reps, int weight, int set) {
+    public Exercise(String name,Type type, Body body, int reps, int weight, int set, String img,String video) {
         this.name = name;
-        this.level = level;
         this.type = type;
         this.body = body;
         this.set = set;
         this.reps = reps;
         this.weight = weight;
+        this.img = img;
+        this.video = video;
     }
 
 }

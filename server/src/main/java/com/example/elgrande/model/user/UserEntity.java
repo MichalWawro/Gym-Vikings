@@ -16,6 +16,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 import org.hibernate.annotations.CreationTimestamp;
 
+import java.time.LocalDate;
 import java.util.Date;
 import java.util.HashSet;
 import java.util.List;
@@ -48,8 +49,8 @@ public class UserEntity {
     private DietType dietType;
     @Enumerated(EnumType.STRING)
     private FoodType foodType;
+    private LocalDate dateOfTrainingAssosiation;
     private int amountOfTrainingsDone;
-    private int TrainingsPerWeek;
     @Enumerated(EnumType.STRING)
     private List<Allergy> allergies;
 
@@ -122,7 +123,6 @@ public class UserEntity {
                 ", dietType=" + dietType +
                 ", foodType=" + foodType +
                 ", amountOfTrainingsDone=" + amountOfTrainingsDone +
-                ", TrainingsPerWeek=" + TrainingsPerWeek +
                 ", allergies=" + allergies +
                 ", trainings=" + trainings +
                 ", diets=" + diets +

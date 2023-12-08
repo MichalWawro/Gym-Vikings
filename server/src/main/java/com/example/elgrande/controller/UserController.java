@@ -92,6 +92,8 @@ public class UserController {
         List<String> roles = userDetails.getAuthorities().stream().map(GrantedAuthority::getAuthority)
                 .toList();
 
+        mainService.giveUserAnotherTrainingPlan(userService.getUserByUsername(userDetails.getUsername()).getId());
+
         return ResponseEntity
                 .ok(new JwtResponse(jwt, userDetails.getUsername(), userService.getUserByUsername(userDetails.getUsername()), roles));
     }
@@ -102,11 +104,7 @@ public class UserController {
         try {
             UserForm userForm =new UserForm(userData.getGender(),userData.getAge(),userData.getWeight(),userData.getHeight(),userData.getAllergies());
             System.out.println("");
-    //      mainService.setUserTrainingInfo(userForm, userId);
-    //      mainService.updateFirstPlan(userId);
             mainService.setUserTrainingInfo(userForm, userData.getId());
-            mainService.updateFirstPlan(userData.getId());
-
             return ResponseEntity.ok("User information set successfully");
         } catch (Exception e) {
             // Handle exceptions appropriately (e.g., log and return an error response)
@@ -118,9 +116,9 @@ public class UserController {
     public UserEntity trainingDone(@RequestParam int userId, @RequestParam int trainingId) {
         try {
             userService.trainingDone(userId);
+            mainService.levelUp(userId);
             mainService.deleteTrainingFromUser(trainingId,userId);
-            mainService.updateTrainingPlan(userId, 25);
-            return mainService.getPropperUser(userId, 10, 2.5);
+            return mainService.getPropperUser(userId, 7, 2.5);
         } catch (Exception e) {
             //return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
                    // .body("Error processing training done request: " + e.getMessage());
@@ -128,9 +126,10 @@ public class UserController {
         return null;
     }
 
+
     @GetMapping("/training/provideNextTraining")
     public Training provideTraining(@RequestParam int userId){
-        UserEntity user = mainService.getPropperUser(userId,10,2.5);
+        UserEntity user = mainService.getPropperUser(userId,7,2.5);
         return mainService.getNextTrainingFromUser(user);
     }
 
@@ -155,7 +154,7 @@ public class UserController {
 
     @GetMapping("/user/getUserInfo")
     public UserEntity getUserInfo(@RequestParam int userId) {
-        UserEntity user = mainService.getPropperUser(userId,10,2.5);
+        UserEntity user = mainService.getPropperUser(userId,7,2.5);
         return user;
     }
     @PostMapping("/user/userData")
