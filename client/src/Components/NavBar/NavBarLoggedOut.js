@@ -21,23 +21,25 @@ const NavBarLoggedOut = ({ handleLoginChange, login, tryingToSign, setTryingToSi
                     </button>
                     <div id="LoginDiv" >
                         <div style={{ display: "inline-block" }} >
-                            <div class="LoginDivBox" >login:</div>
+                            <div className="LoginDivBox" >login:</div>
                             <div>
-                                <input class="LoginInputBox" id="LoginInput" />
+                                <input className="LoginInputBox" id="LoginInput" />
                             </div>
                         </div>
                         <div style={{ display: "inline-block" }} >
-                            <div class="LoginDivBox" >password:</div>
+                            <div className="LoginDivBox" >password:</div>
                             <div>
-                                <input class="LoginInputBox" id="PasswordInput" type="password" />
+                                <input className="LoginInputBox" id="PasswordInput" type="password" />
                             </div>
                         </div>
                     </div>
                     <button id="SignInLoginButton" className="NavButton" type="button" onClick={
                         () => {
+                            setTryingToSign(false);
+                            handleLoginChange(true);
                             login(document.getElementById("LoginInput").value, document.getElementById("PasswordInput").value)
                         }}>
-                        login
+                        Login
                     </button>
                 </div>
 

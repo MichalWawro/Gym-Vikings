@@ -31,7 +31,7 @@ public class Diet {
     @ManyToMany(mappedBy = "diets")
     @JsonIgnore
     private List<UserEntity> users;
-    public Diet(String dietName, List<Meal> mealsArray, FoodType foodType, DietType dietType) {
+    public Diet(String dietName, List<Meal> mealsArray, FoodType foodType, String dietDescription, List<Allergy> allergies) {
         this.dietName = dietName;
         this.meals = mealsArray;
         this.foodType = foodType;
@@ -40,8 +40,6 @@ public class Diet {
         this.dietCaloriesPerDay = calculateDailyCalories();
     }
 
-    public Diet() {
-    }
 
     private int calculateDailyCalories() {
         double sum = 0;
@@ -77,8 +75,6 @@ public class Diet {
     public FoodType getFoodType() {
         return foodType;
     }
-
-
 
     public int getDailyCalories() {
         return dietCaloriesPerDay;

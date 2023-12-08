@@ -28,16 +28,16 @@ function App() {
   const [password, setPassword] = useState('');
 
 
-  function fetchUser() {
-    fetch(`http://localhost:8080/user/getUserInfo?userId=1`)
-      .then(res => res.json())
-      .then(data => {
-        console.log(data);
-        setUser(data)
-        // console.log("xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx",data);
-      })
-      .catch(e => console.error(e))
-  }
+  // function fetchUser() {
+  //   fetch(`http://localhost:8080/user/getUserInfo?userId=1`)
+  //     .then(res => res.json())
+  //     .then(data => {
+  //       console.log(data);
+  //       setUser(data)
+  //       // console.log("xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx",data);
+  //     })
+  //     .catch(e => console.error(e))
+  // }
 
   function login(username, password){
     // e.preventDefault()
@@ -52,7 +52,8 @@ function App() {
     console.log("error status:", response.status)
     if(response.status !== 401){
       setTryingToSign(false);
-      handleLoginChange(true)
+      handleLoginChange(true);
+      setUser(response);
     }
     else{
       alert("incorrect login or password")
@@ -83,9 +84,12 @@ function App() {
         <Routes>
           <Route path='/' element={<Home user={user} />}></Route>
           <Route path='contact' element={<ContactPage />}></Route>
-          <Route path='register' element={<Form />}></Route>
+          <Route path='register' element={<Register />}></Route>
           <Route path='about' element={<AboutPage />}></Route>
           <Route path='trainings' element={<ListOfTrainings user={user} />}></Route>
+          <Route path='diets' element={<Diets user={user} />}></Route>
+          <Route path='diets/:index' element={<DietInfo/>}></Route>
+          <Route path='profile' element={<Profile user={user} />}></Route>
         </Routes>
 
       </div>

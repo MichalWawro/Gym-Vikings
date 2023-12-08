@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-
+@CrossOrigin(origins = "http://localhost:3000")
 @RestController
 @RequestMapping("/diets")
 public class DietController {
@@ -27,7 +27,7 @@ public class DietController {
         return dietService.getDietById(id);
     }
 
-    @GetMapping
+    @GetMapping("/getAll")
     public List<Diet> getAllDiets() {
         return dietService.getAllDiets();
     }

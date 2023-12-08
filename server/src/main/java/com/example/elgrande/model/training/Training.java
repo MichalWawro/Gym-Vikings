@@ -18,10 +18,10 @@ public class Training {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
     private String name;
+    @ElementCollection(targetClass = Body.class)
+    @CollectionTable(name = "body_parts", joinColumns = @JoinColumn(name = "your_entity_id"))
     @Enumerated(EnumType.STRING)
-    private Level level;
-    @Enumerated(EnumType.STRING)
-    private Body bodyParts;
+    private List<Body> bodyParts;
     @ManyToMany(mappedBy = "trainings")
     @JsonIgnore
     private List<UserEntity> users;
@@ -31,9 +31,9 @@ public class Training {
     inverseJoinColumns = @JoinColumn(name = "exercise_id"))
     private List<Exercise> exercises;
 
-    public Training(String name, Level level, Body bodyParts) {
+    public Training(String name, List<Body> bodyParts, List<Exercise> exercises) {
         this.name = name;
-        this.level = level;
         this.bodyParts = bodyParts;
+        this.exercises = exercises;
     }
 }

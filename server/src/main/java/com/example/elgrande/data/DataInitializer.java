@@ -1,5 +1,14 @@
 package com.example.elgrande.data;
 
+import com.example.elgrande.model.diet.Diet;
+import com.example.elgrande.model.diet.Ingredient;
+import com.example.elgrande.model.diet.Meal;
+import com.example.elgrande.model.enums.enums_diet.FoodType;
+import com.example.elgrande.model.enums.enums_training.Body;
+import com.example.elgrande.model.enums.enums_training.Type;
+import com.example.elgrande.model.training.Exercise;
+import com.example.elgrande.model.training.Training;
+import com.example.elgrande.model.user.UserEntity;
 import com.example.elgrande.repository.UserRepository;
 import com.example.elgrande.service.diet_service.DietRepository;
 import com.example.elgrande.service.diet_service.IngredientRepository;
@@ -9,7 +18,10 @@ import com.example.elgrande.service.training_service.TrainingRepository;
 import jakarta.persistence.criteria.CriteriaBuilder;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
+import org.springframework.http.StreamingHttpOutputMessage;
 import org.springframework.stereotype.Component;
+
+import java.util.List;
 
 @Component
 public class DataInitializer implements CommandLineRunner {
@@ -32,9 +44,10 @@ public class DataInitializer implements CommandLineRunner {
     @Override
     public void run(String... args) throws Exception {
 
-/*
+
 //Proper Diet Database
         //Meso
+/*
         Ingredient beefStrips = new Ingredient("Beef Strips", 250);
         Ingredient chickenBreast = new Ingredient("Chicken Breast", 165);
         Ingredient chickenStrips = new Ingredient("Chicken Strips", 239);
@@ -482,6 +495,202 @@ public class DataInitializer implements CommandLineRunner {
                 carnitasTacos, lambChopsWithMint, chickenParmesan, baconWrappedShrimp, beefStroganoff, spicyChickenWings));
 
         dietRepository.saveAll(List.of(dietNormal, dietCarnivorous, dietSemiCarni, dietVeganAbsolutely, dietVegetarianSea, dietVegetarianNoMeat));
+
+//        //CHEST
+        Exercise BarDip = new Exercise("Bar Dip", Type.CALISTHENICS, Body.CHEST, 8, 0, 4, "https://i0.wp.com/www.strengthlog.com/wp-content/uploads/2020/09/Muscles-worked-by-bar-dip-exercise.jpg?resize=768%2C768&ssl=1", "https://i0.wp.com/www.strengthlog.com/wp-content/uploads/2020/02/Dips.gif?resize=600%2C600&ssl=1");
+
+        Exercise BenchPress = new Exercise("Bench Press", Type.WEIGHTS, Body.CHEST, 4, 30, 4, "https://i0.wp.com/www.strengthlog.com/wp-content/uploads/2021/11/Bench-press-muscles-worked.jpg?resize=768%2C768&ssl=1", "https://i0.wp.com/www.strengthlog.com/wp-content/uploads/2021/09/bench-press.gif?resize=600%2C600&ssl=1");
+
+        Exercise CableChestPress = new Exercise("Cable Chest Press", Type.WEIGHTS, Body.CHEST, 7, 5, 4, "https://i0.wp.com/www.strengthlog.com/wp-content/uploads/2020/10/Muscles-worked-by-cable-chest-press.png?resize=768%2C768&ssl=1", "https://i0.wp.com/www.strengthlog.com/wp-content/uploads/2020/03/cable-chest-press.gif?resize=600%2C600&ssl=1");
+
+        Exercise DeclineBenchPress = new Exercise("Decline Bench Press",  Type.WEIGHTS, Body.CHEST, 4, 30, 4, "https://i0.wp.com/www.strengthlog.com/wp-content/uploads/2020/10/Muscles-worked-in-decline-bench-press-exercise.png?resize=768%2C768&ssl=1", "https://i0.wp.com/www.strengthlog.com/wp-content/uploads/2020/03/Decline-Bench-Press.gif?resize=600%2C600&ssl=1");
+
+        Exercise DumbbellChestFly = new Exercise("Dumbb Chest Fly", Type.WEIGHTS, Body.CHEST, 4, 5, 4, "https://i0.wp.com/www.strengthlog.com/wp-content/uploads/2023/06/Muscles-worked-by-dumbbell-chest-flyes-2.png?resize=768%2C768&ssl=1", "https://i0.wp.com/www.strengthlog.com/wp-content/uploads/2020/03/Dumbbell-Chest-Fly.gif?resize=600%2C600&ssl=1");
+
+        Exercise DumbbellChestPress = new Exercise("Dumbbell Chest Press",  Type.WEIGHTS, Body.CHEST, 5, 15, 4, "https://i0.wp.com/www.strengthlog.com/wp-content/uploads/2020/10/Muscles-worked-by-dumbbell-chest-press.png?resize=768%2C769&ssl=1", "https://i0.wp.com/www.strengthlog.com/wp-content/uploads/2020/03/Dumbbell-Chest-Press.gif?resize=600%2C600&ssl=1");
+
+        Exercise DumbbellPullover = new Exercise("Dumbbell Pull Over", Type.WEIGHTS, Body.CHEST, 5, 5, 4, "https://i0.wp.com/www.strengthlog.com/wp-content/uploads/2020/10/Muscles-worked-by-dumbbell-pullover.png?resize=768%2C768&ssl=1", "https://i0.wp.com/www.strengthlog.com/wp-content/uploads/2020/03/Dumbbell-Pullover.gif?resize=600%2C600&ssl=1");
+
+        Exercise InclineBenchPress = new Exercise("Incline Bench Press",  Type.WEIGHTS, Body.CHEST, 5, 30, 4, "https://i0.wp.com/www.strengthlog.com/wp-content/uploads/2020/10/Muscles-worked-by-incline-bench-press.png?resize=768%2C769&ssl=1", "https://i0.wp.com/www.strengthlog.com/wp-content/uploads/2020/03/Incline-Bench-Press.gif?resize=600%2C600&ssl=1");
+
+        Exercise InclineDumbbellPress = new Exercise("Incline Dumbell Press",  Type.WEIGHTS, Body.CHEST, 5, 20, 4, "https://i0.wp.com/www.strengthlog.com/wp-content/uploads/2023/04/muscles-worked-by-dumbbell-incline-press-female.png?resize=768%2C768&ssl=1", "https://i0.wp.com/www.strengthlog.com/wp-content/uploads/2020/03/Dumbbell-Incline-Press.gif?resize=600%2C600&ssl=1");
+
+        Exercise MachineChestFly = new Exercise("Machine Chest Fly",  Type.WEIGHTS, Body.CHEST, 8, 15, 4, "https://i0.wp.com/www.strengthlog.com/wp-content/uploads/2023/07/Muscles-worked-by-machine-chest-fly.png?resize=768%2C768&ssl=1", "https://i0.wp.com/www.strengthlog.com/wp-content/uploads/2020/03/machine-chest-fly.gif?resize=600%2C600&ssl=1");
+
+        Exercise MachineChestPress = new Exercise("Machine Chest Press",  Type.WEIGHTS, Body.CHEST, 5, 20, 4, "https://i0.wp.com/www.strengthlog.com/wp-content/uploads/2020/10/Muscles-worked-by-machine-chest-press.png?resize=768%2C768&ssl=1", "https://i0.wp.com/www.strengthlog.com/wp-content/uploads/2020/03/machine-chest-press.gif?resize=600%2C600&ssl=1");
+
+        Exercise PushUp = new Exercise("Push Up", Type.CALISTHENICS, Body.CHEST, 5, 0, 4, "https://i0.wp.com/www.strengthlog.com/wp-content/uploads/2020/10/Muscles-worked-by-push-ups.jpg?resize=768%2C768&ssl=1", "https://i0.wp.com/www.strengthlog.com/wp-content/uploads/2020/02/Push-up.gif?resize=600%2C600&ssl=1");
+
+        Exercise BandExternalShoulderRotation = new Exercise("Band External Shoulder Rotation",  Type.CALISTHENICS, Body.SHOULDER, 10, 0, 4, "https://i0.wp.com/www.strengthlog.com/wp-content/uploads/2020/12/Muscles-worked-by-band-shoulder-external-rotation.jpg?resize=768%2C768&ssl=1", "https://i0.wp.com/www.strengthlog.com/wp-content/uploads/2020/12/Band-shoulder-external-rotation.gif?resize=600%2C600&ssl=1");
+
+        Exercise BandInternalShoulderRotation = new Exercise("Band Internal Shoulder Rotation",  Type.CALISTHENICS, Body.SHOULDER, 10, 0, 4, "https://i0.wp.com/www.strengthlog.com/wp-content/uploads/2020/12/Muscles-worked-by-band-shoulder-external-rotation.jpg?resize=768%2C768&ssl=1", "https://i0.wp.com/www.strengthlog.com/wp-content/uploads/2020/12/Band-shoulder-internal-rotation.gif?resize=600%2C600&ssl=1");
+
+        Exercise BandPullApart = new Exercise("Band Pull-Apart",  Type.CALISTHENICS, Body.SHOULDER, 10, 0, 4, "https://i0.wp.com/www.strengthlog.com/wp-content/uploads/2020/10/Muscles-worked-by-band-pull-aparts-1.png?resize=768%2C768&ssl=1", "https://i0.wp.com/www.strengthlog.com/wp-content/uploads/2020/04/Band-Pull-Apart.gif?resize=600%2C600&ssl=1");
+
+        Exercise BarbellFrontRaise = new Exercise("Barbell Front Raise",  Type.WEIGHTS, Body.SHOULDER, 5, 5, 4, "https://i0.wp.com/www.strengthlog.com/wp-content/uploads/2020/10/Muscles-worked-by-barbell-front-raise.png?resize=768%2C768&ssl=1", "https://i0.wp.com/www.strengthlog.com/wp-content/uploads/2020/03/Barbell-Front-Raise.gif?resize=600%2C600&ssl=1");
+
+        Exercise BarbellRearDeltRow = new Exercise("Barbell Rear Delt Row",  Type.WEIGHTS, Body.SHOULDER, 4, 20, 4, "https://i0.wp.com/www.strengthlog.com/wp-content/uploads/2021/01/Muscles-worked-in-rear-delt-row.jpg?resize=768%2C768&ssl=1", "https://i0.wp.com/www.strengthlog.com/wp-content/uploads/2021/01/Barbell-Rear-Delt-Row.gif?resize=600%2C600&ssl=1");
+
+        Exercise BarbellUprightRow = new Exercise("Barbell Upright Row",  Type.WEIGHTS, Body.SHOULDER, 4, 5, 4, "https://i0.wp.com/www.strengthlog.com/wp-content/uploads/2023/07/Muscles-worked-by-barbell-upright-row.png?resize=768%2C768&ssl=1", "https://i0.wp.com/www.strengthlog.com/wp-content/uploads/2020/11/Barbell-upright-row.gif?resize=600%2C600&ssl=1");
+
+        Exercise DumbbellHorizontalExternalShoulderRotation = new Exercise("Dumbbell Horizontal External Shoulder Rotation",  Type.WEIGHTS, Body.SHOULDER, 8, 0, 4, "https://i0.wp.com/www.strengthlog.com/wp-content/uploads/2020/12/Muscles-worked-by-band-shoulder-external-rotation.jpg?resize=768%2C768&ssl=1", "https://i0.wp.com/www.strengthlog.com/wp-content/uploads/2020/12/DB-standing-external-shoulder-rotation.gif?resize=600%2C600&ssl=1");
+
+        Exercise DumbbellLateralRaise = new Exercise("Dumbbell Lateral Raise",  Type.WEIGHTS, Body.SHOULDER, 5, 5, 4, "https://i0.wp.com/www.strengthlog.com/wp-content/uploads/2023/05/Muscles-worked-by-dumbbell-lateral-raise-2.png?resize=768%2C768&ssl=1", "https://i0.wp.com/www.strengthlog.com/wp-content/uploads/2020/12/Dumbbell-Lateral-Raise.gif?resize=600%2C600&ssl=1");
+
+        Exercise DumbbellShoulderPress = new Exercise("Dumbbell Shoulder Press",  Type.WEIGHTS, Body.SHOULDER, 5, 10, 4, "https://i0.wp.com/www.strengthlog.com/wp-content/uploads/2020/10/Muscles-trained-by-dumbbell-shoulder-press-exercise.jpg?resize=768%2C768&ssl=1", "https://i0.wp.com/www.strengthlog.com/wp-content/uploads/2020/02/Dumbbell-shoulder-press.gif?resize=600%2C600&ssl=1");
+
+        Exercise OverheadPress = new Exercise("Overhead Press",  Type.WEIGHTS, Body.SHOULDER, 5, 10, 4, "https://i0.wp.com/www.strengthlog.com/wp-content/uploads/2023/01/Muscles-worked-in-overhead-press-exercise.png?w=563&ssl=1", "https://i0.wp.com/www.strengthlog.com/wp-content/uploads/2020/12/Overhead-press-exercise.gif?resize=600%2C600&ssl=1");
+
+        Exercise BarbellCurl = new Exercise("Barbell Curl", Type.WEIGHTS, Body.BICEPS, 5, 10, 4, "https://i0.wp.com/www.strengthlog.com/wp-content/uploads/2023/05/Muscles-worked-in-the-barbell-curl-2.png?resize=768%2C768&ssl=1", "https://i0.wp.com/www.strengthlog.com/wp-content/uploads/2020/12/Barbell-biceps-curl.gif?resize=600%2C600&ssl=1");
+
+        Exercise BarbellPreacherCurl = new Exercise("Barbell Preacher Curl", Type.WEIGHTS, Body.BICEPS, 5, 5, 4, "https://i0.wp.com/www.strengthlog.com/wp-content/uploads/2023/06/muscles-worked-in-preacher-curl-2.png?resize=768%2C768&ssl=1", "https://i0.wp.com/www.strengthlog.com/wp-content/uploads/2020/04/preacher-curl-barbell.gif?resize=600%2C600&ssl=1");
+
+        Exercise CurlWithBar = new Exercise("Curl With Bar", Type.WEIGHTS, Body.BICEPS, 5, 10, 4, "https://i0.wp.com/www.strengthlog.com/wp-content/uploads/2020/10/Muscles-worked-by-cable-curl.png?resize=768%2C768&ssl=1", "https://i0.wp.com/www.strengthlog.com/wp-content/uploads/2020/03/cable-curl-with-handle.gif?resize=600%2C600&ssl=1");
+
+        Exercise ConcentrationCurl = new Exercise("Concentration Curl", Type.WEIGHTS, Body.BICEPS, 5, 10, 4, "https://i0.wp.com/www.strengthlog.com/wp-content/uploads/2020/10/Muscles-worked-by-concentration-curl-exercise.jpg?resize=768%2C768&ssl=1", "https://i0.wp.com/www.strengthlog.com/wp-content/uploads/2020/03/Concentration-curl.gif?resize=600%2C600&ssl=1");
+
+        Exercise HammerCurl = new Exercise("Hammer Curl", Type.WEIGHTS, Body.BICEPS, 5, 10, 4, "https://i0.wp.com/www.strengthlog.com/wp-content/uploads/2023/05/Muscles-worked-in-the-hammer-curl-2.png?resize=768%2C768&ssl=1", "https://i0.wp.com/www.strengthlog.com/wp-content/uploads/2020/02/Hammer-curl.gif?resize=600%2C600&ssl=1");
+
+        Exercise SpiderCurl = new Exercise("Spider Curl", Type.WEIGHTS, Body.BICEPS, 4, 5, 4, "https://i0.wp.com/www.strengthlog.com/wp-content/uploads/2022/09/Muscles-worked-in-spider-curl-exercise-1024x1024-1.jpg?resize=768%2C768&ssl=1", "https://i0.wp.com/www.strengthlog.com/wp-content/uploads/2022/09/spider-curl-does-whatever-a-spider-curl-does-2.gif?resize=600%2C600&ssl=1");
+
+        Exercise BarbellStandingTricepsExtension = new Exercise("Barbell Standing Triceps Extension", Type.WEIGHTS, Body.TRICEPS, 5, 10, 4, "https://i0.wp.com/www.strengthlog.com/wp-content/uploads/2023/07/Muscles-worked-by-standing-tricep-extension.png?resize=768%2C768&ssl=1", "https://i0.wp.com/www.strengthlog.com/wp-content/uploads/2020/03/Barbell-Standing-Triceps-Extension.gif?resize=600%2C600&ssl=1");
+
+        Exercise BenchDip = new Exercise("Bench Dip", Type.CALISTHENICS, Body.TRICEPS, 5, 0, 4, "https://i0.wp.com/www.strengthlog.com/wp-content/uploads/2021/11/Muscles-worked-in-bench-dips.jpg?resize=768%2C768&ssl=1", "https://i0.wp.com/www.strengthlog.com/wp-content/uploads/2022/12/C7251A7B-7A1B-47AE-A88C-7054692BCEF0.gif?resize=600%2C600&ssl=1");
+
+        Exercise CloseGripPushUp = new Exercise("Close-Grip Push-Up", Type.CALISTHENICS, Body.TRICEPS, 5, 0, 4, "https://i0.wp.com/www.strengthlog.com/wp-content/uploads/2022/09/Muscles-worked-in-close-grip-push-up-exercise-1024x1024-1.jpg?resize=768%2C768&ssl=1", "https://i0.wp.com/www.strengthlog.com/wp-content/uploads/2022/09/close-grip-push-up.gif?resize=600%2C600&ssl=1");
+
+        Exercise DumbbellLyingTricepsExtension = new Exercise("Dumbbell Lying Triceps Extension", Type.WEIGHTS, Body.TRICEPS, 5, 5, 4, "https://i0.wp.com/www.strengthlog.com/wp-content/uploads/2022/09/Muscles-worked-by-lying-triceps-extension-1024x1024-2.png?resize=768%2C768&ssl=1", "https://i0.wp.com/www.strengthlog.com/wp-content/uploads/2023/03/Lying-Dumbbell-Triceps-Extension-1.gif?resize=600%2C600&ssl=1");
+
+        Exercise PushdownWithRope = new Exercise("Pushdown With Rope", Type.WEIGHTS, Body.TRICEPS, 5, 10, 4, "https://i0.wp.com/www.strengthlog.com/wp-content/uploads/2023/07/Muscles-worked-by-triceps-pushdown.png?resize=768%2C768&ssl=1", "https://i0.wp.com/www.strengthlog.com/wp-content/uploads/2020/03/triceps-pushdown-with-rope.gif?resize=600%2C600&ssl=1");
+
+        Exercise BarbellLunge = new Exercise("Barbell Lunge", Type.WEIGHTS, Body.LEGS, 5, 20, 4, "https://i0.wp.com/www.strengthlog.com/wp-content/uploads/2020/10/Muscles-worked-by-barbell-lunge.png?resize=768%2C768&ssl=1", "https://i0.wp.com/www.strengthlog.com/wp-content/uploads/2020/03/Barbell-Lunge.gif?resize=600%2C600&ssl=1");
+
+        Exercise BulgarianSplitSquat = new Exercise("Bulgarian Split Squat", Type.WEIGHTS, Body.LEGS, 5, 5, 4, "https://i0.wp.com/www.strengthlog.com/wp-content/uploads/2023/04/muscles-worked-bulgarian-split-squat-2.png?resize=768%2C768&ssl=1", "https://i0.wp.com/www.strengthlog.com/wp-content/uploads/2023/02/Bulgarian-split-squat-barbell.gif?resize=600%2C600&ssl=1");
+
+        Exercise BarbellSquat = new Exercise("Barbell Squat", Type.WEIGHTS, Body.LEGS, 5, 30, 4, "https://i0.wp.com/www.strengthlog.com/wp-content/uploads/2020/05/Squat-muscles-worked.png?resize=768%2C768&ssl=1", "https://i0.wp.com/www.strengthlog.com/wp-content/uploads/2021/11/squat.gif?resize=600%2C600&ssl=1");
+
+        Exercise LegExtension = new Exercise("Leg Extension", Type.WEIGHTS, Body.LEGS, 5, 10, 4, "https://i0.wp.com/www.strengthlog.com/wp-content/uploads/2023/05/muscles-worked-in-leg-extension-2.png?resize=768%2C768&ssl=1", "https://i0.wp.com/www.strengthlog.com/wp-content/uploads/2020/03/leg-extension-seated.gif?resize=600%2C600&ssl=1");
+
+        Exercise RomanianDeadlift = new Exercise("Romanian Deadlift", Type.WEIGHTS, Body.LEGS, 5, 10, 4, "https://i0.wp.com/www.strengthlog.com/wp-content/uploads/2020/09/Muscles-worked-by-romanian-deadlifts.jpg?resize=768%2C768&ssl=1", "https://i0.wp.com/www.strengthlog.com/wp-content/uploads/2022/01/Romanian-deadlift.gif?resize=600%2C600&ssl=1");
+
+        Exercise BoxSquat = new Exercise("Box Squat", Type.WEIGHTS,Body.LEGS,5,20,4,"https://i0.wp.com/www.strengthlog.com/wp-content/uploads/2020/10/Muscles-worked-by-box-squat.png?resize=768%2C768&ssl=1","https://i0.wp.com/www.strengthlog.com/wp-content/uploads/2020/10/Box-Squat.gif?resize=600%2C600&ssl=1");
+
+        Exercise Squat = new Exercise("Squat",Type.WEIGHTS,Body.LEGS,5,30,4,"https://i0.wp.com/www.strengthlog.com/wp-content/uploads/2020/05/Squat-muscles-worked.png?resize=768%2C768&ssl=1","https://i0.wp.com/www.strengthlog.com/wp-content/uploads/2021/11/squat.gif?resize=600%2C600&ssl=1");
+
+        Exercise BarbellRows = new Exercise("Barbell Rows", Type.WEIGHTS, Body.BACK, 5, 10, 4, "https://i0.wp.com/www.strengthlog.com/wp-content/uploads/2023/01/Barbell-row-muscles-worked.png?w=563&ssl=1", "https://i0.wp.com/www.strengthlog.com/wp-content/uploads/2022/03/Barbell-Row.gif?resize=600%2C600&ssl=1");
+
+        Exercise CableWideGripSeatedRow = new Exercise("Cable Wide Grip Seated Row",  Type.WEIGHTS, Body.BACK, 5, 10, 4, "https://i0.wp.com/www.strengthlog.com/wp-content/uploads/2020/10/Muscles-worked-by-seated-cable-row-with-wide-grip.png?resize=768%2C768&ssl=1", "https://i0.wp.com/www.strengthlog.com/wp-content/uploads/2020/03/cable-row-seated-wide-grip.gif?resize=600%2C600&ssl=1");
+
+        Exercise CableCloseGripSeatedRow = new Exercise("Cable Close Grip Seated Row", Type.WEIGHTS,Body.BACK,5,10,4,"https://i0.wp.com/www.strengthlog.com/wp-content/uploads/2023/03/Muscles-worked-by-seated-cable-row-with-close-grip.png?resize=768%2C768&ssl=1","https://i0.wp.com/www.strengthlog.com/wp-content/uploads/2020/03/cable-row-seated-narrow-grip.gif?resize=600%2C600&ssl=1");
+
+        Exercise ChinUp = new Exercise("Chin-Up", Type.CALISTHENICS, Body.BACK, 3, 0, 4, "https://i0.wp.com/www.strengthlog.com/wp-content/uploads/2020/10/Muscles-worked-by-chin-ups.png?resize=768%2C768&ssl=1", "https://i0.wp.com/www.strengthlog.com/wp-content/uploads/2020/03/chin-up.gif?resize=600%2C600&ssl=1");
+
+        Exercise Deadlift = new Exercise("Deadlift", Type.WEIGHTS, Body.BACK, 5, 30, 4, "https://i0.wp.com/www.strengthlog.com/wp-content/uploads/2020/04/Deadlift-muscles-worked.png?resize=768%2C768&ssl=1", "https://i0.wp.com/www.strengthlog.com/wp-content/uploads/2020/11/Deadlift.gif?resize=600%2C600&ssl=1");
+
+        Exercise PullUps = new Exercise("Pull-Ups", Type.CALISTHENICS, Body.BACK, 2, 0, 4, "https://i0.wp.com/www.strengthlog.com/wp-content/uploads/2020/10/Muscles-worked-by-pull-ups.png?resize=768%2C768&ssl=1", "https://i0.wp.com/www.strengthlog.com/wp-content/uploads/2020/03/pull-up.gif?resize=600%2C600&ssl=1");
+
+        Exercise GoodMorning = new Exercise("Good Morning",  Type.WEIGHTS, Body.BACK, 5, 10, 4, "https://i0.wp.com/www.strengthlog.com/wp-content/uploads/2020/09/Muscles-worked-in-the-good-morning-exercise.jpg?resize=768%2C768&ssl=1", "https://i0.wp.com/www.strengthlog.com/wp-content/uploads/2020/02/Good-morning.gif?resize=600%2C600&ssl=1");
+
+
+
+        Training chestTriceps1 = new Training("Chest & Triceps 1", List.of(Body.CHEST, Body.TRICEPS),
+                List.of(BarDip, BenchPress, BenchDip, CableChestPress, DumbbellChestFly));
+        Training chestTriceps2 = new Training("Chest & Triceps 2", List.of(Body.CHEST, Body.TRICEPS),
+                List.of(InclineBenchPress, DumbbellChestPress, DumbbellPullover, MachineChestFly, MachineChestPress));
+        Training chestTriceps3 = new Training("Chest & Triceps 3", List.of(Body.CHEST, Body.TRICEPS),
+                List.of(PushUp, DeclineBenchPress, InclineDumbbellPress, BandExternalShoulderRotation, BandInternalShoulderRotation));
+        Training chestTriceps4 = new Training("Chest & Triceps 4", List.of(Body.CHEST, Body.TRICEPS),
+                List.of(DumbbellChestPress, MachineChestPress, BenchDip, CloseGripPushUp, DumbbellLyingTricepsExtension));
+        Training chestTriceps5 = new Training("Chest & Triceps 5", List.of(Body.CHEST, Body.TRICEPS),
+                List.of(DumbbellChestFly, InclineBenchPress, InclineDumbbellPress, BandPullApart, BarbellFrontRaise));
+
+// Shoulder Training
+        Training shoulder1 = new Training("Shoulder 1", List.of(Body.SHOULDER),
+                List.of(BandExternalShoulderRotation, BarbellFrontRaise, DumbbellShoulderPress, BarbellRearDeltRow, BarbellUprightRow));
+        Training shoulder2 = new Training("Shoulder 2", List.of(Body.SHOULDER),
+                List.of(BandPullApart, BarbellUprightRow, DumbbellLateralRaise, DumbbellShoulderPress, OverheadPress));
+        Training shoulder3 = new Training("Shoulder 3", List.of(Body.SHOULDER),
+                List.of(DumbbellHorizontalExternalShoulderRotation, DumbbellLateralRaise, DumbbellShoulderPress, OverheadPress, BarbellRearDeltRow));
+        Training shoulder4 = new Training("Shoulder 4", List.of(Body.SHOULDER),
+                List.of(BarbellUprightRow, BandInternalShoulderRotation, DumbbellShoulderPress, OverheadPress, BarbellFrontRaise));
+        Training shoulder5 = new Training("Shoulder 5", List.of(Body.SHOULDER),
+                List.of(DumbbellLateralRaise, OverheadPress, DumbbellHorizontalExternalShoulderRotation, BandPullApart, BarbellRearDeltRow));
+
+// Biceps Training
+        Training biceps1 = new Training("Biceps 1", List.of(Body.BICEPS),
+                List.of(BarbellCurl, ConcentrationCurl, HammerCurl, BarbellPreacherCurl, CurlWithBar));
+        Training biceps2 = new Training("Biceps 2", List.of(Body.BICEPS),
+                List.of(BarbellPreacherCurl, CurlWithBar, SpiderCurl, ConcentrationCurl, HammerCurl));
+        Training biceps3 = new Training("Biceps 3", List.of(Body.BICEPS),
+                List.of(CurlWithBar, HammerCurl, ConcentrationCurl, BarbellCurl, SpiderCurl));
+        Training biceps4 = new Training("Biceps 4", List.of(Body.BICEPS),
+                List.of(HammerCurl, BarbellCurl, SpiderCurl, ConcentrationCurl, BarbellPreacherCurl));
+        Training biceps5 = new Training("Biceps 5", List.of(Body.BICEPS),
+                List.of(ConcentrationCurl, BarbellPreacherCurl, CurlWithBar, HammerCurl, SpiderCurl));
+
+// Legs Training
+        Training legs1 = new Training("Legs 1", List.of(Body.LEGS),
+                List.of(BarbellSquat, BulgarianSplitSquat, BoxSquat, Squat, LegExtension));
+        Training legs2 = new Training("Legs 2", List.of(Body.LEGS),
+                List.of(BarbellLunge, RomanianDeadlift, LegExtension, BoxSquat, Deadlift));
+        Training legs3 = new Training("Legs 3", List.of(Body.LEGS),
+                List.of(RomanianDeadlift, BoxSquat, Squat, BarbellLunge, LegExtension));
+        Training legs4 = new Training("Legs 4", List.of(Body.LEGS),
+                List.of(BulgarianSplitSquat, LegExtension, BarbellLunge, Squat, GoodMorning));
+        Training legs5 = new Training("Legs 5", List.of(Body.LEGS),
+                List.of(Squat, BarbellSquat, GoodMorning, RomanianDeadlift, BoxSquat));
+
+// Back Training
+        Training back1 = new Training("Back 1", List.of(Body.BACK),
+                List.of(BarbellRows, Deadlift, PullUps, CableWideGripSeatedRow, CableCloseGripSeatedRow));
+        Training back2 = new Training("Back 2", List.of(Body.BACK),
+                List.of(ChinUp, CableWideGripSeatedRow, BarbellRows, Deadlift, PullUps));
+        Training back3 = new Training("Back 3", List.of(Body.BACK),
+                List.of(GoodMorning, Deadlift, PullUps, CableWideGripSeatedRow, BarbellRows));
+        Training back4 = new Training("Back 4", List.of(Body.BACK),
+                List.of(PullUps, CableCloseGripSeatedRow, BarbellRows, GoodMorning, ChinUp));
+        Training back5 = new Training("Back 5", List.of(Body.BACK),
+                List.of(CableWideGripSeatedRow, PullUps, Deadlift, BarbellRows, CableCloseGripSeatedRow));
+
+
+        UserEntity user = new UserEntity("jt","JT","xdddd@gmail.com");
+
+        user.setTrainings(List.of(chestTriceps1,shoulder2,back1, legs4,biceps5));
+
+
+
+        List<Exercise> allExercises = List.of(
+                BarDip, BenchPress, CableChestPress, DeclineBenchPress,
+                DumbbellChestFly, DumbbellChestPress, DumbbellPullover,
+                InclineBenchPress, InclineDumbbellPress, MachineChestFly,
+                MachineChestPress, PushUp, BandExternalShoulderRotation,
+                BandInternalShoulderRotation, BandPullApart, BarbellFrontRaise,
+                BarbellRearDeltRow, BarbellUprightRow,
+                DumbbellHorizontalExternalShoulderRotation, DumbbellLateralRaise,
+                DumbbellShoulderPress, OverheadPress, BarbellCurl,
+                BarbellPreacherCurl, CurlWithBar, ConcentrationCurl,
+                HammerCurl, SpiderCurl, BarbellStandingTricepsExtension,
+                BenchDip, CloseGripPushUp, DumbbellLyingTricepsExtension,
+                PushdownWithRope, BarbellLunge, BulgarianSplitSquat,
+                BarbellSquat, LegExtension, RomanianDeadlift, BoxSquat,
+                Squat, BarbellRows, CableWideGripSeatedRow,
+                CableCloseGripSeatedRow, ChinUp, Deadlift, PullUps, GoodMorning
+        );
+
+        List<Training> allTrainings = List.of(
+                chestTriceps1, chestTriceps2, chestTriceps3, chestTriceps4, chestTriceps5,
+                shoulder1, shoulder2, shoulder3, shoulder4, shoulder5,
+                biceps1, biceps2, biceps3, biceps4, biceps5,
+                legs1, legs2, legs3, legs4, legs5,
+                back1, back2, back3, back4, back5
+        );
+
+
+        //userRepository.saveAll(List.of(user1, user2, user3, user4, user5));
+        exerciseRepository.saveAll(allExercises);
+        trainingRepository.saveAll(allTrainings);
+        userRepository.saveAll(List.of(user));
 */
     }
 }
+

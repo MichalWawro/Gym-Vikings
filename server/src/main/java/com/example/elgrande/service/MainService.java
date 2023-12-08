@@ -2,10 +2,11 @@ package com.example.elgrande.service;
 
 import com.example.elgrande.forms.UserForm;
 import com.example.elgrande.model.diet.Diet;
+import com.example.elgrande.model.diet.Meal;
 import com.example.elgrande.model.enums.Level;
 import com.example.elgrande.model.enums.enums_diet.Allergy;
 import com.example.elgrande.model.enums.enums_diet.DietType;
-import com.example.elgrande.model.enums.enums_training.Body;
+import com.example.elgrande.model.enums.enums_training.Type;
 import com.example.elgrande.model.training.Exercise;
 import com.example.elgrande.model.training.Training;
 import com.example.elgrande.model.user.UserEntity;
@@ -13,12 +14,19 @@ import com.example.elgrande.service.diet_service.DietService;
 import com.example.elgrande.service.training_service.ExerciseService;
 import com.example.elgrande.service.training_service.TrainingService;
 import com.example.elgrande.service.user_service.UserService;
+import org.apache.catalina.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.NoSuchElementException;
+import java.time.LocalDate;
+import java.util.*;
+
+
+
 
 @Service
 public class MainService {
@@ -26,6 +34,8 @@ public class MainService {
     private TrainingService trainingService;
     private UserService userService;
     private DietService dietService;
+    Random rand = new Random();
+
 
     @Autowired
     public MainService(ExerciseService exerciseService, TrainingService trainingService, UserService userService, DietService dietService) {
@@ -119,7 +129,6 @@ public class MainService {
                 }
             }
         }
-        user.setTrainings(trainingService.prepareTrainings(trainingService.getTrainingsByLevel(user.getLevel()), 3));
         userService.saveUser(user);
     }
 
@@ -137,25 +146,48 @@ public class MainService {
             case ELITE:
                 return Level.EXPERT;
             case EXPERT:
+                return Level.MASTER;
+            case MASTER:
+                return Level.MASTER;
+            default:
                 return null;
+        }
+    }
+
+    public Level getPreviousLevel(Level currentLevel) {
+        switch (currentLevel) {
+            case BEGINNER:
+                return null; // Nie ma poprzedniego poziomu dla BEGINNER
+            case INTERMEDIATE:
+                return Level.BEGINNER;
+            case PROFESSIONAL:
+                return Level.INTERMEDIATE;
+            case ELITE:
+                return Level.PROFESSIONAL;
+            case EXPERT:
+                return Level.ELITE;
+            case MASTER:
+                return Level.EXPERT;
             default:
                 return null;
         }
     }
 
 
-    public double getIncreaseRate(Level currentLevel) {
+    public int getIncreaseRate(Level currentLevel) {
         switch (currentLevel) {
             case BEGINNER:
                 return 1;
             case INTERMEDIATE:
                 return 2;
             case PROFESSIONAL:
-                return 2.5;
+                return 3;
             case ELITE:
-                return 3.5;
+                return 4;
             case EXPERT:
-                return 1;
+                return 5;
+            case MASTER:
+                return 6;
             default:
                 return 1;
         }
@@ -172,7 +204,7 @@ public class MainService {
     public Training getNextTrainingFromUser(UserEntity user){
         List<Training> userTrainings = user.getTrainings();
         for(int i =0;i<userTrainings.size();i++){
-            int index = user.getAmountOfTrainingsDone() % user.getTrainingsPerWeek();
+            int index = user.getAmountOfTrainingsDone() % 7;
             if(index == i){
                 return userTrainings.get(index);
             }else {
@@ -183,7 +215,7 @@ public class MainService {
     }
 
 
-    public UserEntity getPropperUser(int id, int amountOfTrainingsToChange, double addedWeight){
+    public UserEntity getPropperUser(int id, int amountOfTrainingsToChange, double addedWeight, int addedReps){
         UserEntity user = userService.getUserById(id);
 
         List<Training> UserTrainings = user.getTrainings();
@@ -193,38 +225,44 @@ public class MainService {
             user.setTimesToMultiply(amountOfTimesToMultiply + 1);
             userService.saveUser(user);
         }
-        user.setTrainings(trainingService.increaseExercises(addedWeight * user.getTimesToMultiply(),UserTrainings));
+        user.setTrainings(increaseBasedOnLevel(id,trainingService.increaseExercises((addedWeight * user.getTimesToMultiply()),UserTrainings,  (addedReps * getIncreaseRate(user.getLevel())))));
         return user;
     }
 
-    public void updateTrainingPlan(int id , int amountOfTrainingsToChangeLevel){
-        UserEntity user = userService.getUserById(id);
 
-        if(user.getAmountOfTrainingsDone() % (amountOfTrainingsToChangeLevel * getIncreaseRate(user.getLevel())) == 0){
-
-            Level previousLevel = user.getLevel();
-            List<Training> updatedtrainings = trainingService.getTrainingsByLevel(getNextLevel(previousLevel));
-
-            List<Training> trainingsToSet = trainingService.prepareTrainings(updatedtrainings,user.getTrainingsPerWeek());
-
-            user.setTrainings(trainingsToSet);
-            user.setLevel(getNextLevel(previousLevel));
+    public void levelUp(int userId){
+        UserEntity user = userService.getUserById(userId);
+        if(user.getAmountOfTrainingsDone() % (28 * getIncreaseRate(user.getLevel())) == 0){
+            user.setLevel(getNextLevel(user.getLevel()));
         }
         userService.saveUser(user);
     }
 
 
-    public void updateFirstPlan(int userId){
+    public List<Training> increaseBasedOnLevel(int userId, List<Training> userTrainings){
         UserEntity user = userService.getUserById(userId);
 
-        List<Training> updatedtrainings = trainingService.getTrainingsByLevel(user.getLevel());
+        List<Training> userTrainingsToExport = userTrainings;
 
-        List<Training> trainingsToSet = trainingService.prepareTrainings(updatedtrainings,user.getTrainingsPerWeek());
+        if((user.getAmountOfTrainingsDone() % (28 * getIncreaseRate(user.getLevel()))) == 0 && user.getAmountOfTrainingsDone() !=0) {
 
-        user.setTrainings(trainingsToSet);
-        userService.saveUser(user);
+            for (Training training:
+             userTrainings) {
+            List<Exercise> exercises = training.getExercises();
+                    for (Exercise exercise:
+                        exercises) {
+                    if (exercise.getWeight() == 0) {
+                        exercise.setReps(exercise.getReps() * getIncreaseRate(user.getLevel()));
+                    }else{
+                        double weight = exercise.getWeight();
+                        exercise.setWeight(weight + (10 * getIncreaseRate(user.getLevel())));
+                        exercise.setReps(exercise.getReps() + 1);
+                    }
+                }
+            }
+        }
+        return userTrainingsToExport;
     }
-
 
     public void deleteTrainingFromUser(int trainingid, int userid){
         UserEntity user = userService.getUserById(userid);
@@ -232,8 +270,68 @@ public class MainService {
         userService.saveUser(user);
     }
 
+    public  LocalDate addOneWeek(LocalDate date) {
+        return date.plusWeeks(1);
+    }
 
+    public void giveUserAnotherTrainingPlan(int userId){
+        LocalDate date = LocalDate.now();
+        UserEntity user = userService.getUserById(userId);
 
+        if(user.getDateOfTrainingAssosiation().isAfter(addOneWeek(user.getDateOfTrainingAssosiation()))){
+            List<Training> updatedtrainings = trainingService.getTrainings();
+
+            List<Training> trainingsToSet = trainingService.prepareTrainings(updatedtrainings);
+            user.setTrainings(trainingsToSet);
+            user.setDateOfTrainingAssosiation(date);
+        }
+        userService.saveUser(user);
+    }
+
+//Diets diets diets diets diets
+    public List<Diet> getDietsFormUser(int userId) {
+        UserEntity user = userService.getUserById(userId);
+        List<Diet> diets = user.getDiets();
+        if(diets.isEmpty()) {
+            List<Diet> empty = new ArrayList<>();
+            return empty;
+        }
+        return diets;
+    }
+    public void randomizeMeals(int userId) {
+        UserEntity user = userService.getUserById(userId);
+        Diet diet = user.getDiet(0);
+        List<Meal> currentMealsArray = diet.getMealsArray();
+        List<Meal> randomizedMealsArray = new ArrayList<>();
+        int indexToMove = 0;
+
+        while(!currentMealsArray.isEmpty()) {
+            indexToMove = rand.nextInt(currentMealsArray.size());
+            randomizedMealsArray.add(currentMealsArray.get(indexToMove));
+            currentMealsArray.remove(indexToMove);
+        }
+
+        diet.setMeals(randomizedMealsArray);
+    }
+    public Meal getNextMealFromUserDiet(int userId) {
+        UserEntity user = userService.getUserById(userId);
+//        if(user.getLastUpdatedDate() + 7days > new Date()) {
+//            randomizeMeals(userId);
+//            user = userService.getUserById(userId);
+//        }
+        Diet diet = user.getDiet(0);
+
+        List<Meal> mealsArray = diet.getMealsArray();
+
+        Calendar c = Calendar.getInstance();
+        c.setFirstDayOfWeek(Calendar.MONDAY);
+        c.setTime(new Date());
+        int dayOfWeek = c.get(Calendar.DAY_OF_WEEK);
+        int mealIndex = dayOfWeek % mealsArray.size();
+
+//        user.setDietUpdateDate(new Date());
+        return mealsArray.get(mealIndex);
+    }
 
     public List<Diet> suggestDiet(int userId) {
         List<Diet> diets = new ArrayList<>();
@@ -245,7 +343,7 @@ public class MainService {
         int weight = user.getWeight();
         int height = user.getHeight();
         int age = user.getAge();
-        int amountOfTrainingsPerWeek = user.getTrainingsPerWeek();
+        int amountOfTrainingsPerWeek = 7;
         DietType dietType = user.getDietType();
         List<Allergy> userAllergies = user.getAllergies();
 
@@ -271,4 +369,13 @@ public class MainService {
 
         return diets;
     }
+
+    public void setDiet(int userId, int dietId) {
+        UserEntity user = userService.getUserById(userId);
+        Diet diet = dietService.getDietById(dietId);
+
+        user.setDiet(diet,user.getDiets());
+    }
+
+
 }

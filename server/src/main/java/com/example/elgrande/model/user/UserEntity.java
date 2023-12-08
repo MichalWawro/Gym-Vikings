@@ -9,6 +9,7 @@ import com.example.elgrande.model.enums.enums_training.Body;
 import com.example.elgrande.model.enums.enums_training.Type;
 import com.example.elgrande.model.role.Role;
 import com.example.elgrande.model.training.Training;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
 import lombok.Data;
 import lombok.Getter;
@@ -16,6 +17,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 import org.hibernate.annotations.CreationTimestamp;
 
+import java.time.LocalDate;
 import java.util.Date;
 import java.util.HashSet;
 import java.util.List;
@@ -26,6 +28,7 @@ import java.util.Set;
 @NoArgsConstructor
 @Data
 @Entity(name = "\'User\'")
+@JsonIgnoreProperties({ "diets" })
 public class UserEntity {
 
     @Id
@@ -48,8 +51,8 @@ public class UserEntity {
     private DietType dietType;
     @Enumerated(EnumType.STRING)
     private FoodType foodType;
+    private LocalDate dateOfTrainingAssosiation;
     private int amountOfTrainingsDone;
-    private int TrainingsPerWeek;
     @Enumerated(EnumType.STRING)
     private List<Allergy> allergies;
 
@@ -64,7 +67,7 @@ public class UserEntity {
     private List<Training> trainings;
 
     @ManyToMany
-    @JoinTable(name = "user_diet",
+    @JoinTable(name = "user_diets",
             joinColumns = @JoinColumn(name="user_id"),
             inverseJoinColumns = @JoinColumn(name = "diet_id"))
     private List<Diet> diets;
@@ -74,15 +77,25 @@ public class UserEntity {
         this.password = password;
         this.email = email;
     }
-    public UserEntity(String gender, int age, int weight, int height, Level level, DietType dietType, FoodType foodType, List<Allergy> allergies) {
-        this.gender = gender;
-        this.age = age;
-        this.weight = weight;
-        this.height = height;
-        this.level = level;
-        this.dietType = dietType;
-        this.foodType = foodType;
-        this.allergies = allergies;
+//    public UserEntity(String gender, int age, int weight, int height, Level level, DietType dietType, FoodType foodType, List<Allergy> allergies) {
+//        this.gender = gender;
+//        this.age = age;
+//        this.weight = weight;
+//        this.height = height;
+//        this.level = level;
+//        this.dietType = dietType;
+//        this.foodType = foodType;
+//        this.allergies = allergies;
+//    }
+
+    public void setDiet(Diet diet, List<Diet>diets) {
+        if(diets.contains(diet)) {
+            diets.remove(diets.indexOf(diet));
+        }
+        diets.add(0, diet);
+    }
+    public Diet getDiet(int index) {
+        return diets.get(index);
     }
     public void addDiet(Diet diet) {
         diets.add(diet);
@@ -112,10 +125,8 @@ public class UserEntity {
                 ", dietType=" + dietType +
                 ", foodType=" + foodType +
                 ", amountOfTrainingsDone=" + amountOfTrainingsDone +
-                ", TrainingsPerWeek=" + TrainingsPerWeek +
                 ", allergies=" + allergies +
                 ", trainings=" + trainings +
-                ", diets=" + diets +
                 '}';
     }
 }
