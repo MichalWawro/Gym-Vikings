@@ -7,31 +7,23 @@
 }
 
 .LeftHalf {
+    position: relative;
     width: 25vw;
-    background-color: rgb(100, 147, 189);
+    padding-left: 28px;
+    background-color: #19191b;
     border-right-color: black;
 }
 
 .RightHalf {
+    position: relative;
     justify-content: space-between;
     display: inline-block;
-
     width: 75vw;
-    background-color: grey;
+    background-color: #2c3444;
 }
 
-.TopHalf {
-    height: 60vh;
-    background-color: rgb(59, 136, 85)
-}
-
-.BottomHalf {
-    height: calc(100vh - 60vh - 90px);
-    background-color: pink
-}
-
-#SetButtonsContainer {
-    position: fixed;
+/* #SetButtonsContainer {
+    position:sticky;
     transform: translate(-50%, -50%);
     display: flex;
     justify-content: center;
@@ -44,13 +36,29 @@
     display: flex;
     justify-content: center;
     align-items: center;
-}
+} */
 
 #SuggestButtonsContainer {
     position: fixed;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.TopHalf {
+    position: relative;
+    height: 70vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.BottomHalf {
+    position: relative;
+    height: calc(100vh - 85vh - 90px);
     display: flex;
     justify-content: center;
     align-items: center;
@@ -78,32 +86,30 @@
 
 .MainDietButton {
     background-color: #19191b;
-    width: 100px;
     padding: 5px;
     display: flex;
     justify-content: flex-end;
     background-color: #555555;
     border: 2px solid black;
     border-radius: 10px;
-    height: 60px;
-    width: 144px;
+    height: 50vh;
+    width:400px;
     display: inline-block;
-    margin: 10px;
+    margin: 20px;
     font: bold 14px/1 'Rubik', sans-serif;
     transition: transform 0.75s;
 }
 
 .SetButton {
     background-color: #19191b;
-    width: 100px;
     padding: 5px;
     display: flex;
     justify-content: flex-end;
     background-color: #555555;
     border: 2px solid black;
     border-radius: 10px;
-    height: 60px;
-    width: 144px;
+    height: 8vh;
+    width: 300px;
     display: inline-block;
     margin: 10px;
     font: bold 14px/1 'Rubik', sans-serif;
@@ -120,7 +126,7 @@
     border: 2px solid black;
     border-radius: 10px;
     height: 50vh;
-    width: 20vw;
+    width: 400px;
     display: inline-block;
     margin: 10px;
     font: bold 14px/1 'Rubik', sans-serif;

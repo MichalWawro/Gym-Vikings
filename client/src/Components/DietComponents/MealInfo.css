@@ -1,0 +1,26 @@
+.MealInfoPage {
+    top: 90px;
+    max-height: 100vh;
+    height: calc(100vh);
+    padding-top: 45px;
+    overflow: hidden;
+    justify-content: center;
+    align-items: center;
+    font-family: 'Rubik', sans-serif;
+    color: rgb(212, 212, 103);
+}
+
+.LeftHalfMealInfo {
+    position: relative;
+    width: 30vw;
+    padding-left: 28px;
+    text-align: left;
+}
+
+.RightHalfMealInfo {
+    top: 10%;
+    position: fixed;
+    width: 70vw;
+    margin-left: 30vw
+
+}

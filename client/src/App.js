@@ -15,6 +15,7 @@ import ListOfTrainings from "./Components/TrainingComponents/ListOfTrainings";
 import Training from "./Components/TrainingComponents/Training";
 import Diets from "./Components/DietComponents/Diets";
 import DietInfo from "./Components/DietComponents/DietInfo";
+import MealInfo from "./Components/DietComponents/MealInfo";
 import Profile from "./Components/Profile/Profile";
 
 function App() {
@@ -92,6 +93,7 @@ function App() {
           <Route path='trainings' element={<ListOfTrainings user={user} />}></Route>
           <Route path='diets' element={<Diets user={user} />}></Route>
           <Route path='diets/:index' element={<DietInfo/>}></Route>
+          <Route path='meals/:index' element={<MealInfo/>}></Route>
           <Route path='profile' element={<Profile user={user} />}></Route>
         </Routes>
 
