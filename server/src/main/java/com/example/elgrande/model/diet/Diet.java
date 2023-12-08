@@ -40,8 +40,6 @@ public class Diet {
         this.dietCaloriesPerDay = calculateDailyCalories();
     }
 
-    public Diet() {
-    }
 
     private int calculateDailyCalories() {
         double sum = 0;

@@ -57,22 +57,32 @@ public class UserController {
     }
 
     @PostMapping("/user/register")
-    public ResponseEntity<String> createUser(@RequestBody RegisterForm registerForm) {
-        //sprawdzam, czy jest użytkownik: admin i role: ADMIN i USER, jeśli nie to dodaje je do DB.
-        if(roleService.findRoleByName("ROLE_ADMIN") == null){
-            roleService.insertRole(new Role("ROLE_ADMIN"));
-            roleService.insertRole(new Role("ROLE_USER"));
-            userService.insertUser(new UserEntity("admin", passwordEncoder.encode("pass"), "admin@gmail.com"));
-            userService.addRoleToUser("admin", "ROLE_ADMIN");
-            userService.addRoleToUser("admin", "ROLE_USER");
-        }
+    public ResponseEntity<UserEntity> createUser(@RequestBody RegisterForm registerForm) {
         try {
-            UserEntity user= new UserEntity(registerForm.username(), passwordEncoder.encode(registerForm.password()), registerForm.email());
+            // Check if the role ADMIN exists, if not, add it to the DB
+            if (roleService.findRoleByName("ROLE_ADMIN") == null) {
+                roleService.insertRole(new Role("ROLE_ADMIN"));
+                roleService.insertRole(new Role("ROLE_USER"));
+                userService.insertUser(new UserEntity("admin", passwordEncoder.encode("pass"), "admin@gmail.com"));
+                userService.addRoleToUser("admin", "ROLE_ADMIN");
+                userService.addRoleToUser("admin", "ROLE_USER");
+            }
+
+            UserEntity user = new UserEntity(registerForm.username(), passwordEncoder.encode(registerForm.password()), registerForm.email());
             userService.insertUser(user);
             userService.addRoleToUser(registerForm.username(), "ROLE_USER");
-            return new ResponseEntity<>("User successfully registered", HttpStatus.CREATED);
+
+            // Log successful registration (optional)
+            System.out.println("User registered successfully: " + user.getUsername());
+
+            // Return a ResponseEntity with the user and a status code of 201 (Created)
+            return ResponseEntity.status(HttpStatus.CREATED).body(user);
         } catch (Exception e) {
-            return new ResponseEntity<>("Error registering user: " + e.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR);
+            // Log the exception for debugging
+            e.printStackTrace();
+
+            // Return a ResponseEntity with an error message and a status code of 500 (Internal Server Error)
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
         }
     }
 
@@ -98,13 +108,12 @@ public class UserController {
                 .ok(new JwtResponse(jwt, userDetails.getUsername(), userService.getUserByUsername(userDetails.getUsername()), roles));
     }
 
-    @PostMapping("/user/formDone")
+    @PatchMapping("/user/formDone")
 //    public ResponseEntity<String> getForm(@RequestParam int userId, @RequestBody UserForm userForm){
-    public ResponseEntity<String> getForm( @RequestBody UserEntity userData){
+    public ResponseEntity<String> getForm( @RequestBody UserForm userForm, @RequestParam int userId){
         try {
-            UserForm userForm =new UserForm(userData.getGender(),userData.getAge(),userData.getWeight(),userData.getHeight(),userData.getAllergies());
             System.out.println("");
-            mainService.setUserTrainingInfo(userForm, userData.getId());
+            mainService.setUserTrainingInfo(userForm, userId);
             return ResponseEntity.ok("User information set successfully");
         } catch (Exception e) {
             // Handle exceptions appropriately (e.g., log and return an error response)
@@ -112,24 +121,18 @@ public class UserController {
                     .body("Error setting user information");
         }
     }
-    @PutMapping("/user/trainingDone")
-    public UserEntity trainingDone(@RequestParam int userId, @RequestParam int trainingId) {
-        try {
+    @PatchMapping("/user/trainingDone")
+    public UserEntity trainingDone(@RequestParam int userId,  @RequestParam (required = false) Integer trainingId) {
             userService.trainingDone(userId);
             mainService.levelUp(userId);
             mainService.deleteTrainingFromUser(trainingId,userId);
-            return mainService.getPropperUser(userId, 7, 2.5);
-        } catch (Exception e) {
-            //return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
-                   // .body("Error processing training done request: " + e.getMessage());
-        }
-        return null;
+            return mainService.getPropperUser(userId, 7, 2.5, 1);
     }
 
 
     @GetMapping("/training/provideNextTraining")
     public Training provideTraining(@RequestParam int userId){
-        UserEntity user = mainService.getPropperUser(userId,7,2.5);
+        UserEntity user = mainService.getPropperUser(userId,7,2.5, 1);
         return mainService.getNextTrainingFromUser(user);
     }
 
@@ -154,9 +157,16 @@ public class UserController {
 
     @GetMapping("/user/getUserInfo")
     public UserEntity getUserInfo(@RequestParam int userId) {
-        UserEntity user = mainService.getPropperUser(userId,7,2.5);
+        UserEntity user = mainService.getPropperUser(userId,7,2.5, 1);
         return user;
     }
+
+    @GetMapping("/user/getUserInfoByName")
+    public UserEntity getUserInfo(@RequestParam String name) {
+        UserEntity user = userService.getUserByUsername(name);
+        return user;
+    }
+
     @PostMapping("/user/userData")
     public String submitFormData(@RequestBody UserEntity userData) {
         System.out.println("Received form data: " + userData);

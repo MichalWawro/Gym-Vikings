@@ -46,11 +46,11 @@ const HomePageLoggedIn = ({ user }) => {
                             <button id='ChoiceButton' className="MainButton" type="button" onClick={() => fetchUserTraining()}>Start your training</button>
 
 
-                            {user.diets.length > 0 ?
-                                <button id='ChoiceButton' className="MainButton" type="button" onClick={() => navigate("/diets")}>Your next meal is: {meal.mealName}</button>
-                                :
+
+                                <button id='ChoiceButton' className="MainButton" type="button" onClick={() => navigate("/diets")}>Start your next</button>
+                                
                                 <button id='ChoiceButton' className="MainButton" type="button" onClick={() => navigate("/diets")}>Let's choose a diet!</button>
-                            }
+
                         </div>
                     </div>
                 )

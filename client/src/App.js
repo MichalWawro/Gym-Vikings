@@ -16,6 +16,7 @@ import Training from "./Components/TrainingComponents/Training";
 import Diets from "./Components/DietComponents/Diets";
 import DietInfo from "./Components/DietComponents/DietInfo";
 import Profile from "./Components/Profile/Profile";
+import Register from "./Components/Register/Register";
 
 function App() {
   const [isLoggedIn, setLoginState] = useState(false);
@@ -31,16 +32,16 @@ function App() {
   const [password, setPassword] = useState('');
 
 
-  function fetchUser() {
-    fetch(`http://localhost:8080/user/getUserInfo?userId=1`)
-      .then(res => res.json())
-      .then(data => {
-        console.log(data);
-        setUser(data)
-        // console.log("xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx",data);
-      })
-      .catch(e => console.error(e))
-  }
+  // function fetchUser() {
+  //   fetch(`http://localhost:8080/user/getUserInfo?userId=1`)
+  //     .then(res => res.json())
+  //     .then(data => {
+  //       console.log(data);
+  //       setUser(data)
+  //       // console.log("xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx",data);
+  //     })
+  //     .catch(e => console.error(e))
+  // }
 
   function login(username, password){
     // e.preventDefault()
@@ -87,7 +88,7 @@ function App() {
         <Routes>
           <Route path='/' element={<Home user={user} />}></Route>
           <Route path='contact' element={<ContactPage />}></Route>
-          <Route path='register' element={<Form />}></Route>
+          <Route path='register' element={<Register />}></Route>
           <Route path='about' element={<AboutPage />}></Route>
           <Route path='trainings' element={<ListOfTrainings user={user} />}></Route>
           <Route path='diets' element={<Diets user={user} />}></Route>
