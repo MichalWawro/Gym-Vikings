@@ -30,6 +30,22 @@
     background-color: pink
 }
 
+#SetButtonsContainer {
+    position: fixed;
+    transform: translate(-50%, -50%);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#MainButtonsContainer {
+    position: fixed;
+    transform: translate(-50%, -50%);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
 #SuggestButtonsContainer {
     position: fixed;
     top: 50%;

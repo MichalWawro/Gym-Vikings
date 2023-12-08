@@ -54,14 +54,14 @@ const Diets = ({ user }) => {
                                                     <button className='MainDietButton' onClick={() => navigate(`/diet/${diets[0].id}`)}>View Current Diet</button>
                     </div>
                     <div className="RightHalf">
-                        <div  id='SuggestButtonsContainer' className="TopHalf">
+                        <div  id='MainButtonsContainer' className="TopHalf">
                             {allDiets.slice(1, 4).map((diet, index) => (
                                 <div key={index}>
                                                     <button className='MainDietButton'  onClick={() => navigate(`/diet/${allDiets[index].id}`)}>{diet.dietName}</button>
                                 </div>
                             ))}
                         </div>
-                        <div  id='SuggestButtonsContainer' className="BottomHalf">
+                        <div  id='SetButtonsContainer' className="BottomHalf">
                             {allDiets.slice(1, 4).map((diet, index) => (
                                 <div key={index}>
                                                     <button className='SetButton' onClick={() => {
