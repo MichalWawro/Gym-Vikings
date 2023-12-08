@@ -1,6 +1,8 @@
 package com.example.elgrande.controller;
 
+import com.example.elgrande.model.diet.Meal;
 import com.example.elgrande.model.enums.enums_diet.Allergy;
+import com.example.elgrande.service.diet_service.MealService;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.example.elgrande.model.diet.Diet;
@@ -16,15 +18,22 @@ import java.util.List;
 public class DietController {
 
     private final DietService dietService;
+    private final MealService mealService;
 
     @Autowired
-    public DietController(DietService dietService) {
+    public DietController(DietService dietService, MealService mealService) {
         this.dietService = dietService;
+        this.mealService = mealService;
     }
 
     @GetMapping("/{id}")
     public Diet getDietById(@PathVariable int id) {
         return dietService.getDietById(id);
+    }
+
+    @GetMapping("/meals/{id}")
+    public Meal getMealById(@PathVariable int id) {
+        return mealService.getMealById(id);
     }
 
     @GetMapping("/getAll")

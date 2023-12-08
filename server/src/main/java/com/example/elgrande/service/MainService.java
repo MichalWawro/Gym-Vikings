@@ -351,11 +351,12 @@ public class MainService {
         return diets;
     }
 
-    public void setDiet(int userId, int dietId) {
+    public Diet setDiet(int userId, int dietId) {
         UserEntity user = userService.getUserById(userId);
         Diet diet = dietService.getDietById(dietId);
 
         user.setDiet(diet);
+        return diet;
     }
 
 

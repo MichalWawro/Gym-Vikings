@@ -102,7 +102,7 @@ public class UserController {
 //    public ResponseEntity<String> getForm(@RequestParam int userId, @RequestBody UserForm userForm){
     public ResponseEntity<String> getForm( @RequestBody UserEntity userData){
         try {
-            UserForm userForm =new UserForm(userData.getGender(),userData.getAge(),userData.getWeight(),userData.getHeight(),userData.getAllergies());
+            UserForm userForm =new UserForm(userData.getGender(),userData.getAge(),userData.getWeight(), userData.getAmountOfTrainingsDone(), userData.getHeight(),userData.getAllergies());
             System.out.println("");
             mainService.setUserTrainingInfo(userForm, userData.getId());
             return ResponseEntity.ok("User information set successfully");
@@ -150,7 +150,7 @@ public class UserController {
     public List<Diet> suggestDiet(@RequestParam int userId) { return mainService.suggestDiet(userId);}
 
     @PatchMapping ("/user/setDiet")
-    public void setDiet(@RequestParam int userId, int dietId) {mainService.setDiet(userId, dietId);}
+    public Diet setDiet(@RequestParam int userId,@RequestParam int dietId) {return mainService.setDiet(userId, dietId);}
 
     @GetMapping("/user/getUserInfo")
     public UserEntity getUserInfo(@RequestParam int userId) {

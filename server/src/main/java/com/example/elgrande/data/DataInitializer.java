@@ -47,7 +47,7 @@ public class DataInitializer implements CommandLineRunner {
 
 //Proper Diet Database
         //Meso
-/*
+///*
         Ingredient beefStrips = new Ingredient("Beef Strips", 250);
         Ingredient chickenBreast = new Ingredient("Chicken Breast", 165);
         Ingredient chickenStrips = new Ingredient("Chicken Strips", 239);
@@ -457,22 +457,22 @@ public class DataInitializer implements CommandLineRunner {
 
         Diet dietNormal = new Diet("Basic diet", List.of(
                 spaghettiBolognese, chickenCaesarWrap, mushroomRisotto, beefVegetableStirFry, hawaiianChickenSkewers, tunaNicoiseSalad, chickenFajitas, sushiBowl, turkeyAvocadoWrap, chickenNoodleSoup),
-                FoodType.NORMAL, "High in meat carnivorous diet!", List.of());
-        Diet dietCarnivorous = new Diet("Sigma Carnivore", List.of(
+                FoodType.NORMAL, "Basic diet with a perfect mix of meat and vegetables.", List.of());
+        Diet dietCarnivorous = new Diet("Carnivore", List.of(
                 chickenNoodleSoup, steakWithGarlicButter, bbqRibs, grilledChickenBreast, beefStirFry, carnitasTacos, lambChopsWithMint, chickenParmesan, baconWrappedShrimp, beefStroganoff, spicyChickenWings),
-                FoodType.CARNIVORE, "Normal diet with a perfect mix of meat and vegetables.",   List.of());
+                FoodType.CARNIVORE, "High in meat carnivorous diet!",   List.of());
         Diet dietSemiCarni = new Diet("Semi Carnivore", List.of(
                 mushroomRisotto, tacoSalad, bbqPulledPorkSandwich, greekGyroWrap, porkFriedRice, beefTacos, sushiBowl, bbqRibs, spicyChickenWings, beefStirFry),
-                FoodType.NORMAL, "High on vegetables diet with a bit of meat.", List.of());
+                FoodType.NORMAL, "A good diet with a lot of proteins", List.of());
         Diet dietVeganAbsolutely = new Diet("Absolutely Vegan",List.of(
                 sweetPotatoBlackBeanBowl, lentilSoup, chickpeaCurry),
                 FoodType.VEGAN, "Try Vegan Diet, with no animal products.", List.of());
-        Diet dietVegetarianSea = new Diet("Vegetarian diet with sea food", List.of(
+        Diet dietVegetarianSea = new Diet("Sea Food Vegetarian Diet", List.of(
                 salmonQuinoaBowl, shrimpBroccoliAlfredo, vegetarianMushroomRisotto, caesarSaladGrilledShrimp, teriyakiSalmonBowl, tunaNicoiseSalad, shrimpScampi, sushiBowl),
-                FoodType.VEGETARIAN, "Normal Vegetarian Diet with a bit of sea food and animal producet products", List.of());
-        Diet dietVegetarianNoMeat = new Diet("No meat or fish Vegan diet", List.of(
+                FoodType.VEGETARIAN, "Normal Vegetarian Diet with a bit of sea food", List.of());
+        Diet dietVegetarianNoMeat = new Diet("Vegetarian Diet with Animal Products", List.of(
                 vegetarianStirFry, capreseSalad, vegetarianMushroomRisotto, veggieOmelette, pestoPastaCherryTomatoes, mediterraneanQuinoaSalad, chickpeaCurry, eggplantParmesan, vegetableLasagna),
-                FoodType.VEGETARIAN, "Vegan diet with absolutely no meat or fish", List.of());
+                FoodType.VEGETARIAN, "Vegetarian diet with absolutely no meat or fish", List.of());
 
         ingredientRepository.saveAll(List.of(beefStrips, chickenBreast, chickenStrips, eggs, grilledChickenStrips, grilledShrimp, groundBeef,
                 groundTurkey, gyroMeat, hardBoiledEggs, pork, pulledPork, salmonFillet, shrimp, tuna, turkeySlices, sirloinSteak,
@@ -689,7 +689,7 @@ public class DataInitializer implements CommandLineRunner {
         exerciseRepository.saveAll(allExercises);
         trainingRepository.saveAll(allTrainings);
         userRepository.saveAll(List.of(user));
-        */
+//        */
 
     }
 }
