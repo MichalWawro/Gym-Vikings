@@ -9,6 +9,7 @@ import com.example.elgrande.model.enums.enums_training.Body;
 import com.example.elgrande.model.enums.enums_training.Type;
 import com.example.elgrande.model.role.Role;
 import com.example.elgrande.model.training.Training;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
 import lombok.Data;
 import lombok.Getter;
@@ -27,6 +28,7 @@ import java.util.Set;
 @NoArgsConstructor
 @Data
 @Entity(name = "\'User\'")
+@JsonIgnoreProperties({ "diets" })
 public class UserEntity {
 
     @Id
@@ -75,25 +77,25 @@ public class UserEntity {
         this.password = password;
         this.email = email;
     }
-    public UserEntity(String gender, int age, int weight, int height, Level level, DietType dietType, FoodType foodType, List<Allergy> allergies) {
-        this.gender = gender;
-        this.age = age;
-        this.weight = weight;
-        this.height = height;
-        this.level = level;
-        this.dietType = dietType;
-        this.foodType = foodType;
-        this.allergies = allergies;
-    }
+//    public UserEntity(String gender, int age, int weight, int height, Level level, DietType dietType, FoodType foodType, List<Allergy> allergies) {
+//        this.gender = gender;
+//        this.age = age;
+//        this.weight = weight;
+//        this.height = height;
+//        this.level = level;
+//        this.dietType = dietType;
+//        this.foodType = foodType;
+//        this.allergies = allergies;
+//    }
 
-    public void setDiet(Diet diet) {
+    public void setDiet(Diet diet, List<Diet>diets) {
         if(diets.contains(diet)) {
             diets.remove(diets.indexOf(diet));
         }
         diets.add(0, diet);
     }
-    public Diet getDiet() {
-        return diets.get(0);
+    public Diet getDiet(int index) {
+        return diets.get(index);
     }
     public void addDiet(Diet diet) {
         diets.add(diet);
@@ -125,7 +127,6 @@ public class UserEntity {
                 ", amountOfTrainingsDone=" + amountOfTrainingsDone +
                 ", allergies=" + allergies +
                 ", trainings=" + trainings +
-                ", diets=" + diets +
                 '}';
     }
 }

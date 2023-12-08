@@ -114,7 +114,7 @@ public class TrainingService {
         return trainingsToExport;
     }
 
-    public List<Training> increaseExercises(double addedWeight ,List<Training> trainings) {
+    public List<Training> increaseExercises(double addedWeight ,List<Training> trainings, int addedReps) {
         List<Training> userTrainings = trainings;
         for (Training training :
                 userTrainings) {
@@ -123,11 +123,12 @@ public class TrainingService {
             if (!exercises.isEmpty()) {
                 for (Exercise exercise:
                     exercises) {
-                    if (exercise.getWeight() != 0 || exercise.getType() != Type.CARDIO || exercise.getType() != Type.CALISTHENICS) {
+                    if (exercise.getWeight() == 0) {
+                        int reps = exercise.getReps();
+                        exercise.setReps(reps + addedReps);
+                    } else {
                         double weight = exercise.getWeight();
                         exercise.setWeight(weight + addedWeight);
-                    } else {
-                        exercise.setReps(exercise.getReps() + 1);
                     }
             }
             }

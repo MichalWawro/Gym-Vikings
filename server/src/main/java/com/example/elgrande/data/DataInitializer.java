@@ -47,7 +47,7 @@ public class DataInitializer implements CommandLineRunner {
 
 //Proper Diet Database
         //Meso
-///*
+/*
         Ingredient beefStrips = new Ingredient("Beef Strips", 250);
         Ingredient chickenBreast = new Ingredient("Chicken Breast", 165);
         Ingredient chickenStrips = new Ingredient("Chicken Strips", 239);
@@ -658,6 +658,7 @@ public class DataInitializer implements CommandLineRunner {
         user.setTrainings(List.of(chestTriceps1,shoulder2,back1, legs4,biceps5));
 
 
+
         List<Exercise> allExercises = List.of(
                 BarDip, BenchPress, CableChestPress, DeclineBenchPress,
                 DumbbellChestFly, DumbbellChestPress, DumbbellPullover,
@@ -689,8 +690,7 @@ public class DataInitializer implements CommandLineRunner {
         exerciseRepository.saveAll(allExercises);
         trainingRepository.saveAll(allTrainings);
         userRepository.saveAll(List.of(user));
-//        */
-
+*/
     }
 }
 
