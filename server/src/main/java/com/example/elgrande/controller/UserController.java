@@ -104,11 +104,7 @@ public class UserController {
         try {
             UserForm userForm =new UserForm(userData.getGender(),userData.getAge(),userData.getWeight(),userData.getHeight(),userData.getAllergies());
             System.out.println("");
-    //      mainService.setUserTrainingInfo(userForm, userId);
-    //      mainService.updateFirstPlan(userId);
             mainService.setUserTrainingInfo(userForm, userData.getId());
-            mainService.updateFirstPlan(userData.getId());
-
             return ResponseEntity.ok("User information set successfully");
         } catch (Exception e) {
             // Handle exceptions appropriately (e.g., log and return an error response)
@@ -130,10 +126,6 @@ public class UserController {
         return null;
     }
 
-    @GetMapping("/user/suggestDiets")
-    public List<Diet> suggestDiet(@RequestParam int userId){
-        return mainService.suggestDiet(userId);
-    }
 
     @GetMapping("/training/provideNextTraining")
     public Training provideTraining(@RequestParam int userId){
