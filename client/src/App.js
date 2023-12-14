@@ -6,7 +6,7 @@ import './Components/About/AboutPage.css';
 import Home from './Components/HomePage/Home';
 import Form from './Components/Register/Form';
 import NavBar from './Components/NavBar/NavBar';
-import Footer from './Components/Footer/Footer';
+import Footer from './Components/Footer/FootBar';
 //import UserData from "./Components/Register/UserData";
 //import InputField from './Components/InputField';
 import AboutPage from "./Components/About/AboutPage";
@@ -82,9 +82,6 @@ function App() {
       <div className="App">
         <header className="App-header">
           <NavBar isLoggedIn={isLoggedIn} tryingToSign={tryingToSign} handleLoginChange={handleLoginChange} login={login} setTryingToSign={setTryingToSign}/>
-          {
-
-          }
         </header>
         <Routes>
           <Route path='/' element={<Home user={user} />}></Route>
@@ -92,12 +89,15 @@ function App() {
           <Route path='register' element={<Register />}></Route>
           <Route path='about' element={<AboutPage />}></Route>
           <Route path='trainings' element={<ListOfTrainings user={user} />}></Route>
-          <Route path='diets' element={<Diets user={user} />}></Route>
+          <Route path='diets' element={<Diets user={user} isLoggedIn={isLoggedIn} />}></Route>
+          <Route path='diets/search' element={<SearchDiets/>}></Route>
           <Route path='diets/:index' element={<DietInfo/>}></Route>
           <Route path='meals/:index' element={<MealInfo/>}></Route>
           <Route path='profile' element={<Profile user={user} />}></Route>
         </Routes>
-
+          <footer className="App-footer">
+            <FootBar/>
+          </footer>
       </div>
     </div>
 

@@ -8,6 +8,8 @@ header {
 
 /* Main content styles */
 main {
+  padding-top: 90px;
+  padding-bottom: 90px;
   background-image: url(./assets/background.png);
   background-size: cover;
   flex-grow: 1;
