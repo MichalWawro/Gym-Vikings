@@ -11,7 +11,7 @@ const DietsLoggedIn = ({ user }) => {
     //.then (setReady(true))
 
     return (
-        <div>
+        <div className='main'>
             {readyToLoad ? (
                 userDiets == null ? (
                     <div >

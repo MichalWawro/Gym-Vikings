@@ -1,15 +1,8 @@
 /* Importing Rubik font */
 @import url('https://fonts.googleapis.com/css2?family=Rubik:wght@400;700&display=swap');
 
-/* Common styles for header */
-header {
-  padding: 10px;
-}
-
 /* Main content styles */
 main {
-  padding-top: 90px;
-  padding-bottom: 90px;
   background-image: url(./assets/background.png);
   background-size: cover;
   flex-grow: 1;
@@ -28,6 +21,7 @@ main {
 /* App container styles */
 .App {
   background-color: #272933;
+  z-index: -2;
   display: flex;
   flex-direction: column;
   min-height: 100vh;

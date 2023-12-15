@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-
+import './Home.css'
 import HomePageLoggedIn from './HomePageLoggedIn.js';
 import HomePageLoggedOut from './HomePageLoggedOut.js';
 

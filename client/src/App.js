@@ -6,15 +6,14 @@ import './Components/About/AboutPage.css';
 import Home from './Components/HomePage/Home';
 import Form from './Components/Register/Form';
 import NavBar from './Components/NavBar/NavBar';
-import Footer from './Components/Footer/FootBar';
-//import UserData from "./Components/Register/UserData";
-//import InputField from './Components/InputField';
+import FootBar from './Components/Footer/FootBar';
 import AboutPage from "./Components/About/AboutPage";
 import ContactPage from "./Components/Contact/ContactPage";
 import ListOfTrainings from "./Components/TrainingComponents/ListOfTrainings";
 import Training from "./Components/TrainingComponents/Training";
 import Diets from "./Components/DietComponents/Diets";
 import DietInfo from "./Components/DietComponents/DietInfo";
+import SearchDiets from "./Components/DietComponents/SearchDiets"
 import MealInfo from "./Components/DietComponents/MealInfo";
 import Profile from "./Components/Profile/Profile";
 import Register from "./Components/Register/Register";

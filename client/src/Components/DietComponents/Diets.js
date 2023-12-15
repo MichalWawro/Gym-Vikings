@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import './Diets.css';
-import DietsLoggedIn from "./Components/DietComponents/DietsLoggedIn";
-import DietsLoggedOut from "./Components/DietComponents/DietsLoggedOut";
+import DietsLoggedIn from "./DietsLoggedIn";
+import DietsLoggedOut from "./DietsLoggedOut";
 
 const Diets = ({ user, isLoggedIn }) => {
     /*
@@ -47,7 +47,7 @@ const Diets = ({ user, isLoggedIn }) => {
 */
 
     return (
-        <div>
+        <div className='mainDiets'>
             {isLoggedIn ? (
                 <DietsLoggedIn user={user}/>
             ) : (
