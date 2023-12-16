@@ -7,7 +7,7 @@ import HomePageLoggedOut from './HomePageLoggedOut.js';
 const Home = ({user, isLoggedIn}) => {
     // const [isLoggedIn, setLoginState] = useState(false);
     const handleLoginChange = (bool) => {
-        setLoginState(bool);
+        // setLoginState(bool);
       };
     return (   
           <main>           
@@ -15,7 +15,7 @@ const Home = ({user, isLoggedIn}) => {
             {isLoggedIn ?
                 <HomePageLoggedIn user={user}/>
                 :
-                <HomePageLoggedOut handleLoginChange={handleLoginChange}/>
+                <HomePageLoggedOut/>
             }
         </div>          
           </main>

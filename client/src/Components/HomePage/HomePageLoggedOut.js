@@ -1,6 +1,6 @@
 import { useNavigate } from 'react-router-dom';
 
-const HomePageLoggedOut = ({ handleLoginChange }) => {
+const HomePageLoggedOut = ({}) => {
     const navigate = useNavigate();
 
     return (

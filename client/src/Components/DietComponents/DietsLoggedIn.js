@@ -9,6 +9,17 @@ const DietsLoggedIn = ({ user }) => {
     const navigate = useNavigate();
 
     //fetch diets od user.id
+
+    // function fetchUserDiets() {
+    //     fetch(`http://localhost:8080/diet/getDietsFromUser?userId=99`)
+    //         .then(res => res.json())
+    //         .then(data => {
+    //             console.log(data)
+    //             setDiets(data)
+    //         })
+    //         .catch(e => console.error(e))
+    // }
+
     //.then (setReady(true))
 
     return (
