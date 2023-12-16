@@ -3,12 +3,20 @@
 
 /* Main content styles */
 main {
-  background-image: url(./assets/background.png);
-  background-size: cover;
   flex-grow: 1;
   flex: 1;
-  margin-top: 90px;
-  padding: 20px;
+  /* margin-top: 90px; */
+  /* padding: 90px; */
+}
+
+.background-image{
+  background-image: url(./assets/background.png);
+  background-size: cover;
+  height: 100vh;
+  flex-grow: 1;
+  flex: 1;
+  /* margin-top: 90px; */
+  padding: 90px;
 }
 
 /* Styles for content text */
@@ -22,7 +30,7 @@ main {
 .App {
   background-color: #272933;
   z-index: -2;
-  display: flex;
+  /* display: flex; */
   flex-direction: column;
   min-height: 100vh;
 }

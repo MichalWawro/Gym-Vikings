@@ -8,19 +8,20 @@ const DietsLoggedOut = ({ }) => {
     const navigate = useNavigate();
 
     return (
-        <div class="wrapper">
-            <div class="cards">
-                <button class="card" onClick={() => navigate("/training")}>
-                    <img src={image} alt="" />
-                    <h2>Training</h2>
-                    <p>Join our training program that will help you get sheredded in no time</p>
-                </button>
-                <button class="card" onClick={() => navigate("/diets")}>
-                    <img src={image2} alt="" />
-                        <h2>Diets</h2>
-                        <p>Our app offers a variety of diets for all of your foody needs</p>
-                </button>
-            </div >
+        <div class="wrapper-column">
+            <div className="text-box-wrapper">
+                <img id='image-left' src={image} alt="" />
+                <div className="text-box">
+                    <p>Description description description description description description description description description description description  description description description description description description description description description description description description description description description description description description</p>
+                </div>
+            </div>
+            <div className="text-box-wrapper">
+                <img id='image-right' src={image} alt="" />
+                <div className="text-box">
+                    <p>Description description description description description description description description description description description  description description description description description description description description description description description description description description description description description description</p>
+                </div>
+            </div>
+            <button id="button-main" onClick={() => navigate('/login')}>Let's get it started!</button>
         </div >
     );
 }

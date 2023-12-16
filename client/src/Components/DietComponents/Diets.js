@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from "react";
-import './Diets.css';
 import DietsLoggedIn from "./DietsLoggedIn";
 import DietsLoggedOut from "./DietsLoggedOut";
 
@@ -49,9 +48,9 @@ const Diets = ({ user, isLoggedIn }) => {
     return (
         <div className='mainDiets'>
             {isLoggedIn ? (
-                <DietsLoggedIn user={user}/>
+                <DietsLoggedIn user={user} />
             ) : (
-                <DietsLoggedOut/>
+                <DietsLoggedOut />
             )}
         </div>
     );
