@@ -1,7 +1,6 @@
-//imports??
-import './Footer.css';
+import './FootBar.css';
 
-const Footer = () => {
+const FootBar = () => {
     return (
         <div className='FooterContent'>
             <h5>All right company trademark yada yada</h5>
@@ -9,4 +8,4 @@ const Footer = () => {
     );
 };
 
-export default Footer;
+export default FootBar;

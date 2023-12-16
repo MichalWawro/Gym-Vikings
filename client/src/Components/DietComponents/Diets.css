@@ -1,124 +1,78 @@
-.DietPage {
-    max-height: 100vh;
+* {
+    box-sizing: border-box;
+    font-family: 'Rubik', sans-serif;
+    color: rgb(212, 212, 103);
+}
+
+.wrapper-column {
+    /* max-width: 40vw; */
+    padding-top:90px;
     display: flex;
-    height: calc(100vh - 90px);
-    padding-top: 90px;
-    overflow: hidden;
-}
-
-.LeftHalf {
-    width: 25vw;
-    background-color: rgb(100, 147, 189);
-    border-right-color: black;
-}
-
-.RightHalf {
-    justify-content: space-between;
-    display: inline-block;
-
-    width: 75vw;
-    background-color: grey;
-}
-
-.TopHalf {
-    height: 60vh;
-    background-color: rgb(59, 136, 85)
-}
-
-.BottomHalf {
-    height: calc(100vh - 60vh - 90px);
-    background-color: pink
-}
-
-#SuggestButtonsContainer {
-    position: fixed;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    display: flex;
-    justify-content: center;
+    flex-direction: column;
     align-items: center;
 }
 
-.MainButtonsContainer {
-    position: fixed;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
+.wrapper-row {
     display: flex;
-    justify-content: center;
+    flex-direction: row;
     align-items: center;
 }
 
-.SetButtonsContainer {
-    position: fixed;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    display: flex;
-    justify-content: center;
-    align-items: center;
+.text-box-wrapper {
+    margin-left: 100px;
+    margin-top: 15px;
+    margin-bottom: 15px;
 }
 
-.MainDietButton {
-    background-color: #19191b;
-    width: 100px;
-    padding: 5px;
-    display: flex;
-    justify-content: flex-end;
-    background-color: #555555;
-    border: 2px solid black;
+.text-box {
+    color: white;
+}
+
+.text-box h2 {
+    font-size: 100px;
+}
+
+.text-box p {
+    font-size: 32px;
+}
+
+#button-main {
+    border: 0px;
+    background: none;
+    height: 100px;
+    width: 250px;
+    text-align: center;
+    font: bold 48px/1 'Rubik', sans-serif;
+    color: rgb(212, 212, 103);
+    margin: 0 50px;
+    position: relative;
+    margin-top: 30px;
+}
+
+
+#image-left {
+    max-width: 280px;
+    float: left;
+    border: 3px solid;
     border-radius: 10px;
-    height: 60px;
-    width: 144px;
-    display: inline-block;
-    margin: 10px;
-    font: bold 14px/1 'Rubik', sans-serif;
-    transition: transform 0.75s;
+    margin-left: 30px;
+    margin-right: 30px;
 }
 
-.SetButton {
-    background-color: #19191b;
-    width: 100px;
-    padding: 5px;
-    display: flex;
-    justify-content: flex-end;
-    background-color: #555555;
-    border: 2px solid black;
+#image-right {
+    max-width: 280px;
+    float: right;
+    border: 3px solid;
     border-radius: 10px;
-    height: 60px;
-    width: 144px;
-    display: inline-block;
-    margin: 10px;
-    font: bold 14px/1 'Rubik', sans-serif;
-    transition: transform 0.75s;
+    margin-left: 30px;
+    margin-right: 30px;
 }
 
-.SuggestButton {
-    background-color: #19191b;
-    width: 100px;
-    padding: 5px;
-    display: flex;
-    justify-content: flex-end;
-    background-color: #555555;
-    border: 2px solid black;
+#viking-eat {
+    max-height: 80vh;
+    float: left;
+    border: 3px solid;
     border-radius: 10px;
-    height: 50vh;
-    width: 20vw;
-    display: inline-block;
-    margin: 10px;
-    font: bold 14px/1 'Rubik', sans-serif;
-    transition: transform 0.75s;
-}
-
-.SetButton:hover,
-.MainDietButton:hover,
-.SuggestButton:hover {
-    background-color: rgb(212, 212, 103);
-    transform: scale(1.1);
-}
-
-.MainDietButton:hover {
-    background-color: rgb(212, 212, 103);
-    transform: scale(1.1);
+    margin-left: 30px;
+    margin-right: 30px;
 }
