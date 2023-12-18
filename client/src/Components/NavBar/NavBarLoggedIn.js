@@ -5,12 +5,6 @@ const NavBarLoggedIn = ({ handleLoginChange }) => {
     return (
         <div>
             <div className="Spacer" />
-            <button id="AboutButton" className="NavButton" type="button" onClick={() => navigate("/about")}>
-                About
-            </button>
-            <button id="ContactButton" className="NavButton" type="button" onClick={() => navigate("/contact")}>
-                Contact
-            </button>
             <button id="TrainingButton" className="NavButton" type="button" onClick={() => navigate("/trainings")}>
                 Trainings
             </button>

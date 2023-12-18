@@ -1,12 +1,12 @@
 import React, { useState, useEffect } from "react";
-import './Diets.css';
-import { useNavigate } from 'react-router-dom';
+import DietsLoggedIn from "./DietsLoggedIn";
+import DietsLoggedOut from "./DietsLoggedOut";
 
-const Diets = ({ user }) => {
+const Diets = ({ user, isLoggedIn }) => {
+    /*
     const [allDiets, setAllDiets] = useState([]);
     const [diets, setDiets] = useState(null);
     const [suggestedDiets, setSuggestedDiets] = useState(null);
-    const navigate = useNavigate();
 
     useEffect(() => {
         fetchAllDiets();
@@ -43,45 +43,14 @@ const Diets = ({ user }) => {
             })
             .catch(e => console.error(e))
     }
-
-
+*/
 
     return (
-        <div>
-            {allDiets && allDiets.length > 0 ? (
-                <div id='MainDietsPage' className="DietPage">
-                    <div className="LeftHalf">
-                                                    <button className='MainDietButton' onClick={() => navigate(`/diet/${diets[0].id}`)}>View Current Diet</button>
-                    </div>
-                    <div className="RightHalf">
-                        <div  id='SuggestButtonsContainer' className="TopHalf">
-                            {allDiets.slice(1, 4).map((diet, index) => (
-                                <div key={index}>
-                                                    <button className='MainDietButton'  onClick={() => navigate(`/diet/${allDiets[index].id}`)}>{diet.dietName}</button>
-                                </div>
-                            ))}
-                        </div>
-                        <div  id='SuggestButtonsContainer' className="BottomHalf">
-                            {allDiets.slice(1, 4).map((diet, index) => (
-                                <div key={index}>
-                                                    <button className='SetButton' onClick={() => {
-                                        console.log("Set diet set diet")
-                                        // setDietId(diets[index].id)
-                                        // setDiet()
-                                    }}>{diet.dietName}</button>
-                                </div>
-                            ))}
-                        </div>
-                    </div>
-                </div>
+        <div className='mainDiets'>
+            {isLoggedIn ? (<DietsLoggedOut />
+                
             ) : (
-                <div id='SuggestButtonsContainer' className="DietPage">
-                    {suggestedDiets && suggestedDiets.slice(0, 3).map((suggestedDiet, index) => (
-                        <div key={index}>
-                                                    <button className='SuggestButton' id={index} onClick={() => navigate('/diets/' + index)}>{suggestedDiets[index].dietName}</button>
-                        </div>
-                    ))}
-                </div>
+                <DietsLoggedIn user={user} />
             )}
         </div>
     );

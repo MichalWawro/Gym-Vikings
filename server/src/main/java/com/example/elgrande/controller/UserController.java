@@ -146,7 +146,7 @@ public class UserController {
     public List<Diet> suggestDiet(@RequestParam int userId) { return mainService.suggestDiet(userId);}
 
     @PatchMapping ("/user/setDiet")
-    public void setDiet(@RequestParam int userId, int dietId) {mainService.setDiet(userId, dietId);}
+    public Diet setDiet(@RequestParam int userId,@RequestParam int dietId) {return mainService.setDiet(userId, dietId);}
 
     @GetMapping("/user/getUserInfo")
     public UserEntity getUserInfo(@RequestParam int userId) {
