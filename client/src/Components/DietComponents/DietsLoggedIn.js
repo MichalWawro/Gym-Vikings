@@ -36,7 +36,7 @@ const DietsLoggedIn = ({ user }) => {
                         <img id='viking-eat' src={image} alt="" />
                         <div className="wrapper-column-no-diets">
                             <p>Looks like you haven't chosen any diet yet...</p>
-                            <button id="button-main-no-diets" onClick={() => navigate('/login')}>Choose a diet!</button>
+                            <button id="button-main-no-diets" onClick={() => navigate('/diet/search')}>Choose a diet!</button>
                         </div>
                     </div>
                 ) : (

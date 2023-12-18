@@ -26,7 +26,7 @@ const DietsLoggedOut = ({ }) => {
                     <p>Whether you want to lose weight or gain some muscles with us you can choose a diet that will help you achieve your dream goal</p>
                 </div>
             </div>
-            <button id="button-main-logged-out" onClick={() => navigate('/login')}>Click to make an account!</button>
+            <button id="button-main-logged-out" onClick={() => navigate('/register')}>Click to make an account!</button>
         </div >
     );
 }
