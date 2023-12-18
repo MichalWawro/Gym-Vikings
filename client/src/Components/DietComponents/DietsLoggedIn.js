@@ -5,7 +5,7 @@ import image from '../../assets/background.png';
 
 const DietsLoggedIn = ({ user }) => {
     const [readyToLoad, setReady] = useState(false);
-    const [userDiet, setUserDiet] = useState(1);
+    const [userDiet, setUserDiet] = useState(null);
     const navigate = useNavigate();
 
     useEffect(() => {
@@ -36,7 +36,7 @@ const DietsLoggedIn = ({ user }) => {
                         <img id='viking-eat' src={image} alt="" />
                         <div className="wrapper-column">
                             <p>Description description description description description description description description description description description description description description description description description description</p>
-                            <button id="button-main" onClick={() => navigate('/login')}>Let's get it started!</button>
+                            <button id="button-main-diets-logged-out" onClick={() => navigate('/login')}>Let's get it started!</button>
                         </div>
                     </div>
                 ) : (

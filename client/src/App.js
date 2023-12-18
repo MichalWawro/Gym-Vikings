@@ -32,16 +32,16 @@ function App() {
   const [password, setPassword] = useState('');
 
 
-  // function fetchUser() {
-  //   fetch(`http://localhost:8080/user/getUserInfo?userId=1`)
-  //     .then(res => res.json())
-  //     .then(data => {
-  //       console.log(data);
-  //       setUser(data)
-  //       // console.log("xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx",data);
-  //     })
-  //     .catch(e => console.error(e))
-  // }
+  function fetchUser() {
+    fetch(`http://localhost:8080/user/getUserInfo?userId=99`)
+      .then(res => res.json())
+      .then(data => {
+        console.log(data);
+        setUser(data)
+        // console.log("xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx",data);
+      })
+      .catch(e => console.error(e))
+  }
 
   function login(username, password){
     // e.preventDefault()

@@ -58,6 +58,20 @@
     left: 40vw;
 }
 
+#button-main-diets-logged-out {
+    border: 0px;
+    background: none;
+    height: 100px;
+    width: 250px;
+    text-align: center;
+    font: bold 48px/1 'Rubik', sans-serif;
+    color: rgb(212, 212, 103);
+    margin: 0 50px;
+    position: relative;
+    margin-top: 30px;
+    left: 18vw;
+}
+
 
 #image-left {
     max-width: 280px;
@@ -78,7 +92,7 @@
 }
 
 #viking-eat {
-    max-height: 80vh;
+    max-height: 62vh;
     float: left;
     border: 3px solid;
     border-radius: 10px;
