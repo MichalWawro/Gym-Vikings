@@ -40,11 +40,11 @@ const NavBarLoggedOut = ({ handleLoginChange, login, tryingToSign, setTryingToSi
     return (
         <div>
             <div className="Spacer" />
-            <button id="AboutButton" className="NavButton" type="button" onClick={() => navigate("/about")}>
-                About
+            <button id="TrainingButton" className="NavButton" type="button" onClick={() => navigate("/trainings")}>
+                Trainings
             </button>
-            <button id="ContactButton" className="NavButton" type="button" onClick={() => navigate("/contact")}>
-                Contact
+            <button id="DietButton" className="NavButton" type="button" onClick={() => navigate("/diets")}>
+                Diets
             </button>
 
             

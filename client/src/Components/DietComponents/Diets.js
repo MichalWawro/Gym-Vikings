@@ -51,6 +51,7 @@ const Diets = ({ user, isLoggedIn }) => {
                 <DietsLoggedIn user={user} />
             ) : (
                 <DietsLoggedOut />
+                
             )}
         </div>
     );

@@ -66,11 +66,9 @@ public class UserEntity {
             inverseJoinColumns = @JoinColumn(name = "trening_id"))
     private List<Training> trainings;
 
-    @ManyToMany
-    @JoinTable(name = "user_diets",
-            joinColumns = @JoinColumn(name="user_id"),
-            inverseJoinColumns = @JoinColumn(name = "diet_id"))
-    private List<Diet> diets;
+    @ManyToOne
+    @JoinColumn(name = "diet_id")
+    private Diet diet;
 
     public UserEntity(String username, String password, String email) {
         this.username = username;
@@ -88,23 +86,18 @@ public class UserEntity {
 //        this.allergies = allergies;
 //    }
 
-    public void setDiet(Diet diet, List<Diet>diets) {
-        if(diets.contains(diet)) {
-            diets.remove(diets.indexOf(diet));
-        }
-        diets.add(0, diet);
-    }
-    public Diet getDiet(int index) {
-        return diets.get(index);
-    }
-    public void addDiet(Diet diet) {
-        diets.add(diet);
+//    public void setDiet(Diet diet, List<Diet>diets) {
+//        if(diets.contains(diet)) {
+//            diets.remove(diets.indexOf(diet));
+//        }
+//        diets.add(0, diet);
+//    }
+
+
+    public Diet getDiet() {
+        return diet;
     }
 
-    public void removeDiet(Diet diet) {
-        diet.setUser(null);
-        diets.remove(diet);
-    }
     public double getBMI() {
         return weight / (Math.pow((double)height / 100, 2));
     }

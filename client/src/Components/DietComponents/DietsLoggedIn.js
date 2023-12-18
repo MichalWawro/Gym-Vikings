@@ -5,37 +5,61 @@ import image from '../../assets/background.png';
 
 const DietsLoggedIn = ({ user }) => {
     const [readyToLoad, setReady] = useState(false);
-    const [userDiets, setUserDiets] = useState(null);
+    const [userDiet, setUserDiet] = useState(null);
     const navigate = useNavigate();
 
-    //fetch diets od user.id
+    useEffect(() => {
+        console.log('use effect')
+        if (user != null) {
+            fetchUserDiet();
+        } else {
+            setReady(true);
+        }
+    }, []);
 
-    // function fetchUserDiets() {
-    //     fetch(`http://localhost:8080/diet/getDietsFromUser?userId=99`)
-    //         .then(res => res.json())
-    //         .then(data => {
-    //             console.log(data)
-    //             setDiets(data)
-    //         })
-    //         .catch(e => console.error(e))
-    // }
-
-    //.then (setReady(true))
+    function fetchUserDiet() {
+        fetch(`http://localhost:8080/diet/getDietsFromUser?userId=99`)
+            .then(res => res.json())
+            .then(data => {
+                console.log(data);
+                setUserDiet(data);
+                setReady(true);
+            })
+            .catch(e => console.error(e))
+    }
 
     return (
         <div className='main'>
             {readyToLoad ? (
-                userDiets == null ? (
-                    <div className="wrapper-row">
+                userDiet == null ? (
+                    <div className="wrapper-row-no-diets">
                         <img id='viking-eat' src={image} alt="" />
-                        <div className="wrapper-column">
-                            <p>Description description description description description description description description description description description description description description description description description description</p>
-                            <button id="button-main" onClick={() => navigate('/login')}>Let's get it started!</button>
+                        <div className="wrapper-column-no-diets">
+                            <p>Looks like you haven't chosen any diet yet...</p>
+                            <button id="button-main-no-diets" onClick={() => navigate('/login')}>Choose a diet!</button>
                         </div>
                     </div>
                 ) : (
-                    <div>
-                        <h1>Here will be shown user diets '4th panel'</h1>
+                    <div className="wrapper-column-logged-in">
+                        <div className="wrapper-row">
+                            <h1>Your diet:</h1>
+                            <button class='card-diets-logged-in' id="your-diet-button" type='button' onClick={() => navigate('/diets/')}>
+                                <img /*src={userDiet.picture}*/ alt="diet-picture"/>
+                                <h2>Diet-name-here</h2>
+                                <h2>Diet-avg-kcal</h2>
+                                <h2>Diet-type?</h2>
+                            </button>
+                            <button className='side-button' id="change-diet-button" type='button' onClick={() => navigate('/diets/search')}>Change diet</button>
+                        </div>
+                        <div className="wrapper-row">
+                            <h1>Your next meal:</h1>
+                            <button class='card-diets-logged-in' id="your-meal-button" type='button' onClick={() => navigate('/meals/')}>
+                                <h2>Meal-name-here</h2>
+                                <h2>Meal-kcal</h2>
+                                <h2>Meal-type?</h2>
+                            </button>
+                            <button className='side-button' id="roll-meal-button" type='button' onClick={() => console.log('roll meal on backend')}>Roll a new meal</button>
+                        </div>
                     </div>
                 )
             ) : (

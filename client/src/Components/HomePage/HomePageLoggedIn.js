@@ -4,7 +4,7 @@ import { useNavigate } from 'react-router-dom';
 import image from '../../assets/background.png';
 import image2 from '../../assets/spaghetti.jpg';
 
-const HomePageLoggedIn = ({ user }) => {
+const HomePageLoggedIn = ({}) => {
     const [training, setTraining] = useState(null);
     const [meal, setMeal] = useState(null);
     const navigate = useNavigate();
@@ -13,25 +13,25 @@ const HomePageLoggedIn = ({ user }) => {
         // fetchNextMeal();
       }, []);
 
-    function fetchUserTraining() {
-        fetch(`http://localhost:8080/training/provideNextTraining?userId=${user.id}`)
-            .then(res => res.json())
-            .then(data => {
-                console.log(data)
-                setTraining(data)
-            })
-            .catch(e => console.error(e))
-    }
+    // function fetchUserTraining() {
+    //     fetch(`http://localhost:8080/training/provideNextTraining?userId=${user.id}`)
+    //         .then(res => res.json())
+    //         .then(data => {
+    //             console.log(data)
+    //             setTraining(data)
+    //         })
+    //         .catch(e => console.error(e))
+    // }
 
-    function fetchNextMeal() {
-        fetch(`http://localhost:8080/diet/provideNextMeal?userId=${user.id}`)
-            .then(res => res.json())
-            .then(data => {
-                console.log(data)
-                setMeal(data)
-            })
-            .catch(e => console.error(e))
-    }
+    // function fetchNextMeal() {
+    //     fetch(`http://localhost:8080/diet/provideNextMeal?userId=${user.id}`)
+    //         .then(res => res.json())
+    //         .then(data => {
+    //             console.log(data)
+    //             setMeal(data)
+    //         })
+    //         .catch(e => console.error(e))
+    // }
 
     return (
         <div className="wrapper">

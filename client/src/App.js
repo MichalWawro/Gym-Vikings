@@ -55,7 +55,7 @@ function App() {
           <NavBar isLoggedIn={isLoggedIn} tryingToSign={tryingToSign} handleLoginChange={handleLoginChange} setTryingToSign={setTryingToSign} setUser={setUser} setJwt={setJwt}/>
         </header>
         <Routes>
-          <Route path='/' element={<Home user={user} isLoggedIn={isLoggedIn}/>}></Route>
+          <Route path='/' element={<Home isLoggedIn={isLoggedIn}/>}></Route>
           <Route path='contact' element={<ContactPage />}></Route>
           <Route path='register' element={<Register />}></Route>
           <Route path='about' element={<AboutPage />}></Route>

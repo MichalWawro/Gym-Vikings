@@ -1,6 +1,8 @@
 import './FootBar.css';
+import{ useNavigate } from 'react-router-dom';
 
 const FootBar = ({user}) => {
+    const navigate = useNavigate();
 
     function username(user){
         if (user === "No user"){
@@ -13,10 +15,18 @@ const FootBar = ({user}) => {
 
 
     return (
-        <div className='FooterContent'>
+        <div className='footer-content'>
             <h4>Logged in as {username(user)}</h4>
-            <h5>All right company trademark yada yada</h5>
+            <h5 className='footer-content'>All right company trademark yada yada</h5>
+            <div className='spacer'></div>
+            <button id="AboutButton" className="NavButton" type="button" onClick={() => navigate("/about")}>
+                About
+            </button>
+            <button id="ContactButton" className="NavButton" type="button" onClick={() => navigate("/contact")}>
+                Contact
+            </button>
         </div>
+
     );
 };
 

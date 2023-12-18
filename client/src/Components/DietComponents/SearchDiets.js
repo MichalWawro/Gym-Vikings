@@ -1,6 +1,14 @@
+import React, { useState, useEffect } from "react";
+import './Diets.css';
+import { useNavigate } from 'react-router-dom';
 
-export default function SearchDiets(){
-    return(
-        <h1> Here search diets</h1>
-    )
+const SearchDiets = ({ }) => {
+    const navigate = useNavigate();
+
+    return (
+        <div class="wrapper-column">
+        </div >
+    );
 }
+
+export default SearchDiets;
