@@ -10,7 +10,7 @@ const HomePageLoggedIn = ({ user }) => {
     const navigate = useNavigate();
 
     useEffect(() => {
-        fetchNextMeal();
+        // fetchNextMeal();
       }, []);
 
     function fetchUserTraining() {
@@ -34,14 +34,14 @@ const HomePageLoggedIn = ({ user }) => {
     }
 
     return (
-        <div class="wrapper">
-            <div class="cards">
-                <button class="card" onClick={() => navigate("/training")}>
+        <div className="wrapper">
+            <div className="cards">
+                <button className="card" onClick={() => navigate("/training")}>
                     <img src={image} alt="" />
                     <h2>Training</h2>
                     <p>Join our training program that will help you get sheredded in no time</p>
                 </button>
-                <button class="card" onClick={() => navigate("/diets")}>
+                <button className="card" onClick={() => navigate("/diets")}>
                     <img src={image2} alt="" />
                         <h2>Diets</h2>
                         <p>Our app offers a variety of diets for all of your foody needs</p>
