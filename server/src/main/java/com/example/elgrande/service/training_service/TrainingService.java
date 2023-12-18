@@ -109,7 +109,6 @@ public class TrainingService {
         for (Training training:
              trainings) {
                 trainingsToExport.add(training);
-
         }
         return trainingsToExport;
     }

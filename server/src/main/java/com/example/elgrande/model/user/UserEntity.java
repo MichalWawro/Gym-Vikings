@@ -45,6 +45,7 @@ public class UserEntity {
     private int weight;
     private int height;
     private int timesToMultiply;
+    //private int timesToUpgradeTraining;
     @Enumerated(EnumType.STRING)
     private Level level;
     @Enumerated(EnumType.STRING)

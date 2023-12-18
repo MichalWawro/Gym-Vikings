@@ -59,7 +59,6 @@ public class UserController {
     @PostMapping("/user/register")
     public ResponseEntity<UserEntity> createUser(@RequestBody RegisterForm registerForm) {
         try {
-            // Check if the role ADMIN exists, if not, add it to the DB
             if (roleService.findRoleByName("ROLE_ADMIN") == null) {
                 roleService.insertRole(new Role("ROLE_ADMIN"));
                 roleService.insertRole(new Role("ROLE_USER"));
@@ -72,24 +71,19 @@ public class UserController {
             userService.insertUser(user);
             userService.addRoleToUser(registerForm.username(), "ROLE_USER");
 
-            // Log successful registration (optional)
+
             System.out.println("User registered successfully: " + user.getUsername());
 
-            // Return a ResponseEntity with the user and a status code of 201 (Created)
+
             return ResponseEntity.status(HttpStatus.CREATED).body(user);
         } catch (Exception e) {
-            // Log the exception for debugging
             e.printStackTrace();
 
-            // Return a ResponseEntity with an error message and a status code of 500 (Internal Server Error)
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
         }
     }
 
     @PostMapping("/user/login")
-//    public UserEntity login(@RequestBody LoginForm loginForm){
-//        return userService.login(loginForm);
-//    }
     public ResponseEntity<?> authenticateUser(@RequestBody LoginForm loginForm) {
 
         Authentication authentication = authenticationManager.authenticate(
@@ -109,14 +103,13 @@ public class UserController {
     }
 
     @PatchMapping("/user/formDone")
-//    public ResponseEntity<String> getForm(@RequestParam int userId, @RequestBody UserForm userForm){
     public ResponseEntity<String> getForm( @RequestBody UserForm userForm, @RequestParam int userId){
         try {
             System.out.println("");
             mainService.setUserTrainingInfo(userForm, userId);
             return ResponseEntity.ok("User information set successfully");
         } catch (Exception e) {
-            // Handle exceptions appropriately (e.g., log and return an error response)
+
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
                     .body("Error setting user information");
         }

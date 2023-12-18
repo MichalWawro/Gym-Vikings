@@ -154,25 +154,6 @@ public class MainService {
         }
     }
 
-    public Level getPreviousLevel(Level currentLevel) {
-        switch (currentLevel) {
-            case BEGINNER:
-                return null; // Nie ma poprzedniego poziomu dla BEGINNER
-            case INTERMEDIATE:
-                return Level.BEGINNER;
-            case PROFESSIONAL:
-                return Level.INTERMEDIATE;
-            case ELITE:
-                return Level.PROFESSIONAL;
-            case EXPERT:
-                return Level.ELITE;
-            case MASTER:
-                return Level.EXPERT;
-            default:
-                return null;
-        }
-    }
-
 
     public int getIncreaseRate(Level currentLevel) {
         switch (currentLevel) {
