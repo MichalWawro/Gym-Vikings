@@ -88,7 +88,7 @@ function App() {
         <Routes>
           <Route path='/' element={<Home user={user} />}></Route>
           <Route path='contact' element={<ContactPage />}></Route>
-          <Route path='register' element={<Register />}></Route>
+          <Route path='register' element={<Register login={login}/>}></Route>
           <Route path='about' element={<AboutPage />}></Route>
           <Route path='trainings' element={<ListOfTrainings user={user} />}></Route>
           <Route path='diets' element={<Diets user={user} />}></Route>

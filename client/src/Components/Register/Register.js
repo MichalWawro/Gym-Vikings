@@ -2,7 +2,7 @@ import React, { useState , useEffect} from "react";
 import Form from "./Form";
 import "./RegisterForm.css";
 
-const Register = ({}) => {
+const Register = ({login}) => {
     const[name, setName] = useState('');
     const[email, setEmail] = useState('');
     const[password, setPassword] = useState('');
@@ -38,7 +38,7 @@ const Register = ({}) => {
         <>
         {changeToForm ? 
             (
-                <Form registeredUser={registeredUser}></Form>
+                <Form registeredUser={registeredUser} login={login}></Form>
             )
             :
             (        <div className="container">

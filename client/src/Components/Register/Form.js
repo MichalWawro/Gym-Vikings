@@ -3,6 +3,7 @@ import './UserData.css';
 import { Navigate } from 'react-router-dom';
 import Home from '../HomePage/Home';
 import HomePageLoggedIn from '../HomePage/HomePageLoggedIn';
+import Login from './Components/NavBar/Login/Login'
 const Form = ({ registeredUser }) => {
 
     const[age, setAge] = useState('');
@@ -56,10 +57,10 @@ const Form = ({ registeredUser }) => {
 
 
       function getPropperUser(){
-        fetch(`http://localhost:8080/user/getUserInfo?userId=${registeredUser.id}`)
+        fetch(`http://localhost:8080/user/getUserInfo?userId=7`)
         .then(res=>res.json())
         .then(data=>{
-            console.log(data);
+            console.log("-------------------------" + data);
             setUser(data)
             setRegistered("go")})
         .catch(e=>console.error(e))
@@ -78,7 +79,7 @@ const Form = ({ registeredUser }) => {
         <>
         {registered ? 
             (
-                <HomePageLoggedIn user={user}/>
+                <Login username={registeredUser.username} password={registeredUser.password}/>
             )
             :
             (
