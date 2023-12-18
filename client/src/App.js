@@ -25,12 +25,9 @@ function App() {
     setLoginState(bool);
   };
 
-  const [user, setUser] = useState(null);
-
+  const [user, setUser] = useState('No user');
+  const [jwt, setJwt] = useState()
   
-  const [username, setUsername] = useState('');
-  const [password, setPassword] = useState('');
-
 
   // function fetchUser() {
   //   fetch(`http://localhost:8080/user/getUserInfo?userId=1`)
@@ -43,44 +40,19 @@ function App() {
   //     .catch(e => console.error(e))
   // }
 
-  function login(username, password){
-    // e.preventDefault()
-    fetch(`http://localhost:8080/user/login`, {
-      method: 'POST',
-      headers: {'Content-Type': 'application/json'},
-      body: JSON.stringify({username:username, password:password})
-    })
-    .then(response => response.json())
-    .then(response =>{  
-    console.log("tu response:", response)
-    console.log("error status:", response.status)
-    if(response.status !== 401){
-      setTryingToSign(false);
-      handleLoginChange(true);
-      setUser(response);
-    }
-    else{
-      alert("incorrect login or password")
-    }
-    }
-    )
-    .catch(error =>{
-    console.error(error)
-    alert("connection error")
-  })
-  }
+  
 
 
   useEffect(() => {
     // fetchUser();
-    //login();
+    // login();
   }, [])
 
   return (
     <div>
       <div className="App">
         <header className="App-header">
-          <NavBar isLoggedIn={isLoggedIn} tryingToSign={tryingToSign} handleLoginChange={handleLoginChange} login={login} setTryingToSign={setTryingToSign}/>
+          <NavBar isLoggedIn={isLoggedIn} tryingToSign={tryingToSign} handleLoginChange={handleLoginChange} setTryingToSign={setTryingToSign} setUser={setUser} setJwt={setJwt}/>
         </header>
         <Routes>
           <Route path='/' element={<Home isLoggedIn={isLoggedIn}/>}></Route>
@@ -93,9 +65,10 @@ function App() {
           <Route path='diets/:index' element={<DietInfo/>}></Route>
           <Route path='meals/:index' element={<MealInfo/>}></Route>
           <Route path='profile' element={<Profile user={user} />}></Route>
+          <Route path='form' element={<Form user={user} setUser={setUser} />}></Route>
         </Routes>
           <footer className="App-footer">
-            <FootBar/>
+            <FootBar user={user}/>
           </footer>
       </div>
     </div>

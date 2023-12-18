@@ -57,43 +57,26 @@ public class UserController {
     }
 
     @PostMapping("/user/register")
-    public ResponseEntity<UserEntity> createUser(@RequestBody RegisterForm registerForm) {
-        try {
-            // Check if the role ADMIN exists, if not, add it to the DB
-            if (roleService.findRoleByName("ROLE_ADMIN") == null) {
-                roleService.insertRole(new Role("ROLE_ADMIN"));
-                roleService.insertRole(new Role("ROLE_USER"));
-                userService.insertUser(new UserEntity("admin", passwordEncoder.encode("pass"), "admin@gmail.com"));
-                userService.addRoleToUser("admin", "ROLE_ADMIN");
-                userService.addRoleToUser("admin", "ROLE_USER");
-            }
-
-            UserEntity user = new UserEntity(registerForm.username(), passwordEncoder.encode(registerForm.password()), registerForm.email());
-            userService.insertUser(user);
-            userService.addRoleToUser(registerForm.username(), "ROLE_USER");
-
-            // Log successful registration (optional)
-            System.out.println("User registered successfully: " + user.getUsername());
-
-            // Return a ResponseEntity with the user and a status code of 201 (Created)
-            return ResponseEntity.status(HttpStatus.CREATED).body(user);
-        } catch (Exception e) {
-            // Log the exception for debugging
-            e.printStackTrace();
-
-            // Return a ResponseEntity with an error message and a status code of 500 (Internal Server Error)
-            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
+    public  ResponseEntity<String> createUser(@RequestBody RegisterForm request){
+        //sprawdzam, czy jest użytkownik: admin i role: ADMIN i USER, jeśli nie to dodaje je do DB.
+        if(roleService.findRoleByName("ROLE_ADMIN") == null){
+            roleService.insertRole(new Role("ROLE_ADMIN"));
+            roleService.insertRole(new Role("ROLE_USER"));
+            userService.insertUser(new UserEntity("admin", passwordEncoder.encode("pass"), request.email()));
+            userService.addRoleToUser("admin", "ROLE_ADMIN");
+            userService.addRoleToUser("admin", "ROLE_USER");
         }
+        UserEntity user= new UserEntity(request.username(), passwordEncoder.encode(request.password()), request.email());
+        userService.insertUser(user);
+        userService.addRoleToUser(request.username(), "ROLE_USER");
+        return new ResponseEntity<>("User " + user.getUsername() + " successfully registered", HttpStatus.CREATED);
     }
 
     @PostMapping("/user/login")
-//    public UserEntity login(@RequestBody LoginForm loginForm){
-//        return userService.login(loginForm);
-//    }
-    public ResponseEntity<?> authenticateUser(@RequestBody LoginForm loginForm) {
+    public ResponseEntity<?> authenticateUser(@RequestBody LoginForm loginRequest) {
 
         Authentication authentication = authenticationManager.authenticate(
-                new UsernamePasswordAuthenticationToken(loginForm.username(), loginForm.password()));
+                new UsernamePasswordAuthenticationToken(loginRequest.username(), loginRequest.password()));
 
         SecurityContextHolder.getContext().setAuthentication(authentication);
         String jwt = jwtUtils.generateJwtToken(authentication);
@@ -102,10 +85,8 @@ public class UserController {
         List<String> roles = userDetails.getAuthorities().stream().map(GrantedAuthority::getAuthority)
                 .toList();
 
-        mainService.giveUserAnotherTrainingPlan(userService.getUserByUsername(userDetails.getUsername()).getId());
-
         return ResponseEntity
-                .ok(new JwtResponse(jwt, userDetails.getUsername(), userService.getUserByUsername(userDetails.getUsername()), roles));
+                .ok(new JwtResponse(jwt, userDetails.getUsername(),userService.getUserByUsername(userDetails.getUsername()) ,roles));
     }
 
     @PatchMapping("/user/formDone")
@@ -169,4 +150,9 @@ public class UserController {
         System.out.println("Received form data: " + userData);
         return "Form data received successfully!";
     }
+
+//    @GetMapping("/logout")
+//    public void logout(){
+//        SecurityContextHolder.getContext().setAuthentication(null);
+//    }
 }

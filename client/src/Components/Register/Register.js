@@ -2,7 +2,7 @@ import React, { useState , useEffect} from "react";
 import Form from "./Form";
 import "./RegisterForm.css";
 
-const Register = ({}) => {
+const Register = () => {
     const[name, setName] = useState('');
     const[email, setEmail] = useState('');
     const[password, setPassword] = useState('');
@@ -19,16 +19,10 @@ const Register = ({}) => {
             headers: {'Content-Type': 'application/json'},
             body: JSON.stringify({username:name, password:password,email:email})
         })
-
-        if (response.ok) {
-            const data = await response.json();
-            console.log(data);
-            setRegisteredUser(data);
-            setChangeToForm("no ta");
-          } else {
-            console.error("Registration failed");
-          }
-        } catch (error) {
+            const data = await response.text()
+            console.log(response.status, data)
+        }   
+        catch (error) {
           console.error("Error during registration:", error);
         }
     }
