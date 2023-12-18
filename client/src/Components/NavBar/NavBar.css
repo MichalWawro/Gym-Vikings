@@ -1,6 +1,6 @@
 /* Header and Footer styles */
 .App-header {
-  position: fixed;
+  /* position: fixed; */
   background-color: #19191b;
   width: 100%;
   padding: 5px;
@@ -49,6 +49,7 @@
 
 .NavButton:hover {
   background-color: rgb(212, 212, 103);
+  color: rgb(0, 0, 0);
   transform: scale(1.1);
 }
 

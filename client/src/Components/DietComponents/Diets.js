@@ -47,10 +47,10 @@ const Diets = ({ user, isLoggedIn }) => {
 
     return (
         <div className='mainDiets'>
-            {isLoggedIn ? (
-                <DietsLoggedIn user={user} />
+            {isLoggedIn ? (<DietsLoggedOut />
+                
             ) : (
-                <DietsLoggedOut />
+                <DietsLoggedIn user={user} />
             )}
         </div>
     );

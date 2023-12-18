@@ -13,7 +13,7 @@ const Home = ({user, isLoggedIn}) => {
           <main>           
             <div>
             {isLoggedIn ?
-                <HomePageLoggedIn user={user}/>
+                <HomePageLoggedIn/>
                 :
                 <HomePageLoggedOut/>
             }
