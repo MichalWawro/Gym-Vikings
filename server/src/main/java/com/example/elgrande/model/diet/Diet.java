@@ -7,11 +7,13 @@ import com.example.elgrande.model.user.UserEntity;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import java.util.List;
 
 @Entity
 @Data
+@NoArgsConstructor
 public class Diet {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -21,14 +23,13 @@ public class Diet {
     @JoinTable(name = "diets", joinColumns = @JoinColumn(name="diet_id"),
             inverseJoinColumns = @JoinColumn(name = "meal_id"))
     private List<Meal> meals;
-    //    private List<User> favouritedBy;
     private List<Allergy> allergies;
     private FoodType foodType;
     private String dietDescription;
     private int dietCaloriesPerDay;
     private int favNumber;
 
-    @ManyToMany(mappedBy = "diets")
+    @OneToMany
     @JsonIgnore
     private List<UserEntity> users;
     public Diet(String dietName, List<Meal> mealsArray, FoodType foodType, String dietDescription, List<Allergy> allergies) {

@@ -26,15 +26,15 @@ public class DietController {
         this.mealService = mealService;
     }
 
-    @GetMapping("/{id}")
-    public Diet getDietById(@PathVariable int id) {
-        return dietService.getDietById(id);
-    }
+//    @GetMapping("/{id}")
+//    public Diet getDietById(@PathVariable int id) {
+//        return dietService.getDietById(id);
+//    }
 
-    @GetMapping("/meals/{id}")
-    public Meal getMealById(@PathVariable int id) {
-        return mealService.getMealById(id);
-    }
+//    @GetMapping("/meals/{id}")
+//    public Meal getMealById(@PathVariable int id) {
+//        return mealService.getMealById(id);
+//    }
 
     @GetMapping("/getAll")
     public List<Diet> getAllDiets() {
@@ -46,19 +46,19 @@ public class DietController {
         return dietService.createDiet(diet);
     }
 
-    @DeleteMapping("/{id}")
-    public void deleteDiet(@PathVariable int id) {
-        dietService.deleteDiet(id);
-    }
+//    @DeleteMapping("/{id}")
+//    public void deleteDiet(@PathVariable int id) {
+//        dietService.deleteDiet(id);
+//    }
 
-    @PutMapping("/{id}")
-    public Diet updateDiet(@PathVariable int id, @RequestBody Diet updatedDiet) {
-        return dietService.updateDiet(id, updatedDiet);
-    }
+//    @PutMapping("/{id}")
+//    public Diet updateDiet(@PathVariable int id, @RequestBody Diet updatedDiet) {
+//        return dietService.updateDiet(id, updatedDiet);
+//    }
 
     //---------------------------------------------------------------------------------
 
-    @GetMapping("/user/checkForAllergies")
-    public List<Integer> checkForAllergies(@RequestParam List<Diet> diets, List<Allergy> allergies) {return dietService.checkForAllergies(diets, allergies);}
+//    @GetMapping("/user/checkForAllergies")
+//    public List<Integer> checkForAllergies(@RequestParam List<Diet> diets, List<Allergy> allergies) {return dietService.checkForAllergies(diets, allergies);}
 }
 
