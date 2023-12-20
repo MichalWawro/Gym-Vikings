@@ -19,7 +19,7 @@ public class Training {
     private int id;
     private String name;
     @ElementCollection(targetClass = Body.class)
-    @CollectionTable(name = "body_parts", joinColumns = @JoinColumn(name = "your_entity_id"))
+    @CollectionTable(name = "body_parts", joinColumns = @JoinColumn(name = "training_id"))
     @Enumerated(EnumType.STRING)
     private List<Body> bodyParts;
     @ManyToMany(mappedBy = "trainings")
