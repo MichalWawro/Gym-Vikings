@@ -1,41 +1,46 @@
 import React, { useState , useEffect} from "react";
 import Form from "./Form";
+import Home from "../HomePage/Home"
 import "./RegisterForm.css";
+import{ useNavigate } from 'react-router-dom';
 
 const Register = () => {
     const[name, setName] = useState('');
     const[email, setEmail] = useState('');
     const[password, setPassword] = useState('');
-
-    const[changeToForm, setChangeToForm] = useState(null);
-
-    const[registeredUser,setRegisteredUser] = useState(null);
+    const[error, setError] = useState(null);
+   
+    const navigate = useNavigate();
 
     async function handleRegister(event){
         event.preventDefault();
-        try{
-        const response = await fetch(`http://localhost:8080/user/register`, {
-            method: 'POST',
-            headers: {'Content-Type': 'application/json'},
-            body: JSON.stringify({username:name, password:password,email:email})
-        })
-            const data = await response.text()
-            console.log(response.status, data)
-        }   
-        catch (error) {
-          console.error("Error during registration:", error);
-        }
+        if (isValidEmail(email)) {
+            try{
+                const response = await fetch(`http://localhost:8080/user/register`, {
+                    method: 'POST',
+                    headers: {'Content-Type': 'application/json'},
+                    body: JSON.stringify({username:name, password:password,email:email})
+                })
+                    const data = await response.text()
+                    console.log(response.status, data)
+                    navigate("/")
+                }   
+                catch (error) {
+                console.error("Error during registration:", error);
+                }
+        } else {
+        setError('Email is invalid');
+        }  
     }
+
+    function isValidEmail(email) {
+        return /\S+@\S+\.\S+/.test(email);
+      }
 
 
     return (
-        <>
-        {changeToForm ? 
-            (
-                <Form registeredUser={registeredUser}></Form>
-            )
-            :
-            (        <div className="container">
+        <>   
+        <div className="container">
             <div className="app-wrapper">
                 <div>
                     <h2 className="title">Create Account</h2>
@@ -75,14 +80,11 @@ const Register = () => {
                     <div className="form-group">
                         <button className="submit" type="submit" onClick={(e)=>{handleRegister(e)}}>Register</button>
                     </div>
+                    {error && <h2 style={{color: 'red'}}>{error}</h2>}
                 </form>
             </div>
         </div>
-        )
-        }
         </>
-
-
     );
 };
 

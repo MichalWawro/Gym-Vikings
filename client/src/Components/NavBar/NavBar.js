@@ -4,7 +4,7 @@ import { useNavigate } from 'react-router-dom';
 import NavBarLoggedIn from './NavBarLoggedIn.js';
 import NavBarLoggedOut from './NavBarLoggedOut.js';
 
-const NavBar = ({ isLoggedIn, handleLoginChange, login, tryingToSign, setTryingToSign, setUser, setJwt}) => {
+const NavBar = ({ isLoggedIn, setLoginState, handleLoginChange, login, tryingToSign, setTryingToSign, user, setUser, setJwt}) => {
     const navigate = useNavigate();
     return (
         <div>
@@ -13,9 +13,9 @@ const NavBar = ({ isLoggedIn, handleLoginChange, login, tryingToSign, setTryingT
             </button>
 
             {isLoggedIn ?
-                <NavBarLoggedIn handleLoginChange={handleLoginChange} setUser={setUser}/>
+                <NavBarLoggedIn  setUser={setUser} user={user} setLoginState={setLoginState}/>
                 :
-                <NavBarLoggedOut handleLoginChange={handleLoginChange} tryingToSign={tryingToSign} login={login} setTryingToSign={setTryingToSign} setUser={setUser} setJwt={setJwt}/>
+                <NavBarLoggedOut  setLoginState={setLoginState} tryingToSign={tryingToSign} login={login} setTryingToSign={setTryingToSign} user={user} setUser={setUser} setJwt={setJwt}/>
             }
         </div>
     );

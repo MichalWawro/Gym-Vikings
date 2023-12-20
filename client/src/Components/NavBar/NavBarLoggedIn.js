@@ -1,6 +1,6 @@
 import { useNavigate } from 'react-router-dom';
 
-const NavBarLoggedIn = ({ handleLoginChange, setUser }) => {
+const NavBarLoggedIn = ({ handleLoginChange, setUser, setLoginState }) => {
     const navigate = useNavigate();
 
 
@@ -23,7 +23,7 @@ const NavBarLoggedIn = ({ handleLoginChange, setUser }) => {
             </button>
             <button id="LogOutButton" className="NavButton" type="button" onClick={() => {
                 setUser("No user")
-                handleLoginChange(false)
+                setLoginState(false)
                 navigate('')
             }}>
                 Log Out

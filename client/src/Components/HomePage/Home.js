@@ -4,7 +4,7 @@ import HomePageLoggedIn from './HomePageLoggedIn.js';
 import HomePageLoggedOut from './HomePageLoggedOut.js';
 
 
-const Home = ({user, isLoggedIn}) => {
+const Home = ({isLoggedIn}) => {
     // const [isLoggedIn, setLoginState] = useState(false);
     const handleLoginChange = (bool) => {
         // setLoginState(bool);

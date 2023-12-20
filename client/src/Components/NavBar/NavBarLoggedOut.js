@@ -1,12 +1,27 @@
 import { useNavigate } from 'react-router-dom';
 import React, { useState, useEffect } from "react";
 
-const NavBarLoggedOut = ({ handleLoginChange, login, tryingToSign, setTryingToSign, setUser, setJwt}) => {
+const NavBarLoggedOut = ({ handleLoginChange, login, tryingToSign, setTryingToSign, user, setUser, setJwt, setLoginState}) => {
     
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
 
+    const[error, setError] = useState(null);
+
     const navigate = useNavigate();
+
+    async function getUserFromDb(){
+        try{
+            const getRes = await fetch(`http://localhost:8080/user/getUserInfoByName?name=${username}`)
+            const data = await getRes.json()
+            console.log("Data z get user from db", data)
+            return data.username
+        }
+        catch(error){
+            setError('Wrong username and/or password.');
+            console.log(error)
+        }
+    }
 
 
     async function handleLogin(){
@@ -18,18 +33,31 @@ const NavBarLoggedOut = ({ handleLoginChange, login, tryingToSign, setTryingToSi
         })
         const data = await postRes.json();
         console.log("Do podglądu -> login data", data)
-        console.log("Do podglądu -> login data.user", data.user)
-        setUser(data.user)
-        setJwt(data.jwt)
+        
+
+        const usernameFromDb = await getUserFromDb()
+
+        if(username === usernameFromDb){
+            console.log("user exists")
+            setUser(data.user)
+            setJwt(data.jwt)
+            setLoginState(true);
+            console.log("Do podglądu -> login data.user", data.user)
+        }
+        else{
+            console.log("user dont exist")
+            setLoginState(false);
+            setUser("No user")
+        }
     }
         
     function handleUsername(e){
-        console.log(e.target.value)
+        // console.log(e.target.value)
         setUsername(e.target.value)
     }
 
     function handlePassword(e){
-        console.log(e.target.value)
+        // console.log(e.target.value)
         setPassword(e.target.value)
     }
 
@@ -71,7 +99,7 @@ const NavBarLoggedOut = ({ handleLoginChange, login, tryingToSign, setTryingToSi
                     <button id="SignInLoginButton" className="NavButton" type="button" onClick={
                         () => {
                             setTryingToSign(false);
-                            handleLoginChange(true);
+                            // setLoginState(true);
                             handleLogin(document.getElementById("LoginInput").value, document.getElementById("PasswordInput").value)
                         }}>
                         Login
@@ -79,6 +107,7 @@ const NavBarLoggedOut = ({ handleLoginChange, login, tryingToSign, setTryingToSi
                 </div>
 
                 :
+               
                 <button id="SignInButton" className="NavButton" type="button" onClick={() => setTryingToSign(true)}>
                     Login
                 </button>
@@ -87,6 +116,7 @@ const NavBarLoggedOut = ({ handleLoginChange, login, tryingToSign, setTryingToSi
             <button id="RegisterButton" className="NavButton" type="button" onClick={() => navigate("/register")}>
                 Register
             </button>
+            {error && <h3 style={{color: 'red'}}>{error}</h3>}
         </div>
     );
 };

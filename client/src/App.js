@@ -21,9 +21,7 @@ import Register from "./Components/Register/Register";
 function App() {
   const [isLoggedIn, setLoginState] = useState(false);
   const [tryingToSign, setTryingToSign] = useState(false);
-  const handleLoginChange = (bool) => {
-    setLoginState(bool);
-  };
+
 
   const [user, setUser] = useState('No user');
   const [jwt, setJwt] = useState()
@@ -52,7 +50,7 @@ function App() {
     <div>
       <div className="App">
         <header className="App-header">
-          <NavBar isLoggedIn={isLoggedIn} tryingToSign={tryingToSign} handleLoginChange={handleLoginChange} setTryingToSign={setTryingToSign} setUser={setUser} setJwt={setJwt}/>
+          <NavBar isLoggedIn={isLoggedIn} setLoginState={setLoginState} tryingToSign={tryingToSign} setTryingToSign={setTryingToSign} user={user} setUser={setUser} setJwt={setJwt}/>
         </header>
         <Routes>
           <Route path='/' element={<Home isLoggedIn={isLoggedIn}/>}></Route>
