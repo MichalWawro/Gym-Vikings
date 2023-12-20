@@ -44,6 +44,7 @@ function App() {
 
 
   useEffect(() => {
+    document.title = 'Gym Viking: Home';
     // fetchUser();
     // login();
   }, [])

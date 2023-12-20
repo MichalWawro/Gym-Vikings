@@ -56,30 +56,10 @@ const Form = ({ registeredUser, user, setUser }) => {
 
               
       }
-
-    //   async function getPropperUser(){
-    //     const getRes = await fetch(`http://localhost:8080/user/getUserInfo?userId=${user.id}`)
-    //     const data = await getRes.json()
-    //     console.log("Data z getproper user", data);
-    //     setUser(data)
-    //   }
-
-    //   function getPropperUser(){
-    //     fetch(`http://localhost:8080/user/getUserInfo?userId=${user.id}`)
-    //     .then(res=>res.json())
-    //     .then(data=>{
-    //         console.log("Data z getproper user", data);
-    //         // setUser(data)
-    //         // setRegistered("go")
-    //     })
-    //     .catch(e=>console.error(e))
-    //   }
-
        
       const handleSubmit = (e) => {
         e.preventDefault();
         formDone();
-        // getPropperUser()
       };
     
 

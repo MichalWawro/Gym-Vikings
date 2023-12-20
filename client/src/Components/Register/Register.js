@@ -11,6 +11,10 @@ const Register = () => {
 
     const[registeredUser,setRegisteredUser] = useState(null);
 
+    useEffect(() => {
+        document.title = 'Gym Viking: Register';
+      }, [])
+
     async function handleRegister(event){
         event.preventDefault();
         try{
