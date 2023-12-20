@@ -47,8 +47,7 @@ const NavBarLoggedOut = ({ login, tryingToSign, setTryingToSign, setUser, setJwt
         }
         else{
             console.log("user dont exist")
-            setLoginState(false);
-            setUser("No user")
+
         }
     }
         
