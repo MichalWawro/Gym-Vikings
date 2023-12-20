@@ -1,18 +1,47 @@
 import { useNavigate } from 'react-router-dom';
 import React, { useState, useEffect } from "react";
 
-const NavBarLoggedOut = ({ handleLoginChange, login, tryingToSign, setTryingToSign}) => {
+const NavBarLoggedOut = ({ login, tryingToSign, setTryingToSign, setUser, setJwt}) => {
+    
+    const [username, setUsername] = useState('');
+    const [password, setPassword] = useState('');
+
     const navigate = useNavigate();
+
+
+    async function handleLogin(){
+        // event.preventDefault()
+        const postRes = await fetch(`http://localhost:8080/user/login`, {
+          method: 'POST',
+          headers: {'Content-Type': 'application/json'},
+          body: JSON.stringify({username:username, password:password})
+        })
+        const data = await postRes.json();
+        console.log("Do podglądu -> login data", data)
+        console.log("Do podglądu -> login data.user", data.user)
+        setUser(data.user)
+        setJwt(data.jwt)
+        navigate('/')
+    }
+        
+    function handleUsername(e){
+        console.log(e.target.value)
+        setUsername(e.target.value)
+    }
+
+    function handlePassword(e){
+        console.log(e.target.value)
+        setPassword(e.target.value)
+    }
+
+
+    
+
     
     return (
         <div>
-            <div className="Spacer" />
-            <button id="TrainingButton" className="NavButton" type="button" onClick={() => navigate("/trainings")}>
-                Trainings
-            </button>
-            <button id="DietButton" className="NavButton" type="button" onClick={() => navigate("/diets")}>
-                Diets
-            </button>
+
+            
             {tryingToSign ?
 
                 <div id="MainLoginDiv" >
@@ -21,23 +50,22 @@ const NavBarLoggedOut = ({ handleLoginChange, login, tryingToSign, setTryingToSi
                     </button>
                     <div id="LoginDiv" >
                         <div style={{ display: "inline-block" }} >
-                            <div className="LoginDivBox" >login:</div>
+                            <div className="LoginDivBox" >username:</div>
                             <div>
-                                <input className="LoginInputBox" id="LoginInput" />
+                                <input className="LoginInputBox" id="LoginInput" onChange={handleUsername} />
                             </div>
                         </div>
                         <div style={{ display: "inline-block" }} >
                             <div className="LoginDivBox" >password:</div>
                             <div>
-                                <input className="LoginInputBox" id="PasswordInput" type="password" />
+                                <input className="LoginInputBox" id="PasswordInput" type="password" onChange={handlePassword} />
                             </div>
                         </div>
                     </div>
                     <button id="SignInLoginButton" className="NavButton" type="button" onClick={
                         () => {
                             setTryingToSign(false);
-                            handleLoginChange(true);
-                            login(document.getElementById("LoginInput").value, document.getElementById("PasswordInput").value)
+                            handleLogin(document.getElementById("LoginInput").value, document.getElementById("PasswordInput").value)
                         }}>
                         Login
                     </button>
@@ -45,7 +73,7 @@ const NavBarLoggedOut = ({ handleLoginChange, login, tryingToSign, setTryingToSi
 
                 :
                 <button id="SignInButton" className="NavButton" type="button" onClick={() => setTryingToSign(true)}>
-                    Sign In
+                    Login
                 </button>
             }
 

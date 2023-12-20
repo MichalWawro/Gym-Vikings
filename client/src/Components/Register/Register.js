@@ -1,15 +1,12 @@
 import React, { useState , useEffect} from "react";
 import Form from "./Form";
 import "./RegisterForm.css";
-
-const Register = ({login}) => {
+import { useNavigate } from 'react-router-dom';
+const Register = () => {
+    const navigate = useNavigate()
     const[name, setName] = useState('');
     const[email, setEmail] = useState('');
     const[password, setPassword] = useState('');
-
-    const[changeToForm, setChangeToForm] = useState(null);
-
-    const[registeredUser,setRegisteredUser] = useState(null);
 
     async function handleRegister(event){
         event.preventDefault();
@@ -19,16 +16,11 @@ const Register = ({login}) => {
             headers: {'Content-Type': 'application/json'},
             body: JSON.stringify({username:name, password:password,email:email})
         })
-
-        if (response.ok) {
-            const data = await response.json();
-            console.log(data);
-            setRegisteredUser(data);
-            setChangeToForm("no ta");
-          } else {
-            console.error("Registration failed");
-          }
-        } catch (error) {
+            const data = await response.text()
+            console.log(response.status, data)
+            navigate("/form")
+        }   
+        catch (error) {
           console.error("Error during registration:", error);
         }
     }
@@ -36,12 +28,7 @@ const Register = ({login}) => {
 
     return (
         <>
-        {changeToForm ? 
-            (
-                <Form registeredUser={registeredUser} login={login}></Form>
-            )
-            :
-            (        <div className="container">
+            <div className="container">
             <div className="app-wrapper">
                 <div>
                     <h2 className="title">Create Account</h2>
@@ -84,8 +71,6 @@ const Register = ({login}) => {
                 </form>
             </div>
         </div>
-        )
-        }
         </>
 
 

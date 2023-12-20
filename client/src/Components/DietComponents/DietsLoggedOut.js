@@ -7,21 +7,26 @@ import image2 from '../../assets/spaghetti.jpg';
 const DietsLoggedOut = ({ }) => {
     const navigate = useNavigate();
 
+    useEffect(() => {
+        console.log('use effectxdxddxdddxd')
+
+    }, []);
+
     return (
         <div class="wrapper-column">
-            <div className="text-box-wrapper">
+            <div className="text-box-wrapper-logged-out">
                 <img id='image-left' src={image} alt="" />
                 <div className="text-box">
-                    <p>Description description description description description description description description description description description  description description description description description description description description description description description description description description description description description description</p>
+                    <p>Our app offers a variety of diets for all your foody needs</p>
                 </div>
             </div>
-            <div className="text-box-wrapper">
+            <div className="text-box-wrapper-logged-out">
                 <img id='image-right' src={image} alt="" />
                 <div className="text-box">
-                    <p>Description description description description description description description description description description description  description description description description description description description description description description description description description description description description description description</p>
+                    <p>Whether you want to lose weight or gain some muscles with us you can choose a diet that will help you achieve your dream goal</p>
                 </div>
             </div>
-            <button id="button-main" onClick={() => navigate('/login')}>Let's get it started!</button>
+            <button id="button-main-logged-out" onClick={() => navigate('/login')}>Click to make an account!</button>
         </div >
     );
 }

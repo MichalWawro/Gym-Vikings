@@ -1,7 +1,11 @@
 import { useNavigate } from 'react-router-dom';
 
-const NavBarLoggedIn = ({ handleLoginChange }) => {
+const NavBarLoggedIn = ({ setUser }) => {
     const navigate = useNavigate();
+
+
+
+
     return (
         <div>
             <div className="Spacer" />
@@ -11,12 +15,15 @@ const NavBarLoggedIn = ({ handleLoginChange }) => {
             <button id="DietButton" className="NavButton" type="button" onClick={() => navigate("/diets")}>
                 Diets
             </button>
+            <button id="FormButton" className="NavButton" type="button" onClick={() => navigate("/form")}>
+                Form
+            </button>
             <button id="ProfileButton" className="NavButton" type="button" onClick={() => navigate("/profile")}>
                 Profile
             </button>
             <button id="LogOutButton" className="NavButton" type="button" onClick={() => {
-                handleLoginChange(false)
-                navigate('')
+                setUser()
+                navigate('/')
             }}>
                 Log Out
             </button>

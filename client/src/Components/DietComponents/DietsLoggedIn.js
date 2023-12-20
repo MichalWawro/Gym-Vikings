@@ -5,7 +5,7 @@ import image from '../../assets/background.png';
 
 const DietsLoggedIn = ({ user }) => {
     const [readyToLoad, setReady] = useState(false);
-    const [userDiet, setUserDiet] = useState(1);
+    const [userDiet, setUserDiet] = useState(null);
     const navigate = useNavigate();
 
     useEffect(() => {
@@ -32,11 +32,11 @@ const DietsLoggedIn = ({ user }) => {
         <div className='main'>
             {readyToLoad ? (
                 userDiet == null ? (
-                    <div className="wrapper-row">
+                    <div className="wrapper-row-no-diets">
                         <img id='viking-eat' src={image} alt="" />
-                        <div className="wrapper-column">
-                            <p>Description description description description description description description description description description description description description description description description description description</p>
-                            <button id="button-main" onClick={() => navigate('/login')}>Let's get it started!</button>
+                        <div className="wrapper-column-no-diets">
+                            <p>Looks like you haven't chosen any diet yet...</p>
+                            <button id="button-main-no-diets" onClick={() => navigate('/login')}>Choose a diet!</button>
                         </div>
                     </div>
                 ) : (

@@ -183,16 +183,9 @@ public class MainService {
 
 
     public Training getNextTrainingFromUser(UserEntity user){
+        Random random = new Random();
         List<Training> userTrainings = user.getTrainings();
-        for(int i =0;i<userTrainings.size();i++){
-            int index = user.getAmountOfTrainingsDone() % 7;
-            if(index == i){
-                return userTrainings.get(index);
-            }else {
-                continue;
-            }
-        }
-        return null;
+        return userTrainings.get(random.nextInt(userTrainings.size()));
     }
 
 
@@ -225,29 +218,34 @@ public class MainService {
 
         List<Training> userTrainingsToExport = userTrainings;
 
-        if((user.getAmountOfTrainingsDone() % (28 * getIncreaseRate(user.getLevel()))) == 0 && user.getAmountOfTrainingsDone() !=0) {
-
             for (Training training:
              userTrainings) {
             List<Exercise> exercises = training.getExercises();
                     for (Exercise exercise:
                         exercises) {
                     if (exercise.getWeight() == 0) {
-                        exercise.setReps(exercise.getReps() * getIncreaseRate(user.getLevel()));
+                        exercise.setReps(exercise.getReps() + (2 * getIncreaseRate(user.getLevel())));
                     }else{
                         double weight = exercise.getWeight();
-                        exercise.setWeight(weight + (10 * getIncreaseRate(user.getLevel())));
+                        exercise.setWeight(weight + (5 * getIncreaseRate(user.getLevel())));
                         exercise.setReps(exercise.getReps() + 1);
                     }
                 }
             }
-        }
         return userTrainingsToExport;
     }
 
-    public void deleteTrainingFromUser(int trainingid, int userid){
+    public void deleteTrainingFromUser(int trainingid, int userid) {
         UserEntity user = userService.getUserById(userid);
-        user.getTrainings().remove(trainingid -1);
+        List<Training> trainings = user.getTrainings();
+
+        for(int i=0;i<trainings.size();i++){
+            Training training = trainings.get(i);
+            if(training.getId() == trainingid){
+                trainings.remove(training);
+            }
+        }
+
         userService.saveUser(user);
     }
 
@@ -269,97 +267,124 @@ public class MainService {
         userService.saveUser(user);
     }
 
+    public void giveUserFirstTrainingPlan(int userId){
+        LocalDate date = LocalDate.now();
+        UserEntity user = userService.getUserById(userId);
+        List<Training> updatedtrainings = trainingService.getTrainings();
+
+        List<Training> trainingsToSet = trainingService.prepareTrainings(updatedtrainings);
+        user.setTrainings(trainingsToSet);
+        user.setDateOfTrainingAssosiation(date);
+        userService.saveUser(user);
+    }
+
 //Diets diets diets diets diets
-    public List<Diet> getDietsFormUser(int userId) {
-        UserEntity user = userService.getUserById(userId);
-        List<Diet> diets = user.getDiets();
-        if(diets.isEmpty()) {
-            List<Diet> empty = new ArrayList<>();
-            return empty;
-        }
-        return diets;
-    }
-    public void randomizeMeals(int userId) {
-        UserEntity user = userService.getUserById(userId);
-        Diet diet = user.getDiet(0);
-        List<Meal> currentMealsArray = diet.getMealsArray();
-        List<Meal> randomizedMealsArray = new ArrayList<>();
-        int indexToMove = 0;
-
-        while(!currentMealsArray.isEmpty()) {
-            indexToMove = rand.nextInt(currentMealsArray.size());
-            randomizedMealsArray.add(currentMealsArray.get(indexToMove));
-            currentMealsArray.remove(indexToMove);
-        }
-
-        diet.setMeals(randomizedMealsArray);
-    }
-    public Meal getNextMealFromUserDiet(int userId) {
-        UserEntity user = userService.getUserById(userId);
-//        if(user.getLastUpdatedDate() + 7days > new Date()) {
-//            randomizeMeals(userId);
-//            user = userService.getUserById(userId);
+//    public List<Diet> getDietsFormUser(int userId) { // get Diet (bez listy)
+//        UserEntity user = userService.getUserById(userId);
+//        List<Diet> diets = user.getDiets();
+//        if(diets.isEmpty()) {
+//            List<Diet> empty = new ArrayList<>();
+//            return empty;
 //        }
-        Diet diet = user.getDiet(0);
+//        return diets;
+//    }
+//    public void randomizeMeals(int userId) {
+//        UserEntity user = userService.getUserById(userId);
+//        Diet diet = user.getDiet(0);
+//        List<Meal> currentMealsArray = diet.getMealsArray();
+//        List<Meal> randomizedMealsArray = new ArrayList<>();
+//        int indexToMove = 0;
+//
+//        while(!currentMealsArray.isEmpty()) {
+//            indexToMove = rand.nextInt(currentMealsArray.size());
+//            randomizedMealsArray.add(currentMealsArray.get(indexToMove));
+//            currentMealsArray.remove(indexToMove);
+//        }
+//
+//        diet.setMeals(randomizedMealsArray);
+//    }
+//    public Meal getNextMealFromUserDiet(int userId) {
+//        UserEntity user = userService.getUserById(userId);
+////        if(user.getLastUpdatedDate() + 7days > new Date()) {
+////            randomizeMeals(userId);
+////            user = userService.getUserById(userId);
+////        }
+//        Diet diet = user.getDiet(0);
+//
+//        List<Meal> mealsArray = diet.getMealsArray();
+//
+//        Calendar c = Calendar.getInstance();
+//        c.setFirstDayOfWeek(Calendar.MONDAY);
+//        c.setTime(new Date());
+//        int dayOfWeek = c.get(Calendar.DAY_OF_WEEK);
+//        int mealIndex = dayOfWeek % mealsArray.size();
+//
+////        user.setDietUpdateDate(new Date());
+//        return mealsArray.get(mealIndex);
+//    }
 
-        List<Meal> mealsArray = diet.getMealsArray();
 
-        Calendar c = Calendar.getInstance();
-        c.setFirstDayOfWeek(Calendar.MONDAY);
-        c.setTime(new Date());
-        int dayOfWeek = c.get(Calendar.DAY_OF_WEEK);
-        int mealIndex = dayOfWeek % mealsArray.size();
-
-//        user.setDietUpdateDate(new Date());
-        return mealsArray.get(mealIndex);
-    }
-
-    public List<Diet> suggestDiet(int userId) {
-        List<Diet> diets = new ArrayList<>();
+    public int dailyKcalForUser (int userId) {
         UserEntity user = userService.getUserById(userId);
-        System.out.println(user);
+        List<Diet> diets = dietService.getAllDiets();
+        //Diet diet = dietService.getDietById(user.getDiet().getDietId());
 
-        //Getting all required user info;
         String gender = user.getGender();
         int weight = user.getWeight();
         int height = user.getHeight();
         int age = user.getAge();
         int amountOfTrainingsPerWeek = 7;
         DietType dietType = user.getDietType();
-        List<Allergy> userAllergies = user.getAllergies();
 
-        //Calculating Daily Calorie Intake
         int dailyKcal = 0;
         dailyKcal = (int) dietService.calculateCalorieIntake(gender, weight, height, age, amountOfTrainingsPerWeek, dietType);
 
-        //Searching for suiting diets;
-        List<Diet> foundDiets = dietService.filterDiets("", dailyKcal, user.getFoodType());
+        return dailyKcal;
+    }
 
-        //Adding 3* of the foundDiets to diets list;
-        if(foundDiets.isEmpty()) {
-            throw new NoSuchElementException("FoundDiets list should not be empty");
-        } else if(foundDiets.size() <= 3){
-            for(Diet diet : foundDiets) {
-                diets.add(diet);
-            }
-        } else {
-            for(int i = 0; i < 3; i++) {
-                diets.add(foundDiets.get(i));
-            }
+    public List<Diet> getAllDietsChanged (int userId) {
+        UserEntity user = userService.getUserById(userId);
+        List<Diet> diets = dietService.getAllDiets();
+        List<Diet> changedDiets = new ArrayList<>();
+        int dailyKcal = dailyKcalForUser(userId);
+
+        for(Diet diet : diets) {
+            changedDiets.add(dietService.changeIngredientQuantities(diet, dailyKcal));
         }
 
-        return diets;
+        return changedDiets;
+    }
+
+    public Diet getDietChanged (int userId) {
+        UserEntity user = userService.getUserById(userId);
+        Diet diet = user.getDiet();
+        Diet changedDiet;
+        int dailyKcal = dailyKcalForUser(userId);
+
+        changedDiet = dietService.changeIngredientQuantities(diet, dailyKcal);
+
+        return changedDiet;
     }
 
     public Diet setDiet(int userId, int dietId) {
         UserEntity user = userService.getUserById(userId);
         Diet diet = dietService.getDietById(dietId);
 
-//        user.setDiet(diet);
-        user.setDiet(diet,user.getDiets());
-        return diet;
+        user.setDiet(diet);
+        userService.saveUser(user);
 
+        return diet;
     }
+
+//    public Diet setDiet(int userId, int dietId) {
+//        UserEntity user = userService.getUserById(userId);
+//        Diet diet = dietService.getDietById(dietId);
+//
+////        user.setDiet(diet);
+//        user.setDiet(diet,user.getDiets());
+//        return diet;
+//
+//    }
 
 
 }

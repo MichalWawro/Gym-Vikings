@@ -8,6 +8,7 @@ import com.example.elgrande.model.enums.enums_training.Body;
 import com.example.elgrande.model.enums.enums_training.Type;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
+import jakarta.transaction.Transactional;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -16,6 +17,7 @@ import java.util.List;
 @Data
 @Entity
 @NoArgsConstructor
+@Transactional
 public class Exercise {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

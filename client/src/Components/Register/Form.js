@@ -3,8 +3,8 @@ import './UserData.css';
 import { Navigate } from 'react-router-dom';
 import Home from '../HomePage/Home';
 import HomePageLoggedIn from '../HomePage/HomePageLoggedIn';
-import Login from './Components/NavBar/Login/Login'
-const Form = ({ registeredUser }) => {
+
+const Form = ({ user, setUser }) => {
 
     const[age, setAge] = useState('');
     const[weight, setWeight] = useState('');
@@ -17,7 +17,7 @@ const Form = ({ registeredUser }) => {
 
     const[registered, setRegistered] = useState();
 
-    const[user,setUser] = useState();
+
 
 
     const handleCheckboxChange = (allergy) => {
@@ -32,8 +32,8 @@ const Form = ({ registeredUser }) => {
     };
 
 
-      function formDone() {
-          fetch(`http://localhost:8080/user/formDone?userId=${registeredUser.id}`, {
+      async function formDone() {
+          const patchRes = await fetch(`http://localhost:8080/user/formDone?userId=${user.id}`, {
               method: 'PATCH',
               headers: {'Content-Type': 'application/json'},
               body: JSON.stringify({
@@ -45,32 +45,21 @@ const Form = ({ registeredUser }) => {
                   allergies: allergies.map(allergy => allergy.toUpperCase())
               })
           })
-          .then(res => {
-              console.log("Response from server:", res);
-              return res.json();
-          })
-          .then(data => {
-              console.log("Parsed JSON data:", data);
-          })
-          .catch(e => console.error(e));
-      }
+          console.log("Response from server:", patchRes);
+          const data = await patchRes.text() // tu zmineilem z json() na text(), bo w backendzie zwracany jest: ResponseEntity<String>
+          console.log("Parsed JSON data:", data);
 
-
-      function getPropperUser(){
-        fetch(`http://localhost:8080/user/getUserInfo?userId=7`)
-        .then(res=>res.json())
-        .then(data=>{
-            console.log("-------------------------" + data);
-            setUser(data)
-            setRegistered("go")})
-        .catch(e=>console.error(e))
+          //funkcję getPropperUser wrzuciłem tu bezpośrednio
+          const getRes = await fetch(`http://localhost:8080/user/getUserInfo?userId=${user.id}`)
+          const getData = await getRes.json()
+          console.log("Data z getproper user", getData);
+          setUser(getData)
       }
 
        
       const handleSubmit = (e) => {
         e.preventDefault();
         formDone();
-        getPropperUser()
       };
     
 
@@ -79,7 +68,7 @@ const Form = ({ registeredUser }) => {
         <>
         {registered ? 
             (
-                <Login username={registeredUser.username} password={registeredUser.password}/>
+                <HomePageLoggedIn user={user}/>
             )
             :
             (

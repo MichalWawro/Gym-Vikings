@@ -23,7 +23,7 @@ public class DietService {
         Diet dietToReturn = diet.get();
         return dietToReturn;
     }
-
+//
     public List<Diet> getAllDiets() {
         List<Diet> diets = dbRepository.findAll();
         return diets;
@@ -37,86 +37,61 @@ public class DietService {
         dbRepository.saveAll(diets);
     }
 
-    public void deleteDiet(int id) {
-        dbRepository.deleteById(id);
-    }
+//    public void deleteDiet(int id) {
+//        dbRepository.deleteById(id);
+//    }
 
-    public Diet updateDiet(int id, Diet updatedDiet) {
-        Optional<Diet> dietToUpdate = dbRepository.findById(id);
-
-        if (dietToUpdate.isPresent()) {
-            Diet diet = dietToUpdate.get();
-            diet.setDietName(updatedDiet.getDietName());
-
-            return dbRepository.save(diet);
-        } else {
-            return null;
-        }
-    }
+//    public Diet updateDiet(int id, Diet updatedDiet) {
+//        Optional<Diet> dietToUpdate = dbRepository.findById(id);
+//
+//        if (dietToUpdate.isPresent()) {
+//            Diet diet = dietToUpdate.get();
+//            diet.setDietName(updatedDiet.getDietName());
+//
+//            return dbRepository.save(diet);
+//        } else {
+//            return null;
+//        }
+//    }
 
     //Business Logic
-    public List<Integer> checkForAllergies (List<Diet> diets, List<Allergy> allergies) {
-        List<Integer> dietsWithAllergies = new ArrayList<>();
+//    public List<Integer> checkForAllergies (List<Diet> diets, List<Allergy> allergies) {
+//        List<Integer> dietsWithAllergies = new ArrayList<>();
+//
+//        if(allergies.isEmpty()) {
+//            return null;
+//        }
+//        for(Diet diet : diets) {
+//            for(Allergy allergy : allergies) {
+//                if(diet.getAllergies().contains(allergy)) {
+//                    dietsWithAllergies.add(diets.indexOf(diet));
+//                    break;
+//                }
+//            }
+//        }
+//
+//        return dietsWithAllergies;
+//    }
 
-        if(allergies.isEmpty()) {
-            return null;
-        }
-        for(Diet diet : diets) {
-            for(Allergy allergy : allergies) {
-                if(diet.getAllergies().contains(allergy)) {
-                    dietsWithAllergies.add(diets.indexOf(diet));
-                    break;
-                }
-            }
-        }
+//    public List<Diet> filterDiets(int dailyKcal) {
+//        //Add diet sorting by favourites;
+//
+//        List<Diet> allDiets = getAllDiets();
+//        List<Diet> filteredDiets = new ArrayList<>();
+//        List<Allergy> allergiesInDiet = new ArrayList<>();
+//
+//        for(Diet diet : allDiets) {
+////            if(diet.getDietName().contains(dietName) && (foodType == null || diet.getFoodType() == foodType)) {
+//                filteredDiets.add(diet);
+////            }
+//        }
+//
+//        filteredDiets = changeIngredientQuantities(filteredDiets, dailyKcal);
+//
+//        return filteredDiets;
+//    }
 
-        return dietsWithAllergies;
-    }
-
-    public List<Diet> filterDiets(String dietName, int dailyKcal, FoodType foodType) {
-        //Add diet sorting by favourites;
-
-        List<Diet> allDiets = getAllDiets();
-        List<Diet> filteredDiets = new ArrayList<>();
-        List<Allergy> allergiesInDiet = new ArrayList<>();
-
-        for(Diet diet : allDiets) {
-            if(diet.getDietName().contains(dietName) && (foodType == null || diet.getFoodType() == foodType)) {
-                filteredDiets.add(diet);
-            }
-        }
-
-        filteredDiets = changeIngredientQuantities(filteredDiets, dailyKcal);
-
-        return filteredDiets;
-    }
-
-    public List<Diet> changeIngredientQuantities(List<Diet> diets, Integer desiredCalories) {
-        List<Diet> changedDiets = diets;
-        List<Integer> gramsInMeal;
-        int mealCalories;
-        double multiplier;
-
-        for (Diet diet : changedDiets) {
-            List<Meal> mealsInDiet = diet.getMeals();
-            for (Meal meal : mealsInDiet) {
-                mealCalories = meal.getMealCalories();
-                multiplier = calculateMultiplier(mealCalories, desiredCalories);
-                gramsInMeal = meal.getGrams();
-                for (Integer grams : gramsInMeal) {
-                    grams = (int) (grams * multiplier);
-                }
-            }
-        }
-
-        return changedDiets;
-    }
-
-    public double calculateMultiplier(int mealCalories, int desiredCalories) {
-        //Desired = Meal * Multiplier (1000kcal = 4000kcal * 0.25) Multiplier = Desired/Meal (1000/4000 = 0.25)
-        return desiredCalories / mealCalories;
-    }
-
+//Calculate calories for user
     public double calculateCalorieIntake(String gender, int weight, int height, int age, int numberOfTrainings, DietType dietType) {
         int desiredCalorieIntake = 0;
         double activityMultiplier = 0;
@@ -160,5 +135,26 @@ public class DietService {
             default:
                 throw new IllegalArgumentException("Invalid Diet Type in: DietService.java, calculateCalorieIntake()");
         }
+    }
+
+//Change quantities
+    public Diet changeIngredientQuantities(Diet diet, Integer desiredCalories) {
+        Diet changedDiet = diet;
+        List<Integer> gramsInMeal;
+        int mealCalories;
+        double ingredientMultiplier;
+
+            List<Meal> mealsInDiet = changedDiet.getMeals();
+            for (Meal meal : mealsInDiet) {
+                mealCalories = meal.getMealCalories();
+                //Desired = Meal * Multiplier (1000kcal = 4000kcal * 0.25) Multiplier = Desired/Meal (1000/4000 = 0.25)
+                ingredientMultiplier = desiredCalories/mealCalories;
+                gramsInMeal = meal.getGrams();
+                for (Integer grams : gramsInMeal) {
+                    grams = (int) (grams * ingredientMultiplier);
+            }
+        }
+
+        return changedDiet;
     }
 }

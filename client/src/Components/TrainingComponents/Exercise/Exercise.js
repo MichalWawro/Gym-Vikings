@@ -9,8 +9,8 @@ function Exercise({ exercise , index}) {
     return (
         <div className="exercise" id={index}>
             <h1>{exercise.name}</h1>
-            <h2>Type: {capitalizeFirstLetter(exercise.type)}</h2>
-            <h2>Level: {capitalizeFirstLetter(exercise.level)}</h2>
+            <h2>Type: {exercise.type}</h2>
+            <h2>Level: {exercise.level}</h2>
             <div class="details">
                 <a>sets: {exercise.set}</a>
                 <a>reps: {exercise.reps}</a>
