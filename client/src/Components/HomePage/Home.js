@@ -5,6 +5,9 @@ import HomePageLoggedOut from './HomePageLoggedOut.js';
 
 
 const Home = ({user}) => {
+  useEffect(() => {
+    document.title = 'Gym Viking: Home';
+  }, [])
 
     return (   
           <main>           

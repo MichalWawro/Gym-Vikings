@@ -90,7 +90,7 @@ const DietInfo = () => {
                 </div>
 
             ) : (
-                <div className="CenteredText">
+                <div className="centered-text">
                     <h1>We're fetching a diet for you, give us a moment</h1>
                 </div>
             )}

@@ -125,6 +125,9 @@ public class UserController {
         return mainService.getTrainingFormUser(trainingId,userId);
     }
 
+
+
+
     @GetMapping("/diet/getDietsWithCalories")
     public List<Diet> provideDiets(@RequestParam int userId){
         return mainService.getAllDietsChanged(userId);
@@ -135,6 +138,9 @@ public class UserController {
 
     @PutMapping ("/user/setDiet")
     public Diet setDiet(@RequestParam int userId,@RequestParam int dietId) {return mainService.setDiet(userId, dietId);}
+
+
+
 
     @GetMapping("/user/getUserInfo")
     public UserEntity getUserInfo(@RequestParam int userId) {

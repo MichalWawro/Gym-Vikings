@@ -27,7 +27,10 @@ function App() {
 
   const [user, setUser] = useState();
   const [jwt, setJwt] = useState()
-  
+
+  useEffect(() => {
+    document.title = 'Gym Viking: Home';
+  }, [])
 
   return (
     <div>

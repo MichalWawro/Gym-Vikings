@@ -3,17 +3,27 @@ import './UserData.css';
 import { Navigate } from 'react-router-dom';
 import Home from '../HomePage/Home';
 import HomePageLoggedIn from '../HomePage/HomePageLoggedIn';
+const Form = ({user, setUser }) => {
 
-const Form = ({ user, setUser }) => {
+    const [personalData, setPersonalData] = useState({
+        age: user.age,
+        weight: user.weight,
+        height: user.height,
+        amountOfTrainingsPerWeek: user.amountOfTrainingsPerWeek,
+        allergies: [],
+        foodType: " ",
+        dietType: " ",
+        gender: " "
+    })
 
-    const[age, setAge] = useState('');
-    const[weight, setWeight] = useState('');
-    const[height, setHeight] = useState('');
+    // const[age, setAge] = useState('');
+    // const[weight, setWeight] = useState('');
+    // const[height, setHeight] = useState('');
     const[allergies, setAllergies] = useState([])
-    const[dietType, setDietType] = useState('');
-    const[foodType, setFoodType] = useState('');
-    const[gender, setGender] = useState('');
-    const[amountOfTrainingsPerWeek, setAmountOfTrainingsPerWeek]= useState('');
+    // const[dietType, setDietType] = useState('');
+    // const[foodType, setFoodType] = useState('');
+    // const[gender, setGender] = useState('');
+    // const[amountOfTrainingsPerWeek, setAmountOfTrainingsPerWeek]= useState('');
 
     const[registered, setRegistered] = useState();
 
@@ -32,17 +42,18 @@ const Form = ({ user, setUser }) => {
     };
 
 
-      async function formDone() {
+      async function formDone(e) {
+        e.preventDefault();
           const patchRes = await fetch(`http://localhost:8080/user/formDone?userId=${user.id}`, {
               method: 'PATCH',
               headers: {'Content-Type': 'application/json'},
               body: JSON.stringify({
-                  gender: gender,
-                  age: age,
-                  weight: weight,
-                  amountOfTrainingsPerWeek: amountOfTrainingsPerWeek,
-                  height: height,
-                  allergies: allergies.map(allergy => allergy.toUpperCase())
+                  gender: personalData.gender,
+                  age: personalData.age,
+                  weight: personalData.weight,
+                  amountOfTrainingsPerWeek: personalData.amountOfTrainingsPerWeek,
+                  height: personalData.height,
+                  allergies: personalData.allergies.map(allergy => allergy.toUpperCase())
               })
           })
           console.log("Response from server:", patchRes);
@@ -55,12 +66,12 @@ const Form = ({ user, setUser }) => {
           console.log("Data z getproper user", getData);
           setUser(getData)
       }
-
        
-      const handleSubmit = (e) => {
-        e.preventDefault();
-        formDone();
-      };
+    //   const handleSubmit = (e) => {
+    //     e.preventDefault();
+    //     formDone();
+    //     // getPropperUser()
+    //   };
     
 
 
@@ -82,15 +93,15 @@ const Form = ({ user, setUser }) => {
                     <label className="data-label-title">Fill up form</label>
                 </div>
 
-                <form className="data-form-wrapper" style={{ color: 'white', }} onSubmit={handleSubmit}>
+                <form className="data-form-wrapper" style={{ color: 'white', }} onSubmit={formDone}>
                     <div className="data-form-group">
                         <label className="data-label">Age</label>
                         <input
                             className="data-input"
                             type="number"
                             name="age"
-                            value={age}
-                            onChange={e=>setAge(e.target.value)}
+                            value={personalData.age}
+                            onChange={e=>setPersonalData({...personalData, age: e.target.value})}
                         />{' '}
                         <label className="data-label">years</label>
                     </div>
@@ -101,8 +112,8 @@ const Form = ({ user, setUser }) => {
                             className="data-input"
                             type="number"
                             name="weight"
-                            value={weight}
-                            onChange={e=>setWeight(e.target.value)}
+                            value={personalData.weight}
+                            onChange={e=>setPersonalData({...personalData, weight: e.target.value})}
                         />{' '}
                         </div>
                     <div className="data-form-group">
@@ -111,8 +122,8 @@ const Form = ({ user, setUser }) => {
                             className="data-input"
                             type="number"
                             name="age"
-                            value={amountOfTrainingsPerWeek}
-                            onChange={e=>setAmountOfTrainingsPerWeek(e.target.value)}
+                            value={personalData.amountOfTrainingsPerWeek}
+                            onChange={e=>setPersonalData({...personalData, amountOfTrainingsPerWeek: e.target.value})}
                         />{' '}
                         <label className="data-label">kg</label>
                     </div>
@@ -123,8 +134,8 @@ const Form = ({ user, setUser }) => {
                             className="data-input"
                             type="number"
                             name="height"
-                            value={height}
-                            onChange={e=>setHeight(e.target.value)}
+                            value={personalData.height}
+                            onChange={e=>setPersonalData({...personalData, height: e.target.value})}
                         />{' '}
                         <label className="data-label">cm</label>
                     </div>
@@ -136,7 +147,7 @@ const Form = ({ user, setUser }) => {
                                 <input
                                     type="checkbox"
                                     name="allergies"
-                                    value={allergy}
+                                    value={personalData.allergy}
                                     checked={allergies.includes(allergy)}
                                     onChange={() => handleCheckboxChange(allergy)}
                                 />
@@ -150,8 +161,8 @@ const Form = ({ user, setUser }) => {
                         <select
                             name="foodType"
                             className="data-select"
-                            value={foodType}
-                            onChange={e=>setFoodType(e.target.value)}
+                            value={personalData.foodType}
+                            onChange={e=>setPersonalData({...personalData, foodType : e.target.value})}
                         >
                             {Object.values(FoodType).map((foodType) => (
                                 <option key={foodType} value={foodType}>
@@ -165,8 +176,8 @@ const Form = ({ user, setUser }) => {
                         <select
                             name="dietType"
                             className="data-select"
-                            value={dietType}
-                            onChange={e=>setDietType(e.target.value)}
+                            value={personalData.dietType}
+                            onChange={e=>setPersonalData({...personalData, dietType : e.target.value})}
                         >
                             {Object.values(DietType).map((dietType) => (
                                 <option key={dietType} value={dietType}>
@@ -180,8 +191,8 @@ const Form = ({ user, setUser }) => {
                         <select
                             name="gender"
                             className="data-select"
-                            value={gender}
-                            onChange={e=>setGender(e.target.value)}
+                            value={personalData.gender}
+                            onChange={e=>setPersonalData({...personalData, gender : e.target.value})}
                         >
                             {Object.values(Gender).map((gender) => (
                                 <option key={gender} value={gender}>
@@ -233,6 +244,5 @@ const Gender = {
     FEMALE: 'Female',
     MALE: 'Male'
 };
-
 
 export default Form;
