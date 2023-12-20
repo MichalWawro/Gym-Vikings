@@ -3,12 +3,25 @@ import Exercise from "./Exercise/Exercise";
 import './Training.css'
 
 
-function Training ({training, userId}){
+function Training ({user}){
     const[congratulations, setCongratulations] = useState();
+    const[training, setTraining] = useState();
+
+    function provideNextTraining(){
+        fetch(`http://localhost:8080/training/provideNextTraining?userId=${user.id}`)
+        .then(res => res.json())
+        .then(data=>{
+            console.log("---------------------------------TRENING-------------------------------------- " + data)
+            setTraining(data)
+        })
+        .catch(error => {
+            console.error('Error:', error);
+        });
+    }
 
     function trainingDone() {
-        fetch(`http://localhost:8080/user/trainingDone?userId=${userId}&trainingId=${training.id}`, {
-            method: 'PUT',
+        fetch(`http://localhost:8080/user/trainingDone?userId=${user.id}&trainingId=${training.id}`, {
+            method: 'PATCH',
             headers: {
                 'Content-Type': 'application/json',
             },
@@ -20,10 +33,15 @@ function Training ({training, userId}){
         
     }
 
+    useEffect(()=>{
+        console.log('tu zaczyna sie trening')
+        provideNextTraining();
+    },[])
 
-    return(
 
-        <>
+    return(<>
+        {training ? 
+        (<>
         <h1 className="training-name">{training.name}</h1>
         <h2 className="training-difficulty">Level: {training.level}</h2>
         <h2>BodyParts: </h2>
@@ -32,6 +50,15 @@ function Training ({training, userId}){
         <buttton className="end-button" onClick={()=>{trainingDone()
         setCongratulations("git")
         }}>Training Done</buttton>
+        </>
+        )
+        :
+        (<>
+        <h1>Wait...</h1>
+        </>)
+        }
+        
+        
         </>
 
     )

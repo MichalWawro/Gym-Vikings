@@ -1,7 +1,7 @@
 import { useNavigate } from 'react-router-dom';
 import React, { useState, useEffect } from "react";
 
-const NavBarLoggedOut = ({ handleLoginChange, login, tryingToSign, setTryingToSign, setUser, setJwt}) => {
+const NavBarLoggedOut = ({ login, tryingToSign, setTryingToSign, setUser, setJwt}) => {
     
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
@@ -21,6 +21,7 @@ const NavBarLoggedOut = ({ handleLoginChange, login, tryingToSign, setTryingToSi
         console.log("Do podglądu -> login data.user", data.user)
         setUser(data.user)
         setJwt(data.jwt)
+        navigate('/')
     }
         
     function handleUsername(e){
@@ -39,13 +40,6 @@ const NavBarLoggedOut = ({ handleLoginChange, login, tryingToSign, setTryingToSi
     
     return (
         <div>
-            <div className="Spacer" />
-            <button id="TrainingButton" className="NavButton" type="button" onClick={() => navigate("/trainings")}>
-                Trainings
-            </button>
-            <button id="DietButton" className="NavButton" type="button" onClick={() => navigate("/diets")}>
-                Diets
-            </button>
 
             
             {tryingToSign ?
@@ -71,7 +65,6 @@ const NavBarLoggedOut = ({ handleLoginChange, login, tryingToSign, setTryingToSi
                     <button id="SignInLoginButton" className="NavButton" type="button" onClick={
                         () => {
                             setTryingToSign(false);
-                            handleLoginChange(true);
                             handleLogin(document.getElementById("LoginInput").value, document.getElementById("PasswordInput").value)
                         }}>
                         Login

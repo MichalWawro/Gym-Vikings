@@ -17,51 +17,35 @@ import SearchDiets from "./Components/DietComponents/SearchDiets"
 import MealInfo from "./Components/DietComponents/MealInfo";
 import Profile from "./Components/Profile/Profile";
 import Register from "./Components/Register/Register";
+import { useNavigate } from 'react-router-dom';
 
 function App() {
-  const [isLoggedIn, setLoginState] = useState(false);
+  const navigate = useNavigate();
+
   const [tryingToSign, setTryingToSign] = useState(false);
-  const handleLoginChange = (bool) => {
-    setLoginState(bool);
-  };
 
-  const [user, setUser] = useState('No user');
+
+  const [user, setUser] = useState();
   const [jwt, setJwt] = useState()
-  
-
-  // function fetchUser() {
-  //   fetch(`http://localhost:8080/user/getUserInfo?userId=1`)
-  //     .then(res => res.json())
-  //     .then(data => {
-  //       console.log(data);
-  //       setUser(data)
-  //       // console.log("xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx",data);
-  //     })
-  //     .catch(e => console.error(e))
-  // }
-
-  
-
 
   useEffect(() => {
     document.title = 'Gym Viking: Home';
-    // fetchUser();
-    // login();
   }, [])
 
   return (
     <div>
       <div className="App">
         <header className="App-header">
-          <NavBar isLoggedIn={isLoggedIn} tryingToSign={tryingToSign} handleLoginChange={handleLoginChange} setTryingToSign={setTryingToSign} setUser={setUser} setJwt={setJwt}/>
+          <NavBar  tryingToSign={tryingToSign} setTryingToSign={setTryingToSign} setUser={setUser} setJwt={setJwt} user={user}/>
         </header>
         <Routes>
-          <Route path='/' element={<Home isLoggedIn={isLoggedIn}/>}></Route>
+          <Route path='/' element={<Home user={user}/>}></Route>
           <Route path='contact' element={<ContactPage />}></Route>
-          <Route path='register' element={<Register />}></Route>
+          <Route path='register' element={<Register/>}></Route>
           <Route path='about' element={<AboutPage />}></Route>
+          <Route path='training' element={<Training user={user}/>}/>
           <Route path='trainings' element={<ListOfTrainings user={user} />}></Route>
-          <Route path='diets' element={<Diets user={user} isLoggedIn={isLoggedIn} />}></Route>
+          <Route path='diets' element={<Diets user={user} />}></Route>
           <Route path='diets/search' element={<SearchDiets/>}></Route>
           <Route path='diets/:index' element={<DietInfo/>}></Route>
           <Route path='meals/:index' element={<MealInfo/>}></Route>

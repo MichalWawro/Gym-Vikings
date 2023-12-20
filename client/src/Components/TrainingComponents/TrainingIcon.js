@@ -23,7 +23,8 @@ function TrainingIcon ({userId, training, index}){
         (        
         <>
         <h1 className="training-name">{training.name}</h1>
-        <h2 className="training-difficulty">Level: {training.level}</h2>
+        <h2 className="training-difficulty">Exercises:</h2>
+        {training.exercises.map((exercise,index)=><a>{exercise.name}</a>)}
         <button onClick={()=>{getTraining(index + 1)}}>Start</button>
         </>
         )

@@ -95,9 +95,10 @@ public class UserController {
         try {
             System.out.println("");
             mainService.setUserTrainingInfo(userForm, userId);
+            mainService.giveUserFirstTrainingPlan(userId);
             return ResponseEntity.ok("User information set successfully");
         } catch (Exception e) {
-            // Handle exceptions appropriately (e.g., log and return an error response)
+
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
                     .body("Error setting user information");
         }
@@ -113,12 +114,14 @@ public class UserController {
 
     @GetMapping("/training/provideNextTraining")
     public Training provideTraining(@RequestParam int userId){
+        mainService.giveUserAnotherTrainingPlan(userId);
         UserEntity user = mainService.getPropperUser(userId,7,2.5, 1);
         return mainService.getNextTrainingFromUser(user);
     }
 
     @GetMapping("/training/getTrainingFromUser")
     public Training provideTraining(@RequestParam int userId, @RequestParam int trainingId){
+        mainService.giveUserAnotherTrainingPlan(userId);
         return mainService.getTrainingFormUser(trainingId,userId);
     }
 
@@ -156,9 +159,4 @@ public class UserController {
         System.out.println("Received form data: " + userData);
         return "Form data received successfully!";
     }
-
-//    @GetMapping("/logout")
-//    public void logout(){
-//        SecurityContextHolder.getContext().setAuthentication(null);
-//    }
 }

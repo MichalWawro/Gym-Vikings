@@ -3,7 +3,8 @@ import './UserData.css';
 import { Navigate } from 'react-router-dom';
 import Home from '../HomePage/Home';
 import HomePageLoggedIn from '../HomePage/HomePageLoggedIn';
-const Form = ({ registeredUser, user, setUser }) => {
+
+const Form = ({ user, setUser }) => {
 
     const[age, setAge] = useState('');
     const[weight, setWeight] = useState('');
@@ -53,8 +54,6 @@ const Form = ({ registeredUser, user, setUser }) => {
           const getData = await getRes.json()
           console.log("Data z getproper user", getData);
           setUser(getData)
-
-              
       }
        
       const handleSubmit = (e) => {
@@ -193,7 +192,7 @@ const Form = ({ registeredUser, user, setUser }) => {
 
                     <div className="data-submit-form-group">
                         <button className="data-submit" type="submit">
-                            Submit
+                            <label className="data-label-submit">Submit</label>
                         </button>
                     </div>
                 </form>
@@ -233,6 +232,5 @@ const Gender = {
     FEMALE: 'Female',
     MALE: 'Male'
 };
-
 
 export default Form;

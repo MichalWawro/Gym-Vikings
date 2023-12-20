@@ -473,7 +473,7 @@ public class DataInitializer implements CommandLineRunner {
         Diet dietVegetarianNoMeat = new Diet("Vegetarian Diet with Animal Products", List.of(
                 vegetarianStirFry, capreseSalad, vegetarianMushroomRisotto, veggieOmelette, pestoPastaCherryTomatoes, mediterraneanQuinoaSalad, chickpeaCurry, eggplantParmesan, vegetableLasagna),
                 FoodType.VEGETARIAN, "Vegetarian diet with absolutely no meat or fish", List.of());
-
+/*
         ingredientRepository.saveAll(List.of(beefStrips, chickenBreast, chickenStrips, eggs, grilledChickenStrips, grilledShrimp, groundBeef,
                 groundTurkey, gyroMeat, hardBoiledEggs, pork, pulledPork, salmonFillet, shrimp, tuna, turkeySlices, sirloinSteak,
                 porkRibs, porkShoulder, baconStrips, lambChops, chickenWings, cheddarCheese, fetaCheese, mozzarellaCheese, parmesanCheese,
@@ -554,6 +554,8 @@ public class DataInitializer implements CommandLineRunner {
 
         Exercise SpiderCurl = new Exercise("Spider Curl", Type.WEIGHTS, Body.BICEPS, 4, 5, 4, "https://i0.wp.com/www.strengthlog.com/wp-content/uploads/2022/09/Muscles-worked-in-spider-curl-exercise-1024x1024-1.jpg?resize=768%2C768&ssl=1", "https://i0.wp.com/www.strengthlog.com/wp-content/uploads/2022/09/spider-curl-does-whatever-a-spider-curl-does-2.gif?resize=600%2C600&ssl=1");
 
+        Exercise InclineDumbbellCurl = new Exercise("Incline Dumbbell Curl",Type.WEIGHTS,Body.BICEPS,5,5,4,"https://i0.wp.com/www.strengthlog.com/wp-content/uploads/2020/10/Muscles-worked-by-Incline-Dumbbell-Curl.png?resize=768%2C768&ssl=1","https://i0.wp.com/www.strengthlog.com/wp-content/uploads/2020/10/Incline-Dumbbell-Curl.gif?resize=600%2C600&ssl=1");
+
         Exercise BarbellStandingTricepsExtension = new Exercise("Barbell Standing Triceps Extension", Type.WEIGHTS, Body.TRICEPS, 5, 10, 4, "https://i0.wp.com/www.strengthlog.com/wp-content/uploads/2023/07/Muscles-worked-by-standing-tricep-extension.png?resize=768%2C768&ssl=1", "https://i0.wp.com/www.strengthlog.com/wp-content/uploads/2020/03/Barbell-Standing-Triceps-Extension.gif?resize=600%2C600&ssl=1");
 
         Exercise BenchDip = new Exercise("Bench Dip", Type.CALISTHENICS, Body.TRICEPS, 5, 0, 4, "https://i0.wp.com/www.strengthlog.com/wp-content/uploads/2021/11/Muscles-worked-in-bench-dips.jpg?resize=768%2C768&ssl=1", "https://i0.wp.com/www.strengthlog.com/wp-content/uploads/2022/12/C7251A7B-7A1B-47AE-A88C-7054692BCEF0.gif?resize=600%2C600&ssl=1");
@@ -563,6 +565,10 @@ public class DataInitializer implements CommandLineRunner {
         Exercise DumbbellLyingTricepsExtension = new Exercise("Dumbbell Lying Triceps Extension", Type.WEIGHTS, Body.TRICEPS, 5, 5, 4, "https://i0.wp.com/www.strengthlog.com/wp-content/uploads/2022/09/Muscles-worked-by-lying-triceps-extension-1024x1024-2.png?resize=768%2C768&ssl=1", "https://i0.wp.com/www.strengthlog.com/wp-content/uploads/2023/03/Lying-Dumbbell-Triceps-Extension-1.gif?resize=600%2C600&ssl=1");
 
         Exercise PushdownWithRope = new Exercise("Pushdown With Rope", Type.WEIGHTS, Body.TRICEPS, 5, 10, 4, "https://i0.wp.com/www.strengthlog.com/wp-content/uploads/2023/07/Muscles-worked-by-triceps-pushdown.png?resize=768%2C768&ssl=1", "https://i0.wp.com/www.strengthlog.com/wp-content/uploads/2020/03/triceps-pushdown-with-rope.gif?resize=600%2C600&ssl=1");
+
+        Exercise BarbellLyingTricepsExtension = new Exercise("Do Barbell Lying Triceps Extension", Type.WEIGHTS, Body.TRICEPS,5,5,4,"https://i0.wp.com/www.strengthlog.com/wp-content/uploads/2023/05/muscles-worked-barbell-lying-tricep-extension-2.png?resize=768%2C768&ssl=1","https://i0.wp.com/www.strengthlog.com/wp-content/uploads/2020/03/Barbell-Lying-Tricep-Extension.gif?resize=600%2C600&ssl=1");
+
+        Exercise TricepsBodyweightExtension = new Exercise("Triceps Bodyweight Extension",Type.CALISTHENICS,Body.TRICEPS,5,0,4,"https://i0.wp.com/www.strengthlog.com/wp-content/uploads/2023/02/muscle_map_triceps_bodyweight_extension.png?w=563&ssl=1","https://i0.wp.com/www.strengthlog.com/wp-content/uploads/2023/02/Bodyweight-triceps-extension.gif?resize=600%2C600&ssl=1");
 
         Exercise BarbellLunge = new Exercise("Barbell Lunge", Type.WEIGHTS, Body.LEGS, 5, 20, 4, "https://i0.wp.com/www.strengthlog.com/wp-content/uploads/2020/10/Muscles-worked-by-barbell-lunge.png?resize=768%2C768&ssl=1", "https://i0.wp.com/www.strengthlog.com/wp-content/uploads/2020/03/Barbell-Lunge.gif?resize=600%2C600&ssl=1");
 
@@ -592,73 +598,49 @@ public class DataInitializer implements CommandLineRunner {
 
         Exercise GoodMorning = new Exercise("Good Morning",  Type.WEIGHTS, Body.BACK, 5, 10, 4, "https://i0.wp.com/www.strengthlog.com/wp-content/uploads/2020/09/Muscles-worked-in-the-good-morning-exercise.jpg?resize=768%2C768&ssl=1", "https://i0.wp.com/www.strengthlog.com/wp-content/uploads/2020/02/Good-morning.gif?resize=600%2C600&ssl=1");
 
+        Exercise DumbbellShrugs = new Exercise("Dumbbell Shrugs",Type.WEIGHTS,Body.BACK,5,5,4,"https://i0.wp.com/www.strengthlog.com/wp-content/uploads/2023/07/Muscles-worked-by-dumbbell-shrug.png?resize=768%2C768&ssl=1","https://i0.wp.com/www.strengthlog.com/wp-content/uploads/2020/03/Dumbbell-Shrug.gif?resize=600%2C600&ssl=1");
 
+        Exercise SumoDeadlift = new Exercise("Sumo Deadlift",Type.WEIGHTS,Body.BACK,6,30,4,"https://i0.wp.com/www.strengthlog.com/wp-content/uploads/2020/10/Muscles-worked-by-sumo-deadlift.png?resize=768%2C768&ssl=1","https://i0.wp.com/www.strengthlog.com/wp-content/uploads/2020/10/Sumo-deadlift.gif?resize=600%2C600&ssl=1");
 
-        Training chestTriceps1 = new Training("Chest & Triceps 1", List.of(Body.CHEST, Body.TRICEPS),
-                List.of(BarDip, BenchPress, BenchDip, CableChestPress, DumbbellChestFly));
-        Training chestTriceps2 = new Training("Chest & Triceps 2", List.of(Body.CHEST, Body.TRICEPS),
-                List.of(InclineBenchPress, DumbbellChestPress, DumbbellPullover, MachineChestFly, MachineChestPress));
-        Training chestTriceps3 = new Training("Chest & Triceps 3", List.of(Body.CHEST, Body.TRICEPS),
-                List.of(PushUp, DeclineBenchPress, InclineDumbbellPress, BandExternalShoulderRotation, BandInternalShoulderRotation));
-        Training chestTriceps4 = new Training("Chest & Triceps 4", List.of(Body.CHEST, Body.TRICEPS),
-                List.of(DumbbellChestPress, MachineChestPress, BenchDip, CloseGripPushUp, DumbbellLyingTricepsExtension));
-        Training chestTriceps5 = new Training("Chest & Triceps 5", List.of(Body.CHEST, Body.TRICEPS),
-                List.of(DumbbellChestFly, InclineBenchPress, InclineDumbbellPress, BandPullApart, BarbellFrontRaise));
+        Exercise BandedSideKick = new Exercise("Banded Side Kick",Type.CALISTHENICS,Body.GLUTE,5,0,4,"https://i0.wp.com/www.strengthlog.com/wp-content/uploads/2020/10/Muscles-worked-by-banded-side-kicks.png?resize=768%2C768&ssl=1","https://i0.wp.com/www.strengthlog.com/wp-content/uploads/2020/03/Banded-Side-Kick.gif?resize=600%2C600&ssl=1");
 
-// Shoulder Training
-        Training shoulder1 = new Training("Shoulder 1", List.of(Body.SHOULDER),
-                List.of(BandExternalShoulderRotation, BarbellFrontRaise, DumbbellShoulderPress, BarbellRearDeltRow, BarbellUprightRow));
-        Training shoulder2 = new Training("Shoulder 2", List.of(Body.SHOULDER),
-                List.of(BandPullApart, BarbellUprightRow, DumbbellLateralRaise, DumbbellShoulderPress, OverheadPress));
-        Training shoulder3 = new Training("Shoulder 3", List.of(Body.SHOULDER),
-                List.of(DumbbellHorizontalExternalShoulderRotation, DumbbellLateralRaise, DumbbellShoulderPress, OverheadPress, BarbellRearDeltRow));
-        Training shoulder4 = new Training("Shoulder 4", List.of(Body.SHOULDER),
-                List.of(BarbellUprightRow, BandInternalShoulderRotation, DumbbellShoulderPress, OverheadPress, BarbellFrontRaise));
-        Training shoulder5 = new Training("Shoulder 5", List.of(Body.SHOULDER),
-                List.of(DumbbellLateralRaise, OverheadPress, DumbbellHorizontalExternalShoulderRotation, BandPullApart, BarbellRearDeltRow));
+        Exercise CablePullThrough = new Exercise("Cable Pull-Through",Type.WEIGHTS,Body.GLUTE,5,10,4,"https://i0.wp.com/www.strengthlog.com/wp-content/uploads/2020/10/Muscles-worked-by-cable-pull-through.jpg?resize=768%2C768&ssl=1","https://i0.wp.com/www.strengthlog.com/wp-content/uploads/2020/04/cable-pull-through.gif?resize=600%2C600&ssl=1");
 
-// Biceps Training
-        Training biceps1 = new Training("Biceps 1", List.of(Body.BICEPS),
-                List.of(BarbellCurl, ConcentrationCurl, HammerCurl, BarbellPreacherCurl, CurlWithBar));
-        Training biceps2 = new Training("Biceps 2", List.of(Body.BICEPS),
-                List.of(BarbellPreacherCurl, CurlWithBar, SpiderCurl, ConcentrationCurl, HammerCurl));
-        Training biceps3 = new Training("Biceps 3", List.of(Body.BICEPS),
-                List.of(CurlWithBar, HammerCurl, ConcentrationCurl, BarbellCurl, SpiderCurl));
-        Training biceps4 = new Training("Biceps 4", List.of(Body.BICEPS),
-                List.of(HammerCurl, BarbellCurl, SpiderCurl, ConcentrationCurl, BarbellPreacherCurl));
-        Training biceps5 = new Training("Biceps 5", List.of(Body.BICEPS),
-                List.of(ConcentrationCurl, BarbellPreacherCurl, CurlWithBar, HammerCurl, SpiderCurl));
+        Exercise DumbbellRomanianDeadlift = new Exercise("Dumbbell Romanian Deadlift",Type.WEIGHTS,Body.GLUTE,5,10,4,"https://i0.wp.com/www.strengthlog.com/wp-content/uploads/2022/09/Muscles-worked-by-dumbbell-romanian-deadlifts-1024x1024-1.jpg?resize=768%2C768&ssl=1","https://i0.wp.com/www.strengthlog.com/wp-content/uploads/2022/09/romanian-deadlift-with-dumbbells.gif?resize=600%2C600&ssl=1");
 
-// Legs Training
-        Training legs1 = new Training("Legs 1", List.of(Body.LEGS),
-                List.of(BarbellSquat, BulgarianSplitSquat, BoxSquat, Squat, LegExtension));
-        Training legs2 = new Training("Legs 2", List.of(Body.LEGS),
-                List.of(BarbellLunge, RomanianDeadlift, LegExtension, BoxSquat, Deadlift));
-        Training legs3 = new Training("Legs 3", List.of(Body.LEGS),
-                List.of(RomanianDeadlift, BoxSquat, Squat, BarbellLunge, LegExtension));
-        Training legs4 = new Training("Legs 4", List.of(Body.LEGS),
-                List.of(BulgarianSplitSquat, LegExtension, BarbellLunge, Squat, GoodMorning));
-        Training legs5 = new Training("Legs 5", List.of(Body.LEGS),
-                List.of(Squat, BarbellSquat, GoodMorning, RomanianDeadlift, BoxSquat));
+        Exercise FireHydrants = new Exercise("Fire Hydrants",Type.CALISTHENICS,Body.GLUTE,8,0,4,"https://i0.wp.com/www.strengthlog.com/wp-content/uploads/2023/01/muscles-worked-by-fire-hydrants.png?w=563&ssl=1","https://i0.wp.com/www.strengthlog.com/wp-content/uploads/2020/06/Fire-Hydrants.gif?resize=510%2C510&ssl=1");
 
-// Back Training
-        Training back1 = new Training("Back 1", List.of(Body.BACK),
-                List.of(BarbellRows, Deadlift, PullUps, CableWideGripSeatedRow, CableCloseGripSeatedRow));
-        Training back2 = new Training("Back 2", List.of(Body.BACK),
-                List.of(ChinUp, CableWideGripSeatedRow, BarbellRows, Deadlift, PullUps));
-        Training back3 = new Training("Back 3", List.of(Body.BACK),
-                List.of(GoodMorning, Deadlift, PullUps, CableWideGripSeatedRow, BarbellRows));
-        Training back4 = new Training("Back 4", List.of(Body.BACK),
-                List.of(PullUps, CableCloseGripSeatedRow, BarbellRows, GoodMorning, ChinUp));
-        Training back5 = new Training("Back 5", List.of(Body.BACK),
-                List.of(CableWideGripSeatedRow, PullUps, Deadlift, BarbellRows, CableCloseGripSeatedRow));
+        Exercise FrogPumps = new Exercise("Frog Pumps",Type.CALISTHENICS,Body.GLUTE,5,0,4,"https://i0.wp.com/www.strengthlog.com/wp-content/uploads/2023/01/muscles-worked-frog-pumps.jpg?resize=768%2C768&ssl=1","https://i0.wp.com/www.strengthlog.com/wp-content/uploads/2023/01/Frog-pump.gif?resize=600%2C600&ssl=1");
 
+        Exercise HipThrust = new Exercise("Hip Thrust",Type.WEIGHTS,Body.GLUTE,4,20,4,"https://i0.wp.com/www.strengthlog.com/wp-content/uploads/2023/03/Muscles-worked-in-barbell-hip-thrust.png?w=563&ssl=1","https://i0.wp.com/www.strengthlog.com/wp-content/uploads/2020/02/Hip-thrust.gif?resize=600%2C600&ssl=1");
 
-        UserEntity user = new UserEntity("jt","JT","xdddd@gmail.com");
+        Exercise CableCrunch = new Exercise("Cable Crunch:",Type.WEIGHTS,Body.ABS,5,10,4,"https://i0.wp.com/www.strengthlog.com/wp-content/uploads/2020/10/Muscles-worked-by-crunches.png?resize=768%2C768&ssl=1","https://i0.wp.com/www.strengthlog.com/wp-content/uploads/2020/03/cable-crunch.gif?resize=600%2C600&ssl=1");
 
-        user.setTrainings(List.of(chestTriceps1,shoulder2,back1, legs4,biceps5));
+        Exercise Crunches = new Exercise("Crunches",Type.CALISTHENICS,Body.ABS,8,0,4,"https://i0.wp.com/www.strengthlog.com/wp-content/uploads/2020/10/Muscles-worked-by-crunches.jpg?resize=768%2C768&ssl=1","https://i0.wp.com/www.strengthlog.com/wp-content/uploads/2023/01/Crunch.gif?resize=600%2C600&ssl=1");
 
+        Exercise HangingLegRaise = new Exercise("Hanging Leg Raise",Type.CALISTHENICS,Body.ABS,3,0,5,"https://i0.wp.com/www.strengthlog.com/wp-content/uploads/2020/10/Muscles-worked-by-hanging-leg-raises.png?resize=768%2C768&ssl=1","https://i0.wp.com/www.strengthlog.com/wp-content/uploads/2020/03/hanging-leg-raise.gif?resize=600%2C600&ssl=1");
 
+        Exercise KneelingAbWheelRollOut = new Exercise("Kneeling Ab Wheel Roll-Out",Type.CALISTHENICS,Body.ABS,4,0,3,"https://i0.wp.com/www.strengthlog.com/wp-content/uploads/2020/10/Muscles-worked-by-kneeling-ab-wheel.jpg?resize=768%2C768&ssl=1","https://i0.wp.com/www.strengthlog.com/wp-content/uploads/2020/05/kneeling-ab-wheel.gif?resize=600%2C600&ssl=1");
+
+        Exercise ObliqueCrunch = new Exercise("Oblique Crunch",Type.CALISTHENICS,Body.ABS,8,0,4,"https://i0.wp.com/www.strengthlog.com/wp-content/uploads/2020/12/Muscles-worked-by-oblique-crunches.jpg?resize=768%2C768&ssl=1","https://i0.wp.com/www.strengthlog.com/wp-content/uploads/2020/12/Oblique-crunch.gif?resize=600%2C600&ssl=1");
+
+        Exercise SitUp = new Exercise("Sit-Up",Type.CALISTHENICS,Body.ABS,6,0,5,"https://i0.wp.com/www.strengthlog.com/wp-content/uploads/2020/10/Muscles-worked-by-sit-ups.jpg?resize=768%2C768&ssl=1","https://i0.wp.com/www.strengthlog.com/wp-content/uploads/2020/03/Sit-up.gif?resize=600%2C600&ssl=1");
+
+        Exercise HeelDrop = new Exercise("Heel Drop",Type.CALISTHENICS,Body.CALVES,10,0,4,"https://i0.wp.com/www.strengthlog.com/wp-content/uploads/2020/11/Muscles-worked-by-eccentric-heel-drop-exercise.jpg?resize=768%2C768&ssl=1","https://i0.wp.com/www.strengthlog.com/wp-content/uploads/2020/11/Eccentric-heel-raise.gif?resize=600%2C600&ssl=1");
+
+        Exercise HeelRaise = new Exercise("Heel Raise",Type.CALISTHENICS,Body.CALVES,10,0,4,"https://i0.wp.com/www.strengthlog.com/wp-content/uploads/2020/11/Muscles-worked-by-heel-raise.jpg?resize=768%2C768&ssl=1","https://i0.wp.com/www.strengthlog.com/wp-content/uploads/2020/11/Heel-raise.gif?resize=600%2C600&ssl=1");
+
+        Exercise SeatedCalfRaise = new Exercise("Seated Calf Raise",Type.WEIGHTS,Body.CALVES,5,20,4,"https://i0.wp.com/www.strengthlog.com/wp-content/uploads/2020/10/Muscles-worked-by-calf-raises.png?resize=768%2C768&ssl=1","https://i0.wp.com/www.strengthlog.com/wp-content/uploads/2020/03/calf-raise-seated.gif?resize=600%2C600&ssl=1");
+
+        Exercise StandingCalfRaise = new Exercise("Standing Calf Raise",Type.WEIGHTS,Body.CALVES,5,30,4,"https://i0.wp.com/www.strengthlog.com/wp-content/uploads/2020/10/Muscles-worked-by-calf-raises.png?resize=768%2C768&ssl=1","https://i0.wp.com/www.strengthlog.com/wp-content/uploads/2020/03/calf-raise-standing.gif?resize=600%2C600&ssl=1");
+
+        Exercise BarbellWristCurl = new Exercise("Barbell Wrist Curl",Type.WEIGHTS,Body.FOREARM,8,10,3,"https://i0.wp.com/www.strengthlog.com/wp-content/uploads/2021/01/Muscles-worked-by-barbell-wrist-curl.jpg?resize=768%2C768&ssl=1","https://i0.wp.com/www.strengthlog.com/wp-content/uploads/2021/01/Barbell-Wrist-Curl.gif?resize=600%2C600&ssl=1");
+
+        Exercise Gripper = new Exercise("Gripper",Type.CALISTHENICS,Body.FOREARM,10,0,3,"https://i0.wp.com/www.strengthlog.com/wp-content/uploads/2021/01/Muscles-worked-by-grippers.jpg?resize=768%2C768&ssl=1","https://i0.wp.com/www.strengthlog.com/wp-content/uploads/2021/01/Gripper-1.gif?resize=600%2C600&ssl=1");
+
+        Exercise PlatePinch = new Exercise("Plate Pinch",Type.WEIGHTS,Body.FOREARM,5,5,3,"https://i0.wp.com/www.strengthlog.com/wp-content/uploads/2021/01/Muscles-worked-by-the-plate-pinch.jpg?resize=768%2C768&ssl=1","https://i0.wp.com/www.strengthlog.com/wp-content/uploads/2021/01/Plate-Pinch.gif?resize=600%2C600&ssl=1");
+
+        Exercise DumbbellWristExtension = new Exercise("Dumbbell Wrist Extension",Type.WEIGHTS,Body.FOREARM,5,5,4,"https://i0.wp.com/www.strengthlog.com/wp-content/uploads/2021/01/Muscles-worked-by-dumbbell-wrist-extension-exercise.jpg?resize=768%2C768&ssl=1","https://i0.wp.com/www.strengthlog.com/wp-content/uploads/2021/01/Dumbbell-Wrist-Extension.gif?resize=600%2C600&ssl=1");
 
         List<Exercise> allExercises = List.of(
                 BarDip, BenchPress, CableChestPress, DeclineBenchPress,
@@ -675,23 +657,296 @@ public class DataInitializer implements CommandLineRunner {
                 PushdownWithRope, BarbellLunge, BulgarianSplitSquat,
                 BarbellSquat, LegExtension, RomanianDeadlift, BoxSquat,
                 Squat, BarbellRows, CableWideGripSeatedRow,
-                CableCloseGripSeatedRow, ChinUp, Deadlift, PullUps, GoodMorning
+                CableCloseGripSeatedRow, ChinUp, Deadlift, PullUps, GoodMorning,InclineDumbbellCurl,
+                TricepsBodyweightExtension,DumbbellShrugs,SumoDeadlift,BandedSideKick,CablePullThrough,DumbbellRomanianDeadlift,FireHydrants,
+                FrogPumps,HipThrust,CableCrunch,HangingLegRaise,KneelingAbWheelRollOut,HeelDrop,HeelRaise,SeatedCalfRaise,
+                StandingCalfRaise,BarbellWristCurl,Gripper,PlatePinch,DumbbellWristExtension
         );
 
-        List<Training> allTrainings = List.of(
-                chestTriceps1, chestTriceps2, chestTriceps3, chestTriceps4, chestTriceps5,
-                shoulder1, shoulder2, shoulder3, shoulder4, shoulder5,
-                biceps1, biceps2, biceps3, biceps4, biceps5,
-                legs1, legs2, legs3, legs4, legs5,
-                back1, back2, back3, back4, back5
+
+
+
+
+        Training fullBodyBlast = new Training("Full Body Blast",
+                List.of(Body.CHEST, Body.BACK, Body.LEGS, Body.SHOULDER, Body.TRICEPS, Body.BICEPS, Body.ABS),
+                List.of(PullUps, Squat, Deadlift,PushdownWithRope, BarbellCurl, SitUp));
+
+        // Training routine 2: Arm Fury
+        Training armFury = new Training("Arm Fury",
+                List.of(Body.BICEPS, Body.TRICEPS),
+                List.of(HammerCurl, BarbellPreacherCurl, BenchDip, BarbellCurl));
+
+        // Training routine 3: Full Body Pump
+        Training fullBodyPump = new Training("Full Body Pump",
+                List.of(Body.CHEST, Body.BACK, Body.LEGS, Body.SHOULDER, Body.TRICEPS, Body.BICEPS, Body.ABS),
+                List.of(DumbbellChestFly, CableWideGripSeatedRow, RomanianDeadlift, DumbbellLateralRaise, BarbellLyingTricepsExtension, HammerCurl, ObliqueCrunch));
+
+
+        Training cardioBurn = new Training("Cardio Burn",
+                List.of(Body.LEGS, Body.TRICEPS, Body.ABS),
+                List.of(Squat, Deadlift, PushdownWithRope, SitUp));
+
+// Training routine 5: Chest Sculpt
+        Training chestSculpt = new Training("Chest Sculpt",
+                List.of(Body.CHEST),
+                List.of(DumbbellChestFly, CableWideGripSeatedRow));
+
+// Training routine 6: Core Blaster
+        Training coreBlaster = new Training("Core Blaster",
+                List.of(Body.ABS),
+                List.of(SitUp, ObliqueCrunch));
+
+// Training routine 7: Arm Toner
+        Training armToner = new Training("Arm Toner",
+                List.of(Body.BICEPS, Body.TRICEPS),
+                List.of(HammerCurl, BarbellPreacherCurl, BarbellCurl));
+
+// Training routine 8: Total Body Revitalize
+        Training totalBodyRevitalize = new Training("Total Body Revitalize",
+                List.of(Body.CHEST, Body.BACK, Body.LEGS, Body.SHOULDER, Body.TRICEPS, Body.BICEPS, Body.ABS),
+                List.of(PullUps, Squat, Deadlift, PushdownWithRope, BarbellCurl, SitUp));
+
+        // Training routine 9: Leg Power
+        Training legPower = new Training("Leg Power",
+                List.of(Body.LEGS),
+                List.of(Squat, Deadlift));
+
+// Training routine 10: Back Builder
+        Training backBuilder = new Training("Back Builder",
+                List.of(Body.BACK),
+                List.of(CableWideGripSeatedRow, RomanianDeadlift));
+
+
+// Training routine 12: Triceps Toner
+        Training tricepsToner = new Training("Triceps Toner",
+                List.of(Body.TRICEPS),
+                List.of(PushdownWithRope, BarbellLyingTricepsExtension));
+
+// Training routine 13: Bicep Burn
+        Training bicepBurn = new Training("Bicep Burn",
+                List.of(Body.BICEPS),
+                List.of(HammerCurl, BarbellPreacherCurl, BarbellCurl));
+
+// Training routine 14: Full Body Challenge
+        Training fullBodyChallenge = new Training("Full Body Challenge",
+                List.of(Body.CHEST, Body.BACK, Body.LEGS, Body.SHOULDER, Body.TRICEPS, Body.BICEPS, Body.ABS),
+                List.of(PullUps, Squat, Deadlift, DumbbellChestFly, RomanianDeadlift, DumbbellLateralRaise, BarbellLyingTricepsExtension, HammerCurl, ObliqueCrunch));
+
+// Training routine 15: High Intensity Circuit
+        Training highIntensityCircuit = new Training("High Intensity Circuit",
+                List.of(Body.CHEST, Body.BACK, Body.LEGS, Body.SHOULDER, Body.TRICEPS, Body.BICEPS, Body.ABS),
+                List.of(PullUps, Squat, Deadlift, CableWideGripSeatedRow, DumbbellLateralRaise, BarbellCurl, SitUp, ObliqueCrunch));
+
+        // Training routine 16: Core Crusher
+        Training coreCrusher = new Training("Core Crusher",
+                List.of(Body.ABS),
+                List.of(SitUp, ObliqueCrunch, BarbellSquat));
+
+// Training routine 17: Total Upper Body
+        Training totalUpperBody = new Training("Total Upper Body",
+                List.of(Body.CHEST, Body.BACK, Body.SHOULDER),
+                List.of(DumbbellChestFly, CableWideGripSeatedRow, DumbbellLateralRaise));
+
+// Training routine 18: Arm Annihilation
+        Training armAnnihilation = new Training("Arm Annihilation",
+                List.of(Body.BICEPS, Body.TRICEPS),
+                List.of(BarbellPreacherCurl, BenchDip, BarbellCurl));
+
+// Training routine 19: Strength Surge
+        Training strengthSurge = new Training("Strength Surge",
+                List.of(Body.LEGS, Body.BACK, Body.SHOULDER),
+                List.of(Squat, Deadlift, CableWideGripSeatedRow, DumbbellLateralRaise));
+
+// Training routine 20: Cardio Blast
+        Training cardioBlast = new Training("Cardio Blast",
+                List.of(Body.CHEST, Body.LEGS, Body.TRICEPS),
+                List.of(PullUps, Squat, SitUp));
+
+
+// Training routine 22: Upper Body Sculpt
+        Training upperBodySculpt = new Training("Upper Body Sculpt",
+                List.of(Body.CHEST, Body.BACK, Body.SHOULDER, Body.BICEPS, Body.TRICEPS),
+                List.of(DumbbellChestFly, CableWideGripSeatedRow, DumbbellLateralRaise, BarbellPreacherCurl, BarbellLyingTricepsExtension));
+
+// Training routine 23: Functional Fitness
+        Training functionalFitness = new Training("Functional Fitness",
+                List.of(Body.CHEST, Body.BACK, Body.LEGS, Body.SHOULDER, Body.BICEPS, Body.TRICEPS, Body.ABS),
+                List.of(Squat, Deadlift, PullUps, DumbbellLateralRaise, BenchDip, ObliqueCrunch));
+
+// Training routine 24: Power Pump
+        Training powerPump = new Training("Power Pump",
+                List.of(Body.CHEST, Body.SHOULDER, Body.BICEPS),
+                List.of(DumbbellChestFly, DumbbellLateralRaise, BarbellCurl));
+
+// Training routine 25: Full Body Burn
+        Training fullBodyBurn = new Training("Full Body Burn",
+                List.of(Body.CHEST, Body.BACK, Body.LEGS, Body.SHOULDER, Body.TRICEPS, Body.BICEPS, Body.ABS),
+                List.of(Squat, RomanianDeadlift, PullUps, BarbellCurl, BarbellLyingTricepsExtension, SitUp));
+
+// Training routine 26: Arm Assault
+        Training armAssault = new Training("Arm Assault",
+                List.of(Body.BICEPS, Body.TRICEPS),
+                List.of(HammerCurl, BenchDip, BarbellLyingTricepsExtension));
+
+// Training routine 27: Core Strength Builder
+        Training coreStrengthBuilder = new Training("Core Strength Builder",
+                List.of(Body.ABS),
+                List.of(SitUp, ObliqueCrunch, Crunches));
+
+// Training routine 28: Total Body Toning
+        Training totalBodyToning = new Training("Total Body Toning",
+                List.of(Body.CHEST, Body.BACK, Body.LEGS, Body.SHOULDER, Body.BICEPS, Body.TRICEPS, Body.ABS),
+                List.of(DumbbellChestFly, CableWideGripSeatedRow, Squat, BarbellPreacherCurl, ObliqueCrunch, BenchDip));
+
+
+
+// Training routine 29: Leg Day Burn
+        Training legDayBurn = new Training("Leg Day Burn",
+                List.of(Body.LEGS),
+                List.of(Squat, RomanianDeadlift));
+
+
+
+// Training routine 31: Push-Pull Intensity
+        Training pushPullIntensity = new Training("Push-Pull Intensity",
+                List.of(Body.CHEST, Body.BACK, Body.TRICEPS, Body.BICEPS),
+                List.of(Deadlift, PushdownWithRope, BenchDip, BarbellCurl));
+
+// Training routine 32: Full Body Revitalize
+        Training fullBodyRevitalize = new Training("Full Body Revitalize",
+                List.of(Body.CHEST, Body.BACK, Body.LEGS, Body.SHOULDER, Body.TRICEPS, Body.BICEPS, Body.ABS),
+                List.of(DumbbellChestFly, CableWideGripSeatedRow, Squat, DumbbellLateralRaise, BarbellLyingTricepsExtension, BarbellCurl, ObliqueCrunch));
+
+// Training routine 33: Arm Definition
+        Training armDefinition = new Training("Arm Definition",
+                List.of(Body.BICEPS, Body.TRICEPS),
+                List.of(HammerCurl, BarbellPreacherCurl, PushdownWithRope));
+
+// Training routine 34: Lower Body Strength
+        Training lowerBodyStrength = new Training("Lower Body Strength",
+                List.of(Body.LEGS),
+                List.of(Squat, Deadlift, RomanianDeadlift));
+
+// Training routine 36: Upper Body Power
+        Training upperBodyPower = new Training("Upper Body Power",
+                List.of(Body.CHEST, Body.BACK, Body.SHOULDER, Body.TRICEPS, Body.BICEPS),
+                List.of(Deadlift, PullUps, BarbellLyingTricepsExtension));
+
+// Training routine 37: Leg Pump
+        Training legPump = new Training("Leg Pump",
+                List.of(Body.LEGS),
+                List.of(Squat, RomanianDeadlift, DumbbellLateralRaise));
+
+// Training routine 38: Cardio Conditioning
+        Training cardioConditioning = new Training("Cardio Conditioning",
+                List.of(Body.CHEST, Body.LEGS, Body.SHOULDER),
+                List.of(Squat, Deadlift, DumbbellLateralRaise, SitUp));
+
+// Training routine 39: Push-Pull Sculpt
+        Training pushPullSculpt = new Training("Push-Pull Sculpt",
+                List.of(Body.CHEST, Body.BACK, Body.TRICEPS, Body.BICEPS),
+                List.of(PushdownWithRope, BarbellPreacherCurl, CableWideGripSeatedRow, HammerCurl));
+
+// Training routine 40: Full Body Burnout
+        Training fullBodyBurnout = new Training("Full Body Burnout",
+                List.of(Body.CHEST, Body.BACK, Body.LEGS, Body.SHOULDER, Body.TRICEPS, Body.BICEPS, Body.ABS),
+                List.of(DumbbellChestFly, Deadlift, BenchDip, DumbbellLateralRaise, BarbellCurl, ObliqueCrunch, Crunches));
+
+        Training dynamicBodyCircuit = new Training("Dynamic Body Circuit",
+                List.of(Body.CHEST, Body.BACK, Body.LEGS, Body.SHOULDER, Body.TRICEPS, Body.BICEPS, Body.ABS),
+                List.of(Squat, Deadlift, PushdownWithRope, DumbbellLateralRaise, BarbellCurl, SitUp ));
+
+// Training routine 42: Total Body Pump
+        Training totalBodyPump = new Training("Total Body Pump",
+                List.of(Body.CHEST, Body.BACK, Body.LEGS, Body.SHOULDER, Body.TRICEPS, Body.BICEPS, Body.ABS),
+                List.of(DumbbellChestFly, CableWideGripSeatedRow, RomanianDeadlift, DumbbellLateralRaise, BarbellLyingTricepsExtension, HammerCurl, ObliqueCrunch));
+
+// Training routine 43: Strength Fusion
+        Training strengthFusion = new Training("Strength Fusion",
+                List.of(Body.CHEST, Body.BACK, Body.LEGS, Body.SHOULDER, Body.TRICEPS, Body.BICEPS, Body.ABS),
+                List.of(Deadlift, BenchDip, HammerCurl, BarbellCurl, PushdownWithRope, SitUp ));
+
+// Training routine 44: Ultimate Body Blitz
+        Training ultimateBodyBlitz = new Training("Ultimate Body Blitz",
+                List.of(Body.CHEST, Body.BACK, Body.LEGS, Body.SHOULDER, Body.TRICEPS, Body.BICEPS, Body.ABS),
+                List.of(DumbbellChestFly, Squat, PullUps, CableWideGripSeatedRow, BarbellLyingTricepsExtension, BarbellPreacherCurl, ObliqueCrunch));
+
+        Training completeBodyChallenge = new Training("Complete Body Challenge",
+                List.of(
+                        Body.CHEST, Body.BACK, Body.LEGS, Body.SHOULDER, Body.TRICEPS, Body.BICEPS, Body.ABS),
+                List.of(
+                        BarDip, BenchPress, CableChestPress, DeclineBenchPress,
+                        DumbbellChestFly, DumbbellChestPress, DumbbellPullover,
+                        InclineBenchPress, InclineDumbbellPress, MachineChestFly,
+                        MachineChestPress, PushUp, BandExternalShoulderRotation,
+                        BandInternalShoulderRotation, BandPullApart, BarbellFrontRaise,
+                        BarbellRearDeltRow, BarbellUprightRow,
+                        DumbbellHorizontalExternalShoulderRotation, DumbbellLateralRaise,
+                        DumbbellShoulderPress, OverheadPress, BarbellCurl,
+                        BarbellPreacherCurl, CurlWithBar, ConcentrationCurl,
+                        HammerCurl, SpiderCurl, BarbellStandingTricepsExtension,
+                        BenchDip, CloseGripPushUp, DumbbellLyingTricepsExtension,
+                        PushdownWithRope, BarbellLunge, BulgarianSplitSquat,
+                        BarbellSquat, LegExtension, RomanianDeadlift, BoxSquat,
+                        Squat, BarbellRows, CableWideGripSeatedRow,
+                        CableCloseGripSeatedRow, ChinUp, Deadlift, PullUps, GoodMorning,
+                        InclineDumbbellCurl, TricepsBodyweightExtension, DumbbellShrugs,
+                        SumoDeadlift, BandedSideKick, CablePullThrough, DumbbellRomanianDeadlift,
+                        FireHydrants, FrogPumps, HipThrust, CableCrunch, HangingLegRaise,
+                        KneelingAbWheelRollOut, HeelDrop, HeelRaise, SeatedCalfRaise,
+                        StandingCalfRaise, BarbellWristCurl, Gripper, PlatePinch, DumbbellWristExtension));
+
+        List<Training> trainingList = List.of(
+                fullBodyBlast,
+                armFury,
+                fullBodyPump,
+                cardioBurn,
+                chestSculpt,
+                coreBlaster,
+                armToner,
+                totalBodyRevitalize,
+                legPower,
+                backBuilder,
+                tricepsToner,
+                bicepBurn,
+                fullBodyChallenge,
+                highIntensityCircuit,
+                coreCrusher,
+                totalUpperBody,
+                armAnnihilation,
+                strengthSurge,
+                cardioBlast,
+                upperBodySculpt,
+                functionalFitness,
+                powerPump,
+                fullBodyBurn,
+                armAssault,
+                coreStrengthBuilder,
+                totalBodyToning,
+                legDayBurn,
+                pushPullIntensity,
+                fullBodyRevitalize,
+                armDefinition,
+                lowerBodyStrength,
+                upperBodyPower,
+                legPump,
+                cardioConditioning,
+                pushPullSculpt,
+                fullBodyBurnout,
+                dynamicBodyCircuit,totalBodyPump,strengthFusion,ultimateBodyBlitz,
+                completeBodyChallenge
         );
+
+
+        //exerciseRepository.saveAll(allExercises);
+        //trainingRepository.saveAll(trainingList);
 
 
         //userRepository.saveAll(List.of(user1, user2, user3, user4, user5));
         exerciseRepository.saveAll(allExercises);
         trainingRepository.saveAll(allTrainings);
         userRepository.saveAll(List.of(user));
-*/
+//*/
     }
 }
 

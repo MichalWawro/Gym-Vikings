@@ -4,20 +4,16 @@ import HomePageLoggedIn from './HomePageLoggedIn.js';
 import HomePageLoggedOut from './HomePageLoggedOut.js';
 
 
-const Home = ({user, isLoggedIn}) => {
+const Home = ({user}) => {
   useEffect(() => {
     document.title = 'Gym Viking: Home';
   }, [])
 
-    // const [isLoggedIn, setLoginState] = useState(false);
-    const handleLoginChange = (bool) => {
-        // setLoginState(bool);
-      };
     return (   
           <main>           
             <div>
-            {isLoggedIn ?
-                <HomePageLoggedIn/>
+            {user ?
+                <HomePageLoggedIn user={user}/>
                 :
                 <HomePageLoggedOut/>
             }

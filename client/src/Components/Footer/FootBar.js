@@ -5,8 +5,8 @@ const FootBar = ({user}) => {
     const navigate = useNavigate();
 
     function username(user){
-        if (user === "No user"){
-            return "No User"
+        if (!user){
+            return "No one"
         }
         else {
             return user.username
@@ -16,10 +16,9 @@ const FootBar = ({user}) => {
 
     return (
         <div className='footer-content'>
-            <h4>Logged in as {username(user)}</h4>
+            <h4>{username(user) + " logged"}</h4>
             <h5 className='footer-content'>2023 Gym Viking. <br></br>All rights reserved.</h5>
             <p>Follow us: <br></br><a href="https://facebook.com/gym_viking" target="_blank" rel="noopener noreferrer">Facebook</a> | <a href="https://twitter.com/gym_viking" target="_blank" rel="noopener noreferrer">Twitter</a>  <a href="https://instagram.com/gym_viking" target="_blank" rel="noopener noreferrer">Instagram</a></p>
-
             <div className='spacer'></div>
             <button id="AboutButton" className="NavButton" type="button" onClick={() => navigate("/about")}>
                 About

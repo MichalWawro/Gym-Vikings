@@ -1,15 +1,12 @@
 import React, { useState , useEffect} from "react";
 import Form from "./Form";
 import "./RegisterForm.css";
-
+import { useNavigate } from 'react-router-dom';
 const Register = () => {
     const[name, setName] = useState('');
     const[email, setEmail] = useState('');
     const[password, setPassword] = useState('');
-
-    const[changeToForm, setChangeToForm] = useState(null);
-
-    const[registeredUser,setRegisteredUser] = useState(null);
+    const navigate = useNavigate()
 
     useEffect(() => {
         document.title = 'Gym Viking: Register';
@@ -25,6 +22,7 @@ const Register = () => {
         })
             const data = await response.text()
             console.log(response.status, data)
+            navigate("/form")
         }   
         catch (error) {
           console.error("Error during registration:", error);
@@ -34,12 +32,7 @@ const Register = () => {
 
     return (
         <>
-        {changeToForm ? 
-            (
-                <Form registeredUser={registeredUser}></Form>
-            )
-            :
-            (        <div className="container">
+            <div className="container">
             <div className="app-wrapper">
                 <div>
                     <h2 className="title">Create Account</h2>
@@ -82,8 +75,6 @@ const Register = () => {
                 </form>
             </div>
         </div>
-        )
-        }
         </>
 
 
