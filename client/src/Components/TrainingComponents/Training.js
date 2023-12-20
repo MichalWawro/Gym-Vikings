@@ -40,10 +40,10 @@ function Training ({user}){
 
 
     return(<>
+        
         {training ? 
         (<>
         <h1 className="training-name">{training.name}</h1>
-        <h2 className="training-difficulty">Level: {training.level}</h2>
         <h2>BodyParts: </h2>
         {training.bodyParts.map((bodyPart,index)=><h3>{bodyPart}</h3>)}
         {training.exercises.map((exercise,index)=><Exercise exercise={exercise} index={index}/>)}
@@ -54,7 +54,7 @@ function Training ({user}){
         )
         :
         (<>
-        <h1>Wait...</h1>
+        <h1>Wait... your training being prepared</h1>
         </>)
         }
         
