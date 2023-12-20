@@ -3,6 +3,11 @@ import DietsLoggedIn from "./DietsLoggedIn";
 import DietsLoggedOut from "./DietsLoggedOut";
 
 const Diets = ({ user, isLoggedIn }) => {
+
+    useEffect(() => {
+        document.title = 'Gym Viking: Diets';
+    }, [])
+
     /*
     const [allDiets, setAllDiets] = useState([]);
     const [diets, setDiets] = useState(null);
@@ -51,7 +56,6 @@ const Diets = ({ user, isLoggedIn }) => {
                 <DietsLoggedIn user={user} />
             ) : (
                 <DietsLoggedOut />
-                
             )}
         </div>
     );

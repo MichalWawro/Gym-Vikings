@@ -154,25 +154,6 @@ public class MainService {
         }
     }
 
-    public Level getPreviousLevel(Level currentLevel) {
-        switch (currentLevel) {
-            case BEGINNER:
-                return null; // Nie ma poprzedniego poziomu dla BEGINNER
-            case INTERMEDIATE:
-                return Level.BEGINNER;
-            case PROFESSIONAL:
-                return Level.INTERMEDIATE;
-            case ELITE:
-                return Level.PROFESSIONAL;
-            case EXPERT:
-                return Level.ELITE;
-            case MASTER:
-                return Level.EXPERT;
-            default:
-                return null;
-        }
-    }
-
 
     public int getIncreaseRate(Level currentLevel) {
         switch (currentLevel) {
@@ -202,16 +183,9 @@ public class MainService {
 
 
     public Training getNextTrainingFromUser(UserEntity user){
+        Random random = new Random();
         List<Training> userTrainings = user.getTrainings();
-        for(int i =0;i<userTrainings.size();i++){
-            int index = user.getAmountOfTrainingsDone() % 7;
-            if(index == i){
-                return userTrainings.get(index);
-            }else {
-                continue;
-            }
-        }
-        return null;
+        return userTrainings.get(random.nextInt(userTrainings.size()));
     }
 
 
@@ -244,29 +218,34 @@ public class MainService {
 
         List<Training> userTrainingsToExport = userTrainings;
 
-        if((user.getAmountOfTrainingsDone() % (28 * getIncreaseRate(user.getLevel()))) == 0 && user.getAmountOfTrainingsDone() !=0) {
-
             for (Training training:
              userTrainings) {
             List<Exercise> exercises = training.getExercises();
                     for (Exercise exercise:
                         exercises) {
                     if (exercise.getWeight() == 0) {
-                        exercise.setReps(exercise.getReps() * getIncreaseRate(user.getLevel()));
+                        exercise.setReps(exercise.getReps() + (2 * getIncreaseRate(user.getLevel())));
                     }else{
                         double weight = exercise.getWeight();
-                        exercise.setWeight(weight + (10 * getIncreaseRate(user.getLevel())));
+                        exercise.setWeight(weight + (5 * getIncreaseRate(user.getLevel())));
                         exercise.setReps(exercise.getReps() + 1);
                     }
                 }
             }
-        }
         return userTrainingsToExport;
     }
 
-    public void deleteTrainingFromUser(int trainingid, int userid){
+    public void deleteTrainingFromUser(int trainingid, int userid) {
         UserEntity user = userService.getUserById(userid);
-        user.getTrainings().remove(trainingid -1);
+        List<Training> trainings = user.getTrainings();
+
+        for(int i=0;i<trainings.size();i++){
+            Training training = trainings.get(i);
+            if(training.getId() == trainingid){
+                trainings.remove(training);
+            }
+        }
+
         userService.saveUser(user);
     }
 
@@ -285,6 +264,17 @@ public class MainService {
             user.setTrainings(trainingsToSet);
             user.setDateOfTrainingAssosiation(date);
         }
+        userService.saveUser(user);
+    }
+
+    public void giveUserFirstTrainingPlan(int userId){
+        LocalDate date = LocalDate.now();
+        UserEntity user = userService.getUserById(userId);
+        List<Training> updatedtrainings = trainingService.getTrainings();
+
+        List<Training> trainingsToSet = trainingService.prepareTrainings(updatedtrainings);
+        user.setTrainings(trainingsToSet);
+        user.setDateOfTrainingAssosiation(date);
         userService.saveUser(user);
     }
 

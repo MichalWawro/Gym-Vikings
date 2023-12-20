@@ -30,11 +30,10 @@ public class DietController {
 //    public Diet getDietById(@PathVariable int id) {
 //        return dietService.getDietById(id);
 //    }
-
-//    @GetMapping("/meals/{id}")
-//    public Meal getMealById(@PathVariable int id) {
-//        return mealService.getMealById(id);
-//    }
+    @GetMapping("/meals/getMealById")
+    public Meal getMealById(@RequestParam int mealId) {
+        return mealService.getMealById(mealId);
+    }
 
     @GetMapping("/getAll")
     public List<Diet> getAllDiets() {

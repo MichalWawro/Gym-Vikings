@@ -1,8 +1,11 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import './Profile.css';
 import DefaultAvatar from '../../assets/vikinglogo2.png'
 
 const Profile = ({ user }) => {
+    useEffect(() => {
+        document.title = 'Gym Viking: Diets';
+      }, [])
 
    let date = user.creationDate.slice(0,19)
 

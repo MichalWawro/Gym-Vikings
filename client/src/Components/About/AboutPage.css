@@ -1,18 +1,20 @@
 .AboutPage {
+  max-height: 80vh;
   display: flex;
   height: calc(100vh - 60px); /* Wysokość ekranu minus wysokość navbaru */
-  padding-top: 60px; /* Wysokość navbaru */
+  /* padding-top: 60px; Wysokość navbaru */
   overflow-y: auto; /* Pasek przewijania, jeśli tekst jest za długi */
 }
 
 /* Styl dla tekstu */
 .AboutPage h1 {
-  margin-top: 180px; /* Margines na górze */
+  margin-top: 60px; /* Margines na górze */
   margin-left: 20px; /* Margines z lewej strony */
+  margin-right: 20px;
   color: aliceblue;
 }
 /* Styl dla obrazu */
 .AboutPage img {
-  max-width: 50%;
+  max-width: 60%;
   object-fit: cover;
 }

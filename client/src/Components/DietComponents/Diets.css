@@ -154,6 +154,7 @@
 
 .card-diets-logged-in {
     min-height: 200px;
+    min-width: 800px;
     z-index: 0;
     display: flex;
     flex-wrap: nowrap;
@@ -164,7 +165,8 @@
 .card-diets-logged-in {
     align-items: center;
     overflow: hidden;
-    position: relative;
+    left: 25%;
+    position: absolute;
     border-radius: .75rem;
     display: flex;
     justify-content: flex-end;
@@ -173,13 +175,14 @@
     padding: 20px;
     box-sizing: border-box;
     box-shadow: 0 10px 20px -5px rgba(0, 0, 0, 0.5);
-    background-color: transparent;
+    /* background-color: transparent; */
+    background: linear-gradient(to right, #2b398b, #1a1547);
 }
 
 .card-diets-logged-in img {
     padding-right: 50px;
     height: 100%;
-    z-index: -1;
+    z-index:-1;
     transform: scale(1.1);
     transition: all .7s cubic-bezier(.6, .09, .2, .99);
 }
@@ -194,6 +197,8 @@
 }
 
 .side-button {
+    position: absolute;
+    left: 80%;
     color: black;
 }
 

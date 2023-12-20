@@ -1,8 +1,13 @@
 import React from 'react';
+import { useEffect } from 'react';
 import './AboutPage.css';
 import silkaFest from '../../assets/silkafest.jpg';
 
 const AboutPage = () => {
+  useEffect(() => {
+    document.title = 'Gym Viking: About';
+  }, [])
+
   return (
     <div className="AboutPage">
       <h1>

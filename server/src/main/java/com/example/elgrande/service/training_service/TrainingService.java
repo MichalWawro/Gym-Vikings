@@ -109,7 +109,6 @@ public class TrainingService {
         for (Training training:
              trainings) {
                 trainingsToExport.add(training);
-
         }
         return trainingsToExport;
     }
@@ -123,7 +122,7 @@ public class TrainingService {
             if (!exercises.isEmpty()) {
                 for (Exercise exercise:
                     exercises) {
-                    if (exercise.getWeight() == 0) {
+                    if (exercise.getWeight() ==0) {
                         int reps = exercise.getReps();
                         exercise.setReps(reps + addedReps);
                     } else {
@@ -139,22 +138,13 @@ public class TrainingService {
     public List<Training> prepareTrainings(List<Training> Trainings) {
         Random random = new Random();
 
-        List bodyParts = new ArrayList<>();
-
         List<Training> trainingsToSet = new ArrayList<>(7);
 
         if (Trainings.size() > 0) {
 
-            for (int i = 0; i < Trainings.size(); i++) {
-
+            for (int i = 0; i < 7; i++) {
                 Training training = Trainings.get(random.nextInt(Trainings.size()));
-                Body bodyPart = training.getBodyParts().get(0);
-                if (!bodyParts.contains(bodyPart)) {
-                    bodyParts.add(bodyPart);
                     trainingsToSet.add(training);
-                } else {
-                    continue;
-                }
             }
         }
         return trainingsToSet;

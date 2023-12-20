@@ -5,7 +5,7 @@ import TrainingIcon from "./TrainingIcon";
 
 function ListOfTrainings ({user}){
     useEffect(()=>{
-        console.log("---------------------------", user)
+        console.log("----------LISTA TRENINGOW-----------------", user)
     },[])
 
     return (

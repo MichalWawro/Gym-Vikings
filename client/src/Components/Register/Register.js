@@ -2,15 +2,19 @@ import React, { useState , useEffect} from "react";
 import Form from "./Form";
 import Home from "../HomePage/Home"
 import "./RegisterForm.css";
-import{ useNavigate } from 'react-router-dom';
-
+import { useNavigate } from 'react-router-dom';
 const Register = () => {
     const[name, setName] = useState('');
     const[email, setEmail] = useState('');
     const[password, setPassword] = useState('');
     const[error, setError] = useState(null);
-   
-    const navigate = useNavigate();
+
+    const navigate = useNavigate()
+
+    useEffect(() => {
+        document.title = 'Gym Viking: Register';
+      }, [])
+  
 
     async function handleRegister(event){
         event.preventDefault();
@@ -39,8 +43,8 @@ const Register = () => {
 
 
     return (
-        <>   
-        <div className="container">
+        <>
+            <div className="container">
             <div className="app-wrapper">
                 <div>
                     <h2 className="title">Create Account</h2>

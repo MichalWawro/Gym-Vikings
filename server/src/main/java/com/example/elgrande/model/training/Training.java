@@ -5,6 +5,7 @@ import com.example.elgrande.model.enums.Level;
 import com.example.elgrande.model.user.UserEntity;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
+import jakarta.transaction.Transactional;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -13,6 +14,7 @@ import java.util.List;
 @Data
 @NoArgsConstructor
 @Entity
+@Transactional
 public class Training {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -25,7 +27,7 @@ public class Training {
     @ManyToMany(mappedBy = "trainings")
     @JsonIgnore
     private List<UserEntity> users;
-    @ManyToMany
+    @ManyToMany(cascade = CascadeType.PERSIST)
     @JoinTable(name = "training_exercise",
     joinColumns = @JoinColumn(name="training_id"),
     inverseJoinColumns = @JoinColumn(name = "exercise_id"))

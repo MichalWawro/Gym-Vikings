@@ -3,7 +3,7 @@ import './UserData.css';
 import { Navigate } from 'react-router-dom';
 import Home from '../HomePage/Home';
 import HomePageLoggedIn from '../HomePage/HomePageLoggedIn';
-const Form = ({ registeredUser, user, setUser }) => {
+const Form = ({user, setUser }) => {
 
     const [personalData, setPersonalData] = useState({
         age: user.age,
@@ -65,28 +65,7 @@ const Form = ({ registeredUser, user, setUser }) => {
           const getData = await getRes.json()
           console.log("Data z getproper user", getData);
           setUser(getData)
-
-              
       }
-
-    //   async function getPropperUser(){
-    //     const getRes = await fetch(`http://localhost:8080/user/getUserInfo?userId=${user.id}`)
-    //     const data = await getRes.json()
-    //     console.log("Data z getproper user", data);
-    //     setUser(data)
-    //   }
-
-    //   function getPropperUser(){
-    //     fetch(`http://localhost:8080/user/getUserInfo?userId=${user.id}`)
-    //     .then(res=>res.json())
-    //     .then(data=>{
-    //         console.log("Data z getproper user", data);
-    //         // setUser(data)
-    //         // setRegistered("go")
-    //     })
-    //     .catch(e=>console.error(e))
-    //   }
-
        
     //   const handleSubmit = (e) => {
     //     e.preventDefault();
@@ -225,7 +204,7 @@ const Form = ({ registeredUser, user, setUser }) => {
 
                     <div className="data-submit-form-group">
                         <button className="data-submit" type="submit">
-                            Submit
+                            <label className="data-label-submit">Submit</label>
                         </button>
                     </div>
                 </form>
@@ -265,6 +244,5 @@ const Gender = {
     FEMALE: 'Female',
     MALE: 'Male'
 };
-
 
 export default Form;
