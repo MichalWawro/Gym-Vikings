@@ -47,7 +47,7 @@ public class DataInitializer implements CommandLineRunner {
 
 //Proper Diet Database
         //Meso
-///*
+/*
         Ingredient beefStrips = new Ingredient("Beef Strips", 250);
         Ingredient chickenBreast = new Ingredient("Chicken Breast", 165);
         Ingredient chickenStrips = new Ingredient("Chicken Strips", 239);
@@ -495,7 +495,8 @@ public class DataInitializer implements CommandLineRunner {
                 carnitasTacos, lambChopsWithMint, chickenParmesan, baconWrappedShrimp, beefStroganoff, spicyChickenWings));
 
         dietRepository.saveAll(List.of(dietNormal, dietCarnivorous, dietSemiCarni, dietVeganAbsolutely, dietVegetarianSea, dietVegetarianNoMeat));
-
+*/
+        /*
 //        //CHEST
         Exercise BarDip = new Exercise("Bar Dip", Type.CALISTHENICS, Body.CHEST, 8, 0, 4, "https://i0.wp.com/www.strengthlog.com/wp-content/uploads/2020/09/Muscles-worked-by-bar-dip-exercise.jpg?resize=768%2C768&ssl=1", "https://i0.wp.com/www.strengthlog.com/wp-content/uploads/2020/02/Dips.gif?resize=600%2C600&ssl=1");
 
@@ -690,7 +691,7 @@ public class DataInitializer implements CommandLineRunner {
         exerciseRepository.saveAll(allExercises);
         trainingRepository.saveAll(allTrainings);
         userRepository.saveAll(List.of(user));
-//*/
+*/
     }
 }
 
