@@ -23,12 +23,12 @@ main {
 .content {
   text-align: center;
   font-family: 'Rubik', sans-serif;
-  color: rgb(212, 212, 103);
+  color: #d4d467;
 }
 
 /* App container styles */
 .App {
-  background-color: #272933;
+  background-color:#202023;
   z-index: -2;
   /* display: flex; */
   flex-direction: column;

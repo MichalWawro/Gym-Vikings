@@ -1,34 +1,34 @@
 import { useState } from "react"
 import Training from "./Training";
+import TrainingFromIcon from "./TrainingFromIcon";
+import { useNavigate } from 'react-router-dom';
+import './TrainingIcon.css'
 
-function TrainingIcon ({userId, training, index}){
 
-    const[startTraining, setStartTraining] = useState();
+function TrainingIcon({ training, setPickedTraining, index}) {
+    const navigate = useNavigate()
 
-    function getTraining(trainingId){
-        fetch(`http://localhost:8080/training/getTrainingFromUser?userId=${userId}&trainingId=${trainingId}`)
-        .then(res => res.json())
-        .then(data => {
-            setStartTraining(data)
-        })
-        .catch(e=>console.error(e))
-    }
-    return(
+    const Viking = require(`../../assets/vikinglogo${index + 1}.png`);
+
+    return (
         <>
-        {startTraining ? 
-        (
-        <Training training={startTraining} userId={userId}/>
-        )
-        :
-        (        
-        <>
-        <h1 className="training-name">{training.name}</h1>
-        <h2 className="training-difficulty">Exercises:</h2>
-        {training.exercises.map((exercise,index)=><a>{exercise.name}</a>)}
-        <button onClick={()=>{getTraining(index + 1)}}>Show details</button>
-        </>
-        )
-        }
+            <div className="training-icon">
+                <div className="trainer-div">
+                    <h2 className="your-trainer">Your trainer:</h2>
+                    <img className="trainer-image" src={Viking} width={250} height={250} />
+                </div>
+                <br></br>
+                <div className="training-icon-details">
+                    <h1 className="training-name">{training.name}</h1>
+                    <h2 className="training-difficulty">Exercises:</h2>
+                    {training.exercises.map((exercise, index) => <h3>{exercise.name}</h3>)}
+                </div>
+                <br></br>
+                <button className='icon-button' onClick={() => {
+                    setPickedTraining(training)
+                    navigate("trainingFromList")
+                }}>Start Training</button>
+            </div>
         </>
     )
 }

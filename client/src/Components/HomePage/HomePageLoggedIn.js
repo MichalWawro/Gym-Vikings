@@ -2,7 +2,8 @@ import React, { useState, useEffect } from "react";
 import Training from "../TrainingComponents/Training";
 import { useNavigate } from 'react-router-dom';
 import image from '../../assets/background.png';
-import image2 from '../../assets/spaghetti.jpg';
+import image2 from '../../assets/vikingEating.png';
+import image3 from '../../assets/viking.png'
 
 const HomePageLoggedIn = ({user}) => {
     const [training, setTraining] = useState(null);
@@ -15,10 +16,11 @@ const HomePageLoggedIn = ({user}) => {
 
 
     return (
+        <div className="background-image2">
         <div className="wrapper">
             <div className="cards">
                 <button className="card" onClick={() => navigate("/training")}>
-                    <img src={image} alt="" />
+                    <img src={image3} alt="" />
                     <h2>Training</h2>
                     <p>Join our training program that will help you get sheredded in no time</p>
                 </button>
@@ -29,6 +31,7 @@ const HomePageLoggedIn = ({user}) => {
                 </button>
             </div >
         </div >
+        </div>
     );
 };
 

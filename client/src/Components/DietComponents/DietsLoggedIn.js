@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import './Diets.css';
 import { useNavigate } from 'react-router-dom';
-import viking_image from '../../assets/vikinglogo.png';
+import viking_image from '../../assets/vikinglogo1.png';
 
 const DietsLoggedIn = ({ user }) => {
     const [readyToLoad, setReady] = useState(false);
