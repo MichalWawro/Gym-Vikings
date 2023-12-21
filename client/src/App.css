@@ -10,7 +10,7 @@ main {
 }
 
 .background-image{
-  background-image: url(./assets/background.png);
+  background-image: url(./assets/homePageBackground.jpg);
   background-size: cover;
   height: 83vh;
   flex-grow: 1;
