@@ -6,6 +6,7 @@
   padding: 5px;
   display: flex;
   justify-content: flex-end;
+  border: 2px solid #2a2a2a;
 }
 
 /* Styles for navigation buttons */
@@ -13,6 +14,7 @@
   background-image: url(../../assets/homelogo.png);
   background-size: contain;
   background-repeat: no-repeat;
+  background-color: #19191b;
   border: 0;
   height: 70px;
   width: 282px;

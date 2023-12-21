@@ -104,7 +104,7 @@ public class UserController {
         }
     }
     @PatchMapping("/user/trainingDone")
-    public UserEntity trainingDone(@RequestParam int userId,  @RequestParam (required = false) Integer trainingId) {
+    public UserEntity trainingDone(@RequestParam int userId,  @RequestParam int trainingId) {
             userService.trainingDone(userId);
             mainService.levelUp(userId);
             mainService.deleteTrainingFromUser(trainingId,userId);

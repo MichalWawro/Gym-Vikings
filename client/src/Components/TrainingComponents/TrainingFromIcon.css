@@ -1,0 +1,27 @@
+.training{
+    margin-top: 5%;
+    text-align: center;
+}
+.end-button-padding{
+    padding-bottom: 300px;
+}
+
+.end-button{
+    background-color: #555555;
+    border: 2px solid black;
+    border-radius: 10px;
+    height: 100px;
+    width: 344px;
+    display: inline-block;
+    margin: 10px;
+    font: bold 14px/1 'Rubik', sans-serif;
+    transition: transform 0.75s;
+    justify-content: center;
+    text-align: center;
+}
+
+.end-button:hover {
+    background-color: rgb(212, 212, 103);
+    color: rgb(0, 0, 0);
+    transform: scale(1.1);
+  }

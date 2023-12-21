@@ -18,6 +18,7 @@ import MealInfo from "./Components/DietComponents/MealInfo";
 import Profile from "./Components/Profile/Profile";
 import Register from "./Components/Register/Register";
 import { useNavigate } from 'react-router-dom';
+import TrainingFromIcon from "./Components/TrainingComponents/TrainingFromIcon";
 
 function App() {
   const navigate = useNavigate();
@@ -27,6 +28,7 @@ function App() {
 
   const [user, setUser] = useState();
   const [jwt, setJwt] = useState()
+  const[pickedTraining, setPickedTraining] = useState();
 
   useEffect(() => {
     document.title = 'Gym Viking: Home';
@@ -43,8 +45,9 @@ function App() {
           <Route path='contact' element={<ContactPage />}></Route>
           <Route path='register' element={<Register/>}></Route>
           <Route path='about' element={<AboutPage />}></Route>
-          <Route path='training' element={<Training user={user}/>}/>
-          <Route path='trainings' element={<ListOfTrainings user={user} />}></Route>
+          <Route path='training' element={<Training user={user} setUser={setUser}/>}/>
+          <Route path='trainings' element={<ListOfTrainings user={user} setPickedTraining={setPickedTraining}/>}></Route>
+          <Route path='trainings/trainingFromList' element={<TrainingFromIcon user={user} training={pickedTraining} setUser={setUser}/>}></Route>
           <Route path='diets' element={<Diets user={user} />}></Route>
           <Route path='diets/search' element={<SearchDiets/>}></Route>
           <Route path='diets/:index' element={<DietInfo/>}></Route>
