@@ -56,6 +56,7 @@ const DietsLoggedIn = ({ user }) => {
             .then(res => res.json())
             .then(data => {
                 console.log(data);
+                console.log('all diets |||');
                 setAllDiets(data);
             })
             .catch(e => console.error(e))
