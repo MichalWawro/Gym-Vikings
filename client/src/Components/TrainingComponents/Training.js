@@ -29,8 +29,7 @@ function Training ({user}){
         .then(res => res.json())
         .catch(error => {
             console.error('Error:', error);
-        });
-        
+        }); 
     }
 
     useEffect(()=>{

@@ -18,6 +18,8 @@ import MealInfo from "./Components/DietComponents/MealInfo";
 import Profile from "./Components/Profile/Profile";
 import Register from "./Components/Register/Register";
 import { useNavigate } from 'react-router-dom';
+{/* <img src={'https://cdn.galleries.smcloud.net/t/photos/gf-Yz2K-uho6-f6NT_spaghetti-bolognese-przepis-na-wloskie-danie-dla-4-osob.jpg'} alt=''/> */}
+
 
 function App() {
   const navigate = useNavigate();
@@ -46,7 +48,7 @@ function App() {
           <Route path='training' element={<Training user={user}/>}/>
           <Route path='trainings' element={<ListOfTrainings user={user} />}></Route>
           <Route path='diets' element={<Diets user={user} />}></Route>
-          <Route path='diets/search' element={<SearchDiets/>}></Route>
+          <Route path='diets/search' element={<SearchDiets user={user}/>}></Route>
           <Route path='diets/:index' element={<DietInfo/>}></Route>
           <Route path='meals/:index' element={<MealInfo/>}></Route>
           <Route path='profile' element={<Profile user={user} />}></Route>
