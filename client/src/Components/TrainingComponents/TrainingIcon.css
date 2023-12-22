@@ -1,0 +1,40 @@
+.training-icon{
+    background-color: aliceblue;
+    width: 60%;
+    left: 50%;
+    transform: translate(23%,0);
+    border-radius: 8px;
+    margin: 5%;
+    border:2px #d4d467;
+}
+
+.icon-button{
+    background-color: #555555;
+    border: 2px solid black;
+    border-radius: 10px;
+    height: 60px;
+    width: 144px;
+    display: inline-block;
+    margin: 30px;
+    font: bold 14px/1 'Rubik', sans-serif;
+    transition: transform 0.75s;
+}
+
+
+.icon-button:hover {
+    background-color: #d4d467;
+    color: rgb(0, 0, 0);
+    transform: scale(1.1);
+}
+
+.training-icon-details{
+    background-color: #272933;
+    border-radius: 8px;
+    margin: 5%;
+}
+
+.your-trainer{
+    background-color: #272933;
+    border-radius: 8px;
+    margin-top: 5%;
+}

@@ -62,3 +62,19 @@
     font-family: 'Rubik', sans-serif;
     color: rgb(212, 212, 103);
 }
+
+.background-image2{
+    background-image: url(../../assets/background2.png);
+}
+
+.text-content{
+    text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000; /* Set the text shadow */
+    position: absolute;
+    width: 30vw;
+    height: 70vh;
+    left: 50%;
+}
+
+.MainButton{
+    text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000; /* Set the text shadow */
+}

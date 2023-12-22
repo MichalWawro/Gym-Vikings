@@ -6,7 +6,22 @@ const NavBarLoggedOut = ({ login, tryingToSign, setTryingToSign, setUser, setJwt
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
 
+    const[error, setError] = useState(null);
+
     const navigate = useNavigate();
+
+    async function getUserFromDb(){
+        try{
+            const getRes = await fetch(`http://localhost:8080/user/getUserInfoByName?name=${username}`)
+            const data = await getRes.json()
+            console.log("Data z get user from db", data)
+            return data.username
+        }
+        catch(error){
+            setError('Wrong username and/or password.');
+            console.log(error)
+        }
+    }
 
 
     async function handleLogin() {
@@ -18,19 +33,31 @@ const NavBarLoggedOut = ({ login, tryingToSign, setTryingToSign, setUser, setJwt
         })
         const data = await postRes.json();
         console.log("Do podglądu -> login data", data)
-        console.log("Do podglądu -> login data.user", data.user)
-        setUser(data.user)
-        setJwt(data.jwt)
-        navigate('/')
-    }
+        
 
-    function handleUsername(e) {
-        console.log(e.target.value)
+        const usernameFromDb = await getUserFromDb()
+
+        if(username === usernameFromDb){
+            console.log("user exists")
+            setUser(data.user)
+            setJwt(data.jwt)
+            navigate('/')
+            
+            console.log("Do podglądu -> login data.user", data.user)
+        }
+        else{
+            console.log("user dont exist")
+
+        }
+    }
+        
+    function handleUsername(e){
+        // console.log(e.target.value)
         setUsername(e.target.value)
     }
 
-    function handlePassword(e) {
-        console.log(e.target.value)
+    function handlePassword(e){
+        // console.log(e.target.value)
         setPassword(e.target.value)
     }
 
@@ -70,6 +97,7 @@ const NavBarLoggedOut = ({ login, tryingToSign, setTryingToSign, setUser, setJwt
                     </button>
                 </div>
                 :
+               
                 <button id="SignInButton" className="NavButton" type="button" onClick={() => setTryingToSign(true)}>
                     Login
                 </button>
@@ -78,6 +106,7 @@ const NavBarLoggedOut = ({ login, tryingToSign, setTryingToSign, setUser, setJwt
             <button id="RegisterButton" className="NavButton" type="button" onClick={() => navigate("/register")}>
                 Register
             </button>
+            {error && <h3 style={{color: 'red'}}>{error}</h3>}
         </div>
     );
 };

@@ -17,13 +17,13 @@ const DietsLoggedOut = ({ }) => {
             <div className="text-box-wrapper-logged-out">
                 <img id='image-left' src={steak} alt="" />
                 <div className="text-box">
-                    <p>Our app offers a variety of diets for all your foody needs</p>
+                    <p>Explore a variety of diets tailored to your nutritional goals in our app. Whether you're aiming to lose weight or boost muscle growth, our diverse range of diet plans caters to your unique needs.</p>
                 </div>
             </div>
             <div className="text-box-wrapper-logged-out">
                 <img id='image-right' src={sushi} alt="" />
                 <div className="text-box">
-                    <p>Whether you want to lose weight or gain some muscles with us you can choose a diet that will help you achieve your dream goal</p>
+                    <p>Achieve your health and wellness goals with personalized nutrition right at your fingertips!</p>
                 </div>
             </div>
             <button id="button-main-logged-out" onClick={() => navigate('/register')}>Click to make an account!</button>

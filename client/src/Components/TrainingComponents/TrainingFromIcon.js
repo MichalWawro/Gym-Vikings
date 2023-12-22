@@ -1,29 +1,16 @@
-import React, { useEffect, useState } from "react"
+import React,{useEffect, useState} from "react"
 import Exercise from "./Exercise/Exercise";
 import './Training.css'
-import FillTheForm from "../FillTheForm";
+import './TrainingFromIcon.css'
 import { useNavigate } from "react-router-dom";
 import Info from './Info';
+import FillTheForm from "../FillTheForm";
 
-function Training({ user, setUser }) {
+
+function TrainingFromIcon ({user, training, setUser}){
     const navigate = useNavigate()
     const [begginingInfo, setBegginingInfo] = useState(false);
-    const [training, setTraining] = useState();
 
-
-
-
-    function provideNextTraining() {
-        fetch(`http://localhost:8080/training/provideNextTraining?userId=${user.id}`)
-            .then(res => res.json())
-            .then(data => {
-                console.log("---------------------------------TRENING-------------------------------------- " + data)
-                setTraining(data)
-            })
-            .catch(error => {
-                console.error('Error:', error);
-            });
-    }
 
     function trainingDone() {
         fetch(`http://localhost:8080/user/trainingDone?userId=${user.id}&trainingId=${training.id}`, {
@@ -32,23 +19,16 @@ function Training({ user, setUser }) {
                 'Content-Type': 'application/json',
             },
         })
-            .then(res => res.json())
-            .then(data=>{
-                setUser(data);
-                navigate('/')
-            })
-            .catch(error => {
-                console.error('Error:', error);
-            });
-
+        .then(res => res.json())
+        .then(data=>{
+            setUser(data)
+            navigate('/')
+        })
+        .catch(error => {
+            console.error('Error:', error);
+        });
+        
     }
-
-    useEffect(() => {
-        console.log('tu zaczyna sie trening')
-        provideNextTraining();
-    }, [])
-
-
 
 
     function validateFormDone(user) {
@@ -87,13 +67,11 @@ function Training({ user, setUser }) {
     }
 
 
-
-
-    return (<>
+    return(
+        <>
         {validateFormDone(user)}
-    </>
-
+        </>
     )
 }
 
-export default Training;
+export default TrainingFromIcon;

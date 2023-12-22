@@ -175,10 +175,14 @@ public class MainService {
     }
 
 
-    public Training getTrainingFormUser(int trainingIndex, int userId){
+    public Training getTrainingFormUser(int trainingId, int userId){
         UserEntity user = userService.getUserById(userId);
-        Training training = user.getTrainings().get(trainingIndex - 1);
-        return training;
+        for(Training training:user.getTrainings()){
+            if(training.getId() == trainingId){
+                return training;
+            }
+        }
+        return null;
     }
 
 
@@ -235,13 +239,13 @@ public class MainService {
         return userTrainingsToExport;
     }
 
-    public void deleteTrainingFromUser(int trainingid, int userid) {
+    public void deleteTrainingFromUser(int trainingId, int userid) {
         UserEntity user = userService.getUserById(userid);
         List<Training> trainings = user.getTrainings();
 
         for(int i=0;i<trainings.size();i++){
             Training training = trainings.get(i);
-            if(training.getId() == trainingid){
+            if(training.getId() == trainingId){
                 trainings.remove(training);
             }
         }
