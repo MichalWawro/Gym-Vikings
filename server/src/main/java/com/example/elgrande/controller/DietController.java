@@ -30,14 +30,24 @@ public class DietController {
 //    public Diet getDietById(@PathVariable int id) {
 //        return dietService.getDietById(id);
 //    }
-    @GetMapping("/meals/getMealById")
+    @GetMapping("/getMealById")
     public Meal getMealById(@RequestParam int mealId) {
         return mealService.getMealById(mealId);
+    }
+
+    @GetMapping("/getDietById")
+    public Diet getDietById(@RequestParam int dietId) {
+        return dietService.getDietById(dietId);
     }
 
     @GetMapping("/getAll")
     public List<Diet> getAllDiets() {
         return dietService.getAllDiets();
+    }
+
+    @GetMapping("/getAllMeals")
+    public List<Meal> getAllMeals() {
+        return mealService.getAllMeals();
     }
 
     @PostMapping

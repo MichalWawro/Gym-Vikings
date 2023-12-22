@@ -4,3 +4,19 @@
     left:50%;
     transform: translate(-50%, -50%);
 }
+
+.meal-wrapper-column {
+    display: flex;
+    flex-direction: column;
+    margin-left: 20px;
+}
+
+.meal-wrapper-row {
+    display: flex;
+    flex-direction: row;
+}
+
+.meal-right-side-text {
+    position: absolute;
+    left: 20%;
+}

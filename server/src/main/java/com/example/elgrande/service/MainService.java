@@ -358,6 +358,9 @@ public class MainService {
     public Diet getDietChanged (int userId) {
         UserEntity user = userService.getUserById(userId);
         Diet diet = user.getDiet();
+        if(diet == null) {
+            return null;
+        }
         Diet changedDiet;
         int dailyKcal = dailyKcalForUser(userId);
 
@@ -375,16 +378,4 @@ public class MainService {
 
         return diet;
     }
-
-//    public Diet setDiet(int userId, int dietId) {
-//        UserEntity user = userService.getUserById(userId);
-//        Diet diet = dietService.getDietById(dietId);
-//
-////        user.setDiet(diet);
-//        user.setDiet(diet,user.getDiets());
-//        return diet;
-//
-//    }
-
-
 }

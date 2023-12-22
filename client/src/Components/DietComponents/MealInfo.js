@@ -1,6 +1,5 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import { useNavigate } from 'react-router-dom';
 import './MealInfo.css';
 import './Diets.css';
 import '../../App.css';
@@ -12,11 +11,9 @@ const DietInfo = () => {
     const [isIndexNumber, setIsNumber] = useState(true);
     const [readyToLoad, setReady] = useState(false);
     const { index } = useParams();
-    const navigate = useNavigate();
 
 
     useEffect(() => {
-        getIndex();
         if (!isNaN(Number(index))) {
             fetchMealInfo();
         } else {
@@ -25,22 +22,18 @@ const DietInfo = () => {
         }
     }, []);
 
-    function getIndex() {
-        // console.log(index)
-    }
-
     function fetchMealInfo() {
-        fetch(`http://localhost:8080/meals/getMealById?mealId=${index}`)
+        fetch(`http://localhost:8080/diets/getMealById?mealId=${index}`)
             .then(res => res.json())
             .then(data => {
                 console.log(data);
                 setMealInfo(data);
+                ingredientsToString(data.ingredients);
+                gramsToString(data.grams);
                 setReady(true);
             })
             .catch(e => console.error(e))
     }
-
-
 
     function ingredientsToString(ingredientsArray) {
         console.log(ingredientsArray);
@@ -67,25 +60,33 @@ const DietInfo = () => {
             {readyToLoad ?
                 (isIndexNumber ?
                     (
-                        <div className="MealInfoPage">
-                            <div className="LeftHalfMealInfo">
-                                <h1><p />Meal Name:</h1>
-                                <h1><p />Meal Calories:</h1>
-                                <h1><p />Food Type:</h1>
-                                <h1><p />Prep Instructions:</h1>
-                                <h1><p />      _</h1>
-                                <h1><p />Ingredients:</h1>
-                                <h1><p />Grams:</h1>
-                                {/* <h1><p/>{mealInfo.ingredients}</h1> */}
-                                {/* <h1><p/>{mealInfo.grams}</h1> */}
+                        <div className="meal-wrapper-column">
+                            <div id="meal-name" className="meal-wrapper-row">
+                                <h1>Meal Name:</h1>
+                                <h1 className="meal-right-side-text">{mealInfo.mealName}</h1>
                             </div>
-                            <div className="RightHalfMealInfo">
-                                <h1><p />{mealInfo.mealName}</h1>
-                                <h1><p />Meal Calories: {mealInfo.mealCalories}</h1>
-                                <h1><p />{mealInfo.foodType}</h1>
-                                <h1><p />{mealInfo.perpInstructions}</h1>
-                                <h1><p />{ingredientsString}</h1>
-                                <h1><p />{gramsString}</h1>
+                            <div id="meal-calories" className="meal-wrapper-row">
+                                <h1>Avg. Meal Calories:</h1>
+                                <h1 className="meal-right-side-text">{mealInfo.mealCalories}</h1>
+                            </div>
+                            <div id="meal-type" className="meal-wrapper-row">
+                                <h1>Food Type:</h1>
+                                <h1 className="meal-right-side-text">{mealInfo.foodType}</h1>
+                            </div>
+                            <div id="meal-prep" className="meal-wrapper-row">
+                                <h1>Prep Instructions:</h1>
+                                <h1 className="meal-right-side-text">{mealInfo.perpInstructions}</h1>
+                            </div>
+                            <div id="meal-ingredients" className="meal-wrapper-row">
+                                <h1></h1>
+                            </div>
+                            <div id="meal-ingredients" className="meal-wrapper-row">
+                                <h1><p />Ingredients:</h1>
+                                <h1 className="meal-right-side-text"><p />{ingredientsString}</h1>
+                            </div>
+                            <div id="meal-grams" className="meal-wrapper-row">
+                                <h1>Grams:</h1>
+                                <h1 className="meal-right-side-text">{gramsString}</h1>
                             </div>
                         </div>
                     ) : (

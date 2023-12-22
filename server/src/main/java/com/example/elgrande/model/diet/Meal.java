@@ -55,6 +55,8 @@ public class Meal {
     }
 
     public int calculateMealCalories(List<Ingredient> ingredients, List<Integer> grams) {
+        System.out.println(ingredients);
+        System.out.println(grams);
 //        System.out.println(ingredients.get(0));
         int sum = 0;
         for(int i = 0; i < ingredients.size(); i++) {

@@ -13,9 +13,6 @@ import java.util.Optional;
 public class MealService {
     private MealRepository dbRepository;
 
-    Meal spaghettiBolognese = new Meal("Spaghetti Bolognese", FoodType.NORMAL, List.of(),
-            List.of(250, 200, 150, 50, 10), "1. Cook spaghetti according to package instructions.\n");
-
     public void saveAll(List<Meal> meals) {
         dbRepository.saveAll(meals);
     }
@@ -28,5 +25,10 @@ public class MealService {
         Optional<Meal> meal =  dbRepository.findById(id);
         Meal mealToReturn = meal.get();
         return mealToReturn;
+    }
+
+    public List<Meal> getAllMeals() {
+        List<Meal> meals = dbRepository.findAll();
+        return meals;
     }
 }

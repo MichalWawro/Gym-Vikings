@@ -180,7 +180,7 @@ public class DataInitializer implements CommandLineRunner {
 
 // 2. Vegetarian Stir-Fry
         Meal vegetarianStirFry = new Meal("Vegetarian Stir-Fry", FoodType.VEGAN, List.of(tofu, broccoli, redBellPeppers, carrots, soySauce),
-                List.of(200, 150, 100, 75, 20), "1. Press tofu to remove excess water and cut into cubes.\n" +
+                List.of(200, 150, 100, 80, 20), "1. Press tofu to remove excess water and cut into cubes.\n" +
                 "2. Stir-fry tofu, broccoli, bell peppers, and carrots in a wok.\n" +
                 "3. Add soy sauce and toss until well-cooked.\n" +
                 "4. Serve over rice or noodles.");
@@ -194,7 +194,7 @@ public class DataInitializer implements CommandLineRunner {
 
 // 4. Caprese Salad
         Meal capreseSalad = new Meal("Caprese Salad", FoodType.VEGETARIAN, List.of(mozzarellaCheese, tomatoes, freshBasil, balsamicGlaze, oliveOil),
-                List.of(150, 100, 30, 20, 15), "1. Slice fresh mozzarella, tomatoes, and arrange on a plate.\n" +
+                List.of(150, 100, 30, 20, 20), "1. Slice fresh mozzarella, tomatoes, and arrange on a plate.\n" +
                 "2. Sprinkle fresh basil over the mozzarella and tomatoes.\n" +
                 "3. Drizzle balsamic glaze and olive oil on top.\n" +
                 "4. Season with salt and pepper to taste.");
@@ -235,14 +235,14 @@ public class DataInitializer implements CommandLineRunner {
 
 // 9. Veggie Omelette
         Meal veggieOmelette = new Meal("Veggie Omelette", FoodType.VEGETARIAN, List.of(eggs, redBellPeppers, spinach, tomatoes, fetaCheese),
-                List.of(3, 100, 50, 50, 30), "1. Whisk eggs in a bowl and season with salt and pepper.\n" +
+                List.of(300, 100, 50, 50, 30), "1. Whisk eggs in a bowl and season with salt and pepper.\n" +
                 "2. In a non-stick skillet, sauté bell peppers, spinach, and tomatoes.\n" +
                 "3. Pour the whisked eggs over the veggies and cook until set.\n" +
                 "4. Fold the omelette in half and serve with crumbled feta cheese.");
 
 // 10. Beef and Vegetable Stir-Fry
         Meal beefVegetableStirFry = new Meal("Beef and Vegetable Stir-Fry", FoodType.NORMAL, List.of(beefStrips, broccoli, snowPeas, carrots, ginger),
-                List.of(250, 100, 75, 50, 10), "1. Sauté beef strips in a wok until browned.\n" +
+                List.of(250, 100, 80, 50, 10), "1. Sauté beef strips in a wok until browned.\n" +
                 "2. Add broccoli, snow peas, carrots, and ginger, stir-frying until vegetables are tender.\n" +
                 "3. Pour soy sauce over the stir-fry and toss until well-coated.\n" +
                 "4. Serve over rice.");
@@ -256,35 +256,35 @@ public class DataInitializer implements CommandLineRunner {
 
 // 12. Pesto Pasta with Cherry Tomatoes
         Meal pestoPastaCherryTomatoes = new Meal("Pesto Pasta with Cherry Tomatoes", FoodType.VEGETARIAN, List.of(pestoSauce, cherryTomatoes, pennePasta, pineNuts, parmesanCheese),
-                List.of(100, 150, 120, 30, 25), "1. Cook penne pasta according to package instructions.\n" +
+                List.of(100, 150, 120, 30, 80), "1. Cook penne pasta according to package instructions.\n" +
                 "2. In a blender, combine pesto sauce, cherry tomatoes, and pine nuts.\n" +
                 "3. Toss the cooked pasta in the pesto mixture.\n" +
                 "4. Sprinkle grated Parmesan cheese on top before serving.");
 
 // 13. Hawaiian Chicken Skewers
         Meal hawaiianChickenSkewers = new Meal("Hawaiian Chicken Skewers", FoodType.NORMAL, List.of(chickenBreast, pineappleChunks, redBellPeppers, redOnion, teriyakiSauce),
-                List.of(200, 100, 75, 50, 30), "1. Thread chicken, pineapple chunks, bell peppers, and red onion onto skewers.\n" +
+                List.of(200, 100, 80, 50, 30), "1. Thread chicken, pineapple chunks, bell peppers, and red onion onto skewers.\n" +
                 "2. Grill skewers until chicken is fully cooked.\n" +
                 "3. Baste with teriyaki marinade during grilling.\n" +
                 "4. Serve skewers over rice.");
 
 // 14. Sweet Potato and Black Bean Bowl
         Meal sweetPotatoBlackBeanBowl = new Meal("Sweet Potato and Black Bean Bowl", FoodType.VEGAN, List.of(sweetPotatoes, blackBeans, corn, avocado, lime),
-                List.of(150, 100, 75, 50, 10), "1. Roast sweet potatoes until tender.\n" +
+                List.of(150, 100, 80, 50, 10), "1. Roast sweet potatoes until tender.\n" +
                 "2. Mix roasted sweet potatoes with black beans, corn, and diced avocado.\n" +
                 "3. Squeeze lime juice over the bowl before serving.\n" +
                 "4. Season with salt and pepper to taste.");
 
 // 15. Lentil Soup
         Meal lentilSoup = new Meal("Lentil Soup", FoodType.VEGAN, List.of(lentils, carrots, celery, onion, vegetableBroth),
-                List.of(200, 75, 50, 50, 300), "1. Rinse lentils and cook them in vegetable broth.\n" +
+                List.of(200, 80, 50, 50, 300), "1. Rinse lentils and cook them in vegetable broth.\n" +
                 "2. Sauté carrots, celery, and onions in a pot until softened.\n" +
                 "3. Add sautéed vegetables to the lentils and simmer until flavors meld.\n" +
                 "4. Season with salt and pepper to taste.");
 
 // 16. BBQ Pulled Pork Sandwich
         Meal bbqPulledPorkSandwich = new Meal("BBQ Pulled Pork Sandwich", FoodType.NORMAL, List.of(pulledPork, BBQSauce, coleslaw, hamburgerBun, pickles),
-                List.of(200, 50, 75, 50, 10), "1. Slow-cook pulled pork in BBQ sauce until tender.\n" +
+                List.of(200, 50, 80, 50, 10), "1. Slow-cook pulled pork in BBQ sauce until tender.\n" +
                 "2. Assemble the sandwich with pulled pork, coleslaw, and pickles.\n" +
                 "3. Serve the sandwich on a toasted hamburger bun.");
 // 17. Greek Gyro Wrap
@@ -296,7 +296,7 @@ public class DataInitializer implements CommandLineRunner {
 
 // 18. Teriyaki Salmon Bowl
         Meal teriyakiSalmonBowl = new Meal("Teriyaki Salmon Bowl", FoodType.VEGETARIAN, List.of(salmonFillet, brownRice, broccoli, carrots, teriyakiSauce),
-                List.of(180, 100, 75, 50, 30), "1. Grill salmon fillet until fully cooked.\n" +
+                List.of(180, 100, 80, 50, 30), "1. Grill salmon fillet until fully cooked.\n" +
                 "2. Cook brown rice according to package instructions.\n" +
                 "3. Steam broccoli and carrots.\n" +
                 "4. Assemble the bowl with rice, grilled salmon, and steamed vegetables.\n" +
@@ -304,20 +304,20 @@ public class DataInitializer implements CommandLineRunner {
 
 // 19. Mediterranean Quinoa Salad
         Meal mediterraneanQuinoaSalad = new Meal("Mediterranean Quinoa Salad", FoodType.VEGETARIAN, List.of(quinoa, cherryTomatoes, cucumber, kalamataOlives, fetaCheese),
-                List.of(100, 75, 50, 30, 40), "1. Cook quinoa according to package instructions.\n" +
+                List.of(100, 80, 50, 30, 40), "1. Cook quinoa according to package instructions.\n" +
                 "2. In a bowl, mix cooked quinoa with cherry tomatoes, cucumber, Kalamata olives, and feta cheese.\n" +
                 "3. Toss the salad and serve chilled.");
 
 // 20. Chickpea Curry
         Meal chickpeaCurry = new Meal("Chickpea Curry", FoodType.VEGAN, List.of(chickpeas, coconutMilk, spinach, tomatoes, curryPowder),
-                List.of(200, 150, 75, 50, 10), "1. Sauté chickpeas in coconut milk.\n" +
+                List.of(200, 150, 80, 50, 10), "1. Sauté chickpeas in coconut milk.\n" +
                 "2. Add spinach, tomatoes, and curry powder to the chickpea mixture.\n" +
                 "3. Simmer until spinach is wilted.\n" +
                 "4. Serve over rice.");
 
 // 21. Tuna Nicoise Salad
         Meal tunaNicoiseSalad = new Meal("Tuna Nicoise Salad", FoodType.VEGETARIAN, List.of(tuna, mixedGreens, potatoes, greenBeans, hardBoiledEggs),
-                List.of(150, 100, 75, 50, 2), "1. In a bowl, combine mixed greens, canned tuna, boiled potatoes, and green beans.\n" +
+                List.of(150, 100, 80, 50, 200), "1. In a bowl, combine mixed greens, canned tuna, boiled potatoes, and green beans.\n" +
                 "2. Top the salad with hard-boiled eggs.\n" +
                 "3. Serve with your favorite dressing.");
 
@@ -330,7 +330,7 @@ public class DataInitializer implements CommandLineRunner {
 
 // 23. Chicken Fajitas
         Meal chickenFajitas = new Meal("Chicken Fajitas", FoodType.NORMAL, List.of(chickenStrips, redBellPeppers, onion, flourTortillas, salsa),
-                List.of(200, 100, 75, 50, 30), "1. Sauté chicken strips in a skillet until fully cooked.\n" +
+                List.of(200, 100, 80, 50, 30), "1. Sauté chicken strips in a skillet until fully cooked.\n" +
                 "2. Add sliced bell peppers and onions to the skillet.\n" +
                 "3. Warm flour tortillas in the oven.\n" +
                 "4. Assemble fajitas with the chicken and vegetable mixture.\n" +
@@ -345,7 +345,7 @@ public class DataInitializer implements CommandLineRunner {
 
 // 25. Beef Tacos
         Meal beefTacos = new Meal("Beef Tacos", FoodType.NORMAL, List.of(groundBeef, tacoSeasoning, lettuce, tomatoes, cheddarCheese),
-                List.of(200, 25, 75, 50, 40), "1. Brown ground beef in a skillet and season with taco seasoning.\n" +
+                List.of(200, 30, 80, 50, 40), "1. Brown ground beef in a skillet and season with taco seasoning.\n" +
                 "2. In taco shells, layer the seasoned beef, lettuce, tomatoes, and shredded cheddar cheese.\n" +
                 "3. Serve with your favorite taco toppings.");
 
@@ -358,13 +358,13 @@ public class DataInitializer implements CommandLineRunner {
 
 // 27. Sushi Bowl
         Meal sushiBowl = new Meal("Sushi Bowl", FoodType.VEGETARIAN, List.of(sushiRice, salmonFillet, avocado, cucumber, soySauce),
-                List.of(150, 100, 75, 50, 20), "1. Cook sushi rice according to package instructions.\n" +
+                List.of(150, 100, 80, 50, 20), "1. Cook sushi rice according to package instructions.\n" +
                 "2. Assemble the bowl with sushi rice, sliced salmon, avocado, and cucumber.\n" +
                 "3. Drizzle soy sauce over the bowl before serving.");
 
 // 28. Vegetable Lasagna
         Meal vegetableLasagna = new Meal("Vegetable Lasagna", FoodType.VEGETARIAN, List.of(lasagnaPasta, marinaraSauce, zucchini, ricottaCheese, mozzarellaCheese),
-                List.of(150, 100, 75, 50, 40), "1. Cook lasagna noodles according to package instructions.\n" +
+                List.of(150, 100, 80, 50, 40), "1. Cook lasagna noodles according to package instructions.\n" +
                 "2. In a baking dish, layer marinara sauce, lasagna noodles, zucchini, ricotta cheese, and mozzarella cheese.\n" +
                 "3. Repeat the layers and bake until bubbly and golden brown.\n" +
                 "4. Let it cool before serving.");
@@ -377,21 +377,21 @@ public class DataInitializer implements CommandLineRunner {
 
 // 30. Chicken Noodle Soup
         Meal chickenNoodleSoup = new Meal("Chicken Noodle Soup", FoodType.NORMAL, List.of(chickenBreast, tagliatellePasta, carrots, celery, chickenBroth),
-                List.of(200, 100, 75, 50, 300), "1. Poach chicken breast in chicken broth until fully cooked.\n" +
+                List.of(200, 100, 80, 50, 300), "1. Poach chicken breast in chicken broth until fully cooked.\n" +
                 "2. Add egg noodles, carrots, celery, and onions to the pot.\n" +
                 "3. Simmer until the noodles are tender.\n" +
                 "4. Season with salt and pepper to taste.");
 
 // 31. Steak with Garlic Butter
         Meal steakWithGarlicButter = new Meal("Steak with Garlic Butter", FoodType.CARNIVORE, List.of(sirloinSteak, garlic, butter, rosemary),
-                List.of(250, 15, 50, 14), "1. Season the sirloin steak with salt and pepper.\n" +
+                List.of(250, 30, 50, 20), "1. Season the sirloin steak with salt and pepper.\n" +
                 "2. Grill the steak to your preferred doneness.\n" +
                 "3. In a pan, melt butter and sauté minced garlic until fragrant.\n" +
                 "4. Add rosemary to the garlic butter and baste the grilled steak with the mixture.");
 
 // 32. BBQ Ribs
         Meal bbqRibs = new Meal("BBQ Ribs", FoodType.CARNIVORE, List.of(porkRibs, BBQSauce, brownSugar, paprika, garlicPowder),
-                List.of(1000, 240, 60, 14, 6), "1. Preheat the oven to 275°F (135°C).\n" +
+                List.of(1000, 240, 60, 20, 10), "1. Preheat the oven to 275°F (135°C).\n" +
                 "2. Mix brown sugar, paprika, and garlic powder to create a dry rub.\n" +
                 "3. Rub the mixture over the pork ribs.\n" +
                 "4. Place ribs in the oven and bake for 2.5 to 3 hours.\n" +
@@ -399,26 +399,26 @@ public class DataInitializer implements CommandLineRunner {
 
 // 33. Grilled Chicken Breast with Lemon Herb Marinade
         Meal grilledChickenBreast = new Meal("Grilled Chicken Breast with Lemon Herb Marinade", FoodType.CARNIVORE, List.of(chickenBreast, lemon, oliveOil, garlic, mixedHerbs),
-                List.of(2, 1, 60, 10, 14), "1. Marinate chicken breasts in a mixture of lemon juice, olive oil, minced garlic, and mixed herbs for at least 30 minutes.\n" +
+                List.of(360, 30, 60, 10, 20), "1. Marinate chicken breasts in a mixture of lemon juice, olive oil, minced garlic, and mixed herbs for at least 30 minutes.\n" +
                 "2. Grill the chicken breasts until fully cooked.\n" +
                 "3. Serve with additional lemon wedges and herbs for garnish.");
 
 // 34. Beef Stir-Fry with Vegetables
         Meal beefStirFry = new Meal("Beef Stir-Fry with Vegetables", FoodType.CARNIVORE, List.of(beefStrips, broccoli, redBellPeppers, soySauce, ginger),
-                List.of(300, 400, 2, 60, 14), "1. Stir-fry beef strips in a hot pan until browned.\n" +
+                List.of(300, 400, 400, 60, 20), "1. Stir-fry beef strips in a hot pan until browned.\n" +
                 "2. Add sliced broccoli, bell peppers, and minced ginger to the pan.\n" +
                 "3. Pour soy sauce over the ingredients and stir-fry until vegetables are tender.\n" +
                 "4. Adjust seasoning if necessary.");
 
 // 35. Carnitas Tacos
         Meal carnitasTacos = new Meal("Carnitas Tacos", FoodType.CARNIVORE, List.of(porkShoulder, cumin, chiliPowder, orange, cornTortillas),
-                List.of(1000, 14, 14, 60, 110), "1. Cut pork shoulder into chunks and season with cumin, chili powder, and salt.\n" +
+                List.of(1000, 20, 20, 60, 110), "1. Cut pork shoulder into chunks and season with cumin, chili powder, and salt.\n" +
                 "2. Place seasoned pork in a slow cooker, add orange juice, and cook on low for 6-8 hours.\n" +
                 "3. Shred the cooked pork and assemble tacos with your favorite toppings.");
 
 // 36. Lamb Chops with Mint Sauce
         Meal lambChopsWithMint = new Meal("Lamb Chops with Mint Sauce", FoodType.CARNIVORE, List.of(lambChops, freshMint, garlic, oliveOil, lemon),
-                List.of(500, 120, 10, 60, 28), "1. Season lamb chops with salt, pepper, and minced garlic.\n" +
+                List.of(500, 120, 20, 60, 30), "1. Season lamb chops with salt, pepper, and minced garlic.\n" +
                 "2. Grill lamb chops to your desired doneness.\n" +
                 "3. Mix fresh mint, minced garlic, olive oil, and lemon juice to create a mint sauce.\n" +
                 "4. Serve lamb chops with the mint sauce drizzled on top.");
@@ -434,7 +434,7 @@ public class DataInitializer implements CommandLineRunner {
 
 // 38. Bacon-Wrapped Shrimp Skewers
         Meal baconWrappedShrimp = new Meal("Bacon-Wrapped Shrimp Skewers", FoodType.CARNIVORE, List.of(shrimp, baconStrips, garlicPowder, paprika),
-                List.of(500, 250, 6, 6), "1. Preheat the grill or oven to medium-high heat.\n" +
+                List.of(500, 250, 20, 10), "1. Preheat the grill or oven to medium-high heat.\n" +
                 "2. Season shrimp with garlic powder and paprika.\n" +
                 "3. Wrap each shrimp with a strip of bacon and thread onto skewers.\n" +
                 "4. Grill or bake until the bacon is crispy and the shrimp is cooked through.\n" +
@@ -442,7 +442,7 @@ public class DataInitializer implements CommandLineRunner {
 
 // 39. Beef and Mushroom Stroganoff
         Meal beefStroganoff = new Meal("Beef and Mushroom Stroganoff", FoodType.CARNIVORE, List.of(sirloinSteak, mushrooms, onion, sourCream, dijonMustard),
-                List.of(400, 250, 170, 240, 28), "1. In a pan, sauté thinly sliced beef until browned.\n" +
+                List.of(400, 250, 170, 240, 30), "1. In a pan, sauté thinly sliced beef until browned.\n" +
                 "2. Remove beef from the pan and sauté sliced mushrooms and diced onions.\n" +
                 "3. Deglaze the pan with sour cream and add Dijon mustard.\n" +
                 "4. Return the cooked beef to the pan and simmer until heated through.\n" +
@@ -450,30 +450,30 @@ public class DataInitializer implements CommandLineRunner {
 
 // 40. Spicy Grilled Chicken Wings
         Meal spicyChickenWings = new Meal("Spicy Grilled Chicken Wings", FoodType.CARNIVORE, List.of(chickenWings, hotSauce, butter, garlicPowder, cayennePepper),
-                List.of(1000, 120, 60, 6, 3), "1. Preheat the grill to medium-high heat.\n" +
+                List.of(1000, 120, 60, 20, 10), "1. Preheat the grill to medium-high heat.\n" +
                 "2. Toss chicken wings in a mixture of melted butter, hot sauce, garlic powder, and cayenne pepper.\n" +
                 "3. Grill the chicken wings until crispy and fully cooked.\n" +
                 "4. Serve with your favorite dipping sauce.");
 
         Diet dietNormal = new Diet("Basic diet", List.of(
                 spaghettiBolognese, chickenCaesarWrap, mushroomRisotto, beefVegetableStirFry, hawaiianChickenSkewers, tunaNicoiseSalad, chickenFajitas, sushiBowl, turkeyAvocadoWrap, chickenNoodleSoup),
-                FoodType.NORMAL, "Basic diet with a perfect mix of meat and vegetables.", List.of());
+                FoodType.NORMAL, "Basic diet with a perfect mix of meat and vegetables.", List.of(),"https://cdn.galleries.smcloud.net/t/photos/gf-Yz2K-uho6-f6NT_spaghetti-bolognese-przepis-na-wloskie-danie-dla-4-osob.jpg");
         Diet dietCarnivorous = new Diet("Carnivore", List.of(
                 chickenNoodleSoup, steakWithGarlicButter, bbqRibs, grilledChickenBreast, beefStirFry, carnitasTacos, lambChopsWithMint, chickenParmesan, baconWrappedShrimp, beefStroganoff, spicyChickenWings),
-                FoodType.CARNIVORE, "High in meat carnivorous diet!",   List.of());
+                FoodType.CARNIVORE, "High in meat carnivorous diet!",   List.of(), "https://img.freepik.com/free-photo/juicy-steak-medium-rare-beef-with-spices-grilled-vegetables_24972-2328.jpg?size=626&ext=jpg&ga=GA1.1.1546980028.1703116800&semt=sph");
         Diet dietSemiCarni = new Diet("Semi Carnivore", List.of(
                 mushroomRisotto, tacoSalad, bbqPulledPorkSandwich, greekGyroWrap, porkFriedRice, beefTacos, sushiBowl, bbqRibs, spicyChickenWings, beefStirFry),
-                FoodType.NORMAL, "A good diet with a lot of proteins", List.of());
+                FoodType.NORMAL, "A good diet with a lot of proteins", List.of(), "https://www.twopeasandtheirpod.com/wp-content/uploads/2022/12/Beef-Tacos-55.jpg");
         Diet dietVeganAbsolutely = new Diet("Absolutely Vegan",List.of(
                 sweetPotatoBlackBeanBowl, lentilSoup, chickpeaCurry),
-                FoodType.VEGAN, "Try Vegan Diet, with no animal products.", List.of());
+                FoodType.VEGAN, "Try Vegan Diet, with no animal products.", List.of(), "https://plantbasedrdblog.com/wp-content/uploads/2023/03/sweet-potato-black-bean-bowl_feat.jpg");
         Diet dietVegetarianSea = new Diet("Sea Food Vegetarian Diet", List.of(
                 salmonQuinoaBowl, shrimpBroccoliAlfredo, vegetarianMushroomRisotto, caesarSaladGrilledShrimp, teriyakiSalmonBowl, tunaNicoiseSalad, shrimpScampi, sushiBowl),
-                FoodType.VEGETARIAN, "Normal Vegetarian Diet with a bit of sea food", List.of());
+                FoodType.VEGETARIAN, "Normal Vegetarian Diet with a bit of sea food", List.of(), "https://img.taste.com.au/LihKd2Oa/taste/2016/11/chargrilled-prawn-caesar-salad-98269-1.jpeg");
         Diet dietVegetarianNoMeat = new Diet("Vegetarian Diet with Animal Products", List.of(
                 vegetarianStirFry, capreseSalad, vegetarianMushroomRisotto, veggieOmelette, pestoPastaCherryTomatoes, mediterraneanQuinoaSalad, chickpeaCurry, eggplantParmesan, vegetableLasagna),
-                FoodType.VEGETARIAN, "Vegetarian diet with absolutely no meat or fish", List.of());
-/*
+                FoodType.VEGETARIAN, "Vegetarian diet with absolutely no meat or fish", List.of(), "https://realfood.tesco.com/media/images/RFO-1400x919-Tomato-and-pesto-spaghetti-da6e99ed-0b77-4285-8122-124232a744b2-0-1400x919.jpg");
+
         ingredientRepository.saveAll(List.of(beefStrips, chickenBreast, chickenStrips, eggs, grilledChickenStrips, grilledShrimp, groundBeef,
                 groundTurkey, gyroMeat, hardBoiledEggs, pork, pulledPork, salmonFillet, shrimp, tuna, turkeySlices, sirloinSteak,
                 porkRibs, porkShoulder, baconStrips, lambChops, chickenWings, cheddarCheese, fetaCheese, mozzarellaCheese, parmesanCheese,
@@ -496,8 +496,9 @@ public class DataInitializer implements CommandLineRunner {
 
         dietRepository.saveAll(List.of(dietNormal, dietCarnivorous, dietSemiCarni, dietVeganAbsolutely, dietVegetarianSea, dietVegetarianNoMeat));
 */
-        /*
-//        //CHEST
+
+/*
+        //CHEST
         Exercise BarDip = new Exercise("Bar Dip", Type.CALISTHENICS, Body.CHEST, 8, 0, 4, "https://i0.wp.com/www.strengthlog.com/wp-content/uploads/2020/09/Muscles-worked-by-bar-dip-exercise.jpg?resize=768%2C768&ssl=1", "https://i0.wp.com/www.strengthlog.com/wp-content/uploads/2020/02/Dips.gif?resize=600%2C600&ssl=1");
 
         Exercise BenchPress = new Exercise("Bench Press", Type.WEIGHTS, Body.CHEST, 4, 30, 4, "https://i0.wp.com/www.strengthlog.com/wp-content/uploads/2021/11/Bench-press-muscles-worked.jpg?resize=768%2C768&ssl=1", "https://i0.wp.com/www.strengthlog.com/wp-content/uploads/2021/09/bench-press.gif?resize=600%2C600&ssl=1");
@@ -946,7 +947,7 @@ public class DataInitializer implements CommandLineRunner {
         exerciseRepository.saveAll(allExercises);
         trainingRepository.saveAll(allTrainings);
         userRepository.saveAll(List.of(user));
-//*/
+*/
     }
 }
 
