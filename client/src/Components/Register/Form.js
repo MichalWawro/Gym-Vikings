@@ -14,10 +14,16 @@ const Form = ({ user, setUser }) => {
         height: user.height,
         amountOfTrainingsPerWeek: user.amountOfTrainingsPerWeek,
         allergies: [],
-        foodType: user.foodType,
-        dietType: user.dietType,
-        gender: user.gender
+        foodType: '',
+        dietType: '',
+        gender: ''
     })
+
+
+    function setPersonalDataInfo(input){
+        const output = input.toUpperCase();
+        return output;
+    }
 
     // const[age, setAge] = useState('');
     // const[weight, setWeight] = useState('');
@@ -56,7 +62,9 @@ const Form = ({ user, setUser }) => {
                 weight: personalData.weight,
                 amountOfTrainingsPerWeek: personalData.amountOfTrainingsPerWeek,
                 height: personalData.height,
-                allergies: personalData.allergies.map(allergy => allergy.toUpperCase())
+                allergies: personalData.allergies.map(allergy => allergy.toUpperCase()),
+                foodType: personalData.foodType,
+                dietType: personalData.dietType
             })
         })
         console.log("Response from server:", patchRes);
@@ -159,7 +167,7 @@ const Form = ({ user, setUser }) => {
                                         name="foodType"
                                         className="data-select"
                                         value={personalData.foodType}
-                                        onChange={e => setPersonalData({ ...personalData, foodType: e.target.value })}
+                                        onChange={e => setPersonalData({ ...personalData,foodType: e.target.value})}
                                     >
                                         {Object.values(FoodType).map((foodType) => (
                                             <option key={foodType} value={foodType} style={{color: 'black'}}>

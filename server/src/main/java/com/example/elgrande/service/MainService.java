@@ -6,6 +6,7 @@ import com.example.elgrande.model.diet.Meal;
 import com.example.elgrande.model.enums.Level;
 import com.example.elgrande.model.enums.enums_diet.Allergy;
 import com.example.elgrande.model.enums.enums_diet.DietType;
+import com.example.elgrande.model.enums.enums_diet.FoodType;
 import com.example.elgrande.model.enums.enums_training.Type;
 import com.example.elgrande.model.training.Exercise;
 import com.example.elgrande.model.training.Training;
@@ -53,6 +54,9 @@ public class MainService {
         user.setHeight(userForm.height());
         user.setGender(userForm.gender());
         user.setAllergies(userForm.allergies());
+
+        user.setFoodType(FoodType.valueOf(userForm.foodType().toUpperCase()));
+        user.setDietType(DietType.valueOf(userForm.dietType().toUpperCase()));
 
         double bmi = user.getBMI();
         int weeklyTrainingSessions = userForm.amountOfTrainingsPerWeek();

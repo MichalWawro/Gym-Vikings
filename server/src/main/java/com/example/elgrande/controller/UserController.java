@@ -93,7 +93,7 @@ public class UserController {
 //    public ResponseEntity<String> getForm(@RequestParam int userId, @RequestBody UserForm userForm){
     public ResponseEntity<String> getForm( @RequestBody UserForm userForm, @RequestParam int userId){
         try {
-            System.out.println("");
+            System.out.println(userForm);
             mainService.setUserTrainingInfo(userForm, userId);
             mainService.giveUserFirstTrainingPlan(userId);
             return ResponseEntity.ok("User information set successfully");
