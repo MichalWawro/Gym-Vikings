@@ -19,6 +19,7 @@ public class Diet {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String dietName;
+    private String imageUrl;
     @ManyToMany
     @JoinTable(name = "diets", joinColumns = @JoinColumn(name="diet_id"),
             inverseJoinColumns = @JoinColumn(name = "meal_id"))
@@ -32,13 +33,14 @@ public class Diet {
     @OneToMany
     @JsonIgnore
     private List<UserEntity> users;
-    public Diet(String dietName, List<Meal> mealsArray, FoodType foodType, String dietDescription, List<Allergy> allergies) {
+    public Diet(String dietName, List<Meal> mealsArray, FoodType foodType, String dietDescription, List<Allergy> allergies, String imageUrl) {
         this.dietName = dietName;
         this.meals = mealsArray;
         this.foodType = foodType;
         this.dietDescription = dietDescription;
         this.allergies = allergies;
         this.dietCaloriesPerDay = calculateDailyCalories();
+        this.imageUrl = imageUrl;
     }
 
 

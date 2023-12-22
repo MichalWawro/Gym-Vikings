@@ -86,9 +86,6 @@ function Training({ user, setUser }) {
         }
     }
 
-
-
-
     return (<>
         {validateFormDone(user)}
     </>

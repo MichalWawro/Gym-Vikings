@@ -49,7 +49,7 @@ function App() {
           <Route path='trainings' element={<ListOfTrainings user={user} setPickedTraining={setPickedTraining}/>}></Route>
           <Route path='trainings/trainingFromList' element={<TrainingFromIcon user={user} training={pickedTraining} setUser={setUser}/>}></Route>
           <Route path='diets' element={<Diets user={user} />}></Route>
-          <Route path='diets/search' element={<SearchDiets/>}></Route>
+          <Route path='diets/search' element={<SearchDiets user={user}/>}></Route>
           <Route path='diets/:index' element={<DietInfo/>}></Route>
           <Route path='meals/:index' element={<MealInfo/>}></Route>
           <Route path='profile' element={<Profile user={user} />}></Route>
