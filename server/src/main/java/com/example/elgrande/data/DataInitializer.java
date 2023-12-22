@@ -943,10 +943,6 @@ public class DataInitializer implements CommandLineRunner {
         //trainingRepository.saveAll(trainingList);
 
 
-        //userRepository.saveAll(List.of(user1, user2, user3, user4, user5));
-        exerciseRepository.saveAll(allExercises);
-        trainingRepository.saveAll(allTrainings);
-        userRepository.saveAll(List.of(user));
 */
     }
 }

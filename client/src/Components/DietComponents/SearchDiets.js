@@ -62,6 +62,7 @@ const SearchDiets = ({ user }) => {
             ) : (
                 <div className="centered-text">
                     <h1>We're fetching diets for you, give us a moment :D</h1>
+                    <div class="lds-ring"><div></div><div></div><div></div><div></div></div>
                 </div>
             )
             }

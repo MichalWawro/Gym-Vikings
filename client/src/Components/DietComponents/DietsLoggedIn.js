@@ -134,6 +134,7 @@ const DietsLoggedIn = ({ user }) => {
             ) : (
                 <div className="centered-text">
                     <h1>Please wait while we load your diet data :D!</h1>
+                    <div class="lds-ring"><div></div><div></div><div></div><div></div></div>
                 </div>
             )}
         </div >
