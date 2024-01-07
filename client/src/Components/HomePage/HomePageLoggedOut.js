@@ -2,7 +2,7 @@ import { useNavigate } from 'react-router-dom';
 
 const HomePageLoggedOut = ({}) => {
     const navigate = useNavigate();
-}
+
     return (
         <div className='background-image'>
             <div className="content">
@@ -18,5 +18,6 @@ const HomePageLoggedOut = ({}) => {
             </div>
         </div>
     );
+}
 
 export default HomePageLoggedOut;
