@@ -1,0 +1,109 @@
+
+.centered-text {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.diet-wrapper-column{
+    min-width: 98%;
+    display: flex;
+    flex-direction: column;
+    margin-left: 20px;
+}
+
+.diet-wrapper-right-column {
+    position:fixed;
+    left: 50%;
+    display: flex;
+    flex-direction: column;
+    margin-left: 20px;
+}
+
+
+
+.diet-wrapper-row {
+    display: flex;
+    flex-direction: row;
+}
+
+
+
+.diet-right-side-text {
+    padding-left: 40px;
+}
+
+
+/* Dolne buttony */
+
+.diet-wrapper-row-meal {
+    width:98%;
+    display: flex;
+    flex-direction: row;
+    position: absolute;
+    top: 60%;
+    align-self: center;
+}
+
+.next-meal-button {
+    background-color: #555555;
+    border: 2px solid black;
+    border-radius: 10px;
+    height: 60px;
+    width: 144px;
+    display: inline-block;
+    margin: 10px;
+    font: bold 14px/1 'Rubik', sans-serif;
+    transition: transform 0.75s;
+}
+
+.next-meal-button:hover {
+    background-color: rgb(212, 212, 103);
+    color: rgb(0, 0, 0);
+    transform: scale(1.1);
+}
+
+.diets-diet-picture {
+    min-width: 550px;
+    max-width: 550px;
+    max-height: 370px;
+    min-height: 370px;
+    margin-top: 20px;
+    margin-left: 150px;
+    border: 3px solid;
+    border-radius: 10px;
+    border-color: yellow;
+    overflow: hidden;
+}
+
+#diet-meal-text {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, 0%);
+}
+
+#diets-your-meal-button {
+    left: 50%;
+    position: absolute;
+    transform: translate(-50%, 0);
+    margin: 0;
+    padding: 0;
+}
+
+#diets-left-side-button {
+    position: absolute;
+    top: 50%;
+    left: 10%;
+    transform: translate(50%, 100%);
+    margin: 0;
+    padding: 0;
+}
+
+#diets-right-side-button {
+    position: absolute;
+    top:50%;
+    right: 10%;
+    transform: translate(-50%,100%);
+}

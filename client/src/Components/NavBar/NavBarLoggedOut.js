@@ -1,8 +1,8 @@
 import { useNavigate } from 'react-router-dom';
 import React, { useState, useEffect } from "react";
 
-const NavBarLoggedOut = ({ login, tryingToSign, setTryingToSign, setUser, setJwt}) => {
-    
+const NavBarLoggedOut = ({ login, tryingToSign, setTryingToSign, setUser, setJwt }) => {
+
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
 
@@ -24,12 +24,12 @@ const NavBarLoggedOut = ({ login, tryingToSign, setTryingToSign, setUser, setJwt
     }
 
 
-    async function handleLogin(){
+    async function handleLogin() {
         // event.preventDefault()
         const postRes = await fetch(`http://localhost:8080/user/login`, {
-          method: 'POST',
-          headers: {'Content-Type': 'application/json'},
-          body: JSON.stringify({username:username, password:password})
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ username: username, password: password })
         })
         const data = await postRes.json();
         console.log("Do podglądu -> login data", data)
@@ -61,16 +61,15 @@ const NavBarLoggedOut = ({ login, tryingToSign, setTryingToSign, setUser, setJwt
         setPassword(e.target.value)
     }
 
-
-    
-
-    
     return (
         <div>
-
-            
+            <button id="DietButton" className="NavButton" type="button" onClick={() => navigate("/trainings")}>
+                Trainings
+            </button>
+            <button id="DietButton" className="NavButton" type="button" onClick={() => navigate("/diets")}>
+                Diets
+            </button>
             {tryingToSign ?
-
                 <div id="MainLoginDiv" >
                     <button id="SignInExitButton" className="NavButton" type="button" onClick={() => setTryingToSign(false)}>
                         X
@@ -97,7 +96,6 @@ const NavBarLoggedOut = ({ login, tryingToSign, setTryingToSign, setUser, setJwt
                         Login
                     </button>
                 </div>
-
                 :
                
                 <button id="SignInButton" className="NavButton" type="button" onClick={() => setTryingToSign(true)}>

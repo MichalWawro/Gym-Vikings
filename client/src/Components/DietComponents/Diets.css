@@ -6,14 +6,12 @@
 
 .wrapper-column-logged-in {
     max-width: 80vw;
-    padding-top:90px;
+    padding-top: 90px;
     display: flex;
     flex-direction: column;
     align-items: left;
     margin-left: 20px;
 }
-
-
 
 .wrapper-row-no-diets {
     display: flex;
@@ -54,8 +52,8 @@
     margin-left: 100px;
     /* margin-top: 15px; */
     margin-bottom: 15px;
-    
-    left:100vw;
+
+    left: 100vw;
 
 }
 
@@ -124,6 +122,10 @@
     left: 15.5vw;
 }
 
+.diet-picture {
+    max-width: 250px;
+    max-height: 150px;
+}
 
 #image-left {
     max-width: 260px;
@@ -154,24 +156,20 @@
 
 .card-diets-logged-in {
     min-height: 200px;
-    min-width: 800px;
+    min-width: 850px;
     z-index: 0;
     display: flex;
     flex-wrap: nowrap;
+    margin: 0 5vw;
     margin-left: 10px;
     margin-right: 10px;
-}
-
-.card-diets-logged-in {
     align-items: center;
     overflow: hidden;
-    left: 25%;
+    left: 30%;
     position: absolute;
     border-radius: .75rem;
-    display: flex;
     justify-content: flex-end;
     flex-direction: row;
-    margin: 0 5vw;
     padding: 20px;
     box-sizing: border-box;
     box-shadow: 0 10px 20px -5px rgba(0, 0, 0, 0.5);
@@ -182,7 +180,7 @@
 .card-diets-logged-in img {
     padding-right: 50px;
     height: 100%;
-    z-index:-1;
+    z-index: -1;
     transform: scale(1.1);
     transition: all .7s cubic-bezier(.6, .09, .2, .99);
 }
@@ -200,8 +198,62 @@
     position: absolute;
     left: 80%;
     color: black;
+    background-color: #555555;
+    border: 2px solid black;
+    border-radius: 10px;
+    height: 60px;
+    width: 144px;
+    display: inline-block;
+    margin: 10px;
+    font: bold 14px/1 'Rubik', sans-serif;
+    transition: transform 0.75s;
 }
 
-/* .mainDiets {
-    padding-top: 90px;
-} */
+.side-button:hover {
+    background-color: rgb(212, 212, 103);
+    color: rgb(0, 0, 0);
+    transform: scale(1.1);
+}
+
+
+.lds-ring {
+    display: inline-block;
+    position: relative;
+    width: 80px;
+    height: 80px;
+  }
+  .lds-ring div {
+    box-sizing: border-box;
+    display: block;
+    position: absolute;
+    width: 64px;
+    height: 64px;
+    margin: 8px;
+    border: 8px solid #fff;
+    border-radius: 50%;
+    animation: lds-ring 1.2s cubic-bezier(0.5, 0, 0.5, 1) infinite;
+    border-color: #fff transparent transparent transparent;
+  }
+  .lds-ring div:nth-child(1) {
+    animation-delay: -0.45s;
+  }
+  .lds-ring div:nth-child(2) {
+    animation-delay: -0.3s;
+  }
+  .lds-ring div:nth-child(3) {
+    animation-delay: -0.15s;
+  }
+  @keyframes lds-ring {
+    0% {
+      transform: rotate(0deg);
+    }
+    100% {
+      transform: rotate(360deg);
+    }
+  }
+
+  .centered-text{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }

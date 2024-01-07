@@ -93,7 +93,7 @@ public class UserController {
 //    public ResponseEntity<String> getForm(@RequestParam int userId, @RequestBody UserForm userForm){
     public ResponseEntity<String> getForm( @RequestBody UserForm userForm, @RequestParam int userId){
         try {
-            System.out.println("");
+            System.out.println(userForm);
             mainService.setUserTrainingInfo(userForm, userId);
             mainService.giveUserFirstTrainingPlan(userId);
             return ResponseEntity.ok("User information set successfully");
@@ -125,16 +125,13 @@ public class UserController {
         return mainService.getTrainingFormUser(trainingId,userId);
     }
 
-
-
-
     @GetMapping("/diet/getDietsWithCalories")
     public List<Diet> provideDiets(@RequestParam int userId){
         return mainService.getAllDietsChanged(userId);
     }
 
     @GetMapping("/diet/getDietWithCalories")
-    public Diet suggestDiet(@RequestParam int userId) { return mainService.getDietChanged(userId);}
+    public Diet provideDiet(@RequestParam int userId) { return mainService.getDietChanged(userId);}
 
     @PutMapping ("/user/setDiet")
     public Diet setDiet(@RequestParam int userId,@RequestParam int dietId) {return mainService.setDiet(userId, dietId);}

@@ -8,7 +8,7 @@ const HomePageLoggedOut = ({}) => {
             <div className="content">
                 <div className='text-content'>
                 <h1 className="BorderedRubik">Welcome to the Vikings Land!</h1>
-                <h3 className=''>We are here to provide you with top level of trainings and diets. Start your journey now by signing yourself and filling your personal data form</h3>
+                <h2 className='text-h2'>We are here to provide you with top level of trainings and diets. Start your journey now by signing yourself and filling your personal data form</h2>
                 <div className="MainButtonContainer">
                 </div>
                     <button id="GetStartedButton" className="MainButton" type="button" onClick={() => navigate("/register")}>
