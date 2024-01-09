@@ -19,11 +19,12 @@ Fitness and diet App.
 
 
 ## Screenshots
-![](readmeFiles/register.PNG?raw=true)
 
-![](readmeFiles/mainPage.PNG?raw=true)
+<img height="108" src="readmeFiles/register.PNG?raw=true" width="192"/>
 
-![](readmeFiles/exercise.PNG?raw=true)
+<img height="108" src="readmeFiles/mainPage.PNG?raw=true" width="192"/>
+
+<img height="108" src="readmeFiles/exercise.PNG?raw=true" width="192"/>
 
 
 ## Setup
