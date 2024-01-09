@@ -1,1 +1,1 @@
-# Fitness-App
+Fitness and diet App. For all who wants to keep strong and healthy.
