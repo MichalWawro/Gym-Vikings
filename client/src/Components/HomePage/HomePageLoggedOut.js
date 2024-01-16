@@ -18,6 +18,6 @@ const HomePageLoggedOut = ({}) => {
             </div>
         </div>
     );
-};
+}
 
 export default HomePageLoggedOut;
